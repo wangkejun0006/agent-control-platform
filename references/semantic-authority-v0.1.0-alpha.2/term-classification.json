@@ -1,0 +1,841 @@
+{
+  "registry_version": "orbit.architecture-term-classification/2",
+  "registry_id": "orbit-company-agent-non-core-terms",
+  "status": "human_confirmed",
+  "definition_authority": "orbit-agent-architecture",
+  "concept_catalog": {
+    "version": "orbit.architecture-concept-catalog/2",
+    "path": "architecture/authority/concepts/concept-catalog.json"
+  },
+  "closed_world_rule": "任何稳定核心架构名词必须是 orbit.concept/*，正式状态与转换必须是 orbit.state/*，其他稳定名称必须登记为 orbit.term/* 并映射到已有 Concept；未分类名词不得被解释为新的权威对象。",
+  "term_kinds": [
+    {
+      "id": "scope_qualifier",
+      "definition": "只限定讨论、审阅或执行覆盖范围，不创建新的业务对象或权威。"
+    },
+    {
+      "id": "contract_object",
+      "definition": "实现或内部接口中的版本化数据对象；其结构和状态不能反向改写正式 Concept。"
+    },
+    {
+      "id": "architecture_pattern",
+      "definition": "用于组织责任或关系的复用模式，不是可激活、可授权的运行实例。"
+    },
+    {
+      "id": "implementation_component",
+      "definition": "仓库中的服务、类、模块、脚本、Skill 或确定性构建器，实现已有 Concept 但不成为新的公司权威。"
+    },
+    {
+      "id": "workflow_stage",
+      "definition": "受控流程中的阶段或暂停点；是否需要人类决定仍由 Policy 和 Approval 语义确定。"
+    },
+    {
+      "id": "evidence_profile",
+      "definition": "规定证据如何组织、摘要和验证的格式 Profile，不授予执行或发布权限。"
+    }
+  ],
+  "terms": [
+    {
+      "id": "orbit.term/governance-review",
+      "term_zh": "治理审阅",
+      "term_en": "Governance Review",
+      "kind": "architecture_pattern",
+      "definition": "围绕不可变候选、授权边界和证据闭合进行的结构化复核模式，可形成建议或人类决定请求。",
+      "not_a": [
+        "不是独立 Evaluator",
+        "不是 ApprovalDecision",
+        "不是 ExecutionGrant"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/approval-decision",
+        "orbit.concept/evaluation-report",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "审阅结论只能成为证据或决策输入，不能自行改变 Lifecycle 或签发 Grant。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/evidence-package",
+      "term_zh": "证据包",
+      "term_en": "Evidence Package",
+      "kind": "architecture_pattern",
+      "definition": "把多个不可变 Artifact、摘要、评价和审计引用组织成可复核集合的抽象模式。",
+      "not_a": [
+        "不是 Approval receipt",
+        "不是 Registry record",
+        "不是发布授权"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/artifact",
+        "orbit.concept/evaluation-report",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "background_only",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "证据包只组织和绑定证据，不把其中任一摘要转换为授权。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/full-chain",
+      "term_zh": "全链闭环范围",
+      "term_en": "Full-chain",
+      "kind": "scope_qualifier",
+      "definition": "表示一次工作覆盖从候选、授权、组合、执行到评价与终态证据的端到端范围。",
+      "not_a": [
+        "不是新 System",
+        "不是新 Runtime",
+        "不是新的授权对象"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/task",
+        "orbit.concept/execution-grant",
+        "orbit.concept/runtime-composition",
+        "orbit.concept/result-package",
+        "orbit.concept/evaluation-report",
+        "orbit.concept/receipt"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "全链只描述覆盖范围，不能把多个内部对象合并成一个权限或人工门禁。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/full-chain-review-package-builder",
+      "term_zh": "全链审阅包构建器",
+      "term_en": "Full-chain Review Package Builder",
+      "kind": "implementation_component",
+      "definition": "确定性读取候选与证据引用并生成审阅包和 Artifact Set 的仓库实现组件。",
+      "not_a": [
+        "不是正式 Concept",
+        "不是 Evaluator",
+        "不是 Approval 或 Grant 签发器"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent-control-plane",
+        "orbit.concept/artifact",
+        "orbit.concept/evaluation-report",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [
+        "orbit.term/full-chain",
+        "orbit.term/governance-review",
+        "orbit.term/evidence-package"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "background_only",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "只能生成 proposed 或 evidence-only 输出，不能执行、评价、批准或改变权威状态。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/lifecycle-review-artifact-set-v3",
+      "term_zh": "生命周期审阅制品集第三版",
+      "term_en": "Lifecycle Review Artifact Set v3",
+      "kind": "evidence_profile",
+      "definition": "绑定 Artifact 原始摘要、Approval scope 和稳定 Concept ID 的生命周期审阅证据格式。",
+      "not_a": [
+        "不是 Company Contract Schema",
+        "不是 ApprovalDecision",
+        "不是 ExecutionGrant"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/artifact",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [
+        "orbit.term/governance-review",
+        "orbit.term/evidence-package"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "background_only",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Profile 通过只证明结构与摘要闭合，不证明审批、执行或发布已发生。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/orbit-agent-lifecycle-review-skill",
+      "term_zh": "Orbit Agent 生命周期审阅 Skill",
+      "term_en": "Orbit Agent Lifecycle Review Skill",
+      "kind": "implementation_component",
+      "definition": "跨仓整理 Agent、Tool、Runtime 与生命周期证据的版本化指令和校验组件。",
+      "not_a": [
+        "不是 Lifecycle authority",
+        "不是 Company Evaluator",
+        "不是 Grant issuer"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/artifact",
+        "orbit.concept/approval-decision",
+        "orbit.concept/evaluation-report",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [
+        "orbit.term/governance-review",
+        "orbit.term/evidence-package"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Skill 只整理证据和建议，不签发 Grant、不激活对象、不写权威 Registry。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/governed-release-pipeline",
+      "term_zh": "受治理发布流水线",
+      "term_en": "Governed Release Pipeline",
+      "kind": "implementation_component",
+      "definition": "Control Plane 内协调候选核对、Policy 判定、受控执行、评价、修复和终态闭合的实现组件。",
+      "not_a": [
+        "不是 AutomationPolicy",
+        "不是 Agent",
+        "不是单一 ExecutionGrant"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent-control-plane",
+        "orbit.concept/automation-policy",
+        "orbit.concept/task",
+        "orbit.concept/execution-grant",
+        "orbit.concept/runtime-composition",
+        "orbit.concept/evaluation-report",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [
+        "orbit.term/full-chain"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "background_only",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Pipeline 只能按已有 Policy 和 Grant 协调状态，不能因为编排职责获得额外权限。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/stage-hook",
+      "term_zh": "阶段自检 Hook",
+      "term_en": "Stage Hook",
+      "kind": "implementation_component",
+      "definition": "在声明的流程阶段运行确定性检查并形成 Receipt 的非权威协调机制。",
+      "not_a": [
+        "不是 Scheduler",
+        "不是 Policy",
+        "不是 Human Approval"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/automation-policy",
+        "orbit.concept/qualification-run",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [
+        "orbit.term/governed-release-pipeline"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "background_only",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Hook 可在已批准范围内推进确定性阶段，但遇到新的 Approval scope 必须停止。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/pilot-enablement",
+      "term_zh": "试点启用门",
+      "term_en": "Pilot Enablement",
+      "kind": "workflow_stage",
+      "definition": "把多个内部核对结果聚合为一次明确范围的人类试点决定请求的工作流阶段。",
+      "not_a": [
+        "不是正式注册",
+        "不是生产授权",
+        "不是永久 ExecutionGrant"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/policy",
+        "orbit.concept/approval-decision",
+        "orbit.concept/task",
+        "orbit.concept/execution-grant"
+      ],
+      "depends_on_terms": [
+        "orbit.term/governance-review"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "operator_visible",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "阶段本身不新增门禁；是否需要人类决定来自既有 Policy、风险与 scope 变化。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/department-discovery",
+      "term_zh": "部门发现与接入调研",
+      "term_en": "Department Discovery",
+      "kind": "workflow_stage",
+      "definition": "在正式 Agent 建模和资格评审前，由 Control Plane 收集部门工作流程、负责人、系统边界、风险、成功标准和阶段一试点条件的前置发现工作流。",
+      "not_a": [
+        "不是 Company Contract",
+        "不是 QualificationRun",
+        "不是 ApprovalDecision 或 ExecutionGrant"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent-control-plane",
+        "orbit.concept/task",
+        "orbit.concept/system",
+        "orbit.concept/platform",
+        "orbit.concept/artifact",
+        "orbit.concept/policy",
+        "orbit.concept/approval-decision",
+        "orbit.concept/agent-system",
+        "orbit.concept/agent-capability-profile",
+        "orbit.concept/tool-manifest",
+        "orbit.concept/qualification-run",
+        "orbit.concept/evaluation-report",
+        "orbit.concept/receipt"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "operator_visible",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "输出只能是 discovery response、候选线索或待补证据，不能创建 Contract 实例、改变 Lifecycle、写入权威 Registry、批准部署或签发 Grant。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/model-route-reconciler",
+      "term_zh": "模型路由协调器",
+      "term_en": "Model Route Reconciler",
+      "kind": "implementation_component",
+      "definition": "维护非秘密 Model Route revision、Provider Observation 和部署前 Snapshot 一致性的 Control Plane 实现组件。",
+      "not_a": [
+        "不是模型 Provider",
+        "不是 Model Route Approval",
+        "不是 Secret Provider"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent-control-plane",
+        "orbit.concept/model-route",
+        "orbit.concept/gateway",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "background_only",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Reconciler 可刷新观察和阻断部署，不能批准 Model Route 或读取并输出 Secret。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/model-route-snapshot",
+      "term_zh": "模型路由部署快照",
+      "term_en": "Model Route Snapshot",
+      "kind": "contract_object",
+      "definition": "部署前固定 Route revision、Provider Observation、解析模型、预算和 Runtime/Policy 绑定的不可变内部对象。",
+      "not_a": [
+        "不是 Model Route",
+        "不是 ApprovalDecision",
+        "不是模型调用权"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/model-route",
+        "orbit.concept/runtime-composition",
+        "orbit.concept/receipt"
+      ],
+      "depends_on_terms": [
+        "orbit.term/provider-observation"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Snapshot ready 只表示部署前核对通过，不等于 Task 或 ExecutionGrant 已生效。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/provider-observation",
+      "term_zh": "模型供应商观察",
+      "term_en": "Provider Observation",
+      "kind": "contract_object",
+      "definition": "记录某一时间点解析模型 ID、价格和来源的脱敏非秘密观察对象。",
+      "not_a": [
+        "不是 Provider 账号",
+        "不是 API Key",
+        "不是长期价格承诺"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/model-route",
+        "orbit.concept/gateway",
+        "orbit.concept/receipt"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Observation 过期或来源无法复核时必须失败关闭，且永不保存 Secret 或原始账户响应。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/skill-package",
+      "term_zh": "Skill 指令包",
+      "term_en": "Skill Package",
+      "kind": "architecture_pattern",
+      "definition": "供 AI 或 Agent 使用的版本化指令、检查表和辅助资源集合。",
+      "not_a": [
+        "不是 Agent",
+        "不是已注册 Tool",
+        "不是 Approval、Policy 或 ExecutionGrant"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/artifact"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Skill 只有在被正式 ToolManifest、Policy 和 Grant 组合后才可能参与受控运行；指令包本身不授予权限。"
+      ],
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation"
+    },
+    {
+      "id": "orbit.term/execution-attempt",
+      "term_zh": "执行尝试",
+      "term_en": "Execution Attempt",
+      "kind": "contract_object",
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation",
+      "definition": "一个 Task 内具有独立序号、幂等键、Invocation、Lease、运行事件和终态证据的不可变执行尝试。",
+      "not_a": [
+        "不是新的 Task",
+        "不是 Task 生命周期状态",
+        "不是可覆盖的重试目录"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/task",
+        "orbit.concept/agent-invocation",
+        "orbit.concept/worker-lease",
+        "orbit.concept/runtime-event",
+        "orbit.concept/result-package",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "architecture/authority/states/README.md"
+      ],
+      "invariants": [
+        "失败、取消或阻塞的 Attempt 必须保留；重试使用新 Attempt 标识且不能把前一结果改写为成功。"
+      ]
+    },
+    {
+      "id": "orbit.term/reconciler",
+      "term_zh": "状态协调器",
+      "term_en": "Reconciler",
+      "kind": "implementation_component",
+      "publication_stage": "release",
+      "evidence_status": "current_recommendation",
+      "definition": "读取权威期望状态与观察事实，按既有 Policy 幂等推进允许的转换，并在出现新人工决定范围时停止的确定性组件。",
+      "not_a": [
+        "不是 Policy",
+        "不是 ApprovalDecision",
+        "不是 ExecutionGrant 签发者"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent-control-plane",
+        "orbit.concept/policy",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/states/README.md",
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "只能在已批准范围内自动推进；新 Approval scope 必须停止并输出待人类决定事项。"
+      ]
+    },
+    {
+      "id": "orbit.term/deployment-instance",
+      "term_zh": "部署实例",
+      "term_en": "Deployment Instance",
+      "kind": "contract_object",
+      "publication_stage": "draft",
+      "evidence_status": "current_recommendation",
+      "definition": "把精确 Agent Release 和 RuntimeRealization 投影到一个环境，并由期望状态与观察状态共同描述的部署候选实例。",
+      "not_a": [
+        "不是 Agent Release",
+        "不是 Agent active",
+        "不是 ExecutionGrant 或 Task"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent-release",
+        "orbit.concept/runtime-realization",
+        "orbit.concept/runner-worker",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [
+        "orbit.term/reconciler"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "operator_visible",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/states/README.md",
+        "architecture/authority/terms/README.md"
+      ],
+      "invariants": [
+        "Deployment running 只表示环境观察事实，不得转换为 Agent active、Task queued/running 或有效 ExecutionGrant。"
+      ]
+    },
+    {
+      "id": "orbit.term/runtime-profile",
+      "term_zh": "运行配置档案",
+      "term_en": "Runtime Profile",
+      "kind": "contract_object",
+      "publication_stage": "draft",
+      "evidence_status": "current_recommendation",
+      "definition": "由 Runtime Adapter 消费并以版本和摘要锁定的非权威运行参数集合，用于固定一次 Runtime 映射的 Profile 边界。",
+      "not_a": [
+        "不是 Agent Identity 或 Agent Binding",
+        "不是 Company Task 状态",
+        "不是 ExecutionGrant 或 Secret 容器"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent-binding",
+        "orbit.concept/runtime-realization",
+        "orbit.concept/runtime-adapter"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "background_only",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "architecture/supporting/runtime/adapter-conformance.md",
+        "contracts/drafts/v0.2/schemas/runtime-composition.schema.json",
+        "contracts/drafts/v0.2/schemas/runtime-task-projection.schema.json"
+      ],
+      "invariants": [
+        "Runtime Profile 只能收窄已锁定 Binding、Realization 和 Grant 的运行参数，不能扩大权限或成为实例状态权威。"
+      ]
+    },
+    {
+      "id": "orbit.term/department-planning-agent",
+      "term_zh": "部门任务规划 Agent",
+      "term_en": "Department Planning Agent",
+      "kind": "architecture_pattern",
+      "publication_stage": "draft",
+      "evidence_status": "human_confirmed",
+      "definition": "面向部门负责人进行多轮需求澄清、候选能力解释和专业任务包起草的受治理 Agent 角色模式。",
+      "not_a": [
+        "不是 Company Task Router",
+        "不是专业任务执行者",
+        "不是 ApprovalDecision 或 ExecutionGrant 签发者"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent",
+        "orbit.concept/task",
+        "orbit.concept/agent-capability-profile",
+        "orbit.concept/agent-invocation"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "operator_visible",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "architecture/supporting/models/department-cockpit-hermes-mvp.md"
+      ],
+      "invariants": [
+        "规划 Agent 只能在有效 Task、Policy 和 Grant 内写入澄清与任务包草案，不能直接派发专业 Agent 或扩大权限。"
+      ]
+    },
+    {
+      "id": "orbit.term/professional-task-package",
+      "term_zh": "专业任务包",
+      "term_en": "Professional Task Package",
+      "kind": "contract_object",
+      "publication_stage": "draft",
+      "evidence_status": "human_confirmed",
+      "definition": "把部门多轮对话收敛为目标、部门引用、输入、能力、成功标准、限制、数据分类、预算和期限的不可变任务输入工件。",
+      "not_a": [
+        "不是 Task Ledger 记录",
+        "不是 Route 或 Agent Release 选择",
+        "不是 ApprovalDecision、ExecutionGrant 或 RuntimeComposition"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/artifact",
+        "orbit.concept/task",
+        "orbit.concept/agent-capability-profile"
+      ],
+      "depends_on_terms": [
+        "orbit.term/department-planning-agent"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "operator_visible",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "architecture/supporting/models/department-cockpit-hermes-mvp.md",
+        "contracts/drafts/v0.2/schemas/professional-task-package.schema.json"
+      ],
+      "invariants": [
+        "任务包只提供可摘要的 Task 输入；如 Policy 要求人类决定，精确 Task Revision 与 package digest 必须复用唯一 task_execution_approval，任务包不得创建第二个 ApprovalDecision。"
+      ]
+    },
+    {
+      "id": "orbit.term/runtime-task-projection",
+      "term_zh": "运行任务投影",
+      "term_en": "Runtime Task Projection",
+      "kind": "contract_object",
+      "publication_stage": "draft",
+      "evidence_status": "human_confirmed",
+      "definition": "把 Company Task 的精确 Revision 有界投影为 Runtime 原生工作项，并记录原生观察状态、事件和对账回执的框架无关非权威映射对象。",
+      "not_a": [
+        "不是 Company Task 或 Task Ledger",
+        "不是 Runtime 原生状态对公司终态的授权",
+        "不是 ExecutionGrant"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/task",
+        "orbit.concept/runtime-adapter",
+        "orbit.concept/runtime-event",
+        "orbit.concept/receipt",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [
+        "orbit.term/execution-attempt"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "operator_visible",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "architecture/supporting/models/department-cockpit-hermes-mvp.md",
+        "contracts/drafts/v0.2/schemas/runtime-task-projection.schema.json"
+      ],
+      "invariants": [
+        "任何 Runtime 原生 completed、done、blocked 或 archived 只能形成 RuntimeEvent 和 Receipt 候选，不能直接改变 Company Task 状态。"
+      ]
+    },
+    {
+      "id": "orbit.term/task-clarification-request",
+      "term_zh": "任务补充请求",
+      "term_en": "Task Clarification Request",
+      "kind": "contract_object",
+      "publication_stage": "draft",
+      "evidence_status": "human_confirmed",
+      "definition": "Agent 在任务目标、输入或边界不足时提交的一至三个结构化问题、选项和范围影响判断。",
+      "not_a": [
+        "不是 Task Purpose 的隐式修改",
+        "不是 ApprovalDecision",
+        "不是自动重试或新 ExecutionGrant"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/artifact",
+        "orbit.concept/task",
+        "orbit.concept/result-package",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [
+        "orbit.term/professional-task-package"
+      ],
+      "authority_claim": "none",
+      "operator_exposure": "operator_visible",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "architecture/supporting/models/department-cockpit-hermes-mvp.md",
+        "contracts/drafts/v0.2/schemas/task-clarification-request.schema.json"
+      ],
+      "invariants": [
+        "补充内容若改变 Purpose、权限、数据或副作用范围，必须创建新的专业 Task，而不能在原 Grant 内恢复。"
+      ]
+    },
+    {
+      "id": "orbit.term/semantic-authority-projection",
+      "term_zh": "语义权威投影",
+      "term_en": "Semantic Authority Projection",
+      "kind": "implementation_component",
+      "publication_stage": "release",
+      "evidence_status": "human_confirmed",
+      "definition": "Control Plane 对已发布 Semantic Authority Bundle 中 Concept、Term、State 与 Contract Enum Index 的摘要锁定只读消费投影。",
+      "not_a": [
+        "不是第二个 Concept、Term 或 State 定义源",
+        "不是运行期权限或人工审批",
+        "不是对未发布语义草案的自动激活"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/agent-control-plane",
+        "orbit.concept/artifact",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "background_only",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "architecture/supporting/decisions/0020-semantic-authority-alpha-release.md"
+      ],
+      "invariants": [
+        "投影必须绑定不可变 Release ID 与源文件摘要；摘要漂移或条目缺失时失败关闭，且不得在 Control Plane 内重写正式定义。"
+      ]
+    },
+    {
+      "id": "orbit.term/tool-semantic-scope",
+      "term_zh": "工具语义范围",
+      "term_en": "Tool Semantic Scope",
+      "kind": "contract_object",
+      "publication_stage": "draft",
+      "evidence_status": "human_confirmed",
+      "definition": "以领域、能力、资源、动作和副作用组成稳定范围键，并绑定精确 ToolManifest 摘要的注册期语义对象。",
+      "not_a": [
+        "不是 ToolManifest 的调用授权",
+        "不是 ExecutionGrant",
+        "不是把普通函数自动升级为 Tool 的分类器"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/tool",
+        "orbit.concept/tool-manifest",
+        "orbit.concept/tool-registry"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "explain_on_demand",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "contracts/drafts/v0.2/schemas/tool-semantic-scope.schema.json"
+      ],
+      "invariants": [
+        "同一活动 canonical scope 只能归属于一个 Tool operation；alias 必须指向 canonical，supersedes 必须保留前任身份与证据。"
+      ]
+    },
+    {
+      "id": "orbit.term/system-registry-record",
+      "term_zh": "业务系统目录记录",
+      "term_en": "System Registry Record",
+      "kind": "contract_object",
+      "publication_stage": "draft",
+      "evidence_status": "human_confirmed",
+      "definition": "由 Control Plane System Registry 保存的业务系统稳定身份、责任部门、生命周期和逻辑来源引用记录。",
+      "not_a": [
+        "不是 Department、Project 或 Agent 节点",
+        "不是文件夹移动指令",
+        "不是 Runtime、模型调用或生产授权"
+      ],
+      "maps_to_concepts": [
+        "orbit.concept/system",
+        "orbit.concept/agent-control-plane",
+        "orbit.concept/audit-event"
+      ],
+      "depends_on_terms": [],
+      "authority_claim": "none",
+      "operator_exposure": "operator_visible",
+      "creates_human_checkpoint": false,
+      "declared_in": [
+        "architecture/authority/terms/README.md",
+        "contracts/drafts/v0.2/schemas/system-registry-record.schema.json"
+      ],
+      "invariants": [
+        "System active 只表达公司目录生命周期；责任部门变化、目录迁移和 Runtime 启用分别保留独立决定与审计证据。"
+      ]
+    }
+  ]
+}
+

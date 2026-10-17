@@ -1,0 +1,132 @@
+{
+  "release_id": "semantic-authority-v0.1.0-alpha.7",
+  "authority_version": "0.1.0-alpha.7",
+  "stability": "alpha",
+  "distribution_scope": "company_internal",
+  "status": "approved",
+  "source_revision": {
+    "strategy": "immutable_git_tag",
+    "tag": "semantic-authority-v0.1.0-alpha.7"
+  },
+  "approval": {
+    "decision": "approve_internal_alpha_semantic_authority_release",
+    "approved_at": "2026-09-04T01:18:05.932Z",
+    "approver_initials": "DEMO",
+    "roles": [
+      "architecture_owner",
+      "platform_owner"
+    ],
+    "evidence_kind": "scripted_demo_fixture",
+    "evidence_reference": null,
+    "production_authorization": false,
+    "orbit_write_authorization": false
+  },
+  "artifacts": {
+    "authority_lock": {
+      "path": "architecture/locks/semantic-authority-lock.json",
+      "lock_version": "orbit.semantic-authority-lock/1",
+      "sha256": "sha256:ecf2f5d2e165addde44c9349edc01a52bbc3efa6c27ead5c8ce36a1c33d65407"
+    },
+    "sources": [
+      {
+        "role": "concept_catalog",
+        "version": "orbit.architecture-concept-catalog/2",
+        "path": "architecture/authority/concepts/concept-catalog.json",
+        "sha256": "sha256:d862c4f81ada477f6b8a60622a5f7803f7d85e261eba890027ab22ced96e6921"
+      },
+      {
+        "role": "term_registry",
+        "version": "orbit.architecture-term-classification/2",
+        "path": "architecture/authority/terms/term-classification.json",
+        "sha256": "sha256:344f7c68ebcca2f1175d5a662dc2a36a97fd78b7a4c14d7a455332f227878b7e"
+      },
+      {
+        "role": "state_catalog",
+        "version": "orbit.architecture-state-catalog/1",
+        "path": "architecture/authority/states/state-catalog.json",
+        "sha256": "sha256:9ee15d7fbe177d0e6e46151a072b22fae3807b0c11cb8cd0792b54625e5e9b76"
+      },
+      {
+        "role": "contract_enum_index",
+        "version": "orbit.architecture-contract-enum-index/1",
+        "path": "architecture/locks/contract-enum-index.json",
+        "sha256": "sha256:138ca44eff31bcea0971a1ea1d1ade49b0f7f0ff7f7994fa374f654adbf4f2a6"
+      }
+    ]
+  },
+  "retained_drafts": {
+    "concept_ids": [],
+    "term_ids": [
+      "orbit.term/container-engine-adapter",
+      "orbit.term/container-isolation-profile",
+      "orbit.term/container-runtime-binding",
+      "orbit.term/department-agent-proposal-package",
+      "orbit.term/deployment-instance",
+      "orbit.term/deployment-release-lock",
+      "orbit.term/model-catalog-entry",
+      "orbit.term/model-provider-preset",
+      "orbit.term/runtime-artifact-bundle",
+      "orbit.term/runtime-artifact-import-receipt",
+      "orbit.term/runtime-artifact-manifest",
+      "orbit.term/runtime-artifact-qualification-receipt",
+      "orbit.term/runtime-node-assisted-maintenance-session",
+      "orbit.term/runtime-node-capability-report",
+      "orbit.term/runtime-node-enrollment-receipt",
+      "orbit.term/runtime-node-maintenance-job",
+      "orbit.term/runtime-node-maintenance-receipt",
+      "orbit.term/stage1-lan-service-profile",
+      "orbit.term/task-gateway-relay"
+    ],
+    "state_ids": [
+      "orbit.state/deployment-convergence",
+      "orbit.state/model-catalog-lifecycle"
+    ],
+    "promotion_rule": "release_bundle_preserves_each_entry_publication_stage"
+  },
+  "contract_boundary": {
+    "current_release_id": "contract-v0.2.0-alpha.1",
+    "current_index_path": "contracts/releases/current.json",
+    "current_index_sha256": "sha256:8b2fd1c48dd4d7451a55c501e528b86aae0f2b0bfd47aff0b6b73f680478f0ac",
+    "manifest_path": "contracts/releases/contract-v0.2.0-alpha.1/manifest.json",
+    "manifest_sha256": "sha256:52de94434ec5fc2cfdb692c83041c0b0faaabe2f6ae415bd27ce395fbfe0e87e",
+    "draft_schema_count": 13,
+    "contract_v0_2_published": true,
+    "production_authorization": false,
+    "orbit_write_authorization": false
+  },
+  "contract_alignment_snapshot": {
+    "concept_contract_refs": {
+      "exact": 19,
+      "partial": 22,
+      "planned": 0
+    },
+    "state_machines": {
+      "exact": 1,
+      "partial": 3,
+      "planned": 0,
+      "not_mapped": 1
+    },
+    "semantic_release_gate": "partial_contract_alignment_allowed_because_semantic_authority_may_lead_contract"
+  },
+  "validation": {
+    "status": "passed",
+    "commands": [
+      "npm test",
+      "git diff --check"
+    ],
+    "evidence_boundary": [
+      "static_architecture_and_contracts_only",
+      "contract_v0_2_published_as_v1alpha2",
+      "no_runtime_execution",
+      "no_production_authorization",
+      "no_orbit_write_authorization"
+    ]
+  },
+  "non_claims": [
+    "does_not_rewrite_historical_contract_releases",
+    "does_not_promote_retained_draft_entries",
+    "does_not_authorize_runtime_or_production",
+    "does_not_authorize_orbit_write_or_external_delivery"
+  ]
+}
+

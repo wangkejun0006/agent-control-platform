@@ -1,0 +1,1551 @@
+{
+  "index_version": "orbit.architecture-contract-enum-index/1",
+  "status": "human_confirmed",
+  "scope": {
+    "roots": [
+      "contracts/schemas",
+      "contracts/drafts"
+    ],
+    "field_name_pattern": "(status|state|verdict|outcome|assessment|selection)"
+  },
+  "entries": [
+    {
+      "path": "contracts/drafts/v0.2/schemas/agent-scaffold-request.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-definition"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/agent-scaffold-request.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-definition"
+      ],
+      "values": [
+        "draft",
+        "reviewed",
+        "consumed",
+        "superseded"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/agent-scaffold-request.schema.json",
+      "pointer": "/properties/spec/properties/business_requirements/properties/model_selection_status",
+      "publication_stage": "draft",
+      "classification": "selection",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-definition"
+      ],
+      "values": [
+        "pending",
+        "selected",
+        "not_required"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-selection-assessment.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-selection-assessment.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "draft",
+        "evaluating",
+        "recommended",
+        "superseded"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-selection-assessment.schema.json",
+      "pointer": "/properties/spec/properties/candidates/items/properties/assessment_status",
+      "publication_stage": "draft",
+      "classification": "selection",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "unassessed",
+        "evaluating",
+        "eligible_for_evaluation",
+        "ineligible",
+        "deferred"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-selection-assessment.schema.json",
+      "pointer": "/properties/spec/properties/candidates/items/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "unverified",
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-selection-assessment.schema.json",
+      "pointer": "/properties/spec/properties/recommendation/properties/status",
+      "publication_stage": "draft",
+      "classification": "selection",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "preferred_for_evaluation",
+        "no_selection",
+        "insufficient_evidence"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-selection-assessment.schema.json",
+      "pointer": "/properties/spec/properties/requirements/properties/statefulness",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "stateless",
+        "task_scoped",
+        "durable"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-selection-assessment.schema.json",
+      "pointer": "/properties/spec/properties/subject/properties/model_selection_status",
+      "publication_stage": "draft",
+      "classification": "selection",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "pending",
+        "selected",
+        "not_required"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/system-composition.schema.json",
+      "pointer": "/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/system-composition"
+      ],
+      "values": [
+        "architecture_assumption",
+        "human_confirmed",
+        "leadership_approved"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/system-composition.schema.json",
+      "pointer": "/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/system-composition"
+      ],
+      "values": [
+        "draft",
+        "proposed",
+        "approved",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/agent-invocation.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-invocation"
+      ],
+      "values": [
+        "created",
+        "accepted",
+        "running",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/agent-invocation.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-invocation"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/professional-task-package.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.term/professional-task-package"
+      ],
+      "values": [
+        "draft",
+        "ready",
+        "superseded"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/professional-task-package.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.term/professional-task-package"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-composition.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-composition"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-task-projection.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.term/runtime-task-projection"
+      ],
+      "values": [
+        "active",
+        "drifted",
+        "closed"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-task-projection.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.term/runtime-task-projection"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/runtime-task-projection.schema.json",
+      "pointer": "/properties/spec/properties/company_task/properties/state",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "state_machine_projection",
+      "owner_refs": [
+        "orbit.concept/task",
+        "orbit.state/task-lifecycle"
+      ],
+      "state_ref": "orbit.state/task-lifecycle",
+      "values": [
+        "queued",
+        "running",
+        "paused",
+        "succeeded",
+        "failed",
+        "rejected",
+        "cancelled"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/task-clarification-request.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.term/task-clarification-request"
+      ],
+      "values": [
+        "open",
+        "answered",
+        "superseded"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/task-clarification-request.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.term/task-clarification-request"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/adapter-capability-report.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-adapter"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/adapter-capability-report.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-adapter"
+      ],
+      "values": [
+        "draft",
+        "verified",
+        "superseded"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-binding.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-binding"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-binding.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-binding"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-capability-profile.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-capability-profile"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-capability-profile.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-capability-profile"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "approved",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-definition.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-definition"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-definition.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-definition"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-invocation.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-invocation"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-invocation.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-invocation"
+      ],
+      "values": [
+        "created",
+        "accepted",
+        "running",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-registry.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-registry"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-registry.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "lifecycle",
+      "coverage": "state_machine",
+      "owner_refs": [
+        "orbit.concept/agent-registry"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "active",
+        "suspended",
+        "retired"
+      ],
+      "state_ref": "orbit.state/agent-lifecycle"
+    },
+    {
+      "path": "contracts/schemas/agent-release-manifest.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-release"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-release-manifest.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "lifecycle",
+      "coverage": "state_machine",
+      "owner_refs": [
+        "orbit.concept/agent-release"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "approved",
+        "suspended",
+        "retired"
+      ],
+      "state_ref": "orbit.state/agent-release-lifecycle"
+    },
+    {
+      "path": "contracts/schemas/agent-release-manifest.schema.json",
+      "pointer": "/properties/spec/properties/model_selection/properties/status",
+      "publication_stage": "release",
+      "classification": "selection",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-release"
+      ],
+      "values": [
+        "pending",
+        "selected",
+        "not_required"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-release-manifest.schema.json",
+      "pointer": "/properties/spec/properties/runtime_selection/properties/candidates/items/properties/assessment_status",
+      "publication_stage": "release",
+      "classification": "selection",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-release"
+      ],
+      "values": [
+        "unassessed",
+        "evaluating",
+        "eligible",
+        "ineligible",
+        "deferred"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-release-manifest.schema.json",
+      "pointer": "/properties/spec/properties/runtime_selection/properties/candidates/items/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-release"
+      ],
+      "values": [
+        "unverified",
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-release-manifest.schema.json",
+      "pointer": "/properties/spec/properties/runtime_selection/properties/status",
+      "publication_stage": "release",
+      "classification": "selection",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-release"
+      ],
+      "values": [
+        "pending",
+        "selected"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-template.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-template"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/agent-template.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-template"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "approved",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/approval-decision.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/approval-decision"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/audit-event.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/audit-event"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/audit-event.schema.json",
+      "pointer": "/properties/spec/properties/outcome",
+      "publication_stage": "release",
+      "classification": "outcome",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/audit-event"
+      ],
+      "values": [
+        "succeeded",
+        "failed",
+        "blocked",
+        "pending",
+        "not_applicable"
+      ]
+    },
+    {
+      "path": "contracts/schemas/automation-common.schema.json",
+      "pointer": "/$defs/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/automation-policy"
+      ],
+      "values": [
+        "architecture_reference",
+        "static",
+        "synthetic",
+        "public",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/dataset-metadata.schema.json",
+      "pointer": "/properties/lifecycle/properties/state",
+      "publication_stage": "release",
+      "classification": "lifecycle",
+      "coverage": "external_authority",
+      "owner_refs": [
+        "orbit.concept/dataset",
+        "orbit.concept/dataset-registry"
+      ],
+      "values": [
+        "registered",
+        "active",
+        "quarantined",
+        "deprecated",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/dataset-metadata.schema.json",
+      "pointer": "/properties/quality/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/dataset",
+        "orbit.concept/dataset-registry"
+      ],
+      "values": [
+        "unknown",
+        "not_assessed",
+        "assessed",
+        "restricted_use",
+        "failed"
+      ]
+    },
+    {
+      "path": "contracts/schemas/dataset-metadata.schema.json",
+      "pointer": "/properties/version/properties/version_state",
+      "publication_stage": "release",
+      "classification": "lifecycle",
+      "coverage": "external_authority",
+      "owner_refs": [
+        "orbit.concept/dataset",
+        "orbit.concept/dataset-registry"
+      ],
+      "values": [
+        "draft",
+        "active",
+        "deprecated",
+        "withdrawn"
+      ]
+    },
+    {
+      "path": "contracts/schemas/evaluation-report.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/evaluation-report"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/evaluation-report.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/evaluation-report"
+      ],
+      "values": [
+        "draft",
+        "final",
+        "superseded"
+      ]
+    },
+    {
+      "path": "contracts/schemas/evaluation-report.schema.json",
+      "pointer": "/properties/spec/properties/verdict",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/evaluation-report"
+      ],
+      "values": [
+        "pass",
+        "fail",
+        "needs_review"
+      ]
+    },
+    {
+      "path": "contracts/schemas/execution-closure-receipt.schema.json",
+      "pointer": "/$defs/terminal_ref/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/receipt"
+      ],
+      "values": [
+        "completed",
+        "failed",
+        "cancelled",
+        "blocked",
+        "consumed",
+        "revoked",
+        "expired",
+        "closed",
+        "approved_unconsumed"
+      ]
+    },
+    {
+      "path": "contracts/schemas/execution-closure-receipt.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/receipt"
+      ],
+      "values": [
+        "completed",
+        "failed",
+        "cancelled",
+        "blocked"
+      ]
+    },
+    {
+      "path": "contracts/schemas/execution-closure-receipt.schema.json",
+      "pointer": "/properties/spec/properties/evaluations/items/properties/verdict",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/receipt"
+      ],
+      "values": [
+        "pass",
+        "fail",
+        "hold",
+        "not_run"
+      ]
+    },
+    {
+      "path": "contracts/schemas/execution-grant.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/execution-grant"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/execution-grant.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/execution-grant"
+      ],
+      "values": [
+        "draft",
+        "active",
+        "revoked",
+        "expired",
+        "consumed"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/$defs/approval_policy/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "draft",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/$defs/delegation/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "requested",
+        "active",
+        "suspended",
+        "retiring",
+        "retired",
+        "rejected"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/$defs/hierarchy_edge/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "active",
+        "ended",
+        "revoked"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/$defs/hierarchy_node/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "draft",
+        "active",
+        "suspended",
+        "closed",
+        "retired",
+        "superseded"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/$defs/membership/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "pending",
+        "active",
+        "ended",
+        "revoked"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/$defs/memory_disposition_policy/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "draft",
+        "active",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/$defs/permission_grant/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "draft",
+        "active",
+        "suspended",
+        "revoked",
+        "expired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "architecture_assumption",
+        "human_confirmed",
+        "leadership_approved"
+      ]
+    },
+    {
+      "path": "contracts/schemas/hierarchy-model.schema.json",
+      "pointer": "/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/agent-control-plane"
+      ],
+      "values": [
+        "draft",
+        "proposed",
+        "approved",
+        "superseded"
+      ]
+    },
+    {
+      "path": "contracts/schemas/model-route.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/model-route"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/model-route.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/model-route"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "approved",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/policy-decision-receipt.schema.json",
+      "pointer": "/properties/spec/properties/subset_checks/items/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/receipt",
+        "orbit.concept/policy"
+      ],
+      "values": [
+        "pass",
+        "fail"
+      ]
+    },
+    {
+      "path": "contracts/schemas/qualification-run.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/qualification-run"
+      ],
+      "values": [
+        "proposed",
+        "running",
+        "waiting_human",
+        "completed",
+        "failed",
+        "cancelled",
+        "quarantined"
+      ]
+    },
+    {
+      "path": "contracts/schemas/remediation-receipt.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/receipt"
+      ],
+      "values": [
+        "prepared",
+        "verified",
+        "rejected"
+      ]
+    },
+    {
+      "path": "contracts/schemas/remediation-receipt.schema.json",
+      "pointer": "/properties/spec/properties/predecessor/properties/terminal_status",
+      "publication_stage": "release",
+      "classification": "outcome",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/receipt"
+      ],
+      "values": [
+        "blocked",
+        "failed",
+        "cancelled"
+      ]
+    },
+    {
+      "path": "contracts/schemas/result-package.schema.json",
+      "pointer": "/properties/business_outcome/properties/normalized_outcome",
+      "publication_stage": "release",
+      "classification": "outcome",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/result-package"
+      ],
+      "values": [
+        "completed",
+        "degraded",
+        "abstained",
+        "blocked",
+        "requires_human_action",
+        "rolled_back",
+        "rejected",
+        "cancelled",
+        "failed"
+      ]
+    },
+    {
+      "path": "contracts/schemas/result-package.schema.json",
+      "pointer": "/properties/evaluation/properties/state",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/result-package"
+      ],
+      "values": [
+        "not_run",
+        "passed",
+        "failed",
+        "needs_review"
+      ]
+    },
+    {
+      "path": "contracts/schemas/result-package.schema.json",
+      "pointer": "/properties/human_disposition/properties/state",
+      "publication_stage": "release",
+      "classification": "summary",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/result-package"
+      ],
+      "values": [
+        "pending",
+        "accepted",
+        "rejected",
+        "requires_revision",
+        "not_required"
+      ]
+    },
+    {
+      "path": "contracts/schemas/result-package.schema.json",
+      "pointer": "/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/result-package"
+      ],
+      "values": [
+        "succeeded",
+        "partial",
+        "failed",
+        "cancelled",
+        "rejected"
+      ]
+    },
+    {
+      "path": "contracts/schemas/result-package.schema.json",
+      "pointer": "/properties/tool_usage/items/properties/side_effect_state",
+      "publication_stage": "release",
+      "classification": "outcome",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/result-package"
+      ],
+      "values": [
+        "none",
+        "pending",
+        "confirmed",
+        "failed",
+        "unknown"
+      ]
+    },
+    {
+      "path": "contracts/schemas/runtime-event.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-event"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/runtime-realization.schema.json",
+      "pointer": "/properties/metadata/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "synthetic",
+        "architecture_reference",
+        "verified_runtime"
+      ]
+    },
+    {
+      "path": "contracts/schemas/runtime-realization.schema.json",
+      "pointer": "/properties/metadata/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "approved",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/runtime-realization.schema.json",
+      "pointer": "/properties/spec/properties/communication/properties/task_state_authority",
+      "publication_stage": "release",
+      "classification": "summary",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/runtime-realization"
+      ],
+      "values": [
+        "company_task_ledger",
+        "runtime_local_pilot"
+      ]
+    },
+    {
+      "path": "contracts/schemas/stage-execution-receipt.schema.json",
+      "pointer": "/properties/metadata/properties/outcome",
+      "publication_stage": "release",
+      "classification": "outcome",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/receipt"
+      ],
+      "values": [
+        "passed",
+        "blocked",
+        "failed",
+        "cancelled",
+        "skipped"
+      ]
+    },
+    {
+      "path": "contracts/schemas/stage-execution-receipt.schema.json",
+      "pointer": "/properties/spec/properties/checks/items/properties/status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/receipt"
+      ],
+      "values": [
+        "pass",
+        "fail",
+        "blocked",
+        "not_applicable"
+      ]
+    },
+    {
+      "path": "contracts/schemas/system-composition.schema.json",
+      "pointer": "/$defs/unit/properties/lifecycle_state",
+      "publication_stage": "release",
+      "classification": "lifecycle",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/system-composition"
+      ],
+      "values": [
+        "planned",
+        "prototype",
+        "evaluation",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/system-composition.schema.json",
+      "pointer": "/properties/evidence_status",
+      "publication_stage": "release",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/system-composition"
+      ],
+      "values": [
+        "architecture_assumption",
+        "human_confirmed",
+        "leadership_approved"
+      ]
+    },
+    {
+      "path": "contracts/schemas/system-composition.schema.json",
+      "pointer": "/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/system-composition"
+      ],
+      "values": [
+        "draft",
+        "proposed",
+        "approved",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/task.schema.json",
+      "pointer": "/allOf/0/then/properties/approval/properties/state",
+      "publication_stage": "release",
+      "classification": "summary",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/task"
+      ],
+      "values": [
+        "pending",
+        "approved",
+        "rejected",
+        "expired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/task.schema.json",
+      "pointer": "/properties/approval/properties/state",
+      "publication_stage": "release",
+      "classification": "summary",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/task"
+      ],
+      "values": [
+        "not_required",
+        "pending",
+        "approved",
+        "rejected",
+        "expired"
+      ]
+    },
+    {
+      "path": "contracts/schemas/task.schema.json",
+      "pointer": "/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "state_machine",
+      "owner_refs": [
+        "orbit.concept/task"
+      ],
+      "values": [
+        "draft",
+        "need_details",
+        "pending_approval",
+        "queued",
+        "running",
+        "paused",
+        "succeeded",
+        "failed",
+        "rejected",
+        "cancelled"
+      ],
+      "state_ref": "orbit.state/task-lifecycle"
+    },
+    {
+      "path": "contracts/schemas/tool-manifest.schema.json",
+      "pointer": "/properties/status",
+      "publication_stage": "release",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/tool-manifest"
+      ],
+      "values": [
+        "draft",
+        "evaluation",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/system-registry-record.schema.json",
+      "pointer": "/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/system"
+      ],
+      "values": [
+        "draft",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/system-registry-record.schema.json",
+      "pointer": "/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/system"
+      ],
+      "values": [
+        "architecture_assumption",
+        "human_confirmed",
+        "leadership_approved"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/system-registry-record.schema.json",
+      "pointer": "/properties/directory_placement_state",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.term/system-registry-record"
+      ],
+      "values": [
+        "unchanged",
+        "migration_deferred",
+        "migration_completed"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/tool-semantic-scope.schema.json",
+      "pointer": "/properties/status",
+      "publication_stage": "draft",
+      "classification": "workflow",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/tool-registry"
+      ],
+      "values": [
+        "proposed",
+        "accepted",
+        "suspended",
+        "superseded",
+        "retired"
+      ]
+    },
+    {
+      "path": "contracts/drafts/v0.2/schemas/tool-semantic-scope.schema.json",
+      "pointer": "/properties/evidence_status",
+      "publication_stage": "draft",
+      "classification": "evidence",
+      "coverage": "enumeration_only",
+      "owner_refs": [
+        "orbit.concept/tool-registry"
+      ],
+      "values": [
+        "synthetic",
+        "human_confirmed",
+        "company_authoritative"
+      ]
+    }
+  ]
+}
+

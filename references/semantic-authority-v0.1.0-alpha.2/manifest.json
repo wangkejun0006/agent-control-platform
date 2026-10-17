@@ -1,0 +1,120 @@
+{
+  "release_id": "semantic-authority-v0.1.0-alpha.2",
+  "authority_version": "0.1.0-alpha.2",
+  "stability": "alpha",
+  "distribution_scope": "company_internal",
+  "status": "approved",
+  "source_revision": {
+    "strategy": "immutable_git_tag",
+    "tag": "semantic-authority-v0.1.0-alpha.2"
+  },
+  "approval": {
+    "decision": "approve_internal_alpha_semantic_authority_release",
+    "approved_at": "2026-08-31T22:05:07+08:00",
+    "approver_initials": "DEMO",
+    "roles": [
+      "architecture_owner",
+      "platform_owner"
+    ],
+    "evidence_kind": "scripted_demo_fixture",
+    "evidence_reference": null,
+    "production_authorization": false,
+    "orbit_write_authorization": false
+  },
+  "artifacts": {
+    "authority_lock": {
+      "path": "architecture/locks/semantic-authority-lock.json",
+      "lock_version": "orbit.semantic-authority-lock/1",
+      "sha256": "sha256:d055402d59b4feaea241dc36d23d255e35d39ca5661d72dea704433b7f6681af"
+    },
+    "sources": [
+      {
+        "role": "concept_catalog",
+        "version": "orbit.architecture-concept-catalog/2",
+        "path": "architecture/authority/concepts/concept-catalog.json",
+        "sha256": "sha256:0d32597d5c1b4da6cfc511bb01da5c8f4a2266aa895edba2b7af3dc474119e0a"
+      },
+      {
+        "role": "term_registry",
+        "version": "orbit.architecture-term-classification/2",
+        "path": "architecture/authority/terms/term-classification.json",
+        "sha256": "sha256:c573c88b407145e07c7506402d744700703155fa2e5dd33ec6779be7a4fcf9ac"
+      },
+      {
+        "role": "state_catalog",
+        "version": "orbit.architecture-state-catalog/1",
+        "path": "architecture/authority/states/state-catalog.json",
+        "sha256": "sha256:2497d328fbcdae0fac90204a423c1b355ac25213fde20c2dd425557a1d92cb07"
+      },
+      {
+        "role": "contract_enum_index",
+        "version": "orbit.architecture-contract-enum-index/1",
+        "path": "architecture/locks/contract-enum-index.json",
+        "sha256": "sha256:76c76b29c9ecb2cb0dd387222622476d5f779ae8afe57cadc9f4e3d4e9504dcd"
+      }
+    ]
+  },
+  "retained_drafts": {
+    "concept_ids": [],
+    "term_ids": [
+      "orbit.term/department-planning-agent",
+      "orbit.term/deployment-instance",
+      "orbit.term/professional-task-package",
+      "orbit.term/runtime-profile",
+      "orbit.term/runtime-task-projection",
+      "orbit.term/system-registry-record",
+      "orbit.term/task-clarification-request",
+      "orbit.term/tool-semantic-scope"
+    ],
+    "state_ids": [
+      "orbit.state/deployment-convergence"
+    ],
+    "promotion_rule": "release_bundle_preserves_each_entry_publication_stage"
+  },
+  "contract_boundary": {
+    "current_release_id": "contract-v0.1.0-alpha.2",
+    "current_index_path": "contracts/releases/current.json",
+    "current_index_sha256": "sha256:9be865cda008445042cc0b07087c68e1f4a99f04fbd68476030d812d07245069",
+    "manifest_path": "contracts/releases/contract-v0.1.0-alpha.2/manifest.json",
+    "manifest_sha256": "sha256:ffc9b78cda101e263dcbc0a60060cc48c5c11dec0eb1aba5aca50a74b489521a",
+    "draft_schema_count": 10,
+    "contract_v0_2_published": false,
+    "production_authorization": false,
+    "orbit_write_authorization": false
+  },
+  "contract_alignment_snapshot": {
+    "concept_contract_refs": {
+      "exact": 19,
+      "partial": 22,
+      "planned": 0
+    },
+    "state_machines": {
+      "exact": 0,
+      "partial": 3,
+      "planned": 0,
+      "not_mapped": 1
+    },
+    "semantic_release_gate": "partial_contract_alignment_allowed_because_semantic_authority_may_lead_contract"
+  },
+  "validation": {
+    "status": "passed",
+    "commands": [
+      "npm test",
+      "git diff --check"
+    ],
+    "evidence_boundary": [
+      "static_architecture_and_contracts_only",
+      "contract_v0_2_remains_draft",
+      "no_runtime_execution",
+      "no_production_authorization",
+      "no_orbit_write_authorization"
+    ]
+  },
+  "non_claims": [
+    "does_not_publish_contract_v0_2",
+    "does_not_promote_retained_draft_entries",
+    "does_not_authorize_runtime_or_production",
+    "does_not_authorize_orbit_write_or_external_delivery"
+  ]
+}
+

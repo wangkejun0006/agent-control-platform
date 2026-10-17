@@ -1,0 +1,63 @@
+{
+  "api_surfaces": [
+    "policy",
+    "qualification_run",
+    "receipt",
+    "grant_revocation",
+    "worker_lease",
+    "audit",
+    "health"
+  ],
+  "authoritative_state": "postgresql_transactional_store",
+  "authority_boundary": {
+    "authoritative_state_migrated": false,
+    "preproduction_authorized": false,
+    "production_authorized": false,
+    "release_authorization": false,
+    "service_deployed": false
+  },
+  "contract_release": "contract-v0.1.0-alpha.2",
+  "deployment_evidence_required": [
+    "migration_rehearsal",
+    "restart_recovery",
+    "backup_restore",
+    "revocation_propagation",
+    "lease_reclaim",
+    "outbox_replay",
+    "identity_negative_probes"
+  ],
+  "evidence_status": "architecture_reference",
+  "local_state_boundary": "jsonl_synthetic_evidence_never_promoted_to_authority",
+  "profile_id": "profile_orbit_qualification_service_candidate",
+  "profile_version": "orbit.qualification-service-profile/1",
+  "required_adapter_roles": [
+    "authoritative_store",
+    "schema_migrations",
+    "transactional_outbox",
+    "human_identity",
+    "workload_identity",
+    "grant_signer",
+    "grant_revocation",
+    "worker_lease",
+    "secret_resolver",
+    "audit_export",
+    "backup_restore",
+    "observability"
+  ],
+  "security_boundaries": [
+    "oidc_human_identity",
+    "mtls_workload_identity",
+    "short_lived_signed_grants",
+    "logical_secret_refs_only",
+    "agent_has_no_direct_network_or_credentials"
+  ],
+  "service_stack": [
+    "fastapi",
+    "postgresql",
+    "sqlalchemy",
+    "psycopg",
+    "alembic"
+  ],
+  "status": "proposed-not-effective"
+}
+

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:orbit-agent-toolkit:schema:runtime-environment-observation:0.1",
+  "title": "Orbit Agent Toolkit Runtime Environment Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "orbit-agent-toolkit/v0alpha1" },
+    "kind": { "const": "RuntimeEnvironmentObservation" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observation_id", "version", "status", "evidence_status", "sanitized", "observed_at"],
+      "properties": {
+        "observation_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{2,79}$" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "status": { "const": "architecture_reference" },
+        "evidence_status": { "const": "architecture_reference" },
+        "sanitized": { "const": true },
+        "observed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment_ref", "host_profile", "container_engine", "runtime_inventory", "source_refs", "evidence_boundary"],
+      "properties": {
+        "environment_ref": { "$ref": "#/$defs/ref" },
+        "host_profile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["platform", "os_version", "architecture", "node_version"],
+          "properties": {
+            "platform": { "enum": ["macos", "linux", "windows"] },
+            "os_version": { "type": "string", "minLength": 1, "maxLength": 40 },
+            "architecture": { "enum": ["arm64", "x64"] },
+            "node_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+          }
+        },
+        "container_engine": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["client", "daemon_status", "image_inventory_status"],
+          "properties": {
+            "client": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["product", "version", "architecture", "context"],
+              "properties": {
+                "product": { "const": "docker" },
+                "version": { "type": "string", "minLength": 1, "maxLength": 40 },
+                "architecture": { "enum": ["arm64", "x64"] },
+                "context": { "type": "string", "minLength": 1, "maxLength": 80 }
+              }
+            },
+            "daemon_status": { "enum": ["available", "unavailable", "not_checked"] },
+            "image_inventory_status": { "enum": ["available", "unavailable", "not_checked"] }
+          }
+        },
+        "runtime_inventory": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["runtime_family", "installation_status", "observed_version", "observed_revision", "latest_official_version_observed", "version_relation", "execution_test_status"],
+            "properties": {
+              "runtime_family": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{1,63}$" },
+              "installation_status": { "enum": ["installed", "not_installed", "not_checked"] },
+              "observed_version": { "type": ["string", "null"], "maxLength": 80 },
+              "observed_revision": { "type": ["string", "null"], "maxLength": 80 },
+              "latest_official_version_observed": { "type": ["string", "null"], "maxLength": 80 },
+              "version_relation": { "enum": ["current", "behind_observed_latest", "unknown", "not_applicable"] },
+              "execution_test_status": { "const": "not_run" }
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "format": "uri" }
+        },
+        "evidence_boundary": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["version_probe_only", "no_agent_execution", "no_model_call", "no_container_started", "no_image_pulled", "no_runtime_verified"] }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "digest"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{2,79}$" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      }
+    }
+  }
+}
+

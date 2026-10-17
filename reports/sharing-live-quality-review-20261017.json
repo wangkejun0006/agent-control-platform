@@ -1,0 +1,36 @@
+{
+  "schema": "orbit.sharing-live-quality-review/1",
+  "reviewer": "Codex AI reading preserved model prose; not user human approval",
+  "overall": "needs_manual_review_and_rework_not_final_delivery",
+  "real_requests": 21,
+  "additional_requests_by_review": 0,
+  "findings": [
+    {
+      "id": "Q2",
+      "department": "product_center",
+      "excerpt": "本提案仅使用本部门已批准并显式共享的产物版本",
+      "problem": "Overgeneralizes the cross-department sharing condition to local source documents. The model's own following sentence says there is no upstream handoff; current inputs include ordinary local fixtures.",
+      "next_step": "Separate department-authorized source documents from approved, explicitly shared upstream artifacts; verify each source's actual provenance."
+    },
+    {
+      "id": "Q3",
+      "department": "technology_center",
+      "excerpt": "已通过的需求校验与三部门越界验收不重复执行",
+      "problem": "Infrastructure recovery feedback contaminated the business proposal. Actual native tools did execute fresh checks; this claim is inconsistent with receipts.",
+      "next_step": "Keep recovery commands out of business requirements and require tool-execution claims to match receipts."
+    },
+    {
+      "id": "Q4",
+      "department": "market_center",
+      "excerpt": "不保留派生副本",
+      "problem": "Unsupported data-retention promise. This application preserves historical evidence; no derived-copy deletion control was demonstrated.",
+      "next_step": "Say future use stops after revocation/expiry; describe evidence retention separately without claiming deletion."
+    }
+  ],
+  "positive_evidence": [
+    "All three independent contrastive decisions and source-document denials were correct.",
+    "Technology and market candidates actually cited version-bound upstream handoff artifacts.",
+    "Host refused two malformed plans rather than approving or executing them."
+  ],
+  "limitations": "Bounded Chinese checks catch known permission contradictions, not provenance confusion or arbitrary unsupported claims. No revised market candidate or final human approval exists."
+}

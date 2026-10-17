@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "QualificationRun 是 Agent Release 从候选到发布决定的耐久流程快照；它不等于 Agent Lifecycle 或 Task。",
+  "$id": "urn:company-ai-os:schema:qualification-run:0.1",
+  "title": "Company AI OS QualificationRun",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "QualificationRun" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "revision", "status", "current_stage", "evidence_status", "synthetic_only", "created_at", "updated_at"],
+      "properties": {
+        "run_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "revision": { "type": "integer", "minimum": 0 },
+        "status": { "enum": ["proposed", "running", "waiting_human", "completed", "failed", "cancelled", "quarantined"] },
+        "current_stage": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/qualification_stage" },
+        "evidence_status": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/evidence_status" },
+        "synthetic_only": { "type": "boolean" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agent_id", "agent_release", "automation_policy", "automation_policy_activation", "stage_plan", "attempt", "stage_receipt_refs", "human_checkpoint_decision_refs", "next_checkpoint", "execution_closure_refs", "authority_boundary"],
+      "properties": {
+        "agent_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "agent_release": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+        "automation_policy": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+        "automation_policy_activation": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+        "stage_plan": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["stage", "handler", "required", "max_attempts"],
+            "properties": {
+              "stage": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/qualification_stage" },
+              "handler": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/component_ref" },
+              "required": { "type": "boolean" },
+              "max_attempts": { "type": "integer", "minimum": 1, "maximum": 20 }
+            }
+          }
+        },
+        "attempt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["attempt_id", "number", "idempotency_key", "composition_ref", "composition_digest", "predecessor_attempt_id"],
+          "properties": {
+            "attempt_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+            "number": { "type": "integer", "minimum": 1 },
+            "idempotency_key": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,191}$" },
+            "composition_ref": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/logical_ref" },
+            "composition_digest": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" },
+            "predecessor_attempt_id": {
+              "oneOf": [
+                { "type": "null" },
+                { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" }
+              ]
+            }
+          }
+        },
+        "stage_receipt_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+        },
+        "human_checkpoint_decision_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+        },
+        "next_checkpoint": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["scope", "subject_ref", "subject_digest", "reason_codes"],
+              "properties": {
+                "scope": { "enum": ["automation_policy_activation", "agent_activation", "tool_activation", "model_route_approval", "execution_approval", "formal_registration", "preproduction_promotion", "production_promotion", "risk_waiver"] },
+                "subject_ref": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/logical_ref" },
+                "subject_digest": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" },
+                "reason_codes": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/reason_code" }
+                }
+              }
+            }
+          ]
+        },
+        "execution_closure_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+        },
+        "authority_boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["company_authoritative_run_state", "approval_inferred", "agent_lifecycle_mutated", "release_authorization"],
+          "properties": {
+            "company_authoritative_run_state": { "type": "boolean" },
+            "approval_inferred": { "const": false },
+            "agent_lifecycle_mutated": { "const": false },
+            "release_authorization": { "const": false }
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "metadata": { "type": "object", "properties": { "status": { "const": "waiting_human" } }, "required": ["status"] } } },
+      "then": { "properties": { "spec": { "type": "object", "properties": { "next_checkpoint": { "type": "object" } } } } }
+    },
+    {
+      "if": { "properties": { "metadata": { "type": "object", "properties": { "status": { "const": "completed" } }, "required": ["status"] } } },
+      "then": { "properties": { "spec": { "type": "object", "properties": { "execution_closure_refs": { "type": "array", "minItems": 1 }, "next_checkpoint": { "type": "null" } } } } }
+    }
+  ]
+}
+

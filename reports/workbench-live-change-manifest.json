@@ -1,0 +1,106 @@
+{
+  "comparison": "pre-live local recovery tar, not a Git diff",
+  "date": "2026-10-17",
+  "files": [
+    {
+      "path": ".agent/HANDOFF.md",
+      "change": "modified",
+      "sha256": "e753989d4556bd3aac31078bf5f330acb35f4e0c1ac449deba47f93b747637c3"
+    },
+    {
+      "path": "README.md",
+      "change": "modified",
+      "sha256": "39f8f7a6d7fd2beaef4e6bbf84b97900557b7ac1597a6c4cc664f1652a3bc461"
+    },
+    {
+      "path": "docs/FEATURE_PARITY.md",
+      "change": "modified",
+      "sha256": "3669b86039ba7e7f3414ac897f4be1d515439a36839b531dddfa717bb237b9e0"
+    },
+    {
+      "path": "docs/WORKBENCH_LIVE_VALIDATION.md",
+      "change": "added",
+      "sha256": "266100e3fa8acab209090e141d6c72579119464aa5dcef66cc907fbbd2276dcf"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/workbench-live-report.spec.js",
+      "change": "added",
+      "sha256": "f3a27ff3f66f1f1c68636a075b3b7cebe4efb0df1b0d6ffdb54ba2290556af23"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/Workbench.jsx",
+      "change": "modified",
+      "sha256": "407babb64bbbd450ec83c3d3dc23360f886d8036d53f9c17a0be8474be3af6a5"
+    },
+    {
+      "path": "reports/VALIDATION.md",
+      "change": "modified",
+      "sha256": "b4987bb96a3809edf004191e4654d1a671f96d052f380c07ce76e15e4e902f4c"
+    },
+    {
+      "path": "reports/offline-validation.json",
+      "change": "modified",
+      "sha256": "5a850761a65f424c4f30d2cd9d834c0cd92bafbb604c1d7b06400d998911ec50"
+    },
+    {
+      "path": "reports/workbench-live-evidence.png",
+      "change": "added",
+      "sha256": "fafcd30722894b188ead844050694b08b2bed3d66e5685d6802278e29ee058bb"
+    },
+    {
+      "path": "reports/workbench-live-privacy.json",
+      "change": "added",
+      "sha256": "8eff17d3103a99b14add9f91f023c072f7d18efaa784f9f2468677f7b626fd9f"
+    },
+    {
+      "path": "reports/workbench-live-validation.json",
+      "change": "added",
+      "sha256": "b919f96dfea0082c1e36321fe8c184d362332a72e628c10b4d461a13231f2883"
+    },
+    {
+      "path": "showcase/live_budget.py",
+      "change": "modified",
+      "sha256": "1fed5231f667c6aaa33967c2565e37351a1de9086bb2057289b40d89504b7b79"
+    },
+    {
+      "path": "showcase/workbench/api.py",
+      "change": "modified",
+      "sha256": "364ab844a2a378b328819cfc7668243afbc7e4a9658b2b6a98085e1c87b9f7a8"
+    },
+    {
+      "path": "showcase/workbench/live.py",
+      "change": "added",
+      "sha256": "caea4325cf1eebfb36326608c962942f758c3049d920d9697b311fc0a84d5622"
+    },
+    {
+      "path": "showcase/workbench/live_validation.py",
+      "change": "added",
+      "sha256": "7c7894f439d900b5914f3065210be793bebe9d37dc6f00ea441bece25cab3702"
+    },
+    {
+      "path": "showcase/workbench/service.py",
+      "change": "modified",
+      "sha256": "d85495d8fd3c878c67f57628386437df1db2f7c562619361cb847f6595e73c7c"
+    },
+    {
+      "path": "showcase/workbench/tools.py",
+      "change": "modified",
+      "sha256": "31a4be72c02d14b0dfae516f43bc27991b37e69fc988ecb9dc1b3a79e188a8ba"
+    },
+    {
+      "path": "showcase/workbench/worker.py",
+      "change": "modified",
+      "sha256": "6a5b62451700883fbcc6bf8360746c60f1f84a54f356bf5ec8cb28df72226c9a"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/department_cockpit.py",
+      "change": "modified",
+      "sha256": "07fb5986efce7490d5e1756c75b93042749165d28d3d6c0e38eea43afeda3023"
+    },
+    {
+      "path": "tests/test_workbench_live.py",
+      "change": "added",
+      "sha256": "f45c5cac08198d6f13e56cb262a0899e5ce71eabefdbff5fe0d0f29b354a0b83"
+    }
+  ]
+}

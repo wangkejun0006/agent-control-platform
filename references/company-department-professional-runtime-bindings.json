@@ -1,0 +1,47 @@
+{
+  "registry_version": "orbit.department-professional-runtime-bindings/1",
+  "status": "fixed_control_plane_candidate",
+  "observed_at": "2026-09-01",
+  "bindings": [
+    {
+      "department_id": "product_center",
+      "professional_agent_ref": "agent_product_center_professional_syn",
+      "agent_definition_ref": "agent-definition/product-requirements-analysis/0.1.0-synthetic",
+      "runtime_kind": "hermes",
+      "runtime_revision": "latest-unverified",
+      "adapter_revision": "professional-agent-runtime-adapter/0.1.0",
+      "qualification_status": "unverified_runtime",
+      "availability": "d0_synthetic_fixture_available"
+    },
+    {
+      "department_id": "technology_center",
+      "professional_agent_ref": "agent_technology_center_professional_syn",
+      "agent_definition_ref": "agent-definition/technology-implementation-review/0.1.0-synthetic",
+      "runtime_kind": "codex",
+      "runtime_revision": "latest-unverified",
+      "adapter_revision": "professional-agent-runtime-adapter/0.1.0",
+      "qualification_status": "unverified_runtime",
+      "availability": "d0_synthetic_fixture_available"
+    },
+    {
+      "department_id": "market_center",
+      "professional_agent_ref": "agent_market_center_professional_syn",
+      "agent_definition_ref": "agent-definition/market-content-planning/0.1.0-synthetic",
+      "runtime_kind": "hermes",
+      "runtime_revision": "latest-unverified",
+      "adapter_revision": "professional-agent-runtime-adapter/0.1.0",
+      "qualification_status": "unverified_runtime",
+      "availability": "d0_synthetic_fixture_available"
+    }
+  ],
+  "boundary": {
+    "input": "confirmed_professional_task_package_plus_effective_execution_grant",
+    "company_task_authoritative": true,
+    "runtime_projection_authoritative": false,
+    "agent_to_agent_default": "deny",
+    "browser_secret_access": false,
+    "live_execution_enabled": false,
+    "production_authorized": false
+  }
+}
+

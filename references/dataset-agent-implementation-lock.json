@@ -1,0 +1,16 @@
+{
+  "lock_version": "0.1.0",
+  "repository_id": "orbit-scientific-research-platform",
+  "implementation_commit": "82132d9fc64ca604263a976e85c7a922eb46a70d",
+  "python_module": "orbit_scientific_research_platform.dataset_agent",
+  "command": "synthetic-demo",
+  "agent_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+  "capability": "dataset_acquisition.request_create",
+  "result_schema_version": "orbit.dataset-agent-closed-loop/0.1",
+  "model_route_ref": "model_route_synthetic_fixture_v1",
+  "data_classification": "public",
+  "synthetic_only": true,
+  "network_access": "forbidden",
+  "production_authorization": false
+}
+

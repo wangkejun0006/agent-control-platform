@@ -1,0 +1,33 @@
+{
+  "kind": "local_checkpoint_hash_delta_not_git_diff",
+  "changed": [
+    {
+      "path": "README.md",
+      "before": "26401c25ddee8616b370ee75df580eb194c7c9fcd4abda5e7619b3a8adbd6cc1",
+      "after": "8d2f2124e46e32767371a0c2b15edff90727ca64e7c2514905f7706475b62526"
+    },
+    {
+      "path": ".agent/HANDOFF.md",
+      "before": "d4ef7aa066d4cfd4a730ce69488f3ad2a643cbbd177108575aad7985b0f564cf",
+      "after": "fdee8e1e8b5da2fc3c5f669e73c63ad0e712acb2d50279f63c31f6e1f4131eb2"
+    }
+  ],
+  "added": [
+    {
+      "path": "showcase/workbench/snapshot_view.py",
+      "sha256": "833dab4ee63df5114027ee807ac294b7074e07359b8d31f56971c86d8acd156d"
+    },
+    {
+      "path": "tests/test_snapshot_view.py",
+      "sha256": "03736a4649c57d817e2e586d854c4d319f34dc01eeb265a237f11f7baa2e80b3"
+    },
+    {
+      "path": "docs/SNAPSHOT_VIEW_20261017.md",
+      "sha256": "581fae2b388fac35d3fb770a5f9dd4b63db265c215d7e73108d0b3ede8e826df"
+    },
+    {
+      "path": "reports/snapshot-view-validation-20261017.json",
+      "sha256": "234835b6ff5ca63a4e786fbe788b3502e78ba918e6b7a72aec463438de9a7bfc"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"$id":"urn:orbit:data-asset:delivery-retrieve-evidence-input:0.1","$schema":"http://json-schema.org/draft-07/schema#","additionalProperties":false,"properties":{"query":{"maxLength":199,"type":"string"}},"required":[],"type":"object"}

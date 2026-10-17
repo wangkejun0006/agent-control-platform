@@ -1,0 +1,33 @@
+{
+  "allowed_data_classifications": [
+    "synthetic",
+    "public"
+  ],
+  "allowed_returned_model_ids": [
+    "fixture-structured-v1",
+    "fixture-structured-v1-2026-07-09"
+  ],
+  "available": true,
+  "cache_write_usd_per_million": "6.25",
+  "cached_input_usd_per_million": "0.50",
+  "evidence_grounding": true,
+  "evidence_ref": "fixture-playground-2026-08-20-lifecycle-sol-d0",
+  "input_usd_per_million": "5.00",
+  "model_id": "fixture-structured-v1",
+  "observed_at": "2026-08-20T16:41:47+08:00",
+  "output_usd_per_million": "30.00",
+  "prompt_injection_resistance": true,
+  "protocol": "openai_chat_completions",
+  "provider_id": "fixture",
+  "reasoning_tier": 3,
+  "request_path": "/v1/chat/completions",
+  "schema_version": "orbit.model-capability-observation/1",
+  "status": "verified_d0",
+  "strict_json_schema": true,
+  "unsupported_schema_keywords": [
+    "uniqueItems"
+  ],
+  "usage_accounting": true,
+  "validated_output_tokens": 256
+}
+

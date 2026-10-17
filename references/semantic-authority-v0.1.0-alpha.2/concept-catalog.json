@@ -1,0 +1,1808 @@
+{
+  "catalog_version": "orbit.architecture-concept-catalog/2",
+  "catalog_id": "orbit-company-agent-core-concepts",
+  "status": "human_confirmed",
+  "definition_authority": "orbit-agent-architecture",
+  "execution_dependency_rule": "concept -> contract -> immutable candidate -> policy and required approval -> task-scoped grant -> runtime composition -> execution -> result and evidence",
+  "relation_types": [
+    {
+      "id": "contained_by",
+      "term_zh": "归属",
+      "definition": "当前概念的实例必须位于目标概念定义的业务或治理边界内。"
+    },
+    {
+      "id": "composed_by",
+      "term_zh": "由…组成",
+      "definition": "当前概念由一个或多个目标概念的实例组合形成，但不取得其全部权威。"
+    },
+    {
+      "id": "defined_by",
+      "term_zh": "由…定义",
+      "definition": "当前概念的结构、身份或业务含义由目标概念提供。"
+    },
+    {
+      "id": "bounded_by",
+      "term_zh": "受…约束",
+      "definition": "当前概念的最大能力、范围、风险或资源边界由目标概念收窄。"
+    },
+    {
+      "id": "authorized_by",
+      "term_zh": "由…参与授权",
+      "definition": "当前概念只有在目标概念参与授权计算且其他门禁满足时才可生效。"
+    },
+    {
+      "id": "governed_by",
+      "term_zh": "受…治理",
+      "definition": "当前概念的状态转换或使用必须服从目标概念的治理规则。"
+    },
+    {
+      "id": "implements",
+      "term_zh": "实现",
+      "definition": "当前实现概念负责落实目标抽象、映射或接口，但不得改变目标边界。"
+    },
+    {
+      "id": "uses",
+      "term_zh": "使用",
+      "definition": "当前概念在运行或组合时使用目标概念提供的固定能力。"
+    },
+    {
+      "id": "runs",
+      "term_zh": "承载运行",
+      "definition": "当前受控工作负载承载目标 Runtime 或执行构造。"
+    },
+    {
+      "id": "references",
+      "term_zh": "引用",
+      "definition": "当前概念必须以版本化或逻辑引用关联目标概念，而不是复制其权威状态。"
+    },
+    {
+      "id": "emitted_from",
+      "term_zh": "来源于",
+      "definition": "当前事实对象由目标执行或状态对象产生并接受统一契约校验。"
+    },
+    {
+      "id": "evaluates",
+      "term_zh": "评价",
+      "definition": "当前概念对目标概念形成独立评价，但不能修改或批准目标。"
+    },
+    {
+      "id": "records",
+      "term_zh": "记录",
+      "definition": "当前概念记录目标动作或状态事实，但不能以记录本身扩大权限。"
+    },
+    {
+      "id": "recorded_by",
+      "term_zh": "由…记录",
+      "definition": "当前概念的实例状态或事实由目标概念拥有的权威 Registry 或 Ledger 记录。"
+    },
+    {
+      "id": "accessed_through",
+      "term_zh": "经…访问",
+      "definition": "当前资源只能通过目标受控端口或服务访问，不能直接暴露物理实现。"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "orbit.concept/system",
+      "term_zh": "业务系统",
+      "term_en": "System",
+      "category": "organization",
+      "evidence_status": "human_confirmed",
+      "definition": "围绕较大业务目标形成、可包含多个 Platform，并具有公司级责任人与联合治理边界的业务系统。",
+      "not_a": [
+        "不是超级 Agent",
+        "不是单个部署进程"
+      ],
+      "instance_state_authority": "Control Plane System Registry 或经批准的公司系统目录",
+      "authority_semantics": "none",
+      "dependencies": [],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/system-composition.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 表达 SystemComposition，不是独立 System Registry 对象。"
+        },
+        {
+          "path": "contracts/drafts/v0.2/schemas/system-registry-record.schema.json",
+          "publication_stage": "draft",
+          "alignment": "partial",
+          "gap": "草案表达 System Registry 的身份、责任部门和逻辑来源，但尚未随公司 Contract 发布。"
+        }
+      ],
+      "invariants": [
+        "System 可以包含多个 Platform，但不能把 Platform 或 Agent System 的领域状态据为己有。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/platform",
+      "term_zh": "业务技术平台",
+      "term_en": "Platform",
+      "category": "organization",
+      "evidence_status": "human_confirmed",
+      "definition": "System 内具有独立领域状态、Owner、生命周期、事故边界和版本化接口的业务技术平台。",
+      "not_a": [
+        "不是 Agent System 的同义词",
+        "不是任意代码仓库"
+      ],
+      "instance_state_authority": "Control Plane Platform Registry 与对应领域系统权威",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/system",
+          "relation": "contained_by",
+          "mode": "required",
+          "reason": "Platform 必须属于一个明确的业务 System。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/system-composition.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 仅在 SystemComposition 中表达 Platform 单元。"
+        }
+      ],
+      "invariants": [
+        "Platform 的领域状态和事故边界不能被 SystemComposition 或 Runtime 替代。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/system-composition",
+      "term_zh": "系统组合",
+      "term_en": "System Composition",
+      "category": "organization",
+      "evidence_status": "human_confirmed",
+      "definition": "登记一个 System 内的 Platform、共享能力、版本化接口和联合治理关系的不可变或版本化组合记录。",
+      "not_a": [
+        "不是超级 Agent",
+        "不是 Platform Registry 的替代品"
+      ],
+      "instance_state_authority": "Control Plane System Composition Registry",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/system",
+          "relation": "defined_by",
+          "mode": "required",
+          "reason": "组合必须指向被组合的业务 System。"
+        },
+        {
+          "concept_id": "orbit.concept/platform",
+          "relation": "composed_by",
+          "mode": "required",
+          "reason": "组合至少描述 System 内的 Platform 单元及其关系。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/system-composition.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "SystemComposition 只记录组合关系，不授予 Agent、Tool、Data 或 Runtime 权限。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/agent-system",
+      "term_zh": "Agent 自动化子系统",
+      "term_en": "Agent System",
+      "category": "organization",
+      "evidence_status": "human_confirmed",
+      "definition": "位于 Platform 内，管理 Agent、Workflow、Template、Registry Namespace 和 Runtime Adapter 的自动化子系统。",
+      "not_a": [
+        "不是 Platform",
+        "不是一个永久 Manager Agent"
+      ],
+      "instance_state_authority": "Control Plane Agent System Registry 与 Platform Owner",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/platform",
+          "relation": "contained_by",
+          "mode": "required",
+          "reason": "Agent System 必须处于一个具有领域责任的 Platform 内。"
+        }
+      ],
+      "contract_refs": [],
+      "invariants": [
+        "Agent System 不得越过 Platform 边界取得公司级治理权威。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/models/hierarchy-model.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/agent-control-plane",
+      "term_zh": "Agent 控制平面",
+      "term_en": "Agent Control Plane",
+      "category": "governance",
+      "evidence_status": "human_confirmed",
+      "definition": "维护 Registry、Lifecycle、Task、Policy、Approval、Evaluation 和 Audit 等公司治理事实，并在 Policy、Task 与 Execution Grant 边界内协调预算约束和受控执行的软件边界。",
+      "not_a": [
+        "不是领域 Agent",
+        "不是模型 Runtime",
+        "不是所有业务状态的数据库"
+      ],
+      "instance_state_authority": "Control Plane 自身的耐久 Registry、Ledger、Approval、Evaluation 与 Audit Store",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/system-composition",
+          "relation": "governed_by",
+          "mode": "required",
+          "reason": "控制平面必须理解被治理 System 和 Platform 的组合边界。"
+        }
+      ],
+      "contract_refs": [],
+      "invariants": [
+        "控制平面协调授权和执行，但不能把内部对象数量转换成人工门禁数量。",
+        "预算是 Policy、Binding、Task、Execution Grant 与资源执行点共同约束的维度；当前不是独立 Concept 或权限来源。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/views/system-design.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/agent",
+      "term_zh": "Agent 业务身份",
+      "term_en": "Agent",
+      "category": "identity",
+      "evidence_status": "human_confirmed",
+      "definition": "具有独立 Purpose、Owner、能力或生命周期，需要单独审计和暂停的稳定或临时执行业务身份。",
+      "not_a": [
+        "不是模型",
+        "不是 Runtime 进程",
+        "不是一段 Prompt"
+      ],
+      "instance_state_authority": "Agent Registry 与 Agent Lifecycle Ledger",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent-system",
+          "relation": "contained_by",
+          "mode": "required",
+          "reason": "Agent 必须属于一个明确的 Agent System 治理命名空间。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-registry.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 通过 AgentRegistryRecord 投影 Agent 身份，未独立发布 Agent identity Schema。"
+        }
+      ],
+      "invariants": [
+        "Agent 身份不能由 Runtime Session、容器或模型 ID 替代。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/agent-definition",
+      "term_zh": "Agent 定义",
+      "term_en": "Agent Definition",
+      "category": "definition",
+      "evidence_status": "human_confirmed",
+      "definition": "描述 Agent 业务身份的 Purpose、能力、非能力、Prompt、Memory、权限申请、自治上限和评测规则的版本化定义。",
+      "not_a": [
+        "不是有效权限",
+        "不是部署配置",
+        "不是 Agent 实例"
+      ],
+      "instance_state_authority": "拥有该 Agent 的领域仓库和 Control Plane Registry 引用",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent",
+          "relation": "defined_by",
+          "mode": "required",
+          "reason": "Definition 必须定义一个稳定 Agent 业务身份。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-definition.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "Definition 只表达申请和上限，不能产生 Execution Grant。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/agent-binding",
+      "term_zh": "Agent 绑定",
+      "term_en": "Agent Binding",
+      "category": "definition",
+      "evidence_status": "human_confirmed",
+      "definition": "把精确 AgentDefinition 收窄到 Owner、Platform、环境、Runtime、模型、Tool、Data、Sandbox、预算和审计最大边界的版本化对象。",
+      "not_a": [
+        "不是单次执行授权",
+        "不是 RuntimeRealization"
+      ],
+      "instance_state_authority": "领域仓库候选与 Control Plane Registry 引用",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent-definition",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "Binding 必须绑定并收窄一个精确 Definition。"
+        },
+        {
+          "concept_id": "orbit.concept/platform",
+          "relation": "contained_by",
+          "mode": "required",
+          "reason": "Binding 必须声明 Agent 生效的 Platform 和环境边界。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-binding.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "Binding 不能扩大 Definition，也不能代替 Task 级 Grant。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/agent-template",
+      "term_zh": "Agent 模板",
+      "term_en": "Agent Template",
+      "category": "definition",
+      "evidence_status": "human_confirmed",
+      "definition": "约束临时 Task Agent 的创建者、父任务子集、委派深度、预算、期限、Memory 隔离和自动清理的批准模板。",
+      "not_a": [
+        "不是运行中的 Agent",
+        "不是新权限来源"
+      ],
+      "instance_state_authority": "Agent Template Registry 与 Lifecycle Ledger",
+      "authority_semantics": "authorization_input",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent-definition",
+          "relation": "defined_by",
+          "mode": "required",
+          "reason": "模板必须基于可验证的 Agent 定义边界。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-template.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "临时 Agent 的有效范围必须是 Template 与父 Task 的严格子集。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/agent-capability-profile",
+      "term_zh": "Agent 能力档案",
+      "term_en": "Agent Capability Profile",
+      "category": "definition",
+      "evidence_status": "human_confirmed",
+      "definition": "以类型化输入输出、数据等级、副作用和调用模式描述 Agent 可被发现业务接口的版本化档案。",
+      "not_a": [
+        "不是调用权限",
+        "不是 Tool Manifest"
+      ],
+      "instance_state_authority": "Agent Registry 的版本化能力目录",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent-definition",
+          "relation": "defined_by",
+          "mode": "required",
+          "reason": "能力档案必须来自同一 Agent 的业务定义。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-capability-profile.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "可发现不等于可调用，路由匹配不能跳过 Grant。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/agent-release",
+      "term_zh": "Agent 发布组合",
+      "term_en": "Agent Release",
+      "category": "release",
+      "evidence_status": "human_confirmed",
+      "definition": "用不可变摘要组合 Definition、Binding、Capability、Runtime、Model Route、Tool、Policy 和 Evaluation 引用的一次 Agent 发布候选。",
+      "not_a": [
+        "不是 Deployment",
+        "不是 Activation",
+        "不是 Execution Grant"
+      ],
+      "instance_state_authority": "Agent Registry 与 Agent Lifecycle Ledger",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent-definition",
+          "relation": "composed_by",
+          "mode": "required",
+          "reason": "Release 必须锁定 Agent 的业务定义。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-binding",
+          "relation": "composed_by",
+          "mode": "required",
+          "reason": "Release 必须锁定环境最大边界。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-capability-profile",
+          "relation": "composed_by",
+          "mode": "required",
+          "reason": "Release 必须锁定可发现接口。"
+        },
+        {
+          "concept_id": "orbit.concept/runtime-realization",
+          "relation": "composed_by",
+          "mode": "conditional",
+          "reason": "需要 Runtime 的 Release 必须锁定精确 RuntimeRealization。"
+        },
+        {
+          "concept_id": "orbit.concept/model-route",
+          "relation": "composed_by",
+          "mode": "conditional",
+          "reason": "需要模型的 Release 必须锁定精确 Model Route。"
+        },
+        {
+          "concept_id": "orbit.concept/tool-manifest",
+          "relation": "composed_by",
+          "mode": "conditional",
+          "reason": "需要 Tool 的 Release 必须锁定精确 Tool Manifest。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-release-manifest.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 固定状态枚举；正式转换、门禁和同义词规则由 orbit.state/agent-release-lifecycle 领先定义。"
+        }
+      ],
+      "invariants": [
+        "Release 必须不可变并精确锁定输入摘要，但不能自动激活或运行。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/agent-registry",
+      "term_zh": "Agent 注册表",
+      "term_en": "Agent Registry",
+      "category": "governance",
+      "evidence_status": "human_confirmed",
+      "definition": "保存 Agent 稳定业务身份、Owner、版本、Release 引用和生命周期投影的公司权威注册表。",
+      "not_a": [
+        "不是领域数据 Registry",
+        "不是 Runtime Session Store"
+      ],
+      "instance_state_authority": "Control Plane Agent Registry",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent",
+          "relation": "records",
+          "mode": "required",
+          "reason": "注册表记录 Agent 身份而不复制领域业务状态。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-release",
+          "relation": "references",
+          "mode": "required",
+          "reason": "注册状态必须精确引用不可变 Release。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-registry.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 尚未包含显式 AgentRelease 引用，registration-only 仅能由 draft/evaluation 状态组合解释。"
+        }
+      ],
+      "invariants": [
+        "draft 与 evaluation 共同表达 registration-only；active、suspended 和 retired 由独立生命周期状态区分。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/tool",
+      "term_zh": "受控工具",
+      "term_en": "Tool",
+      "category": "resource",
+      "evidence_status": "human_confirmed",
+      "definition": "向 Agent 或 Workflow 提供一个或多个明确操作、输入输出和副作用边界的受控业务或技术能力。",
+      "not_a": [
+        "不是 Agent",
+        "不是权限",
+        "不是任意代码函数"
+      ],
+      "instance_state_authority": "Tool Registry 与 Tool Lifecycle Ledger",
+      "authority_semantics": "none",
+      "dependencies": [],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/tool-manifest.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 发布 ToolManifest，未独立发布 Tool identity Schema。"
+        },
+        {
+          "path": "contracts/drafts/v0.2/schemas/tool-semantic-scope.schema.json",
+          "publication_stage": "draft",
+          "alignment": "partial",
+          "gap": "草案补充 operation 级语义范围和 canonical/alias/supersedes 关系，不替代 Tool identity 或权限。"
+        }
+      ],
+      "invariants": [
+        "Tool 与 Agent 使用独立身份、Release 和生命周期。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/tool-manifest",
+      "term_zh": "工具清单",
+      "term_en": "Tool Manifest",
+      "category": "definition",
+      "evidence_status": "human_confirmed",
+      "definition": "描述 Tool operation、Schema、副作用、幂等、凭据交付、出站、数据分类、审批和超时约束的版本化清单。",
+      "not_a": [
+        "不是调用授权",
+        "不是 Tool 进程"
+      ],
+      "instance_state_authority": "Tool Registry 与拥有该 Tool 的实施仓库",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/tool",
+          "relation": "defined_by",
+          "mode": "required",
+          "reason": "Manifest 必须定义一个明确 Tool 的操作边界。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/tool-manifest.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        },
+        {
+          "path": "contracts/drafts/v0.2/schemas/tool-semantic-scope.schema.json",
+          "publication_stage": "draft",
+          "alignment": "partial",
+          "gap": "ToolSemanticScope 绑定 Manifest 摘要和 operation，但不是 Manifest 自身。"
+        }
+      ],
+      "invariants": [
+        "Tool Manifest 声明可申请的操作，但不授予任何 Task 调用权。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/tool-registry",
+      "term_zh": "工具注册表",
+      "term_en": "Tool Registry",
+      "category": "governance",
+      "evidence_status": "human_confirmed",
+      "definition": "保存 Tool 身份、Release、operation、Owner 和独立生命周期状态的公司权威注册表。",
+      "not_a": [
+        "不是 Tool Runtime",
+        "不是 Agent Registry"
+      ],
+      "instance_state_authority": "Control Plane Tool Registry",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/tool",
+          "relation": "records",
+          "mode": "required",
+          "reason": "Tool Registry 记录 Tool 稳定身份。"
+        },
+        {
+          "concept_id": "orbit.concept/tool-manifest",
+          "relation": "references",
+          "mode": "required",
+          "reason": "每个可用 Tool Release 必须引用不可变 Manifest。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/tool-manifest.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 未独立发布 Tool Registry Record Schema。"
+        },
+        {
+          "path": "contracts/drafts/v0.2/schemas/tool-semantic-scope.schema.json",
+          "publication_stage": "draft",
+          "alignment": "partial",
+          "gap": "草案仅补充注册期 operation 语义范围；Tool Registry identity 与 lifecycle 仍由 Control Plane 实例状态拥有。"
+        }
+      ],
+      "invariants": [
+        "Tool 状态不能从 Agent 状态继承，也不能隐式传递权限。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/policy",
+      "term_zh": "治理策略",
+      "term_en": "Policy",
+      "category": "governance",
+      "evidence_status": "human_confirmed",
+      "definition": "对 Purpose、主体、资源、操作、数据分类、风险、预算、时间和审批义务实施允许、拒绝或要求人工决定的版本化规则。",
+      "not_a": [
+        "不是聊天指令",
+        "不是 Execution Grant",
+        "不是风险豁免"
+      ],
+      "instance_state_authority": "Control Plane Policy Store 与对应资源 Policy Authority",
+      "authority_semantics": "authorization_input",
+      "dependencies": [],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/execution-grant.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 ExecutionGrant Schema 只引用 Policy，不定义完整 Policy 对象。"
+        }
+      ],
+      "invariants": [
+        "Explicit Deny 优先，Policy 不能由 Agent 或 Runtime 自行修改。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/approval-decision",
+      "term_zh": "批准决定",
+      "term_en": "Approval Decision",
+      "category": "governance",
+      "evidence_status": "human_confirmed",
+      "definition": "合格自然人针对精确 subject、digest、scope、期限和职责分离要求作出的不可变允许或拒绝决定。",
+      "not_a": [
+        "不是 Receipt",
+        "不是聊天中的泛化同意",
+        "不是跨 scope 通行证"
+      ],
+      "instance_state_authority": "Control Plane Approval Store",
+      "authority_semantics": "authorization_input",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "governed_by",
+          "mode": "required",
+          "reason": "批准者资格、scope 和职责分离必须由 Policy 约束。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/approval-decision.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "不同 Approval scope 彼此独立且不可转换。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/model-route",
+      "term_zh": "模型路由",
+      "term_en": "Model Route",
+      "category": "resource",
+      "evidence_status": "human_confirmed",
+      "definition": "由 Control Plane 管理的版本化模型调用路线，绑定 Provider、Endpoint、requested/resolved model、参数、预算和数据分类。",
+      "not_a": [
+        "不是模型本身",
+        "不是 API Key",
+        "不是模型调用授权"
+      ],
+      "instance_state_authority": "Control Plane Model Route Registry、Observation 与 Snapshot Store",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "Provider、模型、Endpoint、数据等级和预算必须受 Policy 约束。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/model-route.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "Model Route 只保存 Secret 引用，不保存 Secret，也不能自动放宽 returned model allowlist。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/runtime",
+      "term_zh": "运行时",
+      "term_en": "Runtime",
+      "category": "runtime",
+      "evidence_status": "human_confirmed",
+      "definition": "承载 Agent 或 Workflow 执行语义的可替换载体，例如确定性 Worker、状态图或模型工具循环框架。",
+      "not_a": [
+        "不是 Agent 业务身份",
+        "不是 Task Ledger",
+        "不是权限权威"
+      ],
+      "instance_state_authority": "对应实施环境的 Runtime 管理面和受控 Runner",
+      "authority_semantics": "none",
+      "dependencies": [],
+      "contract_refs": [],
+      "invariants": [
+        "Runtime 能力不能被解释为公司授权，也不能成为 Registry 或 Task 的权威源。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/runtime/runtime-selection.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/runtime-realization",
+      "term_zh": "运行时实现映射",
+      "term_en": "Runtime Realization",
+      "category": "runtime",
+      "evidence_status": "human_confirmed",
+      "definition": "把精确 AgentBinding 映射为特定 Runtime 原生构造、Entrypoint、Profile 或 Workflow 的版本化候选。",
+      "not_a": [
+        "不是 Runtime 本身",
+        "不是 Execution Grant",
+        "不是部署事实"
+      ],
+      "instance_state_authority": "Agent Release 候选与实施仓库的不可变 Runtime Source",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent-binding",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "Realization 只能实现 Binding 允许的范围。"
+        },
+        {
+          "concept_id": "orbit.concept/runtime",
+          "relation": "references",
+          "mode": "required",
+          "reason": "Realization 必须指向一个明确 Runtime family。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/runtime-realization.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "RuntimeRealization 不得扩大 Binding，也不能把候选写成已验收部署。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/runtime-adapter",
+      "term_zh": "运行时适配器",
+      "term_en": "Runtime Adapter",
+      "category": "runtime",
+      "evidence_status": "human_confirmed",
+      "definition": "校验并把公司 Task、Grant、Release 和版本化引用映射为具体 Runtime 输入，再把事件、取消和结果映射回公司 Contract 的边界。",
+      "not_a": [
+        "不是 Runtime",
+        "不是安全的唯一边界",
+        "不是批准者"
+      ],
+      "instance_state_authority": "实施仓库锁定源码与 AdapterCapabilityReport",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/runtime-realization",
+          "relation": "implements",
+          "mode": "required",
+          "reason": "Adapter 必须实现精确 RuntimeRealization 的映射。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/adapter-capability-report.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 发布 AdapterCapabilityReport，而不是 Runtime Adapter 实例结构。"
+        }
+      ],
+      "invariants": [
+        "Adapter 必须 Fail Closed，不能扩大 Grant 或隐藏 Runtime 能力缺口。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/runtime/adapter-conformance.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/task",
+      "term_zh": "公司任务",
+      "term_en": "Task",
+      "category": "execution",
+      "evidence_status": "human_confirmed",
+      "definition": "具有目标、责任人、输入、期限、成功条件、预算、风险和权威状态转换的一次公司工作事实。",
+      "not_a": [
+        "不是 Prompt",
+        "不是 Agent Release",
+        "不是 Worker 进程"
+      ],
+      "instance_state_authority": "Control Plane Task Ledger",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent-control-plane",
+          "relation": "recorded_by",
+          "mode": "required",
+          "reason": "Task 状态必须由 Control Plane 耐久账本维护。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-release",
+          "relation": "references",
+          "mode": "required",
+          "reason": "Task 必须锁定被调用 Agent 的不可变 Release。"
+        },
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "governed_by",
+          "mode": "required",
+          "reason": "Task Purpose、风险、数据和预算必须受 Policy 约束。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/task.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Task Contract 锁定 AgentDefinition、AgentBinding 和 agent_version，尚无显式 AgentRelease 引用；状态转换由 orbit.state/task-lifecycle 领先定义。"
+        }
+      ],
+      "invariants": [
+        "Runtime completed 不能自动改写 Task 为 succeeded。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/route",
+      "term_zh": "任务路由",
+      "term_en": "Route",
+      "category": "execution",
+      "evidence_status": "human_confirmed",
+      "definition": "Control Plane 针对一个 Task 确定性选择符合 Registry 状态、Capability 与 Policy 的 Agent Release 目标，并记录选择理由的版本化决定。",
+      "not_a": [
+        "不是权限",
+        "不是 Runtime 或 Runner 选择",
+        "不是 Agent-to-Agent 隐式调用"
+      ],
+      "instance_state_authority": "Control Plane Routing Store 与 Task Ledger",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/task",
+          "relation": "references",
+          "mode": "required",
+          "reason": "Route 只服务一个精确 Task。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-registry",
+          "relation": "references",
+          "mode": "required",
+          "reason": "路由目标必须来自已登记且状态允许的 Agent。"
+        }
+      ],
+      "contract_refs": [],
+      "invariants": [
+        "Route 只选择已登记目标，不能选择 Runtime/Runner，也不能绕过 Lifecycle、Policy 或 ExecutionGrant。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/models/execution-contract-model.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/execution-grant",
+      "term_zh": "执行授权",
+      "term_en": "Execution Grant",
+      "category": "governance",
+      "evidence_status": "human_confirmed",
+      "definition": "由 Definition、Binding、Task、Policy、Deny、Approval、环境、预算和期限最小交集计算出的单 Task 短期可撤销权限快照。",
+      "not_a": [
+        "不是长期角色",
+        "不是 ApprovalDecision",
+        "不是 AgentBinding"
+      ],
+      "instance_state_authority": "Control Plane Grant Store 与撤销 Registry",
+      "authority_semantics": "effective_task_authority",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/task",
+          "relation": "authorized_by",
+          "mode": "required",
+          "reason": "Grant 必须只服务一个精确 Task。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-binding",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "Grant 不得超过 AgentBinding 最大边界。"
+        },
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "authorized_by",
+          "mode": "required",
+          "reason": "Policy allow、deny 和审批义务必须参与有效权限计算。"
+        },
+        {
+          "concept_id": "orbit.concept/approval-decision",
+          "relation": "authorized_by",
+          "mode": "conditional",
+          "reason": "只有 Policy、风险或具体 scope 要求人类批准时，Grant 才必须绑定精确 ApprovalDecision。"
+        },
+        {
+          "concept_id": "orbit.concept/route",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "Grant 的目标必须与精确 Route 一致。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/execution-grant.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "ExecutionGrant 是唯一 task-scoped 有效权限对象，必须短期、可撤销且显式拒绝优先。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/runtime-composition",
+      "term_zh": "运行组合",
+      "term_en": "Runtime Composition",
+      "category": "execution",
+      "evidence_status": "human_confirmed",
+      "definition": "实施项目为一次执行锁定 Agent Release、Tool Release、Model Route、Policy、Task、Grant、数据、预算、Runtime Source 和期限的不可变组合。",
+      "not_a": [
+        "不是 Execution Grant",
+        "不是 Deployment",
+        "不是可变运行配置"
+      ],
+      "instance_state_authority": "Control Plane Runtime Composition Store",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/task",
+          "relation": "composed_by",
+          "mode": "required",
+          "reason": "Composition 必须绑定精确 Task。"
+        },
+        {
+          "concept_id": "orbit.concept/execution-grant",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "Composition 不能包含 Grant 之外的能力。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-release",
+          "relation": "composed_by",
+          "mode": "required",
+          "reason": "Composition 必须锁定不可变 Agent Release。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-binding",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "Composition 必须锁定 Agent Release 使用的精确 Binding。"
+        },
+        {
+          "concept_id": "orbit.concept/route",
+          "relation": "composed_by",
+          "mode": "required",
+          "reason": "Composition 必须与路由目标一致。"
+        },
+        {
+          "concept_id": "orbit.concept/runtime-adapter",
+          "relation": "uses",
+          "mode": "required",
+          "reason": "Composition 必须固定负责映射的 Adapter。"
+        },
+        {
+          "concept_id": "orbit.concept/runtime-realization",
+          "relation": "composed_by",
+          "mode": "required",
+          "reason": "Composition 必须固定已通过边界检查的 RuntimeRealization。"
+        },
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "governed_by",
+          "mode": "required",
+          "reason": "Composition 必须引用参与本次执行边界计算的精确 PolicyDecision。"
+        },
+        {
+          "concept_id": "orbit.concept/model-route",
+          "relation": "composed_by",
+          "mode": "conditional",
+          "reason": "需要模型的执行必须锁定精确 Model Route。"
+        },
+        {
+          "concept_id": "orbit.concept/tool-manifest",
+          "relation": "composed_by",
+          "mode": "conditional",
+          "reason": "需要 Tool 的执行必须锁定精确 Tool Release。"
+        },
+        {
+          "concept_id": "orbit.concept/dataset",
+          "relation": "references",
+          "mode": "conditional",
+          "reason": "需要数据的执行必须锁定 Dataset、Input Snapshot、允许操作和适用 Policy。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/drafts/v0.2/schemas/runtime-composition.schema.json",
+          "publication_stage": "draft",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "Composition 固定可重放输入，但本身永远不授予权限。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/models/execution-contract-model.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/worker-lease",
+      "term_zh": "工作者租约",
+      "term_en": "Worker Lease",
+      "category": "execution",
+      "evidence_status": "human_confirmed",
+      "definition": "记录 Worker 对一次受控执行的短期排他所有权、心跳、到期、取消、回收和唯一终态的耐久对象。",
+      "not_a": [
+        "不是 Execution Grant",
+        "不是长期工作负载身份"
+      ],
+      "instance_state_authority": "Control Plane Worker Lease Store",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/runtime-composition",
+          "relation": "references",
+          "mode": "required",
+          "reason": "Lease 必须绑定精确 Runtime Composition。"
+        },
+        {
+          "concept_id": "orbit.concept/execution-grant",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "Lease 生命周期不得超过 Grant 的有效期。"
+        }
+      ],
+      "contract_refs": [],
+      "invariants": [
+        "Lease 解决领取和恢复，不授予外部副作用权限，也不能绕过幂等检查。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/models/execution-contract-model.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/runner-worker",
+      "term_zh": "受控执行工作者",
+      "term_en": "Runner Worker",
+      "category": "runtime",
+      "evidence_status": "human_confirmed",
+      "definition": "在隔离环境中领取 Lease、验证短期 Grant、调用 Runtime Adapter、执行、取消、清理并上报结果的受控工作负载。",
+      "not_a": [
+        "不是 Agent 身份",
+        "不是 Control Plane",
+        "不是权限来源"
+      ],
+      "instance_state_authority": "受控 Runner 服务与 Control Plane Lease Store",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/runtime",
+          "relation": "runs",
+          "mode": "required",
+          "reason": "Runner 承载被选定 Runtime 的执行。"
+        },
+        {
+          "concept_id": "orbit.concept/runtime-adapter",
+          "relation": "uses",
+          "mode": "required",
+          "reason": "Runner 只能经锁定 Adapter 映射公司契约。"
+        },
+        {
+          "concept_id": "orbit.concept/worker-lease",
+          "relation": "references",
+          "mode": "required",
+          "reason": "Runner 必须先取得有效 Lease。"
+        },
+        {
+          "concept_id": "orbit.concept/execution-grant",
+          "relation": "authorized_by",
+          "mode": "required",
+          "reason": "Runner 必须验证短期签名 Grant 和撤销状态。"
+        }
+      ],
+      "contract_refs": [],
+      "invariants": [
+        "Runner 的网络、文件系统、Secret 或宿主能力不能自动成为 Agent 权限。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/runtime/adapter-conformance.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/agent-invocation",
+      "term_zh": "Agent 调用信封",
+      "term_en": "Agent Invocation",
+      "category": "execution",
+      "evidence_status": "human_confirmed",
+      "definition": "固定调用方、被调用方、Task、Grant、幂等键、上下文投影、输出契约、期限和追踪引用的一次调用信封。",
+      "not_a": [
+        "不是隐式会话",
+        "不是完整 Memory",
+        "不是 Secret 容器"
+      ],
+      "instance_state_authority": "Control Plane Invocation Store 与 Task Ledger",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/task",
+          "relation": "references",
+          "mode": "required",
+          "reason": "Invocation 必须服务精确 Task。"
+        },
+        {
+          "concept_id": "orbit.concept/execution-grant",
+          "relation": "authorized_by",
+          "mode": "required",
+          "reason": "Invocation 必须绑定有效 Grant。"
+        },
+        {
+          "concept_id": "orbit.concept/runtime-composition",
+          "relation": "references",
+          "mode": "required",
+          "reason": "Invocation 必须引用精确执行组合。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-invocation.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "已发布 AgentInvocation 0.1 尚无 RuntimeComposition 引用；保持不变用于 Alpha.2 历史回放。"
+        },
+        {
+          "path": "contracts/drafts/v0.2/schemas/agent-invocation.schema.json",
+          "publication_stage": "draft",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "Invocation 只能携带最小上下文投影和逻辑引用。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/runtime-event",
+      "term_zh": "运行事件",
+      "term_en": "Runtime Event",
+      "category": "evidence",
+      "evidence_status": "human_confirmed",
+      "definition": "Runtime 经 Adapter 上报的 accepted、started、checkpoint、cancel、completed 或 failed 等统一执行事实。",
+      "not_a": [
+        "不是 Task 最终状态",
+        "不是 EvaluationReport"
+      ],
+      "instance_state_authority": "Control Plane Runtime Event Ledger",
+      "authority_semantics": "evidence_only",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/agent-invocation",
+          "relation": "emitted_from",
+          "mode": "required",
+          "reason": "每个 RuntimeEvent 必须关联精确 Invocation。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/runtime-event.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "RuntimeEvent.completed 只证明 Runtime 声称结束，不能自动判定 Task 成功。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/result-package",
+      "term_zh": "结果包",
+      "term_en": "Result Package",
+      "category": "evidence",
+      "evidence_status": "human_confirmed",
+      "definition": "按 Task 输出契约封装状态、逻辑 Artifact 引用、摘要、限制和可评价内容的结构化执行结果。",
+      "not_a": [
+        "不是 EvaluationReport",
+        "不是发布批准",
+        "不是裸 Provider 响应"
+      ],
+      "instance_state_authority": "Task Ledger 与受控 Artifact Store",
+      "authority_semantics": "evidence_only",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/task",
+          "relation": "defined_by",
+          "mode": "required",
+          "reason": "结果必须满足精确 Task 的成功条件和输出契约。"
+        },
+        {
+          "concept_id": "orbit.concept/runtime-event",
+          "relation": "emitted_from",
+          "mode": "required",
+          "reason": "结果必须与执行事件和终态闭合。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/result-package.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "ResultPackage 不得把物理路径、Secret 或未授权正文暴露给 Agent 或日志。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/evaluation-report",
+      "term_zh": "评价报告",
+      "term_en": "Evaluation Report",
+      "category": "evidence",
+      "evidence_status": "human_confirmed",
+      "definition": "独立 Evaluator 针对精确 Release、Result、Suite 和执行上下文形成指标、失败、风险、结论与限制的不可变报告。",
+      "not_a": [
+        "不是自评",
+        "不是 Activation",
+        "不是 Release Authorization"
+      ],
+      "instance_state_authority": "Control Plane Evaluation Store",
+      "authority_semantics": "evidence_only",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/result-package",
+          "relation": "evaluates",
+          "mode": "required",
+          "reason": "评价必须针对精确 ResultPackage。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-release",
+          "relation": "references",
+          "mode": "required",
+          "reason": "评价必须绑定被评 Agent Release。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/evaluation-report.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "Domain 与 Company Evaluation 必须保持独立，被评对象不能修改评价。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/receipt",
+      "term_zh": "事实收据",
+      "term_en": "Receipt",
+      "category": "evidence",
+      "evidence_status": "human_confirmed",
+      "definition": "记录某一步实际发生的输入、输出、摘要、边界和终态的不可变事实对象，可按阶段具有不同正式 Schema。",
+      "not_a": [
+        "不是 ApprovalDecision",
+        "不是 Execution Grant",
+        "不是可覆盖日志"
+      ],
+      "instance_state_authority": "Control Plane Receipt Ledger",
+      "authority_semantics": "evidence_only",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/runtime-event",
+          "relation": "records",
+          "mode": "conditional",
+          "reason": "执行 Receipt 应记录对应 RuntimeEvent 和阶段事实。"
+        },
+        {
+          "concept_id": "orbit.concept/result-package",
+          "relation": "records",
+          "mode": "conditional",
+          "reason": "终态 Receipt 应绑定精确 ResultPackage。"
+        },
+        {
+          "concept_id": "orbit.concept/approval-decision",
+          "relation": "records",
+          "mode": "conditional",
+          "reason": "Activation Receipt 只证明精确 ApprovalDecision 已应用。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/automation-policy-activation-receipt.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 发布若干专用 Receipt，尚无统一 Receipt 基类 Schema。"
+        },
+        {
+          "path": "contracts/schemas/policy-decision-receipt.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 发布若干专用 Receipt，尚无统一 Receipt 基类 Schema。"
+        },
+        {
+          "path": "contracts/schemas/stage-execution-receipt.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 发布若干专用 Receipt，尚无统一 Receipt 基类 Schema。"
+        },
+        {
+          "path": "contracts/schemas/remediation-receipt.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 发布若干专用 Receipt，尚无统一 Receipt 基类 Schema。"
+        },
+        {
+          "path": "contracts/schemas/execution-closure-receipt.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 Contract 发布若干专用 Receipt，尚无统一 Receipt 基类 Schema。"
+        }
+      ],
+      "invariants": [
+        "Receipt 只证明发生事实，不能转换或替代人类批准。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/audit-event",
+      "term_zh": "审计事件",
+      "term_en": "Audit Event",
+      "category": "evidence",
+      "evidence_status": "human_confirmed",
+      "definition": "追加记录 Actor、Action、Resource、Decision、Outcome、Policy、Trace 和完整性链的可追责治理事件。",
+      "not_a": [
+        "不是业务正文日志",
+        "不是权限",
+        "不是 Receipt 的替代品"
+      ],
+      "instance_state_authority": "Control Plane Append-only Audit Store",
+      "authority_semantics": "evidence_only",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/task",
+          "relation": "records",
+          "mode": "required",
+          "reason": "执行相关 Audit 必须关联 Task 和 Trace。"
+        },
+        {
+          "concept_id": "orbit.concept/receipt",
+          "relation": "records",
+          "mode": "conditional",
+          "reason": "关键阶段应把 Receipt 摘要写入审计链。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/audit-event.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "Audit 默认只保存必要元数据，不记录 Secret、完整 Prompt 或敏感数据正文。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/automation-policy",
+      "term_zh": "自动化策略包络",
+      "term_en": "Automation Policy",
+      "category": "automation",
+      "evidence_status": "human_confirmed",
+      "definition": "待人类精确批准的不可变资格验证与自动修复包络，固定对象、Runtime family、数据、模型、Tool、预算、隔离、修复范围和 checkpoint。",
+      "not_a": [
+        "不是执行批准",
+        "不是生产策略豁免",
+        "不是 Scheduler"
+      ],
+      "instance_state_authority": "Control Plane Automation Policy Registry 与 Activation Receipt",
+      "authority_semantics": "authorization_input",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "defined_by",
+          "mode": "required",
+          "reason": "自动化包络必须符合公司 Policy。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-release",
+          "relation": "references",
+          "mode": "required",
+          "reason": "自动化必须绑定精确 Release 而非可变分支。"
+        },
+        {
+          "concept_id": "orbit.concept/runtime-realization",
+          "relation": "bounded_by",
+          "mode": "required",
+          "reason": "允许修复必须留在同一 Runtime family 和固定边界内。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/automation-policy.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "AutomationPolicy 未激活时不能运行；激活也不能转换为 Agent、Tool、Model Route 或执行批准。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/qualification-run",
+      "term_zh": "资格验证运行",
+      "term_en": "Qualification Run",
+      "category": "automation",
+      "evidence_status": "human_confirmed",
+      "definition": "Control Plane 持久化执行资格验证、阶段 Hook、不可变 Attempt、修复、独立评价、终态闭合和人工 checkpoint 的状态机实例。",
+      "not_a": [
+        "不是 Agent Runtime",
+        "不是正式发布",
+        "不是无限重试循环"
+      ],
+      "instance_state_authority": "Control Plane Qualification Ledger",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/automation-policy",
+          "relation": "governed_by",
+          "mode": "required",
+          "reason": "QualificationRun 的自动动作必须是已激活 Policy 的子集。"
+        },
+        {
+          "concept_id": "orbit.concept/approval-decision",
+          "relation": "authorized_by",
+          "mode": "required",
+          "reason": "运行前必须存在精确 AutomationPolicy Activation 决定。"
+        },
+        {
+          "concept_id": "orbit.concept/agent-release",
+          "relation": "evaluates",
+          "mode": "required",
+          "reason": "资格验证必须针对精确不可变 Release。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/qualification-run.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "每次失败必须保留原 Attempt；范围变化、风险豁免和正式晋级必须停在人类 checkpoint。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/dataset-registry",
+      "term_zh": "数据集注册表",
+      "term_en": "Dataset Registry",
+      "category": "data",
+      "evidence_status": "human_confirmed",
+      "definition": "保存 Dataset 身份、版本、分类、策略、血缘、逻辑 Artifact 引用和发布 Revision 的领域数据资产权威。",
+      "not_a": [
+        "不是 Agent",
+        "不是 NAS 文件扫描结果",
+        "不是 Agent Registry"
+      ],
+      "instance_state_authority": "领域 Dataset Registry",
+      "authority_semantics": "none",
+      "dependencies": [],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/dataset-metadata.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 DatasetMetadata Schema 定义 Dataset 记录，不定义 Registry 服务或写入接口。"
+        }
+      ],
+      "invariants": [
+        "Registry 发布必须使用 expected revision、幂等、原子更新、派生同步和 rollback。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/dataset",
+      "term_zh": "版本化数据集",
+      "term_en": "Dataset",
+      "category": "data",
+      "evidence_status": "human_confirmed",
+      "definition": "具有稳定逻辑身份、版本、分类、用途策略、血缘和完整性证据的数据资产，而不是物理目录。",
+      "not_a": [
+        "不是 NAS 路径",
+        "不是未登记文件集合"
+      ],
+      "instance_state_authority": "Dataset Registry",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/dataset-registry",
+          "relation": "defined_by",
+          "mode": "required",
+          "reason": "Dataset 身份、版本和策略必须由 Registry 解释。"
+        },
+        {
+          "concept_id": "orbit.concept/data-access-layer",
+          "relation": "accessed_through",
+          "mode": "required",
+          "reason": "Agent 和受控工作负载访问 Dataset 时必须经 Data Access Layer 重新授权。"
+        }
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/dataset-metadata.schema.json",
+          "publication_stage": "release",
+          "alignment": "exact"
+        }
+      ],
+      "invariants": [
+        "Agent 只能看到 dataset:// 或等价逻辑引用，不能把物理位置当作 Dataset 身份。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/artifact",
+      "term_zh": "版本化工件",
+      "term_en": "Artifact",
+      "category": "resource",
+      "evidence_status": "human_confirmed",
+      "definition": "具有逻辑引用、内容摘要、媒体类型、版本、来源和访问策略的不可变或版本化内容对象。",
+      "not_a": [
+        "不是裸文件路径",
+        "不是未脱敏 Provider 响应的公开副本"
+      ],
+      "instance_state_authority": "受控 Artifact Store 或领域 Registry",
+      "authority_semantics": "none",
+      "dependencies": [],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/result-package.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "当前 ResultPackage 只保存 Artifact 逻辑引用，未独立发布 Artifact Schema。"
+        }
+      ],
+      "invariants": [
+        "Artifact 引用和摘要可以进入 Contract，物理路径和 Secret 不得进入 Agent 可见对象。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": []
+    },
+    {
+      "id": "orbit.concept/data-access-layer",
+      "term_zh": "数据访问层",
+      "term_en": "Data Access Layer",
+      "category": "data",
+      "evidence_status": "human_confirmed",
+      "definition": "按 Dataset identity、版本、Purpose、operation、Policy 和 Grant 解析逻辑引用并重新授权数据访问的受控服务边界。",
+      "not_a": [
+        "不是通用文件浏览器",
+        "不是 Agent 的 NAS Mount",
+        "不是 Dataset Registry"
+      ],
+      "instance_state_authority": "领域 Data Access Layer 与访问审计账本",
+      "authority_semantics": "resource_enforcement",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/dataset-registry",
+          "relation": "references",
+          "mode": "required",
+          "reason": "DAL 必须从 Registry 解析 Dataset 身份和策略。"
+        },
+        {
+          "concept_id": "orbit.concept/execution-grant",
+          "relation": "authorized_by",
+          "mode": "required",
+          "reason": "每次数据访问必须验证 Task 级 Grant。"
+        },
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "governed_by",
+          "mode": "required",
+          "reason": "Purpose、数据分类和 operation 必须重新执行 Policy。"
+        }
+      ],
+      "contract_refs": [],
+      "invariants": [
+        "DAL 只向 Agent 返回最小数据投影和逻辑引用，不暴露存储账号、路径或凭据。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/governance/data-governance.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/gateway",
+      "term_zh": "受控网关",
+      "term_en": "Gateway",
+      "category": "resource",
+      "evidence_status": "human_confirmed",
+      "definition": "在 Tool、Model 或 Data 真实调用前验证 Task、Grant、Policy、资源、预算、期限、撤销和允许列表，并按引用注入凭据的策略执行点。",
+      "not_a": [
+        "不是 Agent",
+        "不是业务推理器",
+        "不是长期凭据分发器"
+      ],
+      "instance_state_authority": "对应 Tool、Model 或 Data Gateway 的调用账本",
+      "authority_semantics": "resource_enforcement",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/execution-grant",
+          "relation": "authorized_by",
+          "mode": "required",
+          "reason": "Gateway 必须逐次验证有效 Grant。"
+        },
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "governed_by",
+          "mode": "required",
+          "reason": "Gateway 必须实施资源和数据 Policy。"
+        },
+        {
+          "concept_id": "orbit.concept/tool-manifest",
+          "relation": "references",
+          "mode": "conditional",
+          "reason": "Tool Gateway 必须锁定 operation 和副作用边界。"
+        },
+        {
+          "concept_id": "orbit.concept/model-route",
+          "relation": "references",
+          "mode": "conditional",
+          "reason": "Model Gateway 必须锁定 Provider、模型、Endpoint 和预算。"
+        },
+        {
+          "concept_id": "orbit.concept/data-access-layer",
+          "relation": "uses",
+          "mode": "conditional",
+          "reason": "Data Gateway 必须经 DAL 解析和授权 Dataset。"
+        }
+      ],
+      "contract_refs": [],
+      "invariants": [
+        "Gateway 不得把 Provider Secret、数据库凭据或存储句柄交给 Agent、Prompt、Task 或日志。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/interoperability-profile.md"
+      ]
+    },
+    {
+      "id": "orbit.concept/scheduler",
+      "term_zh": "任务调度触发器",
+      "term_en": "Scheduler",
+      "category": "automation",
+      "evidence_status": "human_confirmed",
+      "definition": "按已批准时间或事件规则创建或唤醒 Task 候选的自动触发组件，其权限不超过对应 Policy 和模板。",
+      "not_a": [
+        "不是 Agent",
+        "不是 Execution Grant 签发者",
+        "不是无人值守扩权机制"
+      ],
+      "instance_state_authority": "Control Plane Scheduler Registry；未启用时不存在活动实例",
+      "authority_semantics": "none",
+      "dependencies": [
+        {
+          "concept_id": "orbit.concept/task",
+          "relation": "references",
+          "mode": "required",
+          "reason": "Scheduler 只能创建或唤醒受治理 Task。"
+        },
+        {
+          "concept_id": "orbit.concept/policy",
+          "relation": "governed_by",
+          "mode": "required",
+          "reason": "时间、频率、目标、预算和停止条件必须由 Policy 固定。"
+        },
+        {
+          "concept_id": "orbit.concept/approval-decision",
+          "relation": "authorized_by",
+          "mode": "conditional",
+          "reason": "自动触发范围需要人工批准时必须绑定精确决定。"
+        }
+      ],
+      "contract_refs": [],
+      "invariants": [
+        "Scheduler 只触发 Task，不得直接启动未授权 Runtime、下载、Registry 写入或高影响动作。"
+      ],
+      "publication_stage": "release",
+      "architecture_refs": [
+        "architecture/supporting/governance/agent-governance.md"
+      ]
+    }
+  ]
+}
+

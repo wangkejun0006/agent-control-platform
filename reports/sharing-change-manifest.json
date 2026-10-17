@@ -1,0 +1,140 @@
+{
+  "comparison": "local pre-fix tar, not Git diff",
+  "files": [
+    {
+      "path": ".agent/HANDOFF.md",
+      "change": "modified",
+      "sha256": "135f5ab180723533b6e907c9b970468a1bbbef17d9b2c3a1f403cf8067214e5a"
+    },
+    {
+      "path": "README.md",
+      "change": "modified",
+      "sha256": "81897f681f351630857372e3065260e8ee37575b73e8eee22c9af8fcdb53778e"
+    },
+    {
+      "path": "docs/FEATURE_PARITY.md",
+      "change": "modified",
+      "sha256": "155bc07a4c13def4760d350f01f2a986eea1d77d7d302cc8aa3393c332a72e3d"
+    },
+    {
+      "path": "docs/SHARING_POLICY.md",
+      "change": "added",
+      "sha256": "24d77b30587670b3a5105bcbab9cf0cbd5e430005772e19d3127e17316ca06d3"
+    },
+    {
+      "path": "docs/WORKBENCH_LIVE_VALIDATION.md",
+      "change": "modified",
+      "sha256": "3356e790937d388c9cb86c43e1b291e29a98021ac7e30d5b7a64ad56b3db879b"
+    },
+    {
+      "path": "docs/examples/sharing-corrected-market.md",
+      "change": "added",
+      "sha256": "6e75e08bf6069989fc56edd8cff6009d2bb10157200b395be2662bbc6bb38c87"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/sharing-policy.spec.js",
+      "change": "added",
+      "sha256": "2f8cb026ab896183c12507654a60dc1c5d35bca401dfe692b07e037d0c79fe3b"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/workbench-live-report.spec.js",
+      "change": "modified",
+      "sha256": "c4305ee05b232e917cb428ae9098de819064f2eccf1e42f90c80aeef1260da24"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/Workbench.jsx",
+      "change": "modified",
+      "sha256": "c755cec12f67967a7e75a8c623a714327f957f5f7aae877fd8d9d3f5063f003f"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/sharing.css",
+      "change": "added",
+      "sha256": "b787f69227f8a31278cd35f3ba09ef63d91463dca8333a6337c6e5f675c3d3bc"
+    },
+    {
+      "path": "reports/VALIDATION.md",
+      "change": "modified",
+      "sha256": "436bdb5b9d42e761bac4127eb3bc08eb37707193360cc4edbc77c3f0689e2b33"
+    },
+    {
+      "path": "reports/offline-validation.json",
+      "change": "modified",
+      "sha256": "c78fe2f4b57bdc49a465493137b7c61bee545eeae09a236e87ed64c801366023"
+    },
+    {
+      "path": "reports/sharing-semantics-validation.json",
+      "change": "added",
+      "sha256": "0bdc6052318304c519b378126aab14928a2aab2ce6fec1d0feaceb1b0a6e182d"
+    },
+    {
+      "path": "reports/sharing-workbench-desktop.png",
+      "change": "added",
+      "sha256": "1253054c5da786089bc60ecc4d76549db05154711a97bb91559fe71962f69f16"
+    },
+    {
+      "path": "reports/sharing-workbench-mobile.png",
+      "change": "added",
+      "sha256": "35562b27e5e0b9fc8e9125184066d416a98c067ac9dc98af6c67c0ea9bf0a1a4"
+    },
+    {
+      "path": "reports/workbench-live-evidence.png",
+      "change": "modified",
+      "sha256": "a6b2f884a8683df57649d6abd3a8ad92e6415b1844598ecae0dae180e70c86df"
+    },
+    {
+      "path": "showcase/workbench/api.py",
+      "change": "modified",
+      "sha256": "aa549a9a0a1711398befe1b85c63974672c60ef4ef4ba5178232b97c3fdd4531"
+    },
+    {
+      "path": "showcase/workbench/author_fixtures.py",
+      "change": "modified",
+      "sha256": "6126e9d46ee9343c668119cd7b873bfcb13aae36be5e2b31dda05a10acc83efe"
+    },
+    {
+      "path": "showcase/workbench/fixtures/faq-access-v2.md",
+      "change": "added",
+      "sha256": "c5bc1178c486db83810d65810b08494bf74a89fef98fa6238d97e0ce462f4911"
+    },
+    {
+      "path": "showcase/workbench/fixtures/manifest.json",
+      "change": "modified",
+      "sha256": "8e140c590e6168545c9cf4a0bcc4ed2b4e8e1f64272de3bc182d7a014b371c8c"
+    },
+    {
+      "path": "showcase/workbench/live.py",
+      "change": "modified",
+      "sha256": "11f2012840c68d845b25677b20b6336cc20d9220f972e539cb6f80eb98161cc5"
+    },
+    {
+      "path": "showcase/workbench/live_validation.py",
+      "change": "modified",
+      "sha256": "e2698b4a69a0d71059d16d6a450c872b5cbff042f1e9f1db9c14a5193d2ef16f"
+    },
+    {
+      "path": "showcase/workbench/service.py",
+      "change": "modified",
+      "sha256": "848e68da813bc30bb7a9c61fef75371a275d0ddac38cbe5055dd6f6e7e0fee52"
+    },
+    {
+      "path": "showcase/workbench/sharing_policy.py",
+      "change": "added",
+      "sha256": "8fc33672a9b9a5ea5d1e46c3c41163438e544ea4e0a76db4adca72fc3d014d65"
+    },
+    {
+      "path": "showcase/workbench/tools.py",
+      "change": "modified",
+      "sha256": "7c88f97d568ab8c08991cd4f2da4e5d1824d7d309fdf091f7b808caf7ffebe5f"
+    },
+    {
+      "path": "tests/test_sharing_semantics.py",
+      "change": "added",
+      "sha256": "beafc6a03a4aee99bbbbdfafd29068d69340191f3a8f164cc2e7eb71085e6452"
+    },
+    {
+      "path": "tests/test_workbench_live.py",
+      "change": "modified",
+      "sha256": "52031277ce4cfa6645b251cd49096234e74deb01eef19b1cd7a712316f5d2986"
+    }
+  ]
+}

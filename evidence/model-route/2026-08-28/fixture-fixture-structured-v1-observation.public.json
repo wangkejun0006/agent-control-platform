@@ -1,0 +1,15 @@
+{
+  "cached_input_usd_per_million_tokens": "0.50",
+  "expires_at": "2026-08-28T14:41:45Z",
+  "input_usd_per_million_tokens": "5.00",
+  "observation_version": "orbit.provider-observation/1",
+  "observed_at": "2026-08-28T08:41:45Z",
+  "output_usd_per_million_tokens": "30.00",
+  "provider": "fixture",
+  "regression_status": "not_run",
+  "requested_model": "fixture-structured-v1",
+  "resolved_model_id": "fixture-structured-v1-2026-07-09",
+  "source": "evidence://disease-r2/public-pilot/attempts-001-003",
+  "source_kind": "human_reviewed_import"
+}
+

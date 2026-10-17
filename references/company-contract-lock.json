@@ -1,0 +1,39 @@
+{
+  "lock_version": "0.2.0",
+  "status": "current_development_baseline",
+  "authority": {
+    "repository_id": "orbit-agent-architecture",
+    "architecture_commit": "80391eafa430ac7ee84d6057ef028ab92209bbd1",
+    "contract_release_id": "contract-v0.1.0-alpha.2",
+    "contract_git_tag": "contract-v0.1.0-alpha.2",
+    "contract_git_commit": "bc7f21e67dbadd6aa618954fea4656b3387382f9",
+    "contract_release_manifest_sha256": "sha256:ffc9b78cda101e263dcbc0a60060cc48c5c11dec0eb1aba5aca50a74b489521a"
+  },
+  "synthetic_agent_contracts": [
+    {
+      "role": "company_task_router",
+      "definition_path": "contracts/examples/agents/definitions/company-task-router.synthetic.yaml",
+      "definition_sha256": "sha256:4739fa457f3cc0db42fceb494dcfde14dc1ecd658807139935e82f5b0391971c",
+      "binding_path": "contracts/examples/agents/bindings/company-task-router.synthetic.yaml",
+      "binding_sha256": "sha256:ffef37cc64a339c0913fef5d0bf9bf482354507debcd15e438ed85a8c3810b7b"
+    },
+    {
+      "role": "evaluator",
+      "definition_path": "contracts/examples/agents/definitions/evaluator.synthetic.yaml",
+      "definition_sha256": "sha256:03dc7a54c93b6f3a564196a64b43a021f671796e4b562039441b0d34038f933d",
+      "binding_path": "contracts/examples/agents/bindings/evaluator.synthetic.yaml",
+      "binding_sha256": "sha256:8981a467ca7bf732732bdf384c766db04bb4594a36111f46a6db14ec191e2cc5"
+    }
+  ],
+  "pilot_boundary": {
+    "data_classifications": [
+      "synthetic",
+      "public"
+    ],
+    "model_usage": "forbidden_in_initial_loop",
+    "network_access": "forbidden",
+    "external_side_effects": "forbidden",
+    "production_authorization": false
+  }
+}
+

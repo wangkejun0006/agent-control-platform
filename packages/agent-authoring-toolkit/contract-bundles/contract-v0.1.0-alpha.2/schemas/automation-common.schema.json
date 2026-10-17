@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Agent 发布资格验证自动化的共享类型；Receipt 记录机器事实，不替代人类 ApprovalDecision。",
+  "$id": "urn:company-ai-os:schema:automation-common:0.1",
+  "title": "Company AI OS Qualification Automation Common Types",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9][a-z0-9_-]{1,94})$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "semantic_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[a-z0-9.-]+)?$"
+    },
+    "logical_ref": {
+      "type": "string",
+      "pattern": "^(?:agent-release|tool-release|model-route|runtime|composition|task|grant|approval|policy|receipt|ledger|artifact|dataset|corpus|schema)://[A-Za-z0-9._~:/?#\\[\\]@!$&'()*+,;=%-]{3,400}$"
+    },
+    "evidence_status": {
+      "enum": ["architecture_reference", "static", "synthetic", "public", "verified_runtime"]
+    },
+    "qualification_stage": {
+      "enum": [
+        "candidate_build",
+        "contract_validation",
+        "artifact_closure",
+        "runtime_realization",
+        "isolation_e4",
+        "synthetic_d0",
+        "capability_r1",
+        "model_literature_r2",
+        "domain_evaluation",
+        "company_evaluation",
+        "evidence_packaging",
+        "formal_registration",
+        "release_review",
+        "preproduction_promotion",
+        "production_promotion"
+      ]
+    },
+    "artifact_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "ref", "digest"],
+      "properties": {
+        "role": { "type": "string", "pattern": "^[a-z][a-z0-9_]{2,79}$" },
+        "ref": { "$ref": "#/$defs/logical_ref" },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "component_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/semantic_version" },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "reason_code": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{2,95}$"
+    }
+  }
+}
+

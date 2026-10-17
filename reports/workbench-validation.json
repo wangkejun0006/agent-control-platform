@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-16",
+  "mode": "offline_only",
+  "new_model_requests": 0,
+  "new_model_cost_cny": 0,
+  "provider_configuration_read": false,
+  "original_repository_modified": false,
+  "pushed_or_published": false,
+  "verification_scopes": [
+    {
+      "name": "portable_regression_before_final_atomic_review_and_startup_adaptation",
+      "run": 384,
+      "passed": 376,
+      "optional_skipped": 8,
+      "failures": 0,
+      "errors": 0,
+      "log": ".runtime/workbench-portable-final.log"
+    },
+    {
+      "name": "final_workbench_integration",
+      "passed": 16,
+      "log": ".runtime/workbench-final-contract-tests.log"
+    },
+    {
+      "name": "final_native_startup_identity_regression",
+      "passed": 7,
+      "log": ".runtime/workbench-native-startup-regression.log"
+    },
+    {
+      "name": "frontend_lint_types_unit_build",
+      "passed": true,
+      "unit_passed": 3,
+      "log": ".runtime/workbench-frontend-final2.log"
+    },
+    {
+      "name": "final_browser_e2e",
+      "passed": 4,
+      "log": ".runtime/workbench-browser-final2.log"
+    },
+    {
+      "name": "ruff_and_offline_lock_check",
+      "passed": true
+    }
+  ],
+  "default_service_health": {
+    "status": "local_ready",
+    "database_ready": true,
+    "professional_runtime_ready": true,
+    "manual_test_worker": false,
+    "live_model_enabled": false,
+    "production_authorized": false
+  },
+  "default_account_initialization_pending": true,
+  "default_service_note": "Default startup checked; full delivery and rework performed in isolated test databases, not as the user.",
+  "historical_campaign_attempts_unchanged": 20,
+  "historical_campaign_closed": true,
+  "evidence": [
+    "workbench-tasks.png",
+    "workbench-delivery.png",
+    "VALIDATION.md"
+  ],
+  "limitations": [
+    "Offline deterministic planning and template output, not new LLM inference.",
+    "Local identity; SQLite single worker; fixed managed releases.",
+    "No strong OS sandbox, external runtime integration or production deployment.",
+    "Pattern scan is not exhaustive secret detection; no provider secret was loaded for exact matching this task.",
+    "Earlier integration and browser failures retained privately."
+  ]
+}

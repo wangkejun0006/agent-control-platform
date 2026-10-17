@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "PolicyDecisionReceipt 是确定性策略对精确 Attempt/Composition 的机器判定；它必须引用已批准 AutomationPolicy，且永远不是人类 ApprovalDecision。",
+  "$id": "urn:company-ai-os:schema:policy-decision-receipt:0.1",
+  "title": "Company AI OS PolicyDecisionReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "PolicyDecisionReceipt" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_id", "run_id", "attempt_id", "stage", "status", "evidence_status", "synthetic_only", "decided_at"],
+      "properties": {
+        "receipt_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "run_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "attempt_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "stage": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/qualification_stage" },
+        "status": { "const": "immutable" },
+        "evidence_status": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/evidence_status" },
+        "synthetic_only": { "type": "boolean" },
+        "decided_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automation_policy", "policy_activation_receipt", "subject", "decision", "reason_codes", "subset_checks", "valid_until", "grant_action", "authority_boundary"],
+      "properties": {
+        "automation_policy": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+        "policy_activation_receipt": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+        "subject": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["composition_ref", "composition_digest", "agent_release_digest", "runtime_source_digest"],
+          "properties": {
+            "composition_ref": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/logical_ref" },
+            "composition_digest": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" },
+            "agent_release_digest": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" },
+            "runtime_source_digest": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" }
+          }
+        },
+        "decision": { "enum": ["allow", "deny", "require_human"] },
+        "reason_codes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/reason_code" }
+        },
+        "subset_checks": {
+          "type": "array",
+          "minItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["boundary", "status", "observed_digest"],
+            "properties": {
+              "boundary": { "enum": ["agent_id", "release_state", "runtime_family", "data_classification", "model_route", "tool_operations", "endpoint_allowlist", "budget", "lifetime", "isolation_profile", "external_side_effects"] },
+              "status": { "enum": ["pass", "fail"] },
+              "observed_digest": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" }
+            }
+          }
+        },
+        "valid_until": { "type": "string", "format": "date-time" },
+        "grant_action": { "enum": ["none", "issue_single_use_evaluation_grant"] },
+        "authority_boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["human_approval", "may_issue_evaluation_grant", "may_issue_production_grant", "may_change_policy", "release_authorization"],
+          "properties": {
+            "human_approval": { "const": false },
+            "may_issue_evaluation_grant": { "type": "boolean" },
+            "may_issue_production_grant": { "const": false },
+            "may_change_policy": { "const": false },
+            "release_authorization": { "const": false }
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "spec": { "type": "object", "properties": { "decision": { "const": "allow" } }, "required": ["decision"] } } },
+      "then": {
+        "properties": {
+          "spec": {
+            "type": "object",
+            "properties": {
+              "subset_checks": { "type": "array", "items": { "type": "object", "properties": { "status": { "const": "pass" } } } },
+              "grant_action": { "const": "issue_single_use_evaluation_grant" },
+              "authority_boundary": { "type": "object", "properties": { "may_issue_evaluation_grant": { "const": true } } }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,72 @@
+api_version: orbit-agent-toolkit/v0alpha1
+kind: AgentPackageBlueprint
+metadata:
+  blueprint_id: company_task_router_package_syn
+  version: 0.2.0
+  status: draft
+  synthetic_only: true
+  artifact_time: "2026-08-20T08:00:00Z"
+spec:
+  target_id: repo_orbit_agent_control_plane_syn
+  output_root: agent-packages
+  blueprint_target_path: agent-packages/authoring/company-task-router-blueprint.synthetic.yaml
+  generation_record_path: agent-packages/authoring/company-task-router-generation-record.synthetic.json
+  required_schema_ids:
+    - urn:company-ai-os:schema:agent-common:0.1
+    - urn:company-ai-os:schema:agent-definition:0.1
+    - urn:company-ai-os:schema:agent-binding:0.1
+    - urn:company-ai-os:schema:agent-capability-profile:0.1
+    - urn:company-ai-os:schema:agent-registry:0.3
+    - urn:company-ai-os:schema:agent-release-manifest:0.1
+  packages:
+    - package_id: company_task_router_package_syn
+      artifact_name: company-task-router.synthetic.yaml
+      definition_path: agent-packages/definitions/company-task-router.synthetic.yaml
+      binding_path: agent-packages/bindings/company-task-router.synthetic.yaml
+      capability:
+        profile_id: cap_company_task_router_syn
+        visibility: company_internal
+        interfaces:
+          - interface_id: ifc_company_task_route_syn
+            capability: company_task.route
+            input_contract_refs:
+              - id: input_company_task_route_syn
+                version: 0.1.0
+                digest: sha256:683a1dc17322a2507bf82ec24a5fd587f83b43b5597cc033e0fdbe03c117ee04
+            invocation_modes:
+              - asynchronous_task
+            side_effect: none
+            allowed_data_classifications:
+              - public
+            requires_human_approval: false
+            required_model_capabilities: []
+        limitations:
+          - 只执行确定性 Routing Target 选择，不做领域判断或平台内分解。
+          - public 是接口输入上限，不产生 Data Grant。
+          - 生成候选不表示 Runtime、Registry 或公司发布已获批准。
+      registry:
+        record_id: reg_company_task_router_syn
+        retirement_policy_ref: pol_orbit_agent_retirement_syn
+        change_reason: Company Task Router D0 synthetic authoring candidate; no production runtime exists.
+      release:
+        release_id: release_company_task_router_syn
+        runtime_candidates:
+          - runtime_family: deterministic_worker
+            assessment_status: evaluating
+            evidence_status: synthetic
+            limitations:
+              - 当前证据只覆盖 Control Plane 本地 D0 合成测试，不是生产 Runtime 证明。
+        release_gate_policy_ref: pol_orbit_agent_release_gate_syn
+        required_evidence_refs:
+          - evidence://synthetic/schema-validation
+          - evidence://synthetic/router-negative-cases
+          - evidence://synthetic/control-plane-d0
+        minimum_control_plane_revision_ref:
+          id: control_plane_contract_orbit_syn
+          version: 0.1.0
+          digest: sha256:7373737373737373737373737373737373737373737373737373737373737373
+        adapter_profile_ref:
+          id: conformance_runtime_adapter_core_orbit_syn
+          version: 0.1.0
+          digest: sha256:7474747474747474747474747474747474747474747474747474747474747474
+

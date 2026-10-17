@@ -1,0 +1,34 @@
+{
+  "schema": "orbit.rework-decision-checker-offline/1",
+  "status": "offline_passed",
+  "checker_version": "market-rework-decisions/2",
+  "real_model_requests": 0,
+  "credential_reads": 0,
+  "historical_budget_reads": 0,
+  "tests": {
+    "command": "uv run --locked python -m unittest tests.test_rework_decision_checker tests.test_minimal_validation tests.test_rework_content_contract tests.test_rework_native_boundaries tests.test_planning_reference_boundary",
+    "count": 28,
+    "seconds": 67.162,
+    "status": "passed",
+    "log": ".runtime/decision-checker-regression-20261017.log"
+  },
+  "ruff": "passed",
+  "format": "passed",
+  "uv_lock_check": "passed",
+  "protected_old_files": 48,
+  "old_file_hashes_unchanged": true,
+  "historical_real_activity_status": "stopped",
+  "historical_real_candidate_approved": false,
+  "historical_real_delivery_completed": false,
+  "source_and_native_approval_modules_unchanged": true,
+  "historical_prose_read_only_new_checker_result": "recognized; not retroactive campaign success",
+  "complete_offline_fake_wire_delivery": "passed; not new real provider result",
+  "negation_reversal_full_driver": "stopped before approval/delivery",
+  "secret_audit": "pattern scan changed portable files only; no actual credential read",
+  "next_minimum_plan": {
+    "new_model_requests": 0,
+    "model_cost_cny": 0,
+    "mode": "fresh isolated snapshot review and local delivery; not executed"
+  },
+  "published": false
+}

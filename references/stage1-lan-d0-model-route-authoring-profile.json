@@ -1,0 +1,56 @@
+{
+  "profile_version": "orbit.stage1-lan-model-route-authoring-profile/1",
+  "authority_claim": "none",
+  "status": "d0_synthetic_candidate",
+  "runtime_bindings": [
+    {
+      "binding_id": "technology-codex-read-only-d0",
+      "label": "技术中心 Codex 只读运行绑定",
+      "ref": "runtime-binding://technology/codex-read-only-d0",
+      "digest": "sha256:5b7f80313a761e6a6f36a0cc6ba5748395d3547b8eb57a0db7d6256766229d49",
+      "authorized_node_refs": [
+        "node_technology_001"
+      ],
+      "authentication_modes": [
+        "api_key_ref",
+        "oauth_ref"
+      ]
+    }
+  ],
+  "policy_binding": {
+    "ref": "policy://stage1-lan/d0-synthetic-only",
+    "digest": "sha256:dc5a810709e947e894ae2a54235e3762cd58ba8078857b6be546ed166fa685d9",
+    "canonical_subject": {
+      "data_classification": [
+        "synthetic",
+        "public"
+      ],
+      "execution_grant_required": true,
+      "max_concurrency": 1,
+      "model_called_default": false,
+      "production_authorization": false,
+      "runtime_started_default": false
+    }
+  },
+  "account_budget": {
+    "max_input_tokens": 20000,
+    "max_output_tokens": 4000,
+    "max_turns": 6,
+    "max_duration_seconds": 900,
+    "max_concurrency": 1
+  },
+  "api_budget": {
+    "max_input_tokens": 20000,
+    "max_output_tokens": 4000,
+    "max_turns": 6,
+    "max_duration_seconds": 900,
+    "max_concurrency": 1,
+    "max_cost_usd": "0.14",
+    "max_cost_cny": "1.00",
+    "cny_per_usd": "7.14"
+  },
+  "synthetic_only": true,
+  "production_authorization": false,
+  "release_authorization": false
+}
+

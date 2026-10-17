@@ -1,0 +1,374 @@
+api_version: orbit-agent-toolkit/v0alpha1
+kind: RuntimeAssessmentBlueprint
+metadata:
+  assessment_id: assess_orbit_research_evaluator_runtime_syn
+  version: 0.2.0
+  status: draft
+  evidence_status: architecture_reference
+  synthetic_only: true
+  observed_at: "2026-08-18T10:36:27Z"
+spec:
+  requirements:
+    reasoning_pattern: short_reasoning_loop
+    statefulness: task_scoped
+    human_interrupt: optional
+    data_classifications:
+      - public
+    required_conformance_profiles:
+      - core_dispatch
+      - tool_data_enforced
+      - isolated_workload
+    hard_gates:
+      - exact_revision
+      - license_review
+      - binding_conformance
+      - idempotency
+      - cancel
+      - timeout
+      - audit_correlation
+      - container_isolation
+      - tool_interception
+      - model_route_compatibility
+      - local_environment_compatibility
+      - resource_fit
+      - memory_isolation
+    comparison_criteria:
+      - implementation_effort
+      - maintainability
+      - resource_cost
+      - recovery
+      - observability
+      - portability
+      - developer_fit
+    derived_constraints:
+      model_usage: optional
+      model_capabilities:
+        - rubric_evaluation
+        - structured_output
+      tool_operations:
+        - evaluation_report_writer:create
+      data_operations: []
+      agent_operations: []
+      memory_classes:
+        - working
+      data_classifications:
+        - public
+      execution_location: local_workstation
+      isolation: container
+      sandbox_filesystem: deny
+      sandbox_network: deny
+      workspace_mode: none
+      max_tool_calls: 4
+      max_concurrency: 1
+      max_autonomy: L1
+      required_hard_gates:
+        - exact_revision
+        - license_review
+        - binding_conformance
+        - idempotency
+        - cancel
+        - timeout
+        - audit_correlation
+        - local_environment_compatibility
+        - resource_fit
+        - container_isolation
+        - tool_interception
+        - memory_isolation
+        - model_route_compatibility
+      required_conformance_profiles:
+        - core_dispatch
+        - isolated_workload
+        - tool_data_enforced
+  candidates:
+    - runtime_family: deterministic_worker
+      runtime_revision_ref:
+        id: runtime_revision_deterministic_evaluator_syn
+        version: 0.1.0
+        digest: sha256:7575757575757575757575757575757575757575757575757575757575757575
+      adapter_ref: null
+      assessment_status: ineligible
+      evidence_status: architecture_reference
+      capability_report_refs: []
+      hard_gate_results:
+        - gate: exact_revision
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: license_review
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: binding_conformance
+          result: fail
+          evidence_kind: static_mapping
+          evidence_ref: evidence://synthetic/evaluator-requires-structured-model-reasoning
+        - gate: idempotency
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: cancel
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: timeout
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: audit_correlation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: container_isolation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: tool_interception
+          result: not_applicable
+          evidence_kind: static_mapping
+          evidence_ref: evidence://synthetic/no-runtime-tool-loop
+        - gate: model_route_compatibility
+          result: fail
+          evidence_kind: static_mapping
+          evidence_ref: evidence://synthetic/no-model-route-capability
+        - gate: local_environment_compatibility
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: resource_fit
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: memory_isolation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+      strengths:
+        - 适合确定性 rubric、Schema 和引用检查，可作为评价流水线的一部分。
+      limitations:
+        - 不能单独满足 Research Evaluator 所需的结构化模型推理能力。
+        - 尚无独立实现 Revision、Adapter 或运行证据。
+      next_tests:
+        - 将确定性规则拆为前置检查，不把它登记为完整 Research Evaluator Runtime。
+    - runtime_family: hermes_agent
+      runtime_revision_ref:
+        id: runtime_hermes_agent_linux_arm64_syn
+        version: 0.20.2
+        digest: sha256:f8f548d87d16634d1ad9e3777280f3f577ba2358703f04e18e74007ffd3621bf
+      adapter_ref: null
+      assessment_status: deferred
+      evidence_status: architecture_reference
+      capability_report_refs: []
+      hard_gate_results:
+        - gate: exact_revision
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: license_review
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: binding_conformance
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: idempotency
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: cancel
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: timeout
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: audit_correlation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: container_isolation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: tool_interception
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: model_route_compatibility
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: local_environment_compatibility
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: resource_fit
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: memory_isolation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+      strengths:
+        - Hermes 在架构上仍是短推理循环与受控 Tool Loop 的可替换候选。
+      limitations:
+        - 原 Runtime Lab 已退役，固定源码、镜像、Adapter 和能力报告当前不可读取或重跑。
+        - 所有 Hard Gate 均需在目标实施边界重新验证，不能沿用历史 pass。
+      next_tests:
+        - 只有重新批准 Hermes 评估时，才在目标实施仓库锁定 Revision、Adapter、许可证和隔离环境并重跑全部 Hard Gate。
+    - runtime_family: pi
+      runtime_revision_ref:
+        id: runtime_revision_pi_unassessed_syn
+        version: 0.1.0
+        digest: sha256:7676767676767676767676767676767676767676767676767676767676767676
+      adapter_ref: null
+      assessment_status: unassessed
+      evidence_status: architecture_reference
+      capability_report_refs: []
+      hard_gate_results:
+        - gate: exact_revision
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: license_review
+          result: unknown
+          evidence_kind: official_documentation
+          evidence_ref: https://github.com/earendil-works/pi/blob/main/LICENSE
+        - gate: binding_conformance
+          result: unknown
+          evidence_kind: official_documentation
+          evidence_ref: https://github.com/earendil-works/pi
+        - gate: idempotency
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: cancel
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: timeout
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: audit_correlation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: container_isolation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: tool_interception
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: model_route_compatibility
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: local_environment_compatibility
+          result: unknown
+          evidence_kind: official_documentation
+          evidence_ref: https://github.com/earendil-works/pi
+        - gate: resource_fit
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: memory_isolation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+      strengths:
+        - 官方项目提供 macOS arm64 分发，可作为轻量 Agent Loop 候选。
+      limitations:
+        - 本机未安装，仓库归属与历史名称已发生变化，尚未锁定版本或 Adapter。
+        - 没有 Orbit Tool Policy、取消、审计或模型路由映射证据。
+      next_tests:
+        - 先固定当前官方仓库、许可证、发布版本和 arm64 制品摘要，再决定是否安装评测。
+    - runtime_family: langgraph
+      runtime_revision_ref:
+        id: runtime_revision_langgraph_unassessed_syn
+        version: 0.1.0
+        digest: sha256:7777777777777777777777777777777777777777777777777777777777777777
+      adapter_ref: null
+      assessment_status: deferred
+      evidence_status: architecture_reference
+      capability_report_refs: []
+      hard_gate_results:
+        - gate: exact_revision
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: license_review
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: binding_conformance
+          result: unknown
+          evidence_kind: official_documentation
+          evidence_ref: https://docs.langchain.com/oss/python/langgraph/
+        - gate: idempotency
+          result: unknown
+          evidence_kind: official_documentation
+          evidence_ref: https://docs.langchain.com/oss/python/langgraph/interrupts
+        - gate: cancel
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: timeout
+          result: unknown
+          evidence_kind: official_documentation
+          evidence_ref: https://docs.langchain.com/oss/python/langgraph/fault-tolerance
+        - gate: audit_correlation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: container_isolation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: tool_interception
+          result: unknown
+          evidence_kind: official_documentation
+          evidence_ref: https://docs.langchain.com/oss/python/langchain/human-in-the-loop
+        - gate: model_route_compatibility
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: local_environment_compatibility
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: resource_fit
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+        - gate: memory_isolation
+          result: unknown
+          evidence_kind: none
+          evidence_ref: null
+      strengths:
+        - 官方文档覆盖 Checkpoint、Interrupt、恢复和 Human-in-the-loop，适合耐久状态图需求。
+      limitations:
+        - 本机未安装；当前 Evaluator 仅为 task-scoped，尚无必须引入状态图的证据。
+        - Interrupt 恢复会重启节点，副作用幂等仍需 Orbit Adapter 设计和实测。
+      next_tests:
+        - 只有评价流程出现耐久 Checkpoint、人工中断恢复或复杂状态图需求时再进入固定版本评测。
+  recommendation:
+    status: insufficient_evidence
+    recommended_runtime_family: null
+    rationale:
+      - 原 Runtime Lab 已退役，当前没有可读取、可重跑的 Runtime 能力报告。
+      - Research Evaluator 的 Runtime 选择保持未决定，任何候选都必须在目标实施边界重新验证。
+    human_decision_required: true
+    selection_authority: human_owners
+    decision_ref: null
+    review_triggers:
+      - 模型供应商、数据处理条款或 Orbit ModelRoute 获得人类决定。
+      - 人工重新批准至少一个 Runtime 候选的源码、Adapter、许可证和隔离运行评估。
+      - 真实模型路由完成兼容、留存、超时和取消验证。
+      - Research Evaluator 的状态模式从 task-scoped 变为 durable 或需要 Human Interrupt。
+  evidence_inputs: []
+

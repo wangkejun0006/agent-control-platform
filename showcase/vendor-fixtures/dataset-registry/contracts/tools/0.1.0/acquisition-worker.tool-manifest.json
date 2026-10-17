@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.3",
+  "tool_id": "tool_orbit_dataset_acquisition_worker",
+  "version": "0.1.0-synthetic",
+  "display_name": "Dataset Acquisition Worker Tool",
+  "description": "Consumes an approved DatasetAcquisitionRequest, performs deterministic transfer and checksum work, and returns a path-free DatasetAcquisitionReceipt.",
+  "owner": {
+    "human_id": "hum_technology_data_owner_syn",
+    "role": "Technology Data Owner"
+  },
+  "status": "evaluation",
+  "hierarchy_scope_refs": ["hnode_technology_dataset_acquisition_syn"],
+  "operations": [
+    {
+      "operation_id": "acquire_synthetic_artifact",
+      "description": "Verify synthetic bytes without network, credentials, NAS, or durable publication.",
+      "action_types": ["read", "execute"],
+      "risk_class": "medium",
+      "input_schema_ref": "urn:orbit:data-asset:dataset-acquisition-request:0.1",
+      "output_schema_ref": "urn:orbit:data-asset:dataset-acquisition-receipt:0.1",
+      "side_effect": "none",
+      "idempotency": "required",
+      "approval": { "mode": "policy_based", "policy_ref": "policy://dataset-acquisition/d0-synthetic" },
+      "credential_policy": { "credential_ref": "credential://none", "delivery": "workload_identity", "agent_visible": false },
+      "network_egress": { "mode": "deny_all", "destination_refs": [] },
+      "data_policy": {
+        "allowed_classifications": ["public"],
+        "allowed_security_zones": ["medical_research"],
+        "output_classification": "public"
+      },
+      "timeout_seconds": 60
+    },
+    {
+      "operation_id": "acquire_authorized_artifact",
+      "description": "Transfer one grant-bound artifact through gateway-managed source and storage ports.",
+      "action_types": ["read", "execute", "external_send"],
+      "risk_class": "high",
+      "input_schema_ref": "urn:orbit:data-asset:dataset-acquisition-request:0.1",
+      "output_schema_ref": "urn:orbit:data-asset:dataset-acquisition-receipt:0.1",
+      "side_effect": "reversible",
+      "idempotency": "required",
+      "approval": { "mode": "human_per_action", "policy_ref": "policy://dataset-acquisition/grant-required" },
+      "credential_policy": { "credential_ref": "credential://dataset-source/gateway", "delivery": "gateway_managed", "agent_visible": false },
+      "network_egress": { "mode": "allowlist", "destination_refs": ["egress-allowlist://dataset-source/task-bound"] },
+      "data_policy": {
+        "allowed_classifications": ["public", "internal", "confidential", "wearable_restricted", "medical_restricted"],
+        "allowed_security_zones": ["medical_research"],
+        "output_classification": "medical_restricted"
+      },
+      "timeout_seconds": 86400,
+      "retry_policy_ref": "retry://dataset-acquisition/idempotent-resume"
+    }
+  ],
+  "runtime_constraints": {
+    "allowed_environments": ["test", "staging"],
+    "sandbox_required": true
+  },
+  "audit_policy": {
+    "record_request": true,
+    "record_decision": true,
+    "record_receipt": true,
+    "content_logging": "metadata_only",
+    "retention_policy_ref": "retention://dataset-tools/d0-synthetic"
+  },
+  "created_at": "2026-08-25T11:15:00Z",
+  "updated_at": "2026-08-25T11:15:00Z"
+}
+

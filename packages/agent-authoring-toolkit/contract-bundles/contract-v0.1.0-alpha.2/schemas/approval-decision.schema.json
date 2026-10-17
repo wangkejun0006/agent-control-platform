@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "ApprovalDecision 固化人类对精确版本、hash 和作用域的不可变决定；Task 只保存其引用和派生摘要。",
+  "$id": "urn:company-ai-os:schema:approval-decision:0.1",
+  "title": "Company AI OS ApprovalDecision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "ApprovalDecision" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "approval_id", "task_id", "status", "evidence_status", "synthetic_only", "decided_at"],
+      "properties": {
+        "decision_id": { "type": "string", "pattern": "^decision_[a-z0-9][a-z0-9_-]{2,79}$" },
+        "approval_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "task_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "status": { "const": "immutable" },
+        "evidence_status": { "enum": ["synthetic", "architecture_reference", "verified_runtime"] },
+        "synthetic_only": { "type": "boolean" },
+        "decided_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "decided_by_human_ref", "decided_by_role_ref", "scope_ref", "scope_digest", "reason", "expires_at", "separation_of_duties_check_ref", "audit_event_refs"],
+      "properties": {
+        "decision": { "enum": ["approve", "reject", "revoke", "expire"] },
+        "decided_by_human_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "decided_by_role_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/role_ref" },
+        "scope_ref": { "type": "string", "minLength": 3, "maxLength": 240 },
+        "scope_digest": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/digest" },
+        "reason": { "type": "string", "minLength": 3, "maxLength": 1000 },
+        "expires_at": { "oneOf": [{ "type": "null" }, { "type": "string", "format": "date-time" }] },
+        "separation_of_duties_check_ref": { "type": "string", "minLength": 3, "maxLength": 240 },
+        "audit_event_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^audit_[a-z0-9][a-z0-9_-]{2,79}$" } }
+      }
+    }
+  }
+}
+

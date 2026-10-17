@@ -1,0 +1,23 @@
+{
+  "evidence_status": "synthetic",
+  "organization": "Paper Orbit Studio (fictional)",
+  "revision": "catalog-demo-v3",
+  "license": "fictional-demo-only",
+  "collections": [
+    {"id": "catalog", "revision": 3, "records": [
+      {"id": "PO-101", "title": "Orbit notebook", "stock": 18, "price_cents": 2400},
+      {"id": "PO-102", "title": "Comet planner", "stock": 0, "price_cents": 3200},
+      {"id": "PO-103", "title": "Lunar stickers", "stock": 42, "price_cents": 800}
+    ]},
+    {"id": "support", "revision": 2, "records": [
+      {"id": "T-001", "category": "delivery", "status": "open"},
+      {"id": "T-002", "category": "product", "status": "resolved"},
+      {"id": "T-003", "category": "delivery", "status": "resolved"},
+      {"id": "T-004", "category": "refund", "status": "open"}
+    ]},
+    {"id": "shipments", "revision": 1, "records": [
+      {"id": "S-001", "product_ref": "PO-101", "units": 3},
+      {"id": "S-002", "product_ref": "PO-103", "units": 5}
+    ]}
+  ]
+}

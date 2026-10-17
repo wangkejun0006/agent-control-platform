@@ -1,0 +1,102 @@
+{
+  "registry_version": "orbit.control-plane-tool-semantic-scopes/1",
+  "status": "synthetic_registration_only",
+  "semantic_authority_release_id": "semantic-authority-v0.1.0-alpha.7",
+  "tool_intake_profile": "references/dataset-tool-intake-profile.json",
+  "scopes": [
+    {
+      "scope_id": "toolscope_dataset_query_watchlist_0_1_0_syn_query",
+      "tool_id": "tool_orbit_dataset_query_watchlist",
+      "tool_version": "0.1.0-synthetic",
+      "manifest_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+      "operation_id": "query_registry_watchlist",
+      "capability": "dataset_registry.query_watchlist",
+      "semantic_scope": {
+        "domain": "dataset",
+        "resource_kind": "registry_watchlist",
+        "action": "read",
+        "side_effect_class": "none"
+      },
+      "canonical_scope_key": "dataset:registry_watchlist:read:none",
+      "relationship": {"mode": "canonical", "target_scope_id": null},
+      "status": "registered",
+      "evidence_status": "synthetic",
+      "owner_ref": "role_orbit_platform_owner",
+      "registration_only": true,
+      "activation_authorization": false,
+      "production_authorized": false
+    },
+    {
+      "scope_id": "toolscope_dataset_acquisition_worker_0_1_0_syn_acquire",
+      "tool_id": "tool_orbit_dataset_acquisition_worker",
+      "tool_version": "0.1.0-synthetic",
+      "manifest_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+      "operation_id": "acquire_synthetic_artifact",
+      "capability": "dataset_acquisition.authorized_execute",
+      "semantic_scope": {
+        "domain": "dataset",
+        "resource_kind": "synthetic_artifact",
+        "action": "acquire",
+        "side_effect_class": "reversible"
+      },
+      "canonical_scope_key": "dataset:synthetic_artifact:acquire:reversible",
+      "relationship": {"mode": "canonical", "target_scope_id": null},
+      "status": "registered",
+      "evidence_status": "synthetic",
+      "owner_ref": "role_orbit_platform_owner",
+      "registration_only": true,
+      "activation_authorization": false,
+      "production_authorized": false
+    },
+    {
+      "scope_id": "toolscope_dataset_registry_publisher_0_1_0_syn_publish",
+      "tool_id": "tool_orbit_dataset_registry_publisher",
+      "tool_version": "0.1.0-synthetic",
+      "manifest_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+      "operation_id": "publish_registry_patch",
+      "capability": "dataset_registry.publish_candidate",
+      "semantic_scope": {
+        "domain": "dataset",
+        "resource_kind": "registry_patch",
+        "action": "publish_candidate",
+        "side_effect_class": "reversible"
+      },
+      "canonical_scope_key": "dataset:registry_patch:publish_candidate:reversible",
+      "relationship": {"mode": "canonical", "target_scope_id": null},
+      "status": "registered",
+      "evidence_status": "synthetic",
+      "owner_ref": "role_orbit_platform_owner",
+      "registration_only": true,
+      "activation_authorization": false,
+      "production_authorized": false
+    },
+    {
+      "scope_id": "toolscope_dataset_registry_publisher_0_1_0_syn_rollback",
+      "tool_id": "tool_orbit_dataset_registry_publisher",
+      "tool_version": "0.1.0-synthetic",
+      "manifest_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+      "operation_id": "rollback_registry_patch",
+      "capability": "dataset_registry.publish_candidate",
+      "semantic_scope": {
+        "domain": "dataset",
+        "resource_kind": "registry_patch",
+        "action": "rollback",
+        "side_effect_class": "reversible"
+      },
+      "canonical_scope_key": "dataset:registry_patch:rollback:reversible",
+      "relationship": {"mode": "canonical", "target_scope_id": null},
+      "status": "registered",
+      "evidence_status": "synthetic",
+      "owner_ref": "role_orbit_platform_owner",
+      "registration_only": true,
+      "activation_authorization": false,
+      "production_authorized": false
+    }
+  ],
+  "non_claims": [
+    "registration_does_not_activate_tools",
+    "registration_does_not_issue_execution_grants",
+    "synthetic_evidence_is_not_production_evidence"
+  ]
+}
+

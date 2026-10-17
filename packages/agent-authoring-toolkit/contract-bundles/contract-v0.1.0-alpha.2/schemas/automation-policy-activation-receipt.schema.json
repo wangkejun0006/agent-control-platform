@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "AutomationPolicyActivationReceipt 由 Control Plane 在验证人类 ApprovalDecision 精确批准 Policy digest 后生成；它只激活该自动化包络，不批准其中任何 Agent、Tool、Model Route、执行或发布。",
+  "$id": "urn:company-ai-os:schema:automation-policy-activation-receipt:0.1",
+  "title": "Company AI OS AutomationPolicyActivationReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "AutomationPolicyActivationReceipt" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_id", "policy_id", "policy_version", "status", "evidence_status", "synthetic_only", "activated_at", "expires_at"],
+      "properties": {
+        "receipt_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "policy_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "policy_version": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/semantic_version" },
+        "status": { "const": "active" },
+        "evidence_status": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/evidence_status" },
+        "synthetic_only": { "type": "boolean" },
+        "activated_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automation_policy", "approval_decision", "approval_scope", "activation_service", "authority_boundary"],
+      "properties": {
+        "automation_policy": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+        "approval_decision": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+        "approval_scope": { "const": "automation_policy_activation" },
+        "activation_service": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/component_ref" },
+        "authority_boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["human_approval_verified", "may_authorize_policy_subset_evaluation", "agent_activation", "tool_activation", "model_route_approval", "formal_registration", "preproduction_promotion", "production_promotion", "release_authorization"],
+          "properties": {
+            "human_approval_verified": { "const": true },
+            "may_authorize_policy_subset_evaluation": { "const": true },
+            "agent_activation": { "const": false },
+            "tool_activation": { "const": false },
+            "model_route_approval": { "const": false },
+            "formal_registration": { "const": false },
+            "preproduction_promotion": { "const": false },
+            "production_promotion": { "const": false },
+            "release_authorization": { "const": false }
+          }
+        }
+      }
+    }
+  }
+}
+

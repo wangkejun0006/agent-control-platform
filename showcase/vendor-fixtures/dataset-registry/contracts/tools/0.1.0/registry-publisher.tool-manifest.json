@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.3",
+  "tool_id": "tool_orbit_dataset_registry_publisher",
+  "version": "0.1.0-synthetic",
+  "display_name": "Dataset Registry Publisher Tool",
+  "description": "Consumes a grant-bound DatasetRegistryPatchCandidate, checks the expected revision, publishes atomically, verifies derived synchronization, and emits a publication receipt.",
+  "owner": {
+    "human_id": "hum_technology_data_owner_syn",
+    "role": "Technology Data Owner"
+  },
+  "status": "evaluation",
+  "hierarchy_scope_refs": ["hnode_technology_dataset_acquisition_syn"],
+  "operations": [
+    {
+      "operation_id": "publish_registry_patch",
+      "description": "Apply one expected-revision patch atomically and roll back if derived synchronization fails.",
+      "action_types": ["write", "publish"],
+      "risk_class": "high",
+      "input_schema_ref": "urn:orbit:data-asset:dataset-registry-patch-candidate:0.1",
+      "output_schema_ref": "urn:orbit:data-asset:dataset-registry-publication-receipt:0.1",
+      "side_effect": "reversible",
+      "idempotency": "required",
+      "approval": { "mode": "human_per_action", "policy_ref": "policy://dataset-registry/publish-grant-required" },
+      "credential_policy": { "credential_ref": "credential://dataset-registry/workload", "delivery": "workload_identity", "agent_visible": false },
+      "network_egress": { "mode": "deny_all", "destination_refs": [] },
+      "data_policy": {
+        "allowed_classifications": ["public", "internal", "confidential", "wearable_restricted", "medical_restricted"],
+        "allowed_security_zones": ["medical_research"],
+        "output_classification": "medical_restricted"
+      },
+      "timeout_seconds": 120,
+      "rollback_operation_ref": "tool_orbit_dataset_registry_publisher@0.1.0-synthetic#rollback_registry_patch"
+    },
+    {
+      "operation_id": "rollback_registry_patch",
+      "description": "Restore the exact previous synthetic Registry bytes after a failed derived synchronization check.",
+      "action_types": ["write"],
+      "risk_class": "high",
+      "input_schema_ref": "urn:orbit:data-asset:dataset-registry-patch-candidate:0.1",
+      "output_schema_ref": "urn:orbit:data-asset:dataset-registry-publication-receipt:0.1",
+      "side_effect": "reversible",
+      "idempotency": "required",
+      "approval": { "mode": "human_per_action", "policy_ref": "policy://dataset-registry/rollback-bound" },
+      "credential_policy": { "credential_ref": "credential://dataset-registry/workload", "delivery": "workload_identity", "agent_visible": false },
+      "network_egress": { "mode": "deny_all", "destination_refs": [] },
+      "data_policy": {
+        "allowed_classifications": ["public", "internal", "confidential", "wearable_restricted", "medical_restricted"],
+        "allowed_security_zones": ["medical_research"],
+        "output_classification": "medical_restricted"
+      },
+      "timeout_seconds": 120
+    }
+  ],
+  "runtime_constraints": {
+    "allowed_environments": ["test", "staging"],
+    "sandbox_required": true
+  },
+  "audit_policy": {
+    "record_request": true,
+    "record_decision": true,
+    "record_receipt": true,
+    "content_logging": "metadata_only",
+    "retention_policy_ref": "retention://dataset-tools/d0-synthetic"
+  },
+  "created_at": "2026-08-25T11:15:00Z",
+  "updated_at": "2026-08-25T11:15:00Z"
+}
+

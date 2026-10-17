@@ -1,0 +1,79 @@
+{
+  "api_version": "orbit-agent-toolkit/v0alpha1",
+  "kind": "RuntimeEnvironmentObservation",
+  "metadata": {
+    "observation_id": "obs_orbit_local_runtime_candidates_arch_ref",
+    "version": "0.1.0",
+    "status": "architecture_reference",
+    "evidence_status": "architecture_reference",
+    "sanitized": true,
+    "observed_at": "2026-08-17T09:21:10Z"
+  },
+  "spec": {
+    "environment_ref": {
+      "id": "env_orbit_local_d0_pilot_syn",
+      "version": "0.1.0",
+      "digest": "sha256:6363636363636363636363636363636363636363636363636363636363636363"
+    },
+    "host_profile": {
+      "platform": "macos",
+      "os_version": "26.6.1",
+      "architecture": "arm64",
+      "node_version": "26.5.1"
+    },
+    "container_engine": {
+      "client": {
+        "product": "docker",
+        "version": "29.7.2",
+        "architecture": "arm64",
+        "context": "desktop-linux"
+      },
+      "daemon_status": "unavailable",
+      "image_inventory_status": "unavailable"
+    },
+    "runtime_inventory": [
+      {
+        "runtime_family": "hermes_agent",
+        "installation_status": "installed",
+        "observed_version": "0.19.1",
+        "observed_revision": "fc61608a",
+        "latest_official_version_observed": "0.20.2",
+        "version_relation": "behind_observed_latest",
+        "execution_test_status": "not_run"
+      },
+      {
+        "runtime_family": "pi",
+        "installation_status": "not_installed",
+        "observed_version": null,
+        "observed_revision": null,
+        "latest_official_version_observed": null,
+        "version_relation": "unknown",
+        "execution_test_status": "not_run"
+      },
+      {
+        "runtime_family": "langgraph",
+        "installation_status": "not_installed",
+        "observed_version": null,
+        "observed_revision": null,
+        "latest_official_version_observed": null,
+        "version_relation": "unknown",
+        "execution_test_status": "not_run"
+      }
+    ],
+    "source_refs": [
+      "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.8.16",
+      "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/docker.md",
+      "https://github.com/earendil-works/pi",
+      "https://docs.langchain.com/oss/python/langgraph/persistence"
+    ],
+    "evidence_boundary": [
+      "version_probe_only",
+      "no_agent_execution",
+      "no_model_call",
+      "no_container_started",
+      "no_image_pulled",
+      "no_runtime_verified"
+    ]
+  }
+}
+

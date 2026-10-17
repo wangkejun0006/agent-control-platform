@@ -1,0 +1,42 @@
+{
+  "comparison": "local pre-edit tar; not Git diff",
+  "files": [
+    {
+      "path": "README.md",
+      "change": "modified",
+      "sha256": "787c628c452aa53d8e8287fd8a4509b9d01bfd09d1ebdcb949886f1c0c4edaf0"
+    },
+    {
+      "path": "reports/planning-reference-boundary-validation-20261017.json",
+      "change": "added",
+      "sha256": "7959eb3768917c4d05d2e4c5348f6f2c38abbb322333c3ffa0a0b57ec24db50b"
+    },
+    {
+      "path": "tests/test_planning_reference_boundary.py",
+      "change": "added",
+      "sha256": "883b4195ee2edd46a0e4f7d9e19f1bdc28f69820e0897ef7d9966d78a53e2e41"
+    },
+    {
+      "path": "showcase/workbench/live.py",
+      "change": "modified",
+      "sha256": "fac00c221c7de7e165dc2d0619dc4fe610c84c8d95434045889ac5422ed75a87"
+    },
+    {
+      "path": "showcase/workbench/content_contract.py",
+      "change": "modified",
+      "sha256": "3da212622b2a30e3c9d395d741079d37ff83249198801247b39f0e7dc81684f9"
+    },
+    {
+      "path": "docs/PLANNING_REFERENCE_BOUNDARY_20261017.md",
+      "change": "added",
+      "sha256": "d02f7714421f711b0e17932e33a6870e26aa1507a37971a5f71cf2fc8ea430d5"
+    },
+    {
+      "path": ".agent/HANDOFF.md",
+      "change": "modified",
+      "sha256": "a56bf05e32b8c27ff9181b16d8d2b426ef6dbac78511cf82e8adafc699e12c87"
+    }
+  ],
+  "pattern_findings": 0,
+  "configured_credentials_not_read": true
+}

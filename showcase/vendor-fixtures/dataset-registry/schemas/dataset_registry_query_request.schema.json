@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:orbit:data-asset:dataset-registry-query-request:0.1",
+  "title": "Dataset Registry Query Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "task_ref",
+    "mode",
+    "registry_revision_ref",
+    "dataset_refs",
+    "classification"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "request_id": { "type": "string", "pattern": "^qry_[a-z0-9][a-z0-9_-]{2,95}$" },
+    "task_ref": { "type": "string", "pattern": "^task_[a-z0-9][a-z0-9_-]{2,95}$" },
+    "mode": { "enum": ["registry_query", "watchlist_snapshot", "watchlist_diff"] },
+    "registry_revision_ref": { "$ref": "#/$defs/revision_ref" },
+    "previous_snapshot_ref": { "$ref": "#/$defs/logical_ref" },
+    "current_snapshot_ref": { "$ref": "#/$defs/logical_ref" },
+    "dataset_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/dataset_ref" }
+    },
+    "classification": { "enum": ["synthetic", "public"] }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "mode": { "const": "watchlist_diff" } }, "required": ["mode"] },
+      "then": { "required": ["previous_snapshot_ref", "current_snapshot_ref"] }
+    }
+  ],
+  "$defs": {
+    "logical_ref": { "type": "string", "pattern": "^(?:dataset|registry|snapshot|watchlist|artifact|receipt|release)://[A-Za-z0-9._:/-]+$" },
+    "dataset_ref": { "type": "string", "pattern": "^dataset://[a-z0-9][a-z0-9._/-]{1,159}$" },
+    "revision_ref": { "type": "string", "pattern": "^registry://revision/sha256/[a-f0-9]{64}$" }
+  }
+}
+

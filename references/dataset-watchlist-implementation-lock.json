@@ -1,0 +1,31 @@
+{
+  "lock_version": "0.2.0",
+  "task_schema_version": "orbit.company-watchlist-task/0.1",
+  "registry": {
+    "repository_id": "orbit-dataset-acquisition-registry",
+    "implementation_commit": "f36cc8e9ee616ac5aaa9a7c01e8cbf905ad79875",
+    "python_module": "orbit_dataset_acquisition_registry.watchlist_fixture_cli",
+    "command": "check",
+    "event_schema_version": "orbit.watchlist-event/0.1"
+  },
+  "scientific": {
+    "repository_id": "orbit-scientific-research-platform",
+    "implementation_commit": "82132d9fc64ca604263a976e85c7a922eb46a70d",
+    "python_module": "orbit_scientific_research_platform.dataset_agent",
+    "command": "watchlist-run",
+    "result_schema_version": "orbit.dataset-watchlist-run/0.2"
+  },
+  "coordinator_target_id": "component_orbit_dataset_watchlist_coordinator_syn",
+  "dataset_agent_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+  "capability": "dataset_watchlist.check",
+  "model_route_ref": "model_route_synthetic_fixture_v1",
+  "data_classification": "synthetic",
+  "synthetic_only": true,
+  "network_access": "forbidden",
+  "max_concurrency": 1,
+  "task_limit_bytes": 20000000000,
+  "month_limit_bytes": 100000000000,
+  "max_model_cost_cny": "0.100000",
+  "production_authorization": false
+}
+

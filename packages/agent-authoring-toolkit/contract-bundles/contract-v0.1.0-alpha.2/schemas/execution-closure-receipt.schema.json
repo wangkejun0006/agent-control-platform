@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "ExecutionClosureReceipt 证明一次资格验证执行的 Task、Grant、Route、Lease、结果、评价和清理达到一致终态；它不发布 Release。",
+  "$id": "urn:company-ai-os:schema:execution-closure-receipt:0.1",
+  "title": "Company AI OS ExecutionClosureReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "ExecutionClosureReceipt" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_id", "run_id", "attempt_id", "stage", "status", "evidence_status", "synthetic_only", "closed_at"],
+      "properties": {
+        "receipt_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "run_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "attempt_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "stage": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/qualification_stage" },
+        "status": { "enum": ["completed", "failed", "cancelled", "blocked"] },
+        "evidence_status": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/evidence_status" },
+        "synthetic_only": { "type": "boolean" },
+        "closed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["composition", "task", "grant", "route", "worker_lease", "policy_decision", "model_route", "result", "evaluations", "usage", "cleanup", "audit_refs", "terminal_consistency", "authority_boundary"],
+      "properties": {
+        "composition": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+        "task": { "$ref": "#/$defs/terminal_ref" },
+        "grant": { "$ref": "#/$defs/terminal_ref" },
+        "route": { "$ref": "#/$defs/terminal_ref" },
+        "worker_lease": { "$ref": "#/$defs/terminal_ref" },
+        "policy_decision": { "$ref": "#/$defs/terminal_ref" },
+        "model_route": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/terminal_ref" }
+          ]
+        },
+        "result": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+          ]
+        },
+        "evaluations": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["evaluator_class", "report", "verdict", "release_authorization"],
+            "properties": {
+              "evaluator_class": { "enum": ["domain", "company", "lifecycle_assurance"] },
+              "report": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+              "verdict": { "enum": ["pass", "fail", "hold", "not_run"] },
+              "release_authorization": { "const": false }
+            }
+          }
+        },
+        "usage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["model_calls", "request_attempts", "input_tokens", "output_tokens", "cost_usd", "cost_cny", "runtime_seconds"],
+          "properties": {
+            "model_calls": { "type": "integer", "minimum": 0 },
+            "request_attempts": { "type": "integer", "minimum": 0 },
+            "input_tokens": { "type": "integer", "minimum": 0 },
+            "output_tokens": { "type": "integer", "minimum": 0 },
+            "cost_usd": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,6})?$" },
+            "cost_cny": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,6})?$" },
+            "runtime_seconds": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "cleanup": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["process_group_terminated", "temporary_workspace_removed", "credentials_absent", "external_handles_closed", "cleanup_errors"],
+          "properties": {
+            "process_group_terminated": { "const": true },
+            "temporary_workspace_removed": { "const": true },
+            "credentials_absent": { "const": true },
+            "external_handles_closed": { "const": true },
+            "cleanup_errors": {
+              "type": "array",
+              "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/reason_code" }
+            }
+          }
+        },
+        "audit_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/logical_ref" }
+        },
+        "terminal_consistency": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["task_terminal", "grant_terminal", "route_terminal", "lease_terminal", "policy_decision_bound", "result_and_evaluations_bound", "replay_passed"],
+          "properties": {
+            "task_terminal": { "const": true },
+            "grant_terminal": { "const": true },
+            "route_terminal": { "const": true },
+            "lease_terminal": { "const": true },
+            "policy_decision_bound": { "const": true },
+            "result_and_evaluations_bound": { "const": true },
+            "replay_passed": { "const": true }
+          }
+        },
+        "authority_boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["formal_registry_written", "agent_activated", "preproduction_promoted", "production_promoted", "release_authorization"],
+          "properties": {
+            "formal_registry_written": { "const": false },
+            "agent_activated": { "const": false },
+            "preproduction_promoted": { "const": false },
+            "production_promoted": { "const": false },
+            "release_authorization": { "const": false }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "terminal_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "digest", "status", "revision"],
+      "properties": {
+        "ref": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/logical_ref" },
+        "digest": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" },
+        "status": { "enum": ["completed", "failed", "cancelled", "blocked", "consumed", "revoked", "expired", "closed", "approved_unconsumed"] },
+        "revision": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
+

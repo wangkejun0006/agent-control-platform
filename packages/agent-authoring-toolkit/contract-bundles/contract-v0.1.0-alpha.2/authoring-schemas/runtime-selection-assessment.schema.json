@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "RuntimeSelectionAssessment 比较候选 Runtime 的证据与缺口；它不是最终选择、部署批准或有效授权。",
+  "$id": "urn:company-ai-os:schema:runtime-selection-assessment:0.1",
+  "title": "Company AI OS RuntimeSelectionAssessment Draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "RuntimeSelectionAssessment" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assessment_id",
+        "agent_id",
+        "version",
+        "status",
+        "evidence_status",
+        "synthetic_only",
+        "observed_at"
+      ],
+      "properties": {
+        "assessment_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "agent_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "version": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/semantic_version" },
+        "status": { "enum": ["draft", "evaluating", "recommended", "superseded"] },
+        "evidence_status": { "enum": ["synthetic", "architecture_reference", "verified_runtime"] },
+        "synthetic_only": { "type": "boolean" },
+        "observed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject", "requirements", "candidates", "recommendation"],
+      "properties": {
+        "subject": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "definition_ref",
+            "binding_ref",
+            "scaffold_request_ref",
+            "environment_profile_ref",
+            "model_selection_status"
+          ],
+          "properties": {
+            "definition_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+            "binding_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+            "scaffold_request_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+            "environment_profile_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+            "model_selection_status": { "enum": ["pending", "selected", "not_required"] }
+          }
+        },
+        "requirements": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reasoning_pattern",
+            "statefulness",
+            "human_interrupt",
+            "data_classifications",
+            "required_conformance_profiles",
+            "hard_gates",
+            "comparison_criteria"
+          ],
+          "properties": {
+            "reasoning_pattern": { "enum": ["deterministic", "short_reasoning_loop", "state_graph", "durable_workflow"] },
+            "statefulness": { "enum": ["stateless", "task_scoped", "durable"] },
+            "human_interrupt": { "enum": ["forbidden", "optional", "required"] },
+            "data_classifications": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/classification" }
+            },
+            "required_conformance_profiles": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "core_dispatch",
+                  "interactive_stream",
+                  "durable_task",
+                  "tool_data_enforced",
+                  "delegation_spawn",
+                  "isolated_workload"
+                ]
+              }
+            },
+            "hard_gates": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/hard_gate" }
+            },
+            "comparison_criteria": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "implementation_effort",
+                  "maintainability",
+                  "resource_cost",
+                  "recovery",
+                  "observability",
+                  "portability",
+                  "developer_fit"
+                ]
+              }
+            },
+            "derived_constraints": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "model_usage",
+                "model_capabilities",
+                "tool_operations",
+                "data_operations",
+                "agent_operations",
+                "memory_classes",
+                "data_classifications",
+                "execution_location",
+                "isolation",
+                "sandbox_filesystem",
+                "sandbox_network",
+                "workspace_mode",
+                "max_tool_calls",
+                "max_concurrency",
+                "max_autonomy",
+                "required_hard_gates",
+                "required_conformance_profiles"
+              ],
+              "properties": {
+                "model_usage": { "enum": ["forbidden", "optional", "required"] },
+                "model_capabilities": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 2, "maxLength": 80 } },
+                "tool_operations": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{2,63}:[a-z][a-z0-9_-]{1,31}$" } },
+                "data_operations": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{2,63}:[a-z][a-z0-9_-]{1,31}$" } },
+                "agent_operations": { "type": "array", "uniqueItems": true, "items": { "enum": ["discover", "call", "handoff", "delegate", "spawn"] } },
+                "memory_classes": { "type": "array", "uniqueItems": true, "items": { "enum": ["working", "episodic", "semantic", "procedural"] } },
+                "data_classifications": { "type": "array", "uniqueItems": true, "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/classification" } },
+                "execution_location": { "enum": ["local_workstation", "adapted_server", "managed_service"] },
+                "isolation": { "enum": ["process", "container", "virtual_machine"] },
+                "sandbox_filesystem": { "enum": ["deny", "workspace_read_only", "workspace_bounded"] },
+                "sandbox_network": { "enum": ["deny", "allowlisted"] },
+                "workspace_mode": { "enum": ["none", "read_only", "bounded"] },
+                "max_tool_calls": { "type": "integer", "minimum": 0 },
+                "max_concurrency": { "type": "integer", "minimum": 1 },
+                "max_autonomy": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/autonomy" },
+                "required_hard_gates": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/hard_gate" } },
+                "required_conformance_profiles": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": { "enum": ["core_dispatch", "interactive_stream", "durable_task", "tool_data_enforced", "delegation_spawn", "isolated_workload"] }
+                }
+              }
+            }
+          }
+        },
+        "candidates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "runtime_family",
+              "runtime_revision_ref",
+              "adapter_ref",
+              "assessment_status",
+              "evidence_status",
+              "capability_report_refs",
+              "hard_gate_results",
+              "strengths",
+              "limitations",
+              "next_tests"
+            ],
+            "properties": {
+              "runtime_family": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{1,63}$" },
+              "runtime_revision_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+              "adapter_ref": {
+                "oneOf": [
+                  { "type": "null" },
+                  { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+                ]
+              },
+              "assessment_status": { "enum": ["unassessed", "evaluating", "eligible_for_evaluation", "ineligible", "deferred"] },
+              "evidence_status": { "enum": ["unverified", "synthetic", "architecture_reference", "verified_runtime"] },
+              "capability_report_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+              },
+              "hard_gate_results": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["gate", "result", "evidence_kind", "evidence_ref"],
+                  "properties": {
+                    "gate": { "$ref": "#/$defs/hard_gate" },
+                    "result": { "enum": ["pass", "fail", "unknown", "not_applicable"] },
+                    "evidence_kind": { "enum": ["none", "official_documentation", "static_mapping", "synthetic_test", "runtime_test"] },
+                    "evidence_ref": { "type": ["string", "null"], "minLength": 3, "maxLength": 300 }
+                  }
+                }
+              },
+              "strengths": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 3, "maxLength": 300 }
+              },
+              "limitations": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 3, "maxLength": 300 }
+              },
+              "next_tests": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 3, "maxLength": 300 }
+              }
+            }
+          }
+        },
+        "recommendation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "recommended_runtime_family",
+            "rationale",
+            "human_decision_required",
+            "selection_authority",
+            "decision_ref",
+            "review_triggers"
+          ],
+          "properties": {
+            "status": { "enum": ["preferred_for_evaluation", "no_selection", "insufficient_evidence"] },
+            "recommended_runtime_family": { "type": ["string", "null"], "pattern": "^[a-z][a-z0-9_-]{1,63}$" },
+            "rationale": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 3, "maxLength": 300 }
+            },
+            "human_decision_required": { "const": true },
+            "selection_authority": { "const": "human_owners" },
+            "decision_ref": {
+              "oneOf": [
+                { "type": "null" },
+                { "type": "string", "pattern": "^decision_[a-z0-9][a-z0-9_-]{2,79}$" }
+              ]
+            },
+            "review_triggers": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 3, "maxLength": 300 }
+            }
+          },
+          "allOf": [
+            {
+              "if": { "properties": { "status": { "const": "preferred_for_evaluation" } }, "required": ["status"] },
+              "then": { "properties": { "recommended_runtime_family": { "type": "string" } } },
+              "else": { "properties": { "recommended_runtime_family": { "type": "null" } } }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hard_gate": {
+      "enum": [
+        "exact_revision",
+        "license_review",
+        "binding_conformance",
+        "idempotency",
+        "cancel",
+        "timeout",
+        "audit_correlation",
+        "container_isolation",
+        "tool_interception",
+        "checkpoint_resume",
+        "model_route_compatibility",
+        "local_environment_compatibility",
+        "resource_fit",
+        "memory_isolation",
+        "data_access_enforcement",
+        "agent_interaction_enforcement"
+      ]
+    }
+  }
+}
+

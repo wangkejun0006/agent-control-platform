@@ -1,0 +1,40 @@
+{
+  "request_version": "orbit.synthetic-dataset-d0-evidence-review-request/1",
+  "request_id": "review_orbit_dataset_tools_d0_evidence_syn",
+  "status": "awaiting-human-review",
+  "evidence_status": "synthetic",
+  "synthetic_only": true,
+  "evidence_bundle_digest": "sha256:e8771854170c42ca8b24b31e91737f6cda488b6944ea86d159c874b264dc087b",
+  "accepted_status_ceiling": "D0 synthetic active",
+  "evidence": [
+    {
+      "kind": "acceptance-report",
+      "path": "evidence/dataset-tools-d0/2026-08-25/acceptance-report.zh-CN.md",
+      "sha256": "sha256:0b038b53b530c8f12e8eb53a1cee894f6d1015c1507becda400b1dcc59af7f55"
+    },
+    {
+      "kind": "raw-result",
+      "path": "evidence/dataset-tools-d0/2026-08-25/result.json",
+      "sha256": "sha256:0dfe9af3244c22ab3727c7a3786ddc2d2c3b862ad701f702db236215efd08e4b"
+    },
+    {
+      "kind": "composition-lock",
+      "path": "references/dataset-tool-d0-composition-lock.json",
+      "sha256": "sha256:1d4de535e82d6082ab957e8f03ba4af8c2822fa48875a37792f053f3cd071143"
+    },
+    {
+      "kind": "skill-review-summary",
+      "path": "evidence/dataset-tools-d0/2026-08-25/skill-review-summary.json",
+      "sha256": "sha256:72064a19b11937675cafc9bcf80c43a83445da141a73857af283c1328d183ade"
+    }
+  ],
+  "approval_semantics": "接受上述精确证据为 Dataset Agent / Dataset Tool 的 D0 synthetic active 已验收基线；保留 Lifecycle Assurance hold；不授权正式注册、预产、生产、真实数据、网络、NAS、凭据、Scheduler 或发布。",
+  "required_invariants": {
+    "lifecycle_assurance_recommendation": "hold",
+    "release_authorization": false,
+    "agent_lifecycle_mutation": false,
+    "tool_lifecycle_mutation": false,
+    "company_authoritative": false
+  }
+}
+

@@ -1,0 +1,43 @@
+{
+  "authority_boundary": {
+    "formal_identity_intake_completed": false,
+    "preproduction_authorized": false,
+    "production_authorized": false,
+    "release_authorization": false
+  },
+  "evidence_status": "architecture_reference",
+  "grant_signing": {
+    "algorithm": "Ed25519",
+    "key_custody": "external_secret_mount",
+    "key_id_required": true,
+    "max_grant_lifetime_seconds": 900,
+    "private_key_committed": false,
+    "synthetic_only_until_promotion": true
+  },
+  "human_oidc": {
+    "administrator_is_issuer": false,
+    "administrator_role": "control_plane_admin",
+    "allowed_algorithms": [
+      "EdDSA"
+    ],
+    "audience": "orbit_control_plane",
+    "issuer_origin_source": "deployment_configuration",
+    "max_token_lifetime_seconds": 900,
+    "required_key_id": true,
+    "subject_binding": "exact_sha256_allowlist"
+  },
+  "profile_id": "profile_orbit_qualification_service_security_candidate",
+  "profile_version": "orbit.qualification-service-security-profile/1",
+  "status": "proposed-not-effective",
+  "workload_mtls": {
+    "allowed_workloads": [
+      "qualification_reconciler",
+      "r2_evaluation_runner"
+    ],
+    "ca_bundle_max_certificates": 2,
+    "ca_model": "one_active_one_previous_intermediate",
+    "max_leaf_lifetime_seconds": 3600,
+    "trust_domain": "orbit.control-plane.internal"
+  }
+}
+

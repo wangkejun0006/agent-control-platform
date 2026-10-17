@@ -1,0 +1,23 @@
+{
+  "lock_version": "orbit.model-catalog-draft-consumer-lock/1",
+  "authority_repository": "orbit-agent-architecture",
+  "architecture_commit": "d9d8a67e27e61f19bdd9c8050e379f5e8e68841e",
+  "semantic_release": "semantic-authority-v0.1.0-alpha.7",
+  "exchange_api": "company-ai-os/v1alpha4-draft",
+  "contract_release": false,
+  "files": [
+    {
+      "path": "contracts/drafts/v0.4/department-agent-proposal-package.schema.json",
+      "sha256": "sha256:b92a248a584b12ebe16beeec0c762a4385014138eb11d2a18326a990a121cf49"
+    },
+    {
+      "path": "contracts/drafts/v0.4/model-catalog-entry.schema.json",
+      "sha256": "sha256:84d8f978eb88d2f40547369acb286f16c80830a811e8c55b0af0484b9fa31109"
+    },
+    {
+      "path": "contracts/drafts/v0.4/model-provider-preset.schema.json",
+      "sha256": "sha256:335d3d11a5bf351591ee172218217ea531e4c89cd3d23de7848dd624b55999db"
+    }
+  ]
+}
+

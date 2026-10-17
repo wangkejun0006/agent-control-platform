@@ -1,0 +1,29 @@
+{
+  "profile_version": "orbit.synthetic-agent-lifecycle-import-profile/1",
+  "evidence_status": "synthetic",
+  "company_authoritative": false,
+  "system_mappings": [
+    {
+      "hierarchy_node_ref": "hnode_orbit_scientific_research_platform_syn",
+      "agent_system_ref": "agent_system_orbit_research_syn",
+      "required_release_evidence_refs": [
+        "evidence://synthetic/disease-agent/e4"
+      ]
+    }
+  ],
+  "change_classification": {
+    "change_fields": [
+      "new_stable_agent",
+      "purpose",
+      "runtime"
+    ],
+    "structural_change": true
+  },
+  "boundary": {
+    "registration_record_required": true,
+    "selected_runtime_required": true,
+    "synthetic_only": true,
+    "activation_authorized": false
+  }
+}
+

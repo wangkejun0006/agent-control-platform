@@ -1,0 +1,2354 @@
+{
+  "schema": "orbit.public-export/1",
+  "files": [
+    {
+      "path": ".agents/skills/orbit-agent-lifecycle-review/scripts/verify_artifact_set.py",
+      "sha256": "a4ac5d95ffec70ee799efbf0df7219d41bf9dada8837f0d880388dd5a554e2ed"
+    },
+    {
+      "path": ".github/workflows/offline.yml",
+      "sha256": "693672f06b4efc9719ce4c36636cf4faf2feef4f16f766daafe102e18430d50c"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "f1e9208bc6d93ae52a8cc859e53ea8e5397e3c76a37efce63e1747315771e2a2"
+    },
+    {
+      "path": ".node-version",
+      "sha256": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+    },
+    {
+      "path": ".python-version",
+      "sha256": "a876e0b10411037a012498b9fe18d9bc1df32ed8b722a13564dc944ddcfd9135"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "a8c51ff9dcab3ba1f8a067b5f9ffb03fa79e9904a91dc7736631384fbc64c75c"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "1ccb7b32f5a86240b087b0b59c5c82f479accc625a30144f678ad2b74c993d6c"
+    },
+    {
+      "path": "NOTICE.md",
+      "sha256": "ae3bd496da2f0652d9c26e311382c1cd5c56073a6fb68775013c373ff3c74020"
+    },
+    {
+      "path": "README.md",
+      "sha256": "155785e42f6886b4eddb305b133ff32a1aabe184918718447f446f6760be83af"
+    },
+    {
+      "path": "alembic/env.py",
+      "sha256": "e7e355b79b43ab130fcba1e9e773a49f82b2e9e776a1b54c0c9151a36a30aa3c"
+    },
+    {
+      "path": "alembic/script.py.mako",
+      "sha256": "9b5e4389e0fd863e2f9b18d1d31d40d3879ae57300b6d9a3723ddccda79a6bcc"
+    },
+    {
+      "path": "alembic/versions/20260828_0001_service_core.py",
+      "sha256": "2efee5433f1e733179f5ed74a3c999ee34d7badaabb18a5fb4e883a2996f33fa"
+    },
+    {
+      "path": "alembic/versions/20260828_0002_runtime_queue.py",
+      "sha256": "7d84b6dcb92855f54781eb1deebf729fa23af6f53653fd0ef157c5e639608b88"
+    },
+    {
+      "path": "alembic/versions/20260828_0003_model_route_reconciliation.py",
+      "sha256": "7f17afb2dd54fe7a2f7b2d18e59f1183092340de239bab265b4787bf6f93f8db"
+    },
+    {
+      "path": "alembic/versions/20260829_0004_managed_components.py",
+      "sha256": "d1fd5766acf58342699c99965d9fdd0eca69547b99d4724a1cf038a5f932c26b"
+    },
+    {
+      "path": "alembic/versions/20260831_0005_department_governance_catalogs.py",
+      "sha256": "3d391cea0f3074095cf16fa60ab8dff1bafd5d3a39de4e91729d0f0048c0d9df"
+    },
+    {
+      "path": "alembic/versions/20260901_0006_cockpit_local_identity.py",
+      "sha256": "5098511f0e9e4a75d86939dab4d8f6531899627d6e16eaab25d7c5c8a5c8d7fe"
+    },
+    {
+      "path": "alembic/versions/20260901_0007_control_console_governance.py",
+      "sha256": "5728370c300b11bf198188457ce530a4add10bf95ec4be9740a780f178afdee4"
+    },
+    {
+      "path": "alembic/versions/20260901_0008_runtime_artifacts.py",
+      "sha256": "0417aaa9d4fc5a4c9553b6bdff2c608e1caead3b1f055959ac6f94b3d3c0764e"
+    },
+    {
+      "path": "alembic/versions/20260901_0009_lan_stage1.py",
+      "sha256": "a0e3a9164d56bdac1a4a664141303654c1c70a8d87fc73b4c4280977a43d68b4"
+    },
+    {
+      "path": "alembic/versions/20260902_0010_assisted_maintenance.py",
+      "sha256": "1097f28d09e9be47b361f3a8235eebb8fe205ee79438771d06917d36e65f7e9f"
+    },
+    {
+      "path": "alembic/versions/20260903_0011_department_observation_context.py",
+      "sha256": "00dbd738e5b93e686905ee470c81ec6b93dae85c3fc76093a70dea11f7f52c0e"
+    },
+    {
+      "path": "alembic/versions/20260903_0012_model_route_authentication.py",
+      "sha256": "cac123db1ad75cd7b3279d55c93c558eb4503dd68b76a5f46093b31dc10c022d"
+    },
+    {
+      "path": "alembic/versions/20260903_0013_planning_session_authority.py",
+      "sha256": "daf219e7b49af5ecf285b96b71aff873524cdbbeeaa5c39b77f37d5eaab7e1dc"
+    },
+    {
+      "path": "alembic/versions/20260903_0014_codex_installation_receipts.py",
+      "sha256": "2176f67ddf02475683ba3faaa889c5c26dda5ebf58cb6b8898c2577fa4c54871"
+    },
+    {
+      "path": "alembic/versions/20260903_0015_model_catalog_agent_proposals.py",
+      "sha256": "6730ec19863b1f180f8e7ca31f37596e2a284cdb315bd9c2e0300c5f2ff0f8e6"
+    },
+    {
+      "path": "alembic/versions/20260904_0016_model_catalog_integrity.py",
+      "sha256": "73e769817236d8b2196bc311b4e935be4a44e6a374bd7cc476d5aaccbc0c56d9"
+    },
+    {
+      "path": "alembic/versions/20261016_0017_delivery_workbench.py",
+      "sha256": "38f88a25848f6dc28485b071cc1f90f50fb7751bf3cfa267c8764e13c0884cca"
+    },
+    {
+      "path": "alembic.ini",
+      "sha256": "704f503758d5dbbeaa418026904ac209c9d39a70760ddd8905146affcb885790"
+    },
+    {
+      "path": "candidate_support/__init__.py",
+      "sha256": "321be26e19373a4b06d06f7f21ceaeea6d8715ca2c9d085bdda643ddf55fbfd7"
+    },
+    {
+      "path": "candidate_support/disease_r2_automation_policy.py",
+      "sha256": "97d34ece4462cbbc07023755a807ad3d9dd53a099d7f085e5745c132428c37d5"
+    },
+    {
+      "path": "candidate_support/disease_r2_candidate.py",
+      "sha256": "36dfe37bbb141cb7273e0e2a452fed3ad23a04f67d7a8f6564444c1b146dcce5"
+    },
+    {
+      "path": "candidate_support/disease_r2_execution_ledger.py",
+      "sha256": "9c550cd7c47d0c701c7c601a50f0f6746de1d66e1c86ba1af60900cd4cde5145"
+    },
+    {
+      "path": "candidate_support/disease_r2_execution_worker.py",
+      "sha256": "eac5654aa0d2e380c05cbeaade471eea035d2ed568663e4251e1f47e6fd1ffb3"
+    },
+    {
+      "path": "candidate_support/disease_r2_governance.py",
+      "sha256": "76c6ee98c9e56552b801b648a32555a14b38b887dccf025cf6e705bd15df7820"
+    },
+    {
+      "path": "candidate_support/disease_r2_harness.py",
+      "sha256": "690c86fb6e5e641405d1217a60a07b2caa1ab2246008eb094f980bbb397ab988"
+    },
+    {
+      "path": "candidate_support/disease_r2_literature_port.py",
+      "sha256": "bc06b7c2a963893fb2cb0315c3db9f3fb28cc1462acb135fecdd3afdc0b5ceaa"
+    },
+    {
+      "path": "candidate_support/disease_r2_model_gateway.py",
+      "sha256": "e11022ddcbee1029495f86bb6d612e8b4c9f7abaa4be7d75de30b812ba4c58bc"
+    },
+    {
+      "path": "candidate_support/disease_r2_orchestrator.py",
+      "sha256": "b094a4630640fe5d193e89e35ffe0abba57813675a8019cd97ef2a6f5d216aed"
+    },
+    {
+      "path": "candidate_support/disease_r2_qualification_adapter.py",
+      "sha256": "cacce6d8dc743d167c44320729940342aceea38f36289b3851560ca8ddc0229b"
+    },
+    {
+      "path": "candidate_support/disease_r2_stage_hooks.py",
+      "sha256": "f430addcc98a2e12c0795c95a92c7fa639c268f28f186a08bff57d78acd56277"
+    },
+    {
+      "path": "candidate_support/disease_r2_v4_preflight.py",
+      "sha256": "675cd5fafd9c63aaced97617ad730389978f44ba042247abc63023a559cb48a0"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "c6d9ef8824854e965a804756f6a78148276a267db1c0d384f3265f5895f66c7c"
+    },
+    {
+      "path": "docs/DEMO.md",
+      "sha256": "a2e72f17162d5f0004e14a98a6d2a558dcece34b5f21907d8791f4be8d0afe1d"
+    },
+    {
+      "path": "docs/DEMO_CURRENT.md",
+      "sha256": "3b4c8a5abaf232bc1a5212d97abf163d2789a3c862730209a9404c94716ad8d8"
+    },
+    {
+      "path": "docs/FEATURE_PARITY.md",
+      "sha256": "155bc07a4c13def4760d350f01f2a986eea1d77d7d302cc8aa3393c332a72e3d"
+    },
+    {
+      "path": "docs/MINIMAL_REWORK_LIVE_20261017.md",
+      "sha256": "eb524584bb52668fb98407ff24c7a80a47cf000a48f55fd57ce1b959697e2b0e"
+    },
+    {
+      "path": "docs/MODEL_CONFIGURATION.md",
+      "sha256": "95f97796199f00017265e50745edd1f92c8ea5dcbf6c86b961227b4b7470b929"
+    },
+    {
+      "path": "docs/OFFLINE_REWORK_REPAIR_20261017.md",
+      "sha256": "452fe8693676363a79e1a80cd62065613cb03cb3260daac9cbe4cb8c313d3e39"
+    },
+    {
+      "path": "docs/PLANNING_BOUNDARY_LIVE_20261017.md",
+      "sha256": "2981760ad518384d5db845ddcd937a77625b2dfc2a9b38cd13dc2b6d96e513c7"
+    },
+    {
+      "path": "docs/PLANNING_REFERENCE_BOUNDARY_20261017.md",
+      "sha256": "d02f7714421f711b0e17932e33a6870e26aa1507a37971a5f71cf2fc8ea430d5"
+    },
+    {
+      "path": "docs/RELEASE_CLOSEOUT_20261017.md",
+      "sha256": "2e6c1188b9c94f886a7b6eaea8e377b7588d0f4b751af4cb038294187c27ff41"
+    },
+    {
+      "path": "docs/REWORK_DECISION_CHECKER_20261017.md",
+      "sha256": "89928b5e6be0076b2cc9b3cc55da8ab74709a3dae7ce2376b8e042d22982b530"
+    },
+    {
+      "path": "docs/SHARING_LIVE_VALIDATION_20261017.md",
+      "sha256": "4a2a29386888693cec0cb8b1cfec997ea2407dd54fa73dfd3209d293a74c37a8"
+    },
+    {
+      "path": "docs/SHARING_POLICY.md",
+      "sha256": "24d77b30587670b3a5105bcbab9cf0cbd5e430005772e19d3127e17316ca06d3"
+    },
+    {
+      "path": "docs/SNAPSHOT_DELIVERY_20261017.md",
+      "sha256": "da77fc455d08bec4d0cc28a11ae9f26185296e937edb31a42806f3482b815755"
+    },
+    {
+      "path": "docs/SNAPSHOT_VIEW_20261017.md",
+      "sha256": "581fae2b388fac35d3fb770a5f9dd4b63db265c215d7e73108d0b3ede8e826df"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "sha256": "abc958ef45461234892c8f07c562132b65a2e1551a9cb5774c10c604b991a95d"
+    },
+    {
+      "path": "docs/WORKBENCH_LIVE_VALIDATION.md",
+      "sha256": "3356e790937d388c9cb86c43e1b291e29a98021ac7e30d5b7a64ad56b3db879b"
+    },
+    {
+      "path": "docs/examples/sharing-corrected-market.md",
+      "sha256": "6e75e08bf6069989fc56edd8cff6009d2bb10157200b395be2662bbc6bb38c87"
+    },
+    {
+      "path": "docs/history/README-before-release-closeout-20261017.md",
+      "sha256": "5e36368d6130aebbb831218eb2a6b04ada30319c7582f4518371341ab67ed50f"
+    },
+    {
+      "path": "evidence/disease-agent-r2/2026-08-27-automation-policy-alpha2/automation-policy-review-package.json",
+      "sha256": "3acfcb0e1ae40ff02ddc7cb5a0410be56bd4a6fdf19b32fd19d2f53fa8b4aae9"
+    },
+    {
+      "path": "evidence/disease-agent-r2/2026-08-27-automation-policy-alpha2/automation-policy.disease-r2.synthetic.json",
+      "sha256": "527c950fcf0d1f346c4df13bb7b754e3ec1e67a9ba2b91b7e08e20c3d3340a57"
+    },
+    {
+      "path": "evidence/disease-agent-r2/2026-08-27-automation-policy-alpha2/qualification-candidate.attempt-004.synthetic.json",
+      "sha256": "fe953f31dbfd88c4dd0f1fd21f0bbfacc372ad2ae07bb553c52fbdbc7bd34abc"
+    },
+    {
+      "path": "evidence/model-route/2026-08-28/fixture-fixture-structured-v1-observation.public.json",
+      "sha256": "02f197eee6d765725822e4c6641262fd14257f83df6f2205e323ea4d936cd4a3"
+    },
+    {
+      "path": "examples/delivery-snapshot/README.md",
+      "sha256": "1754a1516e27d7a22ed1d4036f15e3b6f6c5bffeb53e50cf3bb84011dd8decb0"
+    },
+    {
+      "path": "examples/delivery-snapshot/final-workflow.json",
+      "sha256": "3f92909b090d4af087c0d57b06ee97f4a42fb8e35fc8f01cfc5d1b194d8a4072"
+    },
+    {
+      "path": "examples/delivery-snapshot/local-delivery.zip",
+      "sha256": "cd402ce5f9344fefc6e62e7f0fe45a9a05e156f30cde662b54c9242cf0cf89bd"
+    },
+    {
+      "path": "examples/delivery-snapshot/validation-report.json",
+      "sha256": "62b815a86837f4be81692ad31e4218b1f737e38aeca2777cd5f99c5436f537d3"
+    },
+    {
+      "path": "examples/historical-workbench/README.md",
+      "sha256": "fbd70832a5a681dcc249d07bbd743ffba3aa8dd0474c44ac86dab84c6fe269a8"
+    },
+    {
+      "path": "examples/historical-workbench/artifact-sha256.json",
+      "sha256": "494f8f5dd4bb9444d284bc2518c426a98752692c147ebbf3b60321e5254d7c32"
+    },
+    {
+      "path": "examples/historical-workbench/delivery.zip",
+      "sha256": "80239ec3bb500d8dac09f1c6fc998d0ed421b4a35db86e07fa7f8aba24f5c030"
+    },
+    {
+      "path": "examples/historical-workbench/rework-comparison.json",
+      "sha256": "85653542fcbed991a710fe5f67741c68cdf41dd8c7d46142580b4c95f1767373"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/bin/orbit-agent-author.mjs",
+      "sha256": "c51e5129bf896a313fc9fb30aba1530c663435630cfbccdc2cadd3175464d788"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/authoring-schemas/agent-scaffold-request.schema.json",
+      "sha256": "eba3faf28462a8f65ff19425b405d9ec297614f5fea8c076e43b67eda9ec86eb"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/authoring-schemas/runtime-selection-assessment.schema.json",
+      "sha256": "c1d3f97bdcabab60615db401414bd8d74c9755f2999846b9f7fe864c4f9af960"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/bundle-lock.json",
+      "sha256": "eaad152730a69b6f4a9565308c395030431e8ff119058732208b1031cb930881"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/manifest.json",
+      "sha256": "413d799163c5e8c3da6b0bb01562cf567499529e7584038ca61145f03d34a638"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/adapter-capability-report.schema.json",
+      "sha256": "42a20e61e53d1de1dd4069b7b6f4aac458e6dd0c425270870e244c2b7e1de581"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/agent-binding.schema.json",
+      "sha256": "6e8a1e23bff0eff50a4a9ff05b02714d52aeef1f8222e5721d362542b8760b91"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/agent-capability-profile.schema.json",
+      "sha256": "9c2325ae679b51640b1572f9758ac93a859bd6e4732dc5e70ba8c447927d393f"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/agent-common.schema.json",
+      "sha256": "19345696c52a8e3822f1d681f41605e75be02d6f99ba64a70971aa726a08b122"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/agent-definition.schema.json",
+      "sha256": "1ed80d3e4dc7d2b8fe64220bd8fe86cb304bd52e5cb09c0895f1eec076b43b43"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/agent-invocation.schema.json",
+      "sha256": "c5972f4029ee83b410334779f02af0fa7fae8276bcd5df0b3bc0618664df3fcb"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/agent-registry.schema.json",
+      "sha256": "e95dc1d9c6445807d78f6a7501e1944bf1df791ba8fe65e317f79d761fee1b4b"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/agent-release-manifest.schema.json",
+      "sha256": "6067eb402a023c7eb8e2541f3864ffb5eaac6913af4c34891f96d552af3643c6"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/agent-template.schema.json",
+      "sha256": "a17f81d9a5d220efac5dbf96155cd2a907915a53fc676a1f6cb618326830bad3"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/approval-decision.schema.json",
+      "sha256": "7f02292e4fcf5a02273d216768a7b3285e30dfd94c080cc6209d67ec1f7479df"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/audit-event.schema.json",
+      "sha256": "fbc2989e905d33660ff0bb3300d46a32378dc4dc34d0296c4b2d254eb95981ed"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/dataset-metadata.schema.json",
+      "sha256": "8753b6dafc4d8f99e6816c51197809f6650634e6893fd7704b2cd6b8f7036c22"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/evaluation-report.schema.json",
+      "sha256": "d6fa0293357c3c937a5b70f84211a917b2b773fc0f697b2d3eb1b9d43651f55c"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/execution-grant.schema.json",
+      "sha256": "3115da53ce3881d1c92e3ff23296b0f39cdab4565da266ae49005cd9f0e9c5b5"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/hierarchy-model.schema.json",
+      "sha256": "a005993fc7d231e5b0d5c0d327de379674dafffcdc592478bf5c65e0dcb4ddb1"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/model-route.schema.json",
+      "sha256": "fa5b3b779731d2b0bfc962123a4a2cc00ab46eba15d91e495f21bd4da8903208"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/result-package.schema.json",
+      "sha256": "c91ca9c88ee662d4b7ec490f2bab83080e637184f5f8398c623ee9e7f5bf089b"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/runtime-event.schema.json",
+      "sha256": "3eaa8ee54a74cbfbb7172dacf1500be0f49157047379d970410a60d08db45434"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/runtime-realization.schema.json",
+      "sha256": "6d4653043fea17fea9414b8261be27ccce349c694a8458925a484e3b7d2af0fd"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/system-composition.schema.json",
+      "sha256": "ec7a66cdce1b2b09bc8194bdf60ccbc0c45f9d100e607acea50f9bc4ee4ad27d"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/task.schema.json",
+      "sha256": "37b4ece28592796aa876b2232d8785899817b93228f5bc9fedbe4119c6899111"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.1/schemas/tool-manifest.schema.json",
+      "sha256": "717475b9e81e2939c9e42e0a9e4cefc164822e106145ff3d85ed36ffed51b014"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/authoring-schemas/agent-scaffold-request.schema.json",
+      "sha256": "eba3faf28462a8f65ff19425b405d9ec297614f5fea8c076e43b67eda9ec86eb"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/authoring-schemas/runtime-selection-assessment.schema.json",
+      "sha256": "c1d3f97bdcabab60615db401414bd8d74c9755f2999846b9f7fe864c4f9af960"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/bundle-lock.json",
+      "sha256": "253a73ecb27d58d89d0db822bca5f55a6215540fbb3c91f7a4472f1c544a8abc"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/manifest.json",
+      "sha256": "ffc9b78cda101e263dcbc0a60060cc48c5c11dec0eb1aba5aca50a74b489521a"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/adapter-capability-report.schema.json",
+      "sha256": "42a20e61e53d1de1dd4069b7b6f4aac458e6dd0c425270870e244c2b7e1de581"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/agent-binding.schema.json",
+      "sha256": "6e8a1e23bff0eff50a4a9ff05b02714d52aeef1f8222e5721d362542b8760b91"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/agent-capability-profile.schema.json",
+      "sha256": "9c2325ae679b51640b1572f9758ac93a859bd6e4732dc5e70ba8c447927d393f"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/agent-common.schema.json",
+      "sha256": "19345696c52a8e3822f1d681f41605e75be02d6f99ba64a70971aa726a08b122"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/agent-definition.schema.json",
+      "sha256": "1ed80d3e4dc7d2b8fe64220bd8fe86cb304bd52e5cb09c0895f1eec076b43b43"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/agent-invocation.schema.json",
+      "sha256": "c5972f4029ee83b410334779f02af0fa7fae8276bcd5df0b3bc0618664df3fcb"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/agent-registry.schema.json",
+      "sha256": "e95dc1d9c6445807d78f6a7501e1944bf1df791ba8fe65e317f79d761fee1b4b"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/agent-release-manifest.schema.json",
+      "sha256": "6067eb402a023c7eb8e2541f3864ffb5eaac6913af4c34891f96d552af3643c6"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/agent-template.schema.json",
+      "sha256": "a17f81d9a5d220efac5dbf96155cd2a907915a53fc676a1f6cb618326830bad3"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/approval-decision.schema.json",
+      "sha256": "7f02292e4fcf5a02273d216768a7b3285e30dfd94c080cc6209d67ec1f7479df"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/audit-event.schema.json",
+      "sha256": "fbc2989e905d33660ff0bb3300d46a32378dc4dc34d0296c4b2d254eb95981ed"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/automation-common.schema.json",
+      "sha256": "cba5f4ed468315b05cbba2b5ede692c1c81d786d54e96dfef1e8e436f21edada"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/automation-policy-activation-receipt.schema.json",
+      "sha256": "2fa3d2a94cc72d34f8d1664d0faf02e510584e7cb0fb52e484c083f998d089d5"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/automation-policy.schema.json",
+      "sha256": "59d6ea8831fa8534a89683bbc5e78de89273784d0f4ef074a562e2a025666a3c"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/dataset-metadata.schema.json",
+      "sha256": "8753b6dafc4d8f99e6816c51197809f6650634e6893fd7704b2cd6b8f7036c22"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/evaluation-report.schema.json",
+      "sha256": "d6fa0293357c3c937a5b70f84211a917b2b773fc0f697b2d3eb1b9d43651f55c"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/execution-closure-receipt.schema.json",
+      "sha256": "1599fdb362378023b4ff3949bea47cb6dd098a5662c9dc930243fa215b3be749"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/execution-grant.schema.json",
+      "sha256": "3115da53ce3881d1c92e3ff23296b0f39cdab4565da266ae49005cd9f0e9c5b5"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/hierarchy-model.schema.json",
+      "sha256": "a005993fc7d231e5b0d5c0d327de379674dafffcdc592478bf5c65e0dcb4ddb1"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/model-route.schema.json",
+      "sha256": "fa5b3b779731d2b0bfc962123a4a2cc00ab46eba15d91e495f21bd4da8903208"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/policy-decision-receipt.schema.json",
+      "sha256": "0139efb99025244cb9f8d6e2610cf745fdb7c9514b903c2c94372bd6c030dadd"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/qualification-run.schema.json",
+      "sha256": "2cf8e961695047a26613107f26cdb7e17623d5b4164a903042e2c200f769d01a"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/remediation-receipt.schema.json",
+      "sha256": "4bd7741ee1ff1d1ddf06182450cefec3e2766365632d0da6911a41af462a9acd"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/result-package.schema.json",
+      "sha256": "c91ca9c88ee662d4b7ec490f2bab83080e637184f5f8398c623ee9e7f5bf089b"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/runtime-event.schema.json",
+      "sha256": "3eaa8ee54a74cbfbb7172dacf1500be0f49157047379d970410a60d08db45434"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/runtime-realization.schema.json",
+      "sha256": "6d4653043fea17fea9414b8261be27ccce349c694a8458925a484e3b7d2af0fd"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/stage-execution-receipt.schema.json",
+      "sha256": "5b83528e1b73667042bf010fe7f6c0bd148d97f78fd41dbbc3d58f07ae406211"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/system-composition.schema.json",
+      "sha256": "ec7a66cdce1b2b09bc8194bdf60ccbc0c45f9d100e607acea50f9bc4ee4ad27d"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/task.schema.json",
+      "sha256": "37b4ece28592796aa876b2232d8785899817b93228f5bc9fedbe4119c6899111"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/contract-bundles/contract-v0.1.0-alpha.2/schemas/tool-manifest.schema.json",
+      "sha256": "717475b9e81e2939c9e42e0a9e4cefc164822e106145ff3d85ed36ffed51b014"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/examples/company-task-router/agent-package-blueprint.synthetic.yaml",
+      "sha256": "52e4f2a2ce0a5350354a800461cfcd4108c445b1d12c0fff75efdbb9e62d8688"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/examples/company-task-router/agent-scaffold-request.synthetic.yaml",
+      "sha256": "5b2c1b08200a3cb0fc2ae66a93a83a3db850298fd09e4657ffc75ff8b1ac0687"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/package-lock.json",
+      "sha256": "8f61e8c863d3f756fa124c4dd3e45184eac9ae51267fa091a40740c32106c583"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/package.json",
+      "sha256": "785813cb6024773d071091107384ac6060449017457c6ab75ada957a1c9243ca"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/schemas/agent-package-blueprint.schema.json",
+      "sha256": "8a32f71d3e78255cd8223b146125c91c02e9c14403c7b5541f92a19cbe6a5abc"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/schemas/runtime-assessment-blueprint.schema.json",
+      "sha256": "70e26c2a5a139051dfd31677840103dd8c0e7cf882f76e0e36284e2a4d52b1bd"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/schemas/runtime-environment-observation.schema.json",
+      "sha256": "4e9842ed946f860e2cae7a8b7ae42f43ece1c868bf5d5260708895c02542df95"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/src/toolkit.mjs",
+      "sha256": "4f56ed52f508e02b0037e8b632c88c5ad0d34c12cdb04cf2564e77870b19e413"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/test/fixtures/company-task-router-target/agent-packages/bindings/company-task-router.synthetic.yaml",
+      "sha256": "ffef37cc64a339c0913fef5d0bf9bf482354507debcd15e438ed85a8c3810b7b"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/test/fixtures/company-task-router-target/agent-packages/definitions/company-task-router.synthetic.yaml",
+      "sha256": "4739fa457f3cc0db42fceb494dcfde14dc1ecd658807139935e82f5b0391971c"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/test/fixtures/legacy-runtime-assessment/orbit-local-workstation-runtime-observation.architecture-reference.json",
+      "sha256": "9eaa65dcd660ad619dc374082ea4399fff382be622de782559ec23d69fc91b29"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/test/fixtures/legacy-runtime-assessment/orbit-research-evaluator-runtime-assessment-blueprint.synthetic.yaml",
+      "sha256": "ae10c93629d4001c06c3d3575b1b5c61e52151d633f17058f8882692a0ce6b6a"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/test/fixtures/legacy-runtime-assessment/orbit-research-evaluator-runtime-assessment.synthetic.yaml",
+      "sha256": "5ab305bca45b0cd73a1a5cb060b71f27a5209eb1ba2053c8226bbe9f39a56bac"
+    },
+    {
+      "path": "packages/agent-authoring-toolkit/test/toolkit.test.mjs",
+      "sha256": "fca21d464c669f6d7d51885936ae3898cd39230ab89a05bc1308939c6af6e89e"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/control-console.spec.js",
+      "sha256": "0cf10ebec426afabc11fc6a55a95068f02dcefb73fd5389516d9f92ed0663df7"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/global-teardown.js",
+      "sha256": "81ecf3b67c130ac282d36d3be833695febc23e9b56a79b09f36bc4d1b6f1c68a"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/offline-demo.spec.js",
+      "sha256": "60cfb262e8a697196ac530b6372d33d78141017fe385e7f069b19d7d08ea0dfa"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/sharing-policy.spec.js",
+      "sha256": "9545f0d00376e419d12ea5a59f3ec24b099f72aa48b1ea26e66701ea540f3038"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/workbench-helpers.js",
+      "sha256": "e0e6ef99ebc890ce4f0364adfad6dee21b49f260d44f3912b709a5a05355555d"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/workbench-live-report.spec.js",
+      "sha256": "5d426dba2d605ee6aa2803076979237206404389e0140d4171c61ab3841890a4"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/e2e/workbench.spec.js",
+      "sha256": "0c3dd5429ee51a5773302a4bc28fc59b22bdf49cc3a14e28010c63afc2f40e2e"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/eslint.config.js",
+      "sha256": "bbdff12fdb245bfff215d30369adc878575318794247083a18a14d9fc962dd7f"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/index.html",
+      "sha256": "e2bc135e48d46684b228295cb6b3a328fbd020bb2465e14dc2aa28ea5a6c5116"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/package-lock.json",
+      "sha256": "46a40a02f029e210c6c2fd4be7850621e703331d93bd622e5f5c175ab64d93f1"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/package.json",
+      "sha256": "cfdb53e291c9bbd6fe395b81a7009cc9b7d09f2ed721e3ea06f0b334da111461"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/playwright.config.js",
+      "sha256": "b10501c7ce02a2f9c877f98f0ddc27e899b1155b773f9fdc4f0f6bf2ded137a0"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/App.jsx",
+      "sha256": "29db78699b65e64c088d042246028633ce3f5bb806b1f31a559856e685ad81d5"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/OfflineDemo.jsx",
+      "sha256": "8e9899a7b1fcf91441a3e8cb398e13c00a0cc82c7f1f0425398be669a72637e7"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/Workbench.jsx",
+      "sha256": "c755cec12f67967a7e75a8c623a714327f957f5f7aae877fd8d9d3f5063f003f"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/api.js",
+      "sha256": "ff154206fbda06f8eebfa46e82cee8ddaaa8d005592149273c8a0d95a6bd4b56"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/main.jsx",
+      "sha256": "bad831c0d57fadcd73f503e161e0977f5bc4a79825bdba3de1dfe9fad54473bf"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/sharing.css",
+      "sha256": "b787f69227f8a31278cd35f3ba09ef63d91463dca8333a6337c6e5f675c3d3bc"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/state.js",
+      "sha256": "f1c7b61d675b66021dfaf25d560d91afe0f8cac74efaa7840a40946b0457caab"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/state.test.js",
+      "sha256": "abb00f8c66dde550786f5aa2f21816a09ebbfbb5fcd46016f89f9b9a66e3fa1c"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/styles.css",
+      "sha256": "2e1743167ac5eb88b8591f18e5b506a02157837d4a54aed6b1cb64a3bd459b2f"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/workbench-api.js",
+      "sha256": "01c86e21d71f06e704db37e109e6511a0210a53748a8b8c22f1aaccd90a10685"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/src/workbench.css",
+      "sha256": "98affaaab9818d9f4f3877a5d383dae4bbfd8dd2d1a186e5ff0ac3b2b0ef0103"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/tsconfig.json",
+      "sha256": "a6955c9b9b03578393c508b81d5cb63a56383cddd9a303bb4e1929dfc8da45b3"
+    },
+    {
+      "path": "packages/orbit-control-plane-console/vite.config.js",
+      "sha256": "89f47c1d7db507d9aac50c61af19e394f20d04eaf21b344de625d44f459fbbae"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "e60526aa9085ed8ca9db2844409dbfa2fcd8e439c7c0b89551d467574ac87935"
+    },
+    {
+      "path": "references/agent-lifecycle-import-profile.json",
+      "sha256": "8ae39cc2b995952186fffbac4bbdfb91bb46a09f274316c4dec678edf51f8870"
+    },
+    {
+      "path": "references/agent-registration-approved-inputs.json",
+      "sha256": "edafb36dc2c094a1ccbda5483cfd5f3d8a390d2523d9a1094bdad9f7e260de86"
+    },
+    {
+      "path": "references/company-concept-profile.json",
+      "sha256": "0e07922050e5c8373e7fbaa16da031df1aeb7e356fc6405c258d41114689ebf9"
+    },
+    {
+      "path": "references/company-contract-lock.alpha.1.history.json",
+      "sha256": "c3f5c2b796002a5563699fb0b7edd37840ebb17de7c143b084666d800b730818"
+    },
+    {
+      "path": "references/company-contract-lock.json",
+      "sha256": "4443e25c3b617f371f97fbc030c54956d6f41f8b29e0b33f93ef0cd3c14b078c"
+    },
+    {
+      "path": "references/company-department-planning-bindings.json",
+      "sha256": "1f1cc572837d87108c3bb2cfc57f09678edf2245521249a878d460e47104abe9"
+    },
+    {
+      "path": "references/company-department-professional-runtime-bindings.json",
+      "sha256": "b84ca26e3e0eccfc362a59169f5b766267b50dd2988ea3fd6eecb853140eefe4"
+    },
+    {
+      "path": "references/company-system-registry.seed.json",
+      "sha256": "fcda1aeb8bc2c9623f709b4431696c486cc631ea654b40bfe9076086f26f3fad"
+    },
+    {
+      "path": "references/company-tool-semantic-scopes.json",
+      "sha256": "975c9f7e2ed1ae337cdac6ffcdd286f237ed666912a1c4e220c410de0c110db9"
+    },
+    {
+      "path": "references/dataset-agent-implementation-lock.json",
+      "sha256": "c7b0852245ec72325cb543671adea1bfa6036fa451ca0e22ce2938833e323e31"
+    },
+    {
+      "path": "references/dataset-d0-evidence-review-request.json",
+      "sha256": "401062fe86e76fd58cd6697d05fe4b9926ff4a246c4ff82b3fd9ef77f942437a"
+    },
+    {
+      "path": "references/dataset-tool-d0-composition-lock.json",
+      "sha256": "856428ddbe5bc982d670f303b8edb2ad00842bd0d3aa35432ef596ce5ab8dc19"
+    },
+    {
+      "path": "references/dataset-tool-intake-profile.json",
+      "sha256": "b04ed929f913ae4f2381264f6143f91cc0a7e4bcff909f8c261e88baba5a684b"
+    },
+    {
+      "path": "references/dataset-watchlist-implementation-lock.json",
+      "sha256": "a7ad48b81c5467e747c8e27ca7fc8de83859f439179b2df708ecd31c425d2f9f"
+    },
+    {
+      "path": "references/disease-r2/control-plane-compatibility-profile.synthetic.json",
+      "sha256": "bf722d048f2092d2ed39dd636ad9a3c0b2ddb411937b996a00cbc80afd4d4c75"
+    },
+    {
+      "path": "references/disease-r2/model-gateway-boundary.candidate.synthetic.json",
+      "sha256": "3425682db77bc7c0f818462efc0ee21c7e1aaff421924dd157a43d0b915461c0"
+    },
+    {
+      "path": "references/disease-r2/model-profile.fixture-fixture-structured-v1.synthetic.json",
+      "sha256": "4fa1f698e2d95898640acfe479abde5e2395110799e364f983d9f55fe12ecc55"
+    },
+    {
+      "path": "references/disease-r2/model-route.candidate.synthetic.yaml",
+      "sha256": "ab1a2005363b4559c4c5a9ea03f927b7a920c70ee9c1ad42e742ae93fb84aaf0"
+    },
+    {
+      "path": "references/fixture-fixture-structured-v1-lifecycle-assurance-d0.json",
+      "sha256": "59db2fcd582afbca246731b946e91e406f29ce9fdeb07daf90b503a2095ce71b"
+    },
+    {
+      "path": "references/model-catalog-draft-consumer-lock.json",
+      "sha256": "f3068b192dc16a18c8d447dd7f07841139d995ae4d59928be48d893803fb296e"
+    },
+    {
+      "path": "references/model-route-revisions/disease-r2-fixture-fixture-structured-v1.public.json",
+      "sha256": "a03cf916d3dece9e4515be1c0b06f269e87c481d20b7b6a5f89ece64d7baf57b"
+    },
+    {
+      "path": "references/model-route-revisions/disease-r2-fixture-fixture-structured-v1.public.v2.json",
+      "sha256": "79ae525a4f7133266b4da82fee52b71cb21a5b7489963d38398dc25528882b20"
+    },
+    {
+      "path": "references/qualification-service-profile.candidate.json",
+      "sha256": "474bcd780b3778dd9055a49a636109ab979ed8d90107b415d63a5635c0a1ace0"
+    },
+    {
+      "path": "references/qualification-service-security-profile.candidate.json",
+      "sha256": "4c084672134cd28607211a05c06d2fe472117d7a4c811812a4d21cc6d0c2200b"
+    },
+    {
+      "path": "references/semantic-authority-lock.json",
+      "sha256": "d76d6f47dbfcf0099060cd0467c7332177eede2a7389e41f6f5f545f0e39501c"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.2/concept-catalog.json",
+      "sha256": "0d32597d5c1b4da6cfc511bb01da5c8f4a2266aa895edba2b7af3dc474119e0a"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.2/contract-enum-index.json",
+      "sha256": "76c76b29c9ecb2cb0dd387222622476d5f779ae8afe57cadc9f4e3d4e9504dcd"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.2/manifest.json",
+      "sha256": "dbc62523e2557dd440dee09252a903e4abf2305cc3bc25dfe91685e5013b3ba2"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.2/semantic-authority-lock.json",
+      "sha256": "d055402d59b4feaea241dc36d23d255e35d39ca5661d72dea704433b7f6681af"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.2/state-catalog.json",
+      "sha256": "2497d328fbcdae0fac90204a423c1b355ac25213fde20c2dd425557a1d92cb07"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.2/term-classification.json",
+      "sha256": "c573c88b407145e07c7506402d744700703155fa2e5dd33ec6779be7a4fcf9ac"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.5/concept-catalog.json",
+      "sha256": "d862c4f81ada477f6b8a60622a5f7803f7d85e261eba890027ab22ced96e6921"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.5/contract-enum-index.json",
+      "sha256": "bdeb7a3213b224066b01d94f8440e0502029bab2f402fb9ca5d751642fc86c68"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.5/manifest.json",
+      "sha256": "20bbb0c0429b446dea2af851ab5c8262adf7276fb9a4b47adff7c70c825824fc"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.5/semantic-authority-lock.json",
+      "sha256": "53b274eddc4730e30d21bb9dcbf12ae0cddc8ba63093eeb3ed94abe0c81711e2"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.5/state-catalog.json",
+      "sha256": "2497d328fbcdae0fac90204a423c1b355ac25213fde20c2dd425557a1d92cb07"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.5/term-classification.json",
+      "sha256": "2793870fbea5e2c3626855542006f5cb673acb927957b90da7cdc1181cbcd50f"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.6/concept-catalog.json",
+      "sha256": "d862c4f81ada477f6b8a60622a5f7803f7d85e261eba890027ab22ced96e6921"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.6/contract-enum-index.json",
+      "sha256": "bdeb7a3213b224066b01d94f8440e0502029bab2f402fb9ca5d751642fc86c68"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.6/manifest.json",
+      "sha256": "9ccc697b026d3b151442f79f91ea95a6cbbb769f5d0533cf803efa0d161dc8c1"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.6/semantic-authority-lock.json",
+      "sha256": "26580fc3bcc4ae188a2f64377e509ac6bf53b384cd93f267571b2c997ea9bb54"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.6/state-catalog.json",
+      "sha256": "2497d328fbcdae0fac90204a423c1b355ac25213fde20c2dd425557a1d92cb07"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.6/term-classification.json",
+      "sha256": "677bcfb60579e623c088388e439181355df715efd7f5c25f271ddba0088eaf3a"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.7/concept-catalog.json",
+      "sha256": "d862c4f81ada477f6b8a60622a5f7803f7d85e261eba890027ab22ced96e6921"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.7/contract-enum-index.json",
+      "sha256": "138ca44eff31bcea0971a1ea1d1ade49b0f7f0ff7f7994fa374f654adbf4f2a6"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.7/manifest.json",
+      "sha256": "6d11d58b1ef8e535334c62157d9cb8de8b3fb5967da54301536d20e507355815"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.7/semantic-authority-lock.json",
+      "sha256": "ecf2f5d2e165addde44c9349edc01a52bbc3efa6c27ead5c8ce36a1c33d65407"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.7/state-catalog.json",
+      "sha256": "9ee15d7fbe177d0e6e46151a072b22fae3807b0c11cb8cd0792b54625e5e9b76"
+    },
+    {
+      "path": "references/semantic-authority-v0.1.0-alpha.7/term-classification.json",
+      "sha256": "344f7c68ebcca2f1175d5a662dc2a36a97fd78b7a4c14d7a455332f227878b7e"
+    },
+    {
+      "path": "references/stage1-lan-d0-model-route-authoring-profile.json",
+      "sha256": "b88ee08b464ec39d7cbd380b9277d6d6c9e05b8edd21e2685dae10d52fb84333"
+    },
+    {
+      "path": "release/manifest.json",
+      "sha256": "2234a99e3789cdb66189c6ce6246898d4ada3bdb39f0e1b8c2fc76a42da25770"
+    },
+    {
+      "path": "reports/VALIDATION.md",
+      "sha256": "436bdb5b9d42e761bac4127eb3bc08eb37707193360cc4edbc77c3f0689e2b33"
+    },
+    {
+      "path": "reports/candidate-files.json",
+      "sha256": "3baa24a602a9fe4902cf34a75c8b1a8d50870d6313a43d098f8248383a2999d7"
+    },
+    {
+      "path": "reports/delivery-case-overview.png",
+      "sha256": "6a41a210f8c5e6ca6c0ffe8db1272a5f741ed04e74979eff163d94cdddc7f11f"
+    },
+    {
+      "path": "reports/delivery-case-review.png",
+      "sha256": "6b086870735ad4d4765e87d6f99d60be35c1d20efda9dcbdacf6eea6a2253947"
+    },
+    {
+      "path": "reports/live-adversarial-replay.json",
+      "sha256": "0cfa02df37efbb45fd5e19891db54ce793c94fbd66bb49a5dce45b168c3348aa"
+    },
+    {
+      "path": "reports/live-change-manifest.json",
+      "sha256": "abe643cc3ec530273ee55f973ba064ba3ed41feb5e0e1236d7602c1297a2fee4"
+    },
+    {
+      "path": "reports/live-console-check.json",
+      "sha256": "e1295e1dc2ede0f35c8201a0de6b4d610cb9b36a372d6a4979f02e965ac2f35b"
+    },
+    {
+      "path": "reports/live-console.png",
+      "sha256": "bdd82494a09fde17a705b932486a681cac658761a872eb91ca46bfe731386517"
+    },
+    {
+      "path": "reports/live-privacy-check.json",
+      "sha256": "a4e299b2d3a90bd42678ae5b1afddd1bc3eefedbb023bd827c5dfde851a84e82"
+    },
+    {
+      "path": "reports/live-validation.json",
+      "sha256": "9c5a6ad3a4cd1dcfd6b63b77bb94d33f1ed173cc46a154f22e715d27223b739a"
+    },
+    {
+      "path": "reports/minimal-rework-live-change-manifest-20261017.json",
+      "sha256": "b53e9230fd33973dbf0a909f39066afc279d3e1fcbc7ab827e4c400ed9cb0897"
+    },
+    {
+      "path": "reports/minimal-rework-live-outcome-20261017.json",
+      "sha256": "e61f84fdcc23754ddd23162d8ac6493e638937940ca773a4d6683985c8b76f65"
+    },
+    {
+      "path": "reports/minimal-rework-live-validation-20261017.json",
+      "sha256": "5c97eba29f69a62102e557aad09f3cd80167df4857c655b29f9974c9d7acf226"
+    },
+    {
+      "path": "reports/offline-console.png",
+      "sha256": "0ec96589533959915ea96fc3b23732b8a237052d4d174fa461119b58ed51f950"
+    },
+    {
+      "path": "reports/offline-demo.json",
+      "sha256": "1baf1cbfa4fe9828bfbf971a5fd544e888d840425e7c9b80c0122ec284081f89"
+    },
+    {
+      "path": "reports/offline-rework-change-manifest-20261017.json",
+      "sha256": "63a6615a433a40fd494d63b4e2222a3ff902dab90b69db1554e82b9d3467435f"
+    },
+    {
+      "path": "reports/offline-rework-validation-20261017.json",
+      "sha256": "2d6e407c390e5dd6d7ff8b07f5debe624cb57d94dbaa15bf736ab3dbc47903ff"
+    },
+    {
+      "path": "reports/offline-validation.json",
+      "sha256": "c78fe2f4b57bdc49a465493137b7c61bee545eeae09a236e87ed64c801366023"
+    },
+    {
+      "path": "reports/planning-boundary-live-change-manifest-20261017.json",
+      "sha256": "a4c7a9a9426d203cec0c72caa3e4b947c3dfe1261e7496a17cc247a37ad28d95"
+    },
+    {
+      "path": "reports/planning-boundary-live-outcome-20261017.json",
+      "sha256": "08780bb50592fd478988627c514e37c3574d3274ca7104b9fbf0116f61ca60de"
+    },
+    {
+      "path": "reports/planning-boundary-live-validation-20261017.json",
+      "sha256": "bb857f301899e205e772f2edaff0f1c8f1fec0b445bd6bf768bbb67c3a356c72"
+    },
+    {
+      "path": "reports/planning-reference-boundary-change-manifest-20261017.json",
+      "sha256": "3350051673b1e2462604a89862855a530f29480485ab1d2ccb99701dd5eddd99"
+    },
+    {
+      "path": "reports/planning-reference-boundary-validation-20261017.json",
+      "sha256": "7959eb3768917c4d05d2e4c5348f6f2c38abbb322333c3ffa0a0b57ec24db50b"
+    },
+    {
+      "path": "reports/release-python-validation-20261017.json",
+      "sha256": "eaf046f9fce33e179b203d544201b53f14f55a4403aab5d304a11192fd5a0e11"
+    },
+    {
+      "path": "reports/release-readiness-20261017.json",
+      "sha256": "eb7dd6f0b4676e9f3cab5ea0f7325be604ba693168a6edb093be092f387aabd3"
+    },
+    {
+      "path": "reports/rework-decision-checker-change-manifest-20261017.json",
+      "sha256": "501a87f0aec261bc9dc3832b0f7cfbaba05ddca1b7facded22486c55b36321ce"
+    },
+    {
+      "path": "reports/rework-decision-checker-offline-20261017.json",
+      "sha256": "249115ef40ced64ecd7f8e878d092fc4042996eb1bbd99a55eee12f4238e9bee"
+    },
+    {
+      "path": "reports/sanitization-audit.json",
+      "sha256": "3783d18431b3acdee6ebd5533a2ca3a736fe5f82376afdf249d524f5894682c1"
+    },
+    {
+      "path": "reports/sharing-change-manifest.json",
+      "sha256": "63d15be26cfeb12f3138e1ea41dd68f10455a6240e88501cd27c22247ba056c8"
+    },
+    {
+      "path": "reports/sharing-live-change-manifest-20261017.json",
+      "sha256": "ed64501630e2a13b45c7010a6358947ca5f8ffb6a78a4828a2138d3f4fd66e9f"
+    },
+    {
+      "path": "reports/sharing-live-continuation-20261017.json",
+      "sha256": "3cc888b4283fcbcfaa7e5a4de5f9fe7d663d9ecfd90cd5737b62fa184ba487c5"
+    },
+    {
+      "path": "reports/sharing-live-outcome-20261017.json",
+      "sha256": "f6de4b094ffdf122a97fec88ae33afb2f40197168f09fd897857cd141fff44dc"
+    },
+    {
+      "path": "reports/sharing-live-privacy-20261017.json",
+      "sha256": "e45afea32b72414ce3f96c30b11f9a24c4a0761b7fb16da1128ecd20a18a7c5d"
+    },
+    {
+      "path": "reports/sharing-live-quality-review-20261017.json",
+      "sha256": "da829021c01d66bbb303a52149f540bc2effa2d9b1827b3588c3d1f398a9d161"
+    },
+    {
+      "path": "reports/sharing-live-validation-20261017.json",
+      "sha256": "c72db68a28394be981b81c0bed6cc896b42d2a466a4cb2278f60a0ab7377a2af"
+    },
+    {
+      "path": "reports/sharing-semantics-validation.json",
+      "sha256": "0bdc6052318304c519b378126aab14928a2aab2ce6fec1d0feaceb1b0a6e182d"
+    },
+    {
+      "path": "reports/sharing-workbench-desktop.png",
+      "sha256": "1253054c5da786089bc60ecc4d76549db05154711a97bb91559fe71962f69f16"
+    },
+    {
+      "path": "reports/sharing-workbench-mobile.png",
+      "sha256": "35562b27e5e0b9fc8e9125184066d416a98c067ac9dc98af6c67c0ea9bf0a1a4"
+    },
+    {
+      "path": "reports/snapshot-delivery-audit-20261017.json",
+      "sha256": "1b2c1d4a34f6bd57d69e98c307a682adf47edf12f675a042bd523add7e7b8f5f"
+    },
+    {
+      "path": "reports/snapshot-delivery-change-manifest-20261017.json",
+      "sha256": "aa899b7299446967a2dde4ac2b3e221f240954c605f1ba4adfa7568ea6bc6a3a"
+    },
+    {
+      "path": "reports/snapshot-delivery-validation-20261017.json",
+      "sha256": "30853f327a7b9f47a16a68e8c63f17bc986fc61f6aadb1d496db52b138dd3786"
+    },
+    {
+      "path": "reports/snapshot-view-change-manifest-20261017.json",
+      "sha256": "5c00c1a9814eca97e39b11224e5f0e88bb3c6e3642e1ad5ea9fa5a81963ea2d3"
+    },
+    {
+      "path": "reports/snapshot-view-validation-20261017.json",
+      "sha256": "234835b6ff5ca63a4e786fbe788b3502e78ba918e6b7a72aec463438de9a7bfc"
+    },
+    {
+      "path": "reports/workbench-change-manifest.json",
+      "sha256": "4851ee34e75d600dd5879ff8aea502be464301efd447ee34a59f6f94a9fddaaf"
+    },
+    {
+      "path": "reports/workbench-delivery.png",
+      "sha256": "e4b99e597f0b5070e7881ab5a62710c772667db6721a80e1fb553af7d412b31c"
+    },
+    {
+      "path": "reports/workbench-live-change-manifest.json",
+      "sha256": "c2dfdc0530f858f0639ddbf10a71cb2e057a90ed6070acfa4b0462a335b5e8e4"
+    },
+    {
+      "path": "reports/workbench-live-evidence.png",
+      "sha256": "a6b2f884a8683df57649d6abd3a8ad92e6415b1844598ecae0dae180e70c86df"
+    },
+    {
+      "path": "reports/workbench-live-privacy.json",
+      "sha256": "8eff17d3103a99b14add9f91f023c072f7d18efaa784f9f2468677f7b626fd9f"
+    },
+    {
+      "path": "reports/workbench-live-validation.json",
+      "sha256": "b919f96dfea0082c1e36321fe8c184d362332a72e628c10b4d461a13231f2883"
+    },
+    {
+      "path": "reports/workbench-tasks.png",
+      "sha256": "e1eec7f755ac9b7163452dc902734c4a7f7eb3a92ea31499b0e96efe07868401"
+    },
+    {
+      "path": "reports/workbench-validation.json",
+      "sha256": "d650971d1501ed26c7bfd8f6197ea1200e57458631a1b5f742a4bd717010955d"
+    },
+    {
+      "path": "scripts/export_release.py",
+      "sha256": "e90996bed1f1a318e6893df233d7952a6b55af5fdf0a00e8172737c779c2b5ca"
+    },
+    {
+      "path": "scripts/run_demo.sh",
+      "sha256": "56d11d8172b91088a15ee9b4100434ec3234061638db8520b93fafa393c38e86"
+    },
+    {
+      "path": "scripts/run_qualification_service_postgres_harness.py",
+      "sha256": "611df2c05746261241a7792d4e73aa52e4afb64a6fd2e4f1b8108103b08ac780"
+    },
+    {
+      "path": "scripts/validate_offline.py",
+      "sha256": "d5989692f9835b3e346b67577430380ae036e2440ede48a52171e854d3cd28de"
+    },
+    {
+      "path": "showcase/__init__.py",
+      "sha256": "8572d91269b3824d1b0f593a7bbac9085ed1794a7bc1ae9a53185171708cde89"
+    },
+    {
+      "path": "showcase/composition.py",
+      "sha256": "7a6b2b48bd724e44abd4aa88a692be338bdc530e45cba611549595a506f16496"
+    },
+    {
+      "path": "showcase/demo.py",
+      "sha256": "d42e8750562db0c6ef6f4fc101d97fb17208f3eb15e5f74feb26e91cd04e5ec3"
+    },
+    {
+      "path": "showcase/fixtures/catalog.json",
+      "sha256": "684f4251c1376beda0148f17ae7d5d58094b7d6443e3b15b29a73cebbb92f2b7"
+    },
+    {
+      "path": "showcase/fixtures/expected.json",
+      "sha256": "3173d844e0d43ff76643dbe59a84f51ee814810f4ac06d32c2bd77628c668462"
+    },
+    {
+      "path": "showcase/live-contracts/compute_metrics-input.schema.json",
+      "sha256": "a0847746574a45541e63b65c9d498a36f8ec2694a75158c2f28362ab0828cfd5"
+    },
+    {
+      "path": "showcase/live-contracts/compute_metrics-output.schema.json",
+      "sha256": "0771bc5a543d782b9991527471ebdeac4ecbe4cdbe1a256c7d35e7764c1ae9af"
+    },
+    {
+      "path": "showcase/live-contracts/compute_metrics.tool-manifest.json",
+      "sha256": "8ce3046ae345625a2924569d9ce899e19a7c980981052199da3955645d005245"
+    },
+    {
+      "path": "showcase/live-contracts/intake-profile.json",
+      "sha256": "329d6ac2eb2fbeb8a74c802306a11e80b92816177ba6628549257e6231229a4d"
+    },
+    {
+      "path": "showcase/live-contracts/query_fixture-input.schema.json",
+      "sha256": "c0747e1201d71543f8d5e0076178e44d2b88b84802e540dc929527223cfa2b16"
+    },
+    {
+      "path": "showcase/live-contracts/query_fixture-output.schema.json",
+      "sha256": "f79aa87d87f55e96fd5ef94682926e7a97a73b1bcb357661a733fdc3ba6caf7d"
+    },
+    {
+      "path": "showcase/live-contracts/query_fixture.tool-manifest.json",
+      "sha256": "99c77ab9db0da37c9822e6dc0717ff890402079085a2275a70dc084ee15e99c0"
+    },
+    {
+      "path": "showcase/live-contracts/release-manifest.json",
+      "sha256": "631ac240b11f13864accc77668a28d6f7b1e86f8ff01ad7104789cd1239ff3b5"
+    },
+    {
+      "path": "showcase/live-contracts/submit_candidate-input.schema.json",
+      "sha256": "7beff2e8674e7e5b984e7654413b2bd1594f663c6ed846c59e0d8aa8807f9af3"
+    },
+    {
+      "path": "showcase/live-contracts/submit_candidate-output.schema.json",
+      "sha256": "c2928c3e4416bf7ae8488397cc6d388b8fe9ba8c92ab97486fa86f1f9a515478"
+    },
+    {
+      "path": "showcase/live-contracts/submit_candidate.tool-manifest.json",
+      "sha256": "fdb9895b6cdd1ba281b516c4fb71cb9a7f632afdb146b9fd9ac2af2c16c83c1a"
+    },
+    {
+      "path": "showcase/live_budget.py",
+      "sha256": "b7f739efa539052cb82765adf4ea1fcacbc03e065f58a93a7093ec4dd08154af"
+    },
+    {
+      "path": "showcase/live_flow.py",
+      "sha256": "96a44978c6c541dd9fe88497955d37899a03bc4303fb01cec2f0a317e7b76fb5"
+    },
+    {
+      "path": "showcase/live_worker.py",
+      "sha256": "88c3a360dabd9bee9c2b275b28ca3c27ca99f37035bc5912066fdebe53a24fc5"
+    },
+    {
+      "path": "showcase/server.py",
+      "sha256": "e5b346f11def093dacfb1e365904dbe6378183a86dbcf8a37ddf9913facfd657"
+    },
+    {
+      "path": "showcase/source-lock.json",
+      "sha256": "ab3a879af46125bb119c5aa9522a3942681a6a62a1192dcf0bb611903b8af15d"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/contracts/tools/0.1.0/acquisition-worker.tool-manifest.json",
+      "sha256": "3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/contracts/tools/0.1.0/query-watchlist.tool-manifest.json",
+      "sha256": "9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/contracts/tools/0.1.0/registry-publisher.tool-manifest.json",
+      "sha256": "395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/contracts/tools/0.1.0/release-manifest.json",
+      "sha256": "c16ace9eb4619b5d58e4e464e3d924d21a4c2c13f96007f9c7d37a209cc6075e"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/dataset_acquisition_receipt.schema.json",
+      "sha256": "8237a17e2c557e2384c680ba1be1c843ee51c508977658b2c0f8c7eb6d839148"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/dataset_acquisition_request.schema.json",
+      "sha256": "d3b032e3648f572f573b3b0ec8602ee4cd52171e47bb5de1b548fe10d89e1d87"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/dataset_registry_patch_candidate.schema.json",
+      "sha256": "5522a72c6880690eae9d3c1b6bc0ee08f24f39cfab7e0d9286bdc51388e8a7a3"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/dataset_registry_publication_receipt.schema.json",
+      "sha256": "4a9982a74b1d678df563241c75837fc5aacc9b732d24a9cdbae051e4a9046b53"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/dataset_registry_query_request.schema.json",
+      "sha256": "143b88e529ef8bb5ec72dc7bb1d1b0d83e9f937ff27675f6a8976ec38c106f78"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/dataset_registry_query_result.schema.json",
+      "sha256": "a51f13fa15c9570692496f133cea44306677d8cf229b9f85cf699dcd4769d7aa"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/downloaded_assets.schema.json",
+      "sha256": "8469d2ac4f5d5c8ef97333868df57f72d6d716a2b8071d6ff646b374a0b9f943"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/downloaded_data_export_manifest.schema.json",
+      "sha256": "fd2a20b19f0a2130f7c2bdc1bce1db9aa0af86496cb69d4af20246d6c1c869bf"
+    },
+    {
+      "path": "showcase/vendor-fixtures/dataset-registry/schemas/downloaded_data_export_records.schema.json",
+      "sha256": "d00e3c8583312f8a46d9f39fdb3edbaca6f63207c6040bc670119e2f2d5bd871"
+    },
+    {
+      "path": "showcase/workbench/__init__.py",
+      "sha256": "67e891eccd04953a13ce84ecd2813c9a859b3196f1bb74384b547560cb072257"
+    },
+    {
+      "path": "showcase/workbench/api.py",
+      "sha256": "5e65e7f29d162c26e0ccf0ff70219ec4fd682d29bf171881fc454510cfcd9c39"
+    },
+    {
+      "path": "showcase/workbench/assets.py",
+      "sha256": "5d2691f6c27ae17ff494ade70793d79705e2d3cb19550e9f3058099daca33e3d"
+    },
+    {
+      "path": "showcase/workbench/author_fixtures.py",
+      "sha256": "6126e9d46ee9343c668119cd7b873bfcb13aae36be5e2b31dda05a10acc83efe"
+    },
+    {
+      "path": "showcase/workbench/content_contract.py",
+      "sha256": "3da212622b2a30e3c9d395d741079d37ff83249198801247b39f0e7dc81684f9"
+    },
+    {
+      "path": "showcase/workbench/contracts/intake-profile.json",
+      "sha256": "0a03aca7f7269ea73e012dcfe1d907b281dc1da0fce8baeebc9065db697c2de0"
+    },
+    {
+      "path": "showcase/workbench/contracts/query_documents-input.schema.json",
+      "sha256": "201c9b3f10ee749cb12aafb0d1367840f2df22b1acd41e7eff9dc99ada47bf03"
+    },
+    {
+      "path": "showcase/workbench/contracts/query_documents-output.schema.json",
+      "sha256": "b0dcfd76d7f77d3eb99c4e76f7d5de29e9adecebd748bca49090cc8cb54a9c44"
+    },
+    {
+      "path": "showcase/workbench/contracts/query_documents.tool-manifest.json",
+      "sha256": "809515457a82cea0b886fb9b6bb08569b1c83d786f175649a782552809f5e452"
+    },
+    {
+      "path": "showcase/workbench/contracts/release-manifest.json",
+      "sha256": "0fc702eb653fae16f5c113652b614a6f2f27122c557bd4fb3cf3c2526fa3f6e3"
+    },
+    {
+      "path": "showcase/workbench/contracts/retrieve_evidence-input.schema.json",
+      "sha256": "c247306cab996d7324a9b409a7188c2eefcb58cc3ca9e500c34d45e2ae83a02c"
+    },
+    {
+      "path": "showcase/workbench/contracts/retrieve_evidence-output.schema.json",
+      "sha256": "0f263e76c08b54f9ee0a44359c2e4b3c76ef384146e6d91dc4b30f28b6a3033f"
+    },
+    {
+      "path": "showcase/workbench/contracts/retrieve_evidence.tool-manifest.json",
+      "sha256": "77407bdac3fcfdc79f0e1128e9c18562c595d97a7de42d11fda0ace42de64eb5"
+    },
+    {
+      "path": "showcase/workbench/contracts/run_acceptance-input.schema.json",
+      "sha256": "113ff6f2e8768fc2af696bfd435d6dc2905ce04ebe8bf32769e09d910e14778a"
+    },
+    {
+      "path": "showcase/workbench/contracts/run_acceptance-output.schema.json",
+      "sha256": "087b33f59f291927977e2513b6f297ea31c292e40ce53c392776b78c61c8540f"
+    },
+    {
+      "path": "showcase/workbench/contracts/run_acceptance.tool-manifest.json",
+      "sha256": "ec0de7dec288224523bdd64bf5646ca90504004e5e38ece033807a34a061828b"
+    },
+    {
+      "path": "showcase/workbench/contracts/submit_candidate-input.schema.json",
+      "sha256": "ed36e715aad0dfe4668e6a7c0e179756944a0ad0eff2840128162a7da06acbac"
+    },
+    {
+      "path": "showcase/workbench/contracts/submit_candidate-output.schema.json",
+      "sha256": "9dfab677587187de6451aea2da2766b1ffb51ae08fe0855b141dae1c2021b567"
+    },
+    {
+      "path": "showcase/workbench/contracts/submit_candidate.tool-manifest.json",
+      "sha256": "d5644b482347aaba016096dbbfea159b10ae296f37a10a60297d5163019850a4"
+    },
+    {
+      "path": "showcase/workbench/contracts/validate_requirements-input.schema.json",
+      "sha256": "e6615ce16482b676d2bb84e7b74efaf19034f5cbc218a8841e47c6672632b586"
+    },
+    {
+      "path": "showcase/workbench/contracts/validate_requirements-output.schema.json",
+      "sha256": "d0f279a73196bb8d418928d2b8ed19b91570ced99fad5d984efd2b835d05c60e"
+    },
+    {
+      "path": "showcase/workbench/contracts/validate_requirements.tool-manifest.json",
+      "sha256": "4519605fb7ee5e76a0279e45c04552bed87fc0bfc6707e1902eda123d83a3f05"
+    },
+    {
+      "path": "showcase/workbench/documents.py",
+      "sha256": "62ec0a2d2008f9d24801580bed86f0daa584b49417deb6ee7ce24de45c181c07"
+    },
+    {
+      "path": "showcase/workbench/fixtures/acceptance-cases.json",
+      "sha256": "e3c739e81c7eb7619665421d85a582e91047da0d6062a6e1aea21ac23c51dd9a"
+    },
+    {
+      "path": "showcase/workbench/fixtures/api-contract.json",
+      "sha256": "ee99d9c46c91898e258a1bc44075f2d9da87443f13398eb53c0adeaa567d72d1"
+    },
+    {
+      "path": "showcase/workbench/fixtures/data-dictionary.json",
+      "sha256": "1bf8815b87cae38986c22f9606941d54679bdf3ba76432220c226a5df03a27f4"
+    },
+    {
+      "path": "showcase/workbench/fixtures/faq-access-v2.md",
+      "sha256": "c5bc1178c486db83810d65810b08494bf74a89fef98fa6238d97e0ce462f4911"
+    },
+    {
+      "path": "showcase/workbench/fixtures/faq-access.md",
+      "sha256": "c63b269a39216acf950f39af522cabd2d7de2d9819196afe6bdcda57c492b6c9"
+    },
+    {
+      "path": "showcase/workbench/fixtures/faq-citations.md",
+      "sha256": "0a641120f3e4b032cde25bdf6a7169c81e68518d4ef2fa7c652678376603ba35"
+    },
+    {
+      "path": "showcase/workbench/fixtures/faq-scope.md",
+      "sha256": "2e919cc02d75f17acf3edfe151e1e2eaecf1550596fabe1cad0cf0102c242032"
+    },
+    {
+      "path": "showcase/workbench/fixtures/incident-access.md",
+      "sha256": "a78625850b340ad46efa116754b3eb65064e81384bd557b52143120745206836"
+    },
+    {
+      "path": "showcase/workbench/fixtures/incident-version.md",
+      "sha256": "9dcd8cb52a939a5e4973e3242182c0a98d8e4d9c79840fc4f6e8bb40596b35c4"
+    },
+    {
+      "path": "showcase/workbench/fixtures/manifest.json",
+      "sha256": "8e140c590e6168545c9cf4a0bcc4ed2b4e8e1f64272de3bc182d7a014b371c8c"
+    },
+    {
+      "path": "showcase/workbench/fixtures/permissions.csv",
+      "sha256": "785387848dc7ffc9204910c01f98146a23f1437703524cf198ab929fce60e995"
+    },
+    {
+      "path": "showcase/workbench/fixtures/requirements-v1.md",
+      "sha256": "73e253bfe212acbd7fb7f6ba6889c94734118a56492fc13fe41922cd8f72f2c4"
+    },
+    {
+      "path": "showcase/workbench/fixtures/requirements-v2.md",
+      "sha256": "a0e2125c7248098b8a84b05b6552386a994b0238427bce0f1b5376b7c929e12d"
+    },
+    {
+      "path": "showcase/workbench/fixtures/untrusted-note.md",
+      "sha256": "25a811035eb959ae5800a0f902e7e8bc31a70e50de15899ae26a0013940d468d"
+    },
+    {
+      "path": "showcase/workbench/fixtures/user-research.md",
+      "sha256": "9e9202c6bea1b79db5baba0a9f90c937048a35762b25631b310016d7af837c8b"
+    },
+    {
+      "path": "showcase/workbench/live.py",
+      "sha256": "fac00c221c7de7e165dc2d0619dc4fe610c84c8d95434045889ac5422ed75a87"
+    },
+    {
+      "path": "showcase/workbench/live_validation.py",
+      "sha256": "3818ede67cfe63a2345f6f9b77644a8ec06a755a987a4d55bab6ba316e46abd2"
+    },
+    {
+      "path": "showcase/workbench/minimal_validation.py",
+      "sha256": "10d5a1c9468c80626fb1c13e7505448b60e4750dd29988a66bea92816b89fc20"
+    },
+    {
+      "path": "showcase/workbench/model_gateway.py",
+      "sha256": "1a00566a262c6f683b5a37196249a2f783ae9687560fefa5d9a98b298eafb29b"
+    },
+    {
+      "path": "showcase/workbench/planning_contract.py",
+      "sha256": "8d8e652230afe3b209f1db4e871711d1dfa519e06ab87b6f1230ba7773091603"
+    },
+    {
+      "path": "showcase/workbench/service.py",
+      "sha256": "865d793c6212ec0d6defbdb17391c959458777d9e833ae88e718adac7927b80c"
+    },
+    {
+      "path": "showcase/workbench/sharing_policy.py",
+      "sha256": "bf7d3924cf440d7ad5a17f1a8d46f6fe9f675ee717445b8536e6f1de701829dc"
+    },
+    {
+      "path": "showcase/workbench/sharing_validation.py",
+      "sha256": "2b792250fe3962ab33bb804d9135500288195f3ab3c12c5607793e88d4e421e0"
+    },
+    {
+      "path": "showcase/workbench/snapshot_view.py",
+      "sha256": "e81b17a6c4f71d3fe2b42d20ae45ee6f145eb041129511cc70862cd2f3580202"
+    },
+    {
+      "path": "showcase/workbench/storage.py",
+      "sha256": "fc5a960ad80bd9c7d55a1098fd976ebd38381056f5cf59170c734b1228cb18ae"
+    },
+    {
+      "path": "showcase/workbench/tools.py",
+      "sha256": "1e994f33bf5eb75081d2b7218ce1dea9dfdf02ed80a79289596ea4ae15e69e05"
+    },
+    {
+      "path": "showcase/workbench/worker.py",
+      "sha256": "854f73ed053538a15a0cf1fc1a943cf85735b3b9688b1e2d903f5896b48d9a38"
+    },
+    {
+      "path": "showcase/worker.py",
+      "sha256": "7b97747e1da5c83319e41eeb8ae3e5c4399151c1c259a3e47202d40fa5b2f136"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/__init__.py",
+      "sha256": "cf154c3aad2b728bcaca56072a3784c4ffe5d1a4e68d3bbf0a94da6abb285c76"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/authorization.py",
+      "sha256": "6e5652af7bbeddc0df2370a55d16b586d58d892df896f489c5929d50e364cc36"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/cli.py",
+      "sha256": "baa22efe0f4daccaea2c1200208070768121691f9b3e25afd43d316a462590db"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/concept_profile.py",
+      "sha256": "9ed4ffdbb0feaa798845f6fbb3c48e6f3379f0b736512fdf0a44ba15033fff33"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/control.py",
+      "sha256": "6693aedc3a8e07775097cf892ad7874bdc4b815b8cf83e047b495c0260f34e11"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/dataset_agent_process.py",
+      "sha256": "42e91f2ae054844f79eaa8aebce3fafcda8f8ac88296d1974f81555cbb7a61e0"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/dataset_evidence_acceptance.py",
+      "sha256": "5c66040ea71c9c58f9fb8cd7807f2ff3dc3051dcc2734ad3e0947bc395c22567"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/dataset_execution.py",
+      "sha256": "3ce6e7f5e81f133205a40f81d43b1616de8528e12eaa0eb2880c9e81539352fa"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/disease_r1.py",
+      "sha256": "34241371d7f7f020388c2da2a64e4c378059209f1e07a3fff8a9f857edc9540b"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/disease_r1_review.py",
+      "sha256": "6890028f4bce97f2c908d365e4fda8a973a5f4abc9326c9ca7c9aed6d5ab0d1e"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/evaluator.py",
+      "sha256": "e19aab380ff417d3627a1b4e91b5c07852df4a3e370d6dd1162b5d45503dd645"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/ids.py",
+      "sha256": "7aceee09752454bb530358a60b97118ab5b5f6207f10a833a022c4183d5f93c2"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/ledger.py",
+      "sha256": "b5eeda626907ec03df01182c6b9864949f9c8c2926840858ab89a5fbbba870ed"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/lifecycle.py",
+      "sha256": "76fa47141dc007c9ad5f7bd8080484a7cb751172418abd1070566a19f1e2285f"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/lifecycle_assurance.py",
+      "sha256": "073a31dc7a3dacf5d2c7017855ffc6e2dfecd1a06bbf531a4be45f14c489496e"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/lifecycle_intake.py",
+      "sha256": "86785ad95b2111798b219b495186cfbb25e4be2dd9ee9d5af60bcb6f66b918ea"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/lifecycle_ledger.py",
+      "sha256": "18e51f1d5e48d835deef5abd1e40b3722deaeae94a1244e5ba33c2256dcacd7e"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/loop.py",
+      "sha256": "448c819d62cfa77a7534d28cd502ad40bc8882645c391b7e13fd9ed42b5f1fe0"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/models.py",
+      "sha256": "07f2caf96b74826e752a4dac793cc0d1e022a6d681fd478f88bf04c8d6741bb5"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/openai_compatible_model_port.py",
+      "sha256": "ea8f865eada45eb089de110e275dddf2359376514f34a6d3ba8ff95db30c27b6"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/provider_environment.py",
+      "sha256": "38982772e10194ad2bfcea99eede10a7837bb79d82492dbfbcc65a201e7587ad"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/qualification/__init__.py",
+      "sha256": "2efa8af0ff72035d7d88ecfb4e4eba62059b4f1f6cd4b7a820c863809d1a1c47"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/qualification/automation.py",
+      "sha256": "941611b6aa7f14e666f3d6597ff59f7cba1e05d4fc3c41c20ed59244a25e9b34"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/qualification/ledger.py",
+      "sha256": "9ac175b3dd906b995d2a6cab8a6cc977ebd07802b817024ea4252a9bc8973317"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/qualification/policy_activation.py",
+      "sha256": "47cb2ffed5f6db34612fe0561d993c7a70cfb21fc89a284502ed5b663197dc27"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/qualification/service.py",
+      "sha256": "55d44f4ad83eda182d30c0d11d88751824b7d5825ecc8781e707faf9a42fc7df"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/registration.py",
+      "sha256": "094b47a2245784da8d5788ac7ed37d07ec2ca57abd4000f0fe7d0bdae40d10c2"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/router.py",
+      "sha256": "868055f4cec29425bb124dcaa0e18007e537df930baeada9b0f59b21a8a6b687"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/runtime_source.py",
+      "sha256": "3da3dc6cc10f2c08e75ff99ccd6367fbd849165efccd97702cc2bce988d34e7e"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/__init__.py",
+      "sha256": "f389cb7d51c4d36415a258ab8741a0f25183b9fdfd5caed1069bb85dfc2b6533"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/adapters.py",
+      "sha256": "eaf39ab3f8c10b242658a5955f7086be4e60669e265215e78708b36a9ba3a9e0"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/api.py",
+      "sha256": "3b4fb4c2ce015e20f988cad11e23a7d966eefad23bae29482bd94f70961a7f82"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/automation_supervisor.py",
+      "sha256": "11ced06c9e62dfd98b60d7b432c72f0a1e4a7f69a2c784133d302f2e0713a4b6"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/cockpit_local_identity.py",
+      "sha256": "6eed3ce1448708b05e0abe0f021eaf3a8cf787367ce97ecad7d96d56e857e919"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/cockpit_local_identity_api.py",
+      "sha256": "e85650b51a0395e7ea808232521e2e48beff4a267916b5d9639d047338cf136e"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/cockpit_local_identity_models.py",
+      "sha256": "b518d3b7547f30861d64d91de7d4724b3205d81cccd706574485041db0997be6"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/codex_account_runtime.py",
+      "sha256": "9868e82bab3cf2d814043efa88ad8d798a57ef2fe5b357c02cfee80e15b1e7a6"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/codex_installation.py",
+      "sha256": "aa2599185f1e8eb75957b15c753f99a04163fbeff2cec76fef2316ef1bf2577f"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/config.py",
+      "sha256": "62a43dc56bbd34102f24700a7b7732abd5e126e2a745fdd0ebab70599596ed98"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/container_engine.py",
+      "sha256": "66e7ffbd8df03ec96ae08fc714d9af4535d092e4d1722dc4d326284157550905"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/control_console.py",
+      "sha256": "6694feaa4f88b50455e4d81cfa6be1f302cb43526e9792a3ffae120231ba8037"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/control_console_api.py",
+      "sha256": "9252f0c3c81f88466b6d2cd12b1c811deb5d577b78b929d463f2f88375fade7d"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/control_console_d0_main.py",
+      "sha256": "d5d9941f0e82c24fe9b04f55668b4a3b68cc26cc8ba7cdf3b08301b73b5c2637"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/control_console_models.py",
+      "sha256": "0105f2a7a97db0fb762c7cd7eda609bd72a0bcde3836d002b401d62ef55c2777"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/controlled_artifacts.py",
+      "sha256": "12579e4ee8426bc10897385373caccd14b279ac32bf1acb75330aeefb2f4e000"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/database.py",
+      "sha256": "9717eab1811511b1594ab73859abf1f1bdd2366d41927a685eb6533dc6a4e927"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/dataset_public_execution.py",
+      "sha256": "6e8ce4db42e0508b0cec91f0ef07b39f7f69cc4b5a106431c8fd90ce94d18e8f"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/dataset_public_pilot.py",
+      "sha256": "43207b58f61ca60d924ab46a0f9f70a87e3b8d7b8128e3281d1d1f508f65e6e8"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/dataset_public_pilot_assurance.py",
+      "sha256": "70e220d283a608697380eaf12c5688d2d28327ebe7d7e75d4887df3a920f3672"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/dataset_public_pilot_ledger.py",
+      "sha256": "2bc97b59ece84f65b016ce9b508e20861d2d469cba92801f5b251fddbbbfe2c4"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/department_cockpit.py",
+      "sha256": "07fb5986efce7490d5e1756c75b93042749165d28d3d6c0e38eea43afeda3023"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/department_cockpit_api.py",
+      "sha256": "9e55d44bd61a3ac8ff36e128409b96df3f0f3645192cba431538277a1f73688e"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/department_cockpit_d0_main.py",
+      "sha256": "2ad4ee79319fc55d1b277f23163415945a10b89d681eb87de54bb073c2a3a617"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/disease_r2_provider_handler.py",
+      "sha256": "0b66e24f868dd592db400274633c4e545e44c3f993bdd333d18b5d33af1cd7b1"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/full_chain_enablement.py",
+      "sha256": "c2a38977d7e771fc9990e96df7ea2da798fa45ce5b7ba490018ba06e4996981a"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/governance_catalogs.py",
+      "sha256": "b95398f30a24418059b3ec38635d22d1f6649032bf2c6e4352e2070c72a099bf"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/governance_catalogs_api.py",
+      "sha256": "862c8ca5a82de32f38228608c350e1ea710f4311bb2f6fc6269010f6d6e5329f"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/lan_stage1.py",
+      "sha256": "c857abbc5e597304eb676d0f009dc0d950dc2ec978dccef43c1c08bb827820bf"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/lan_stage1_api.py",
+      "sha256": "215932cddf04e9ea0e6d19e02d32af67254155b0864061ec233cb42ae87c4d2f"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/lan_stage1_main.py",
+      "sha256": "7f57ec17245b6b619ac1eacceabdbed11865137441268ad2d3aab7307409e9dc"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/lan_stage1_models.py",
+      "sha256": "bb22f2b770c52cc3cf7a148de8100fb861ac658d3ba79846da46d11d9587dc4f"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/local_operator.py",
+      "sha256": "13ee607502855aae75081b39351e40e25c38aeb616fefdde7814d3def80fc552"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/local_pilot_main.py",
+      "sha256": "fd1ab9beb7c8680fc499e2d4dc8b1be1569b4c58b5d30a5f289ef36263428443"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/main.py",
+      "sha256": "33c0fba27170164bd3bc8c2ac447e38de6b9702fc5b6af095d9fd3ae538b1e99"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/managed_components.py",
+      "sha256": "a6a6cf60068780a1461b34ec340cf3035a8caddcb1283be268b18eefd74e8b76"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_catalog.py",
+      "sha256": "a3c73b80fe3edae9e53d21e35177013eba13523bb9eafdb8e0542cf33e9a60ad"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_catalog_compatibility.py",
+      "sha256": "d0da8817434c92891f3abbf3fd02b4d68ffd9d692a5c2a7b0242af5c9283465b"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_catalog_exchange.py",
+      "sha256": "8c949ec247ed460795dceb389d3bf7880f24f7ba3cf96803b76fa85d0e87c710"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_catalog_models.py",
+      "sha256": "4c4a4ff2b9553913bda77cadbae655d26529b9cbd6406f47a649b4c613e9b479"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_catalog_transactions.py",
+      "sha256": "db77fb2ef323b965f9c92c305f83b59f034e6ab7d63a5a343b0a32cfa74db0fd"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_key_validation.py",
+      "sha256": "328022bb0d6c1a4f1f1880ba82093738616936ec9d9c10f83a204e5171cb75ae"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_route.py",
+      "sha256": "cd08ee6849c9f469d916c9684ffd47c7c071a9973e892f1e75c635cf42978921"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_route_cli.py",
+      "sha256": "c64ffb014576d2e35a14e980c79ce1f807c45b85495e88b1700f70cacf99a780"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/model_route_credentials.py",
+      "sha256": "18c00e00eb5b531061022c8b7cac47f93e5b05a7f7171827660d3f62468e4747"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/models.py",
+      "sha256": "9ec3d9bb7d77dfb98fd37de0298cbbf64e682dbd7f0f274e3b75baa4cfc0a9c5"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/pipeline.py",
+      "sha256": "a283e1b6c03ede6e618bdb4ada8cd548090362a4048525fc99be8020419ce5bd"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/provider_evaluation.py",
+      "sha256": "b54beab623c6b20204cc3dfd410155d7b6583599e1b398cc6133bc09a922f382"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/public_pilot_execution.py",
+      "sha256": "bcd9806e8bb074fddb78502d4188001e53c5c79d3401a1ca798e07d2fd66cc93"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/repositories.py",
+      "sha256": "d56ede9cec0a3052a464b39e1debe5345dcaf2908726be3f995c3a914fe362a9"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/runner_main.py",
+      "sha256": "b56c8bea61d51421c89034fb843f1e4eea56e650fa73f35a728d2d2a35adddb2"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/runner_queue.py",
+      "sha256": "fa1e31419ad6fd078bed27b5bdd4963a264143c86f87bc9d9fb24cce3dd469ce"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/runtime_adapter.py",
+      "sha256": "d05cddb17d1e401d8025603230d3710a7d9ca815875c01cc766664f09bcfac8f"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/runtime_artifact_api.py",
+      "sha256": "ea652522fbd9fafe20dc2b52e06143ea5ac28b9360c022968d75795ee38be394"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/runtime_artifact_models.py",
+      "sha256": "605431ddbddc6c7e41be6aa65711c3d28038447c8370d055a8c986ad80110417"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/runtime_artifacts.py",
+      "sha256": "063224e94dc19ac5f945a636ccd097c074620eebafce317cf6793c7412df0fe2"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/runtime_stage.py",
+      "sha256": "64ab8ff3152e1cfd947644f9866c71a05da222cf0ee2f1e7e6ccebcdd972d819"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/security.py",
+      "sha256": "3854c4d4efcec34aed955d43f3d7c355a902d06747c4789351740301bf4473b9"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/semantic_authority.py",
+      "sha256": "38e9ddc0246fc5245b5177ba219ea0a58657a81c7231a6100a3c4051625d653c"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/tool_lifecycle.py",
+      "sha256": "530e26095547691a2582cd37c9b8c219582d3406e70dde8e9da784e5dd0c5748"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/tool_registry.py",
+      "sha256": "965049a2409e1ead12e4972eb5e45bac88aedd33f0fc43bbb56f38339ff22efb"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/watchlist_execution.py",
+      "sha256": "eb817be2a846be6846664fea60d7b673ef139d101e818307f537b3894536d457"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/watchlist_process.py",
+      "sha256": "a7b7ff43676ac5c53cf4cdd831c38a0a7ecee9eeeddcc7410db5376b29affc91"
+    },
+    {
+      "path": "src/orbit_agent_control_plane/worker.py",
+      "sha256": "d9c74e2b1b3832a9ffa780b2d4d07618c5daaabf9a1c2f1a6c3baa9695b3b8ed"
+    },
+    {
+      "path": "tests/disease_r2_fixture.py",
+      "sha256": "b57de3be6494f21c31a2ad33030ff963309e58d3e7da2dcd9e753fd5850e3b25"
+    },
+    {
+      "path": "tests/fixtures/department-first-install/docker-jammy-amd64-offline.json",
+      "sha256": "6847136321c652661dc21547bfee83424d8d47159b24238d6ef7afcaf4935585"
+    },
+    {
+      "path": "tests/fixtures/disease-agent-e4-evaluation.synthetic.yaml",
+      "sha256": "a6099aae0329c8c4b6d447c61ebcfc656b1a1632c6d370751b6eb302b99c198e"
+    },
+    {
+      "path": "tests/fixtures/disease-agent-release.e4.synthetic.yaml",
+      "sha256": "235d2d112b30b61e05b7007c5319d38d029ebb210652ad770f15a124ea4540f8"
+    },
+    {
+      "path": "tests/fixtures/disease-r2/scope-decisions.fixture.synthetic.jsonl",
+      "sha256": "157846823aba84d7482502cfa4d4d00737ae1fb35cada0d9fbf36239170bd6c9"
+    },
+    {
+      "path": "tests/powershell/first-install.tests.ps1",
+      "sha256": "95299d204a29cc72df51b3adb4e6a773081f0a3a0f9ade508c0bdccf4dcf1555"
+    },
+    {
+      "path": "tests/powershell/initialize-flow.tests.ps1",
+      "sha256": "3d245a168540a3f36f34c4674537ef358287f159e845c6d6f216d91a85f4093f"
+    },
+    {
+      "path": "tests/test_authorization.py",
+      "sha256": "3dcf6c2b89e474f3aab5159d5c299b89faaf6fcd4c84f31dff0c561c3a7a0a17"
+    },
+    {
+      "path": "tests/test_automation_supervisor.py",
+      "sha256": "89200da4e53bfcfda3123cf2a71182c4b03f09936ffca55a0af9caf18ad9b7af"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "sha256": "11e4cb4e2923304debef07df9fa46deea8e106bafb7dc9f3853485f1b7f4213d"
+    },
+    {
+      "path": "tests/test_closed_loop.py",
+      "sha256": "875df9172a767be47ff0d4b3a048c097cfe290eb87ab42e029b62d8ffc80acb5"
+    },
+    {
+      "path": "tests/test_cockpit_audit_readiness_regressions.py",
+      "sha256": "f3a4441eaacb779f5cd80288ff5659ac4c8f91cc1926e274e30b40862f950cb2"
+    },
+    {
+      "path": "tests/test_cockpit_lan_build.py",
+      "sha256": "ba43ae7a19f9ce61939652b2aaaedec73f43f1fa09553c1e79fb2ce5aaf9aaad"
+    },
+    {
+      "path": "tests/test_cockpit_local_identity.py",
+      "sha256": "aaffd4654e72d7fb01723f4bf2098beab5a56212b856b31756bfd509c61e809a"
+    },
+    {
+      "path": "tests/test_codex_cli_lan_distribution.py",
+      "sha256": "5eba320f41810c25485af072053c66cfce1034e9c0483cbb40e43f4ff93c4b01"
+    },
+    {
+      "path": "tests/test_codex_installation.py",
+      "sha256": "849f0d8d5d95299fd784f01aa7d74df5a65f6f3ba1014bfde2e9774ac6e2be49"
+    },
+    {
+      "path": "tests/test_codex_installation_migration.py",
+      "sha256": "89fd6fcedabf595e8c1030ccdf303c01960f99a52d11ed7eb511ce120216d086"
+    },
+    {
+      "path": "tests/test_codex_receipt_release_binding.py",
+      "sha256": "331897643674a23892ee1948873d986a3576f8fbaa98f17ee4f925692a15289a"
+    },
+    {
+      "path": "tests/test_company_model_runtime_d0.py",
+      "sha256": "a7648998e6182e397c72a984d078c2bd5a84fabb114552d060c8ebb056c97aff"
+    },
+    {
+      "path": "tests/test_concept_profile.py",
+      "sha256": "c53fb2135f4ca994a102d6291344f4eb0390154c11569a985c255102b6277cab"
+    },
+    {
+      "path": "tests/test_contract_lock.py",
+      "sha256": "04014e364fbda71484a7bb18509e2df123d8bde57a9eb82fa710225cb5236fe9"
+    },
+    {
+      "path": "tests/test_control.py",
+      "sha256": "4abb96f30f6e0b4f6a31b953086d04edcafe5bcf41f3f01297aebc413af790d4"
+    },
+    {
+      "path": "tests/test_control_console.py",
+      "sha256": "b9b7f2d073fdad1a2edda6e91e885413eb6e57095930bb5cde5c87b9d50eae49"
+    },
+    {
+      "path": "tests/test_control_console_api.py",
+      "sha256": "7b15606d0c8f130e52067f4b7b8ccd4546d2786e8b900701d2c62f6d62859fad"
+    },
+    {
+      "path": "tests/test_dataset_agent_process.py",
+      "sha256": "9506c08b8cb99b42bce650f20706d58c131666e9105c2496665c49dcd8298cc0"
+    },
+    {
+      "path": "tests/test_dataset_evidence_acceptance.py",
+      "sha256": "dd42534d57ec65ac70248ec5a6391092d7f06f721948e56f2ab7563890602899"
+    },
+    {
+      "path": "tests/test_dataset_evidence_acceptance_cli.py",
+      "sha256": "d0539079b4c55b1a60b0d1383d2c4b006b35955f31f795e26587b7a3b5ef4e9d"
+    },
+    {
+      "path": "tests/test_dataset_execution.py",
+      "sha256": "31cf909a1b79be23fe38286e0b2d4b893e99d56e4ef281f730526f90787ae1f7"
+    },
+    {
+      "path": "tests/test_dataset_public_docker_harness.py",
+      "sha256": "64fb23788daec0a9ecf901a1d9ea302a87ff528f49508ffb61d780c9b4b9c266"
+    },
+    {
+      "path": "tests/test_dataset_public_execution.py",
+      "sha256": "0e340a24f97db8749a7a9a148d601ecf7e15fd6151164b373ecc56d53ad75080"
+    },
+    {
+      "path": "tests/test_dataset_public_full_chain.py",
+      "sha256": "4be78b1b5137ca01ed825fe2af912aeff241f1bb000f5d91186ccba8a67608dc"
+    },
+    {
+      "path": "tests/test_dataset_public_pilot_assurance.py",
+      "sha256": "ba15f8a7ac13171daf9738208f33f0217d02daa2db63b734f02f30a7763a9847"
+    },
+    {
+      "path": "tests/test_dataset_public_pilot_ledger.py",
+      "sha256": "48095c8f61a6a3171ff812157c6aeec128ca6d0a3f4080a9c6a6bf6bc6234713"
+    },
+    {
+      "path": "tests/test_dataset_tool_d0_evidence.py",
+      "sha256": "9b7174d1193bfb00874a4a5bdef4cec8f29ccc20a9a3af4cd59881e082050b36"
+    },
+    {
+      "path": "tests/test_delivery_workbench.py",
+      "sha256": "df78459bad348734567f0280f3b906d67dd5d65de6243b3074726cc603190480"
+    },
+    {
+      "path": "tests/test_department_agent_catalog_closure.py",
+      "sha256": "bc6739c693efe485e1dbbb7e48898f80039208d96dd5530e5c24179e98a1e91c"
+    },
+    {
+      "path": "tests/test_department_cockpit.py",
+      "sha256": "5bb0c30e49c61048e0b5bcf1fb3964749dfe324bd934d3ff581916cabb1991fb"
+    },
+    {
+      "path": "tests/test_department_cockpit_d0_main.py",
+      "sha256": "aef8a93b17774b987ea40bcaaca87f3d314fff5d93b31b4827851555ca29bc99"
+    },
+    {
+      "path": "tests/test_department_device_quick_pilot.py",
+      "sha256": "64e4710ee6e732b3ec0b61028abe7c54656c662d0cf2880d949c316ea4c7e5e8"
+    },
+    {
+      "path": "tests/test_department_discovery_forms.py",
+      "sha256": "ff84b9da8d510cb115e9025d43c726a36a994f353436d1803b746cfdcddec32f"
+    },
+    {
+      "path": "tests/test_department_first_install.py",
+      "sha256": "baf8853ef0cee7887c010adc2541730f777162ff2056317f54cc8056fa66b9d6"
+    },
+    {
+      "path": "tests/test_department_wsl_native_transport.py",
+      "sha256": "8319de70023a2c333d6ba6973ab058e300195d8f475447f852cfc1452ff5cafd"
+    },
+    {
+      "path": "tests/test_disease_agent_e4_docker_runner.py",
+      "sha256": "66ef95bc787546f2a583bd0a247769c3b88084596df3d8911fa454fc07115f73"
+    },
+    {
+      "path": "tests/test_disease_e4_evidence.py",
+      "sha256": "a18fe5e7490ddaabe85401bf4e02e7339c8a3ce0f4d80fb724da402464656764"
+    },
+    {
+      "path": "tests/test_disease_r1.py",
+      "sha256": "ea6a39c6a3281e5a55d72208cdb701f808dc095886e538fad9570f57d724de78"
+    },
+    {
+      "path": "tests/test_disease_r1_docker_runner.py",
+      "sha256": "29d44ec3ad0d9676a534d1fbc8e5fb1ff6a3dbaa014b7a72d8c9795501fc13eb"
+    },
+    {
+      "path": "tests/test_disease_r1_execution_evidence.py",
+      "sha256": "54ff2ea24aea3521dd676daf9cb3092e8320fc00fed7824f8ca8b74083789daa"
+    },
+    {
+      "path": "tests/test_disease_r1_ledger.py",
+      "sha256": "2c78c33da799e3ba7d93a826f64ad53f7d5e07f17f831a04f34ba688c97aff14"
+    },
+    {
+      "path": "tests/test_disease_r1_review.py",
+      "sha256": "977aa934a1ab66687d450b18931a0cac56a6a26541a59fb34fc85a5022e9f924"
+    },
+    {
+      "path": "tests/test_disease_r2_automation_policy.py",
+      "sha256": "db0e0b64540c64c10d4335bb8f28195d5d0849789f7c547a4f94908df1d9a765"
+    },
+    {
+      "path": "tests/test_disease_r2_candidate.py",
+      "sha256": "211e325dd2d080f037181855f24244a7fc86383f275eb948801afd8801724204"
+    },
+    {
+      "path": "tests/test_disease_r2_execution_ledger.py",
+      "sha256": "06d4394f1984e6b34ee8731f3a6564574623d4a14fdd95fb79ec1ae58deee7b2"
+    },
+    {
+      "path": "tests/test_disease_r2_execution_review.py",
+      "sha256": "890c48339f6d731e42a88e063b57650e71c45c2af27cfbb7fb3e5fa69eb1c201"
+    },
+    {
+      "path": "tests/test_disease_r2_execution_worker.py",
+      "sha256": "78173f263389d69cd54add2f51cb35034e6c5375dc3bd19bccf7c308595a243e"
+    },
+    {
+      "path": "tests/test_disease_r2_governance.py",
+      "sha256": "5d3fbd0d7850f367d3525bbb5a4f88882082befaf52e6a4de44bc2a640039f89"
+    },
+    {
+      "path": "tests/test_disease_r2_literature_port.py",
+      "sha256": "6ad2efa31cb91f8bd83cfaa9b699d2bb6774b8fc6e05327d14ee06eb3a0dcbb2"
+    },
+    {
+      "path": "tests/test_disease_r2_model_gateway.py",
+      "sha256": "56100697bd9e048538e727a78aac699a0e17152c51e2cd5b1b1098d385801e8f"
+    },
+    {
+      "path": "tests/test_disease_r2_orchestrator.py",
+      "sha256": "843071b1aaf2c4aa7f04b5b5ed16d9bcc2c29159bfd1fc997091a5b1142076ff"
+    },
+    {
+      "path": "tests/test_disease_r2_qualification_adapter.py",
+      "sha256": "9d5f441f779eceb3537d31b66c0d7fcccb81c60141e80e0a3b7620139f21c34c"
+    },
+    {
+      "path": "tests/test_disease_r2_stage_hooks.py",
+      "sha256": "c36df83f1fb09d1acd0f2770c04360be7341aae67cdd298d6a6fdbfa4e4a6040"
+    },
+    {
+      "path": "tests/test_disease_r2_v4_review.py",
+      "sha256": "b8f85e0e43e619ffa733c743b83fd06fd8326eeb0cf2c5b080edf2b73b33f14b"
+    },
+    {
+      "path": "tests/test_evaluator.py",
+      "sha256": "3704213c6843a94c102819078e82b726b9cb21cd9fb8ffd08dfe792f524b6a8a"
+    },
+    {
+      "path": "tests/test_full_chain_enablement.py",
+      "sha256": "55e5173340f4082eba7336b1e499f01e306dc14615ce9e8d57e9709763c102f7"
+    },
+    {
+      "path": "tests/test_full_chain_pilot_review.py",
+      "sha256": "c95ee2ce4009ff737b85e8450d13b635f2c398c864930fca239d24debcc3cf41"
+    },
+    {
+      "path": "tests/test_full_chain_supervised_successor.py",
+      "sha256": "3807cb6235d7153025bea972e5016535dfc321281c41e367345a18b35fd0b45b"
+    },
+    {
+      "path": "tests/test_governance_catalogs.py",
+      "sha256": "bd668d5f1afc6aece18d74c1207d4e2cc2671a9c2198a6943825a897f3816464"
+    },
+    {
+      "path": "tests/test_governed_pipeline_model_route.py",
+      "sha256": "a96525d4eb88ecb0810629a0bad8d411408b0204c1632530db4f458124e75813"
+    },
+    {
+      "path": "tests/test_hermes_runtime_artifact_bundle.py",
+      "sha256": "85e248dc156274e29803919e3ffd1ebc4ac5d11ef244c754ea95a6118f2136e9"
+    },
+    {
+      "path": "tests/test_lan_assisted_maintenance.py",
+      "sha256": "069da0ed1dcdb7d0beb815e22d5c8f28de46d971e0b75c20afa31f330704ab83"
+    },
+    {
+      "path": "tests/test_lan_department_observation_migration.py",
+      "sha256": "f044df0cd4f4c9a0a139ac4002e5137abb23234800cf159fbe7df86e775ab7ed"
+    },
+    {
+      "path": "tests/test_lan_host_installation.py",
+      "sha256": "030ef3f3e089e52519078aa82f25a57d4579c7d4f9091bb966a82d742ad668fb"
+    },
+    {
+      "path": "tests/test_lan_stage1.py",
+      "sha256": "97531ea83771548dc83e8465b3dba616fa0a9d753fb7cd4567088c42fce423fa"
+    },
+    {
+      "path": "tests/test_lan_update_recovery.py",
+      "sha256": "66914e4019566cb37ae34b73f930135ee27157254ab624aae360a024504713e8"
+    },
+    {
+      "path": "tests/test_ledger.py",
+      "sha256": "8fa49e23c2f2af5f6d9f2fff79929827f9b4bbfa3a4481fc13591e27a9f0ad7e"
+    },
+    {
+      "path": "tests/test_lifecycle.py",
+      "sha256": "784b6a64db14b0b7e58ad4d933cea231a8e0030c1adf409e5eb6187e87b479ff"
+    },
+    {
+      "path": "tests/test_lifecycle_assurance.py",
+      "sha256": "4b4a5770e72cc22aad076ab032e4d67f2cc1eade2d0f4e73f7f5b11c9b36a456"
+    },
+    {
+      "path": "tests/test_lifecycle_cli.py",
+      "sha256": "929a38ce019243a4d2f2ed7eab8bb2fe928b7623deeb0686c9abf70e38b9e7dc"
+    },
+    {
+      "path": "tests/test_lifecycle_intake.py",
+      "sha256": "707e94fa5b9d04541a7eb265b41f8c3c9de0d8565086427d8bbd158ffc13b14a"
+    },
+    {
+      "path": "tests/test_lifecycle_review_skill.py",
+      "sha256": "e8c30f00e2693645db3f27fc1bc8ad9c0579b2638d36204634f2095d2f810e3a"
+    },
+    {
+      "path": "tests/test_live_campaign.py",
+      "sha256": "d004d90e4fad6deb1eea33e77bae79e7c56ccbf2455a4156747e9e01ea2fcea5"
+    },
+    {
+      "path": "tests/test_loopback_d0_assets.py",
+      "sha256": "543a02fec41b2c72b7028f934f603e18cf775fe2884f649438a5a8afbd11e3bb"
+    },
+    {
+      "path": "tests/test_managed_components.py",
+      "sha256": "eedd3d6d9828724ac6d44415d2062bca44227b6a73a5f587a8472472605d4364"
+    },
+    {
+      "path": "tests/test_minimal_validation.py",
+      "sha256": "243763f23f4dc482863797ee119298a8088879150af78570716f66081ff13d6f"
+    },
+    {
+      "path": "tests/test_model_catalog.py",
+      "sha256": "61dbcf9b1739e57cddea000723dbde92eb24623acfb9e1811e81674fef256629"
+    },
+    {
+      "path": "tests/test_model_catalog_api_flow.py",
+      "sha256": "dfd76680531ac3c7e401d082ba36faecb6de997327198c53f1342f1684218688"
+    },
+    {
+      "path": "tests/test_model_catalog_authenticated_flow.py",
+      "sha256": "41623bc136c92613bf738fe11923060c66a1fb26b4b58a6826e2ed5ba89605f8"
+    },
+    {
+      "path": "tests/test_model_catalog_integrity.py",
+      "sha256": "7101e05412befb26bf2a278bdf28495c678f81d8c4c769b22f76c4b9621dbeba"
+    },
+    {
+      "path": "tests/test_model_catalog_migration.py",
+      "sha256": "7f2bcf02c01dd3c99f5255a13d6e0483cf785f9b8a84c0ef3df01f25dd4e0613"
+    },
+    {
+      "path": "tests/test_model_key_validation.py",
+      "sha256": "d8ab2586dd7d27b77f2ce84e9ccc3ba48c89d3336c60ed3ef2bf551e19b406a6"
+    },
+    {
+      "path": "tests/test_model_route_authentication_migration.py",
+      "sha256": "77337fddc0276a4dc2e026bf1f65d8b9bb5cff203d3a8c48012e78d9f2c4575d"
+    },
+    {
+      "path": "tests/test_model_route_credentials.py",
+      "sha256": "3fab7a7f8b32cb5a679d43c7a23fba1fe5c8bd30c65d50e0afb65f5174f9f1c7"
+    },
+    {
+      "path": "tests/test_model_route_reconciler.py",
+      "sha256": "fc1f20dac0b56e4061157a41e0f0c8914648acaf04c79404089c07de5d84ec3d"
+    },
+    {
+      "path": "tests/test_offline_showcase.py",
+      "sha256": "8e4ef2fecd83bc52789add90ecf43bf149e0e93c740b38c4d98f479e6256b9f6"
+    },
+    {
+      "path": "tests/test_openai_compatible_model_port.py",
+      "sha256": "8b2a96ae291edc513eb5547c922b2e81de439be12cfc592772408b5e00711623"
+    },
+    {
+      "path": "tests/test_planning_reference_boundary.py",
+      "sha256": "883b4195ee2edd46a0e4f7d9e19f1bdc28f69820e0897ef7d9966d78a53e2e41"
+    },
+    {
+      "path": "tests/test_policy_activation_ledger.py",
+      "sha256": "e22ddf3e90085bd48ab8ce0d8ec406cbf41103ddab41e3b90e2bf0d6f49594fb"
+    },
+    {
+      "path": "tests/test_provider_environment.py",
+      "sha256": "fe29cf31a927ecbf7ff9efe5b5bc622ec4e0ae2a64d13bbba1df824bcb3469e1"
+    },
+    {
+      "path": "tests/test_public_pilot_execution.py",
+      "sha256": "38feb4a72998c1e90402d3a1015ec08f9cb0b3326506bae84a7105e75c3a97ee"
+    },
+    {
+      "path": "tests/test_public_pilot_review.py",
+      "sha256": "720ecad637aa8a572c680aa522b43bbbe01755a4791a04af6563ce6a458aea2e"
+    },
+    {
+      "path": "tests/test_publication_baseline.py",
+      "sha256": "cadb16e4a0ec79ac2d40bc07b3071fdc287a3e970c9295b2f79f722b46957ac2"
+    },
+    {
+      "path": "tests/test_qualification_automation.py",
+      "sha256": "7ae34451f367004adf466ebb3efe99f2e3ff20ccd33fd0a2f402cd259ca972a8"
+    },
+    {
+      "path": "tests/test_qualification_service.py",
+      "sha256": "d3c08923706fb3fb206db8faa39a9edfd28ccc8080c57cd9d3735db0288cfd77"
+    },
+    {
+      "path": "tests/test_qualification_service_evidence.py",
+      "sha256": "33c0e018d35eaeaf91c39674437dd34fc2f459a4b59facf33a928fd27237a4d1"
+    },
+    {
+      "path": "tests/test_qualification_service_local_operator.py",
+      "sha256": "43e970fc771fc9607f0b44e82c20631f2ec077394de67dce1224e584b3fe7487"
+    },
+    {
+      "path": "tests/test_qualification_service_provider_handler.py",
+      "sha256": "8e1d2b96eea3360516043b3a4af3312ffa7aef0ad95ce8d19e4b56bc31573c82"
+    },
+    {
+      "path": "tests/test_qualification_service_runner_queue.py",
+      "sha256": "62446ef8d3d5d8d77975ca24b93bbfd61542a97df07d99853d85560dee8761cf"
+    },
+    {
+      "path": "tests/test_qualification_service_runtime.py",
+      "sha256": "400f1446dbccd087d0d98366ca97f880bef1c448e6365e0f12d1ebd39872d0bc"
+    },
+    {
+      "path": "tests/test_qualification_service_runtime_adapter.py",
+      "sha256": "33d36a4fae8fc2eb7aaaee9c52607441522a972498ad85bf9b6506814fc9b741"
+    },
+    {
+      "path": "tests/test_qualification_service_security.py",
+      "sha256": "db1bc35322ff20f30acbf20404b3f706537324e7601cfafc500f31b25b025f20"
+    },
+    {
+      "path": "tests/test_registration.py",
+      "sha256": "046a7f0125184618695b5b433dce07c2e0481b41bcb3d1ec04ec683933e2ea14"
+    },
+    {
+      "path": "tests/test_registration_cli.py",
+      "sha256": "7b3ec0c8992950bc04713d7a58c020b3494ace78c7ee64c0ccb185023b1caae2"
+    },
+    {
+      "path": "tests/test_release_candidate.py",
+      "sha256": "837b412df556bf2cfa9329dfbdd6d7439c81ea2b8ce5e18873e836a6243c375c"
+    },
+    {
+      "path": "tests/test_rework_content_contract.py",
+      "sha256": "d6d6da319141d5928df5ca08896e8043ce4adcdd841d22224091e54c1a59e3e1"
+    },
+    {
+      "path": "tests/test_rework_decision_checker.py",
+      "sha256": "11be92d3e1587e84bcd2f1da88a0b9822b46574643502b9bca1fb0e042c1d7db"
+    },
+    {
+      "path": "tests/test_rework_native_boundaries.py",
+      "sha256": "0eb379461a9f59d9a0bfec451476ac1c6ac4defb9d6b6bee44df0a860b592ed3"
+    },
+    {
+      "path": "tests/test_router.py",
+      "sha256": "fa3863e4369b868864b066cf85e38f6c621b4e9c307f3114bcf1f996a2686315"
+    },
+    {
+      "path": "tests/test_runtime_artifact_source_lock.py",
+      "sha256": "bc97603cc6787badee2b1ed14b9484fb27a1997ca094a2d030c60fabb7613add"
+    },
+    {
+      "path": "tests/test_runtime_artifacts.py",
+      "sha256": "a4d29c1fc9e0c6cfd56d5df5859ca2633ac8b0770b3a6cf2137953bf04e3d9d7"
+    },
+    {
+      "path": "tests/test_runtime_composition.py",
+      "sha256": "7acda463876295f4c75daa4dc7a085766cd67e516c2d7ac3448e8d1b1816a8e8"
+    },
+    {
+      "path": "tests/test_runtime_source.py",
+      "sha256": "2381f4c9cc16ba9c5cf539bf11c7c1c9d0954de83dacb5bf83e74cddc8fbd61f"
+    },
+    {
+      "path": "tests/test_sharing_live_validation.py",
+      "sha256": "51ff60e920c4a52dce357d296eb19cc3aaff3ebcf005d2d0597072296a0e340b"
+    },
+    {
+      "path": "tests/test_sharing_semantics.py",
+      "sha256": "20a8b93d25b0f8f8527b7ac9ff7771a0115eabebce81fa827f555ed0eb68a218"
+    },
+    {
+      "path": "tests/test_snapshot_view.py",
+      "sha256": "03736a4649c57d817e2e586d854c4d319f34dc01eeb265a237f11f7baa2e80b3"
+    },
+    {
+      "path": "tests/test_technology_transport_upgrade.py",
+      "sha256": "6d484300ffec11942ac4bed5f4589281a984c7a6e90c2b015df8a88b0be0ef77"
+    },
+    {
+      "path": "tests/test_tool_lifecycle.py",
+      "sha256": "8339e9095c3107bfa2d5e3d78fa554734133d70e7385a8df307f28efe6f46556"
+    },
+    {
+      "path": "tests/test_tool_registry.py",
+      "sha256": "962eec4525315f4b2459bde29e1d628e576a692359287d5cf59d14d4b5707bfa"
+    },
+    {
+      "path": "tests/test_watchlist_execution.py",
+      "sha256": "843c84bddfeec1c70dd43e64fa4d1b5d78b652015a3663fd7b62b2adf23b8ad3"
+    },
+    {
+      "path": "tests/test_workbench_live.py",
+      "sha256": "76f7863b3530dce7f54c7e7eca6ce5391a0b1d27b47db4fa875cca3be890fbf5"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "8c01f3cbb1f7b8532df6a56c380125d07b420692a63d1c66728fcfa8384047a0"
+    }
+  ],
+  "packaging_note": "Generated egg/dist metadata excluded before initial Git commit; no private runtime included."
+}

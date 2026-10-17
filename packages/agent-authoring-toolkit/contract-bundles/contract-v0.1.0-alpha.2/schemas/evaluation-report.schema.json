@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "EvaluationReport 保存独立评测证据和建议；Evaluator 不能通过该对象自行批准发布。",
+  "$id": "urn:company-ai-os:schema:evaluation-report:0.1",
+  "title": "Company AI OS EvaluationReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "EvaluationReport" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["report_id", "version", "status", "evidence_status", "synthetic_only", "produced_at"],
+      "properties": {
+        "report_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "version": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/semantic_version" },
+        "status": { "enum": ["draft", "final", "superseded"] },
+        "evidence_status": { "enum": ["synthetic", "architecture_reference", "verified_runtime"] },
+        "synthetic_only": { "type": "boolean" },
+        "produced_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "evaluator",
+        "suite_refs",
+        "case_refs",
+        "execution_context_refs",
+        "metrics",
+        "failures",
+        "risk_flags",
+        "verdict",
+        "release_recommendation",
+        "release_authorization",
+        "independence_attestation",
+        "limitations",
+        "audit_event_refs"
+      ],
+      "properties": {
+        "subject": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "id", "version", "digest"],
+          "properties": {
+            "kind": { "enum": ["agent_definition", "agent_release", "task_result", "runtime_adapter"] },
+            "id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+            "version": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/semantic_version" },
+            "digest": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/digest" }
+          }
+        },
+        "evaluator": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["agent_ref", "human_owner_role_ref"],
+          "properties": {
+            "agent_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+            "human_owner_role_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/role_ref" }
+          }
+        },
+        "suite_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" } },
+        "case_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 240 } },
+        "execution_context_refs": { "type": "array", "uniqueItems": true, "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" } },
+        "metrics": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["metric_id", "value", "threshold", "passed", "evidence_ref"],
+            "properties": {
+              "metric_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+              "value": { "type": "number" },
+              "threshold": { "type": "number" },
+              "passed": { "type": "boolean" },
+              "evidence_ref": { "type": "string", "minLength": 3, "maxLength": 240 }
+            }
+          }
+        },
+        "failures": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 500 } },
+        "risk_flags": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 240 } },
+        "verdict": { "enum": ["pass", "fail", "needs_review"] },
+        "release_recommendation": { "enum": ["recommend", "do_not_recommend", "insufficient_evidence"] },
+        "release_authorization": { "const": false },
+        "independence_attestation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["evaluator_is_subject", "evaluator_modified_subject", "evaluator_can_approve_release"],
+          "properties": {
+            "evaluator_is_subject": { "const": false },
+            "evaluator_modified_subject": { "const": false },
+            "evaluator_can_approve_release": { "const": false }
+          }
+        },
+        "limitations": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 500 } },
+        "audit_event_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^audit_[a-z0-9][a-z0-9_-]{2,79}$" } }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "AgentDefinition 只定义框架无关的业务身份和治理上限，不是部署配置或有效授权。",
+  "$id": "urn:company-ai-os:schema:agent-definition:0.1",
+  "title": "Company AI OS AgentDefinition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "AgentDefinition" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent_id",
+        "version",
+        "display_name",
+        "status",
+        "evidence_status",
+        "synthetic_only"
+      ],
+      "properties": {
+        "agent_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "version": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/semantic_version" },
+        "display_name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "status": { "enum": ["draft", "evaluation", "active", "suspended", "retired"] },
+        "evidence_status": { "enum": ["synthetic", "architecture_reference", "verified_runtime"] },
+        "synthetic_only": { "type": "boolean" },
+        "reference_role": {
+          "enum": ["public_researcher", "architecture_reviewer", "evaluator", "company_task_router", "other"]
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent_kind",
+        "purpose",
+        "responsibility",
+        "system_prompt",
+        "skills",
+        "capabilities",
+        "memory",
+        "model_requirements",
+        "permission_requests",
+        "max_autonomy",
+        "output_contract_refs",
+        "evaluation",
+        "lifecycle"
+      ],
+      "properties": {
+        "agent_kind": {
+          "enum": [
+            "company_agent",
+            "platform_orchestrator_agent",
+            "department_manager_agent",
+            "specialist_agent",
+            "execution_agent",
+            "task_agent"
+          ]
+        },
+        "purpose": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["statement", "allowed_outcomes", "prohibited_outcomes"],
+          "properties": {
+            "statement": { "type": "string", "minLength": 10, "maxLength": 1000 },
+            "allowed_outcomes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1, "maxLength": 240 }
+            },
+            "prohibited_outcomes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1, "maxLength": 240 }
+            }
+          }
+        },
+        "responsibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["accountable_role_ref", "human_checkpoints", "separation_of_duties"],
+          "properties": {
+            "accountable_role_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/role_ref" },
+            "human_checkpoints": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+            },
+            "separation_of_duties": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+            }
+          }
+        },
+        "system_prompt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["version", "digest"],
+          "properties": {
+            "version": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/semantic_version" },
+            "digest": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/digest" },
+            "inline": { "type": "string", "minLength": 20, "maxLength": 16000 },
+            "artifact_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+          },
+          "oneOf": [
+            { "required": ["inline"], "properties": { "inline": true, "artifact_ref": false } },
+            { "required": ["artifact_ref"], "properties": { "artifact_ref": true, "inline": false } }
+          ]
+        },
+        "skills": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provides", "excludes"],
+          "properties": {
+            "provides": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]{2,79}$" }
+            },
+            "excludes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]{2,79}$" }
+            }
+          }
+        },
+        "memory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "allowed_classes",
+            "read_policy_refs",
+            "write_policy_refs",
+            "provenance_required",
+            "poisoning_controls",
+            "disposition_policy_ref"
+          ],
+          "properties": {
+            "allowed_classes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "enum": ["working", "episodic", "semantic", "procedural"] }
+            },
+            "read_policy_refs": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/policy_ref" }
+            },
+            "write_policy_refs": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/policy_ref" }
+            },
+            "provenance_required": { "const": true },
+            "poisoning_controls": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "enum": ["source_label", "content_scan", "human_review", "quarantine"] }
+            },
+            "disposition_policy_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/policy_ref" }
+          }
+        },
+        "model_requirements": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["usage", "capabilities", "allowed_data_classifications", "fallback_allowed"],
+          "properties": {
+            "usage": { "enum": ["forbidden", "optional", "required"] },
+            "capabilities": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]{2,79}$" }
+            },
+            "allowed_data_classifications": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/classification" }
+            },
+            "fallback_allowed": { "type": "boolean" }
+          }
+        },
+        "permission_requests": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tools", "data", "agents"],
+          "properties": {
+            "tools": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["request_name", "capability", "operations"],
+                "properties": {
+                  "request_name": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{2,63}$" },
+                  "capability": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]{2,79}$" },
+                  "operations": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/tool_operation" }
+                  }
+                }
+              }
+            },
+            "data": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["request_name", "classifications", "operations", "policy_refs"],
+                "properties": {
+                  "request_name": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{2,63}$" },
+                  "classifications": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/classification" }
+                  },
+                  "operations": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/data_operation" }
+                  },
+                  "policy_refs": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/policy_ref" }
+                  }
+                }
+              }
+            },
+            "agents": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["default", "rules"],
+              "properties": {
+                "default": { "const": "deny" },
+                "rules": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["operation", "target_agent_refs", "template_refs"],
+                    "properties": {
+                      "operation": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/agent_operation" },
+                      "target_agent_refs": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" }
+                      },
+                      "template_refs": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+                      }
+                    },
+                    "allOf": [
+                      {
+                        "if": { "properties": { "operation": { "const": "spawn" } }, "required": ["operation"] },
+                        "then": { "properties": { "template_refs": { "type": "array", "minItems": 1 } } }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "max_autonomy": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/autonomy" },
+        "output_contract_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+        },
+        "evaluation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["suite_refs", "release_gate"],
+          "properties": {
+            "suite_refs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+            },
+            "release_gate": { "enum": ["human_required", "human_and_security_required"] }
+          }
+        },
+        "lifecycle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["review_policy_ref", "retirement_conditions"],
+          "properties": {
+            "review_policy_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/policy_ref" },
+            "retirement_conditions": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

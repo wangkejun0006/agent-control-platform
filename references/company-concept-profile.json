@@ -1,0 +1,136 @@
+{
+  "profile_version": "orbit.control-plane-concept-profile/1",
+  "source": {
+    "repository": "fictional-studio/orbit-agent-architecture",
+    "commit": "f426d814bc69e16ed5c6f22c1c1445b6745316c2",
+    "catalog_path": "architecture/authority/concepts/concept-catalog.json",
+    "catalog_version": "orbit.architecture-concept-catalog/2",
+    "catalog_sha256": "sha256:d862c4f81ada477f6b8a60622a5f7803f7d85e261eba890027ab22ced96e6921",
+    "validation_schema_path": "validation/architecture/schemas/concept-catalog.schema.json",
+    "validation_schema_sha256": "sha256:e7d1186223653555b268448c6350e1cd6f3d6f572ef12af0cdc5e4e96c842af3"
+  },
+  "concept_ids": [
+    "orbit.concept/system",
+    "orbit.concept/platform",
+    "orbit.concept/system-composition",
+    "orbit.concept/agent-system",
+    "orbit.concept/agent-control-plane",
+    "orbit.concept/agent",
+    "orbit.concept/agent-definition",
+    "orbit.concept/agent-binding",
+    "orbit.concept/agent-template",
+    "orbit.concept/agent-capability-profile",
+    "orbit.concept/agent-release",
+    "orbit.concept/agent-registry",
+    "orbit.concept/tool",
+    "orbit.concept/tool-manifest",
+    "orbit.concept/tool-registry",
+    "orbit.concept/policy",
+    "orbit.concept/approval-decision",
+    "orbit.concept/model-route",
+    "orbit.concept/runtime",
+    "orbit.concept/runtime-realization",
+    "orbit.concept/runtime-adapter",
+    "orbit.concept/task",
+    "orbit.concept/route",
+    "orbit.concept/execution-grant",
+    "orbit.concept/runtime-composition",
+    "orbit.concept/worker-lease",
+    "orbit.concept/runner-worker",
+    "orbit.concept/agent-invocation",
+    "orbit.concept/runtime-event",
+    "orbit.concept/result-package",
+    "orbit.concept/evaluation-report",
+    "orbit.concept/receipt",
+    "orbit.concept/audit-event",
+    "orbit.concept/automation-policy",
+    "orbit.concept/qualification-run",
+    "orbit.concept/dataset-registry",
+    "orbit.concept/dataset",
+    "orbit.concept/artifact",
+    "orbit.concept/data-access-layer",
+    "orbit.concept/gateway",
+    "orbit.concept/scheduler"
+  ],
+  "authority_semantics": {
+    "effective_task_authority": [
+      "orbit.concept/execution-grant"
+    ],
+    "authorization_input": [
+      "orbit.concept/agent-template",
+      "orbit.concept/policy",
+      "orbit.concept/approval-decision",
+      "orbit.concept/automation-policy"
+    ],
+    "resource_enforcement": [
+      "orbit.concept/data-access-layer",
+      "orbit.concept/gateway"
+    ],
+    "evidence_only": [
+      "orbit.concept/runtime-event",
+      "orbit.concept/result-package",
+      "orbit.concept/evaluation-report",
+      "orbit.concept/receipt",
+      "orbit.concept/audit-event"
+    ]
+  },
+  "required_by_manifest_type": {
+    "lifecycle_review": [
+      "orbit.concept/agent-control-plane",
+      "orbit.concept/policy",
+      "orbit.concept/approval-decision",
+      "orbit.concept/evaluation-report",
+      "orbit.concept/receipt",
+      "orbit.concept/audit-event"
+    ],
+    "runtime_execution_review": [
+      "orbit.concept/agent-control-plane",
+      "orbit.concept/policy",
+      "orbit.concept/approval-decision",
+      "orbit.concept/task",
+      "orbit.concept/route",
+      "orbit.concept/execution-grant",
+      "orbit.concept/runtime-composition",
+      "orbit.concept/runtime-realization",
+      "orbit.concept/runtime-adapter",
+      "orbit.concept/worker-lease",
+      "orbit.concept/runner-worker",
+      "orbit.concept/runtime-event",
+      "orbit.concept/result-package",
+      "orbit.concept/evaluation-report",
+      "orbit.concept/receipt",
+      "orbit.concept/audit-event"
+    ]
+  },
+  "required_by_scope_kind": {
+    "automation_policy_activation": [
+      "orbit.concept/automation-policy"
+    ],
+    "agent_activation": [
+      "orbit.concept/agent",
+      "orbit.concept/agent-release",
+      "orbit.concept/agent-registry"
+    ],
+    "tool_activation": [
+      "orbit.concept/tool",
+      "orbit.concept/tool-manifest",
+      "orbit.concept/tool-registry"
+    ],
+    "model_route_approval": [
+      "orbit.concept/model-route",
+      "orbit.concept/gateway"
+    ],
+    "corpus_acquisition_approval": [
+      "orbit.concept/dataset",
+      "orbit.concept/dataset-registry",
+      "orbit.concept/data-access-layer"
+    ],
+    "r2_execution": [
+      "orbit.concept/runtime",
+      "orbit.concept/agent-release"
+    ]
+  },
+  "status": "read_only_consumer_lock",
+  "authority_claim": "none"
+}
+

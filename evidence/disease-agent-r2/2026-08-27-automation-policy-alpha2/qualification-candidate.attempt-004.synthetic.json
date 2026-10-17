@@ -1,0 +1,75 @@
+{
+  "agent_credentials": false,
+  "agent_direct_network": false,
+  "agent_id": "agt_orbit_disease_research_task_syn",
+  "agent_release_digest": "sha256:e41c15f412b87c39654978a628ac7704b5cbbb2915f41b3b9d4426cf7aa4b04a",
+  "agent_release_ref": "agent-release://agt_orbit_disease_research_task_syn/0.2.0",
+  "attempt_id": "attempt_orbit_disease_r2_v4_004_syn",
+  "attempt_number": 4,
+  "boundary_digests": {
+    "agent_id": "sha256:bc4c5300c964e1ba94a178cbaebf01838a5b2333892cfa89612f3dedb7860c3f",
+    "budget_ceiling": "sha256:53ec5943382dba4d3167d803859cf689a6c32030a53c3531c3911f93b3c7b17c",
+    "capabilities": "sha256:a7ee9e431daf53f1971b842f049640b076b425286fa3c5c265d00053c58ace0d",
+    "data_classification": "sha256:b801eb5eff88f0fd36cabf83da46e0714717fb8faba102ef406fcb5e7e37b082",
+    "endpoint_allowlist": "sha256:117aca2f9c1c8a96a423934fe2882221103d83c347a729f459dbec752510c49d",
+    "external_side_effects": "sha256:ff149fad00836113ef7b84d2924fc1353f65b235f4baad07b87ed96ced4f2df7",
+    "isolation_profile": "sha256:eae7a50ceb2d50cd501ef1553ec258d4832d76172f44af74f47bb575e53daaad",
+    "model_route": "sha256:cc69db539ebffaa9be662ab03c857e15bcb1bc2c9bbe1e3b1f3a0f03b5ebb139",
+    "owner": "sha256:c950231a5341aeb9d78dd6a003a4253abcc178302892bc86fd54d3b1d22019a2",
+    "purpose": "sha256:8e93f96cd8160517b22ebcf4fd38f1744a709a0736d5da973fa217996f80cb02",
+    "tool_operations": "sha256:b083cfc28714c2a1ba21894d480619a4407f459d26b631a5cf38ebf2d54d1a55"
+  },
+  "composition_digest": "sha256:53ec2355a4e84bed6405cac3bb233248b83fb071d81a7520f0a0aac2aec9c1cf",
+  "composition_ref": "composition://orbit_disease_r2/v4_attempt_004",
+  "data_classification": "public",
+  "endpoint_origins": [
+    "https://models.paper-orbit.invalid/v1/chat/completions"
+  ],
+  "evaluation_suite_digests": [
+    "sha256:b472675c9990434510ec520d7c48a22a542ed23961e64e33b3074cba016d1c5b",
+    "sha256:044f954d8b4b2a2566cde5b4e82f4601ed5b3d85c2e776994f82b4842e3c562a"
+  ],
+  "grant_candidate_digest": "sha256:ac7129c6071acf2d9824d988aba0e8b2b6eb2f6b2078d3f8fd828d67978d445d",
+  "grant_candidate_ref": "grant://orbit_disease_r2/v4_attempt_004_candidate",
+  "input_artifact_digests": [
+    "sha256:e41c15f412b87c39654978a628ac7704b5cbbb2915f41b3b9d4426cf7aa4b04a",
+    "sha256:bb796b5aa76f930566e78c599eb197282595b26f2523f7b062374b7c261d6b30",
+    "sha256:2af4bd9254b888670f6bf9b4932d6ac2ffd23d8874e5d44ea112485555135f08",
+    "sha256:aa1ead1dfa83cd93edbae0f995308ba90f1cfba3bb58ff5591fa80b1a3bd60e1",
+    "sha256:4ed7fe1ebb52f586b87275f0127dc1df42f62e62fbb4fa8435c3eed356d35ec3",
+    "sha256:4f84f4a1fa2e63c09dbf325fd21a9cf847d9b5670c7118213745feebf25c0d54",
+    "sha256:d77b373f94f41b80b1d005c84d167979f3819181ab4c447d099deac44260ac0c",
+    "sha256:3e368f0f187b82c00372238cfad4f8dba555250f15d44e5cdd60e8717c4933ac",
+    "sha256:86ceea4bd3829d2f885d2e37395c01b6919fa8676ed89389cfad05cd4809ee40",
+    "sha256:f8f548d87d16634d1ad9e3777280f3f577ba2358703f04e18e74007ffd3621bf"
+  ],
+  "isolation_profile_digest": "sha256:be699762f051fbf8e8d459027e2fef77dc033e7bb116014700f40d3d3f451b39",
+  "max_cost_cny": "1.50",
+  "max_cost_usd": "0.20",
+  "max_input_tokens": 24000,
+  "max_model_requests": 8,
+  "max_output_tokens": 2048,
+  "max_runtime_seconds": 900,
+  "model_route_digest": "sha256:8bc631ae8cf7fc7f2d07ac187eb5ca0d313de00818d77abfa7b2b4a04a5c74e7",
+  "nas_access": false,
+  "real_medical_data": false,
+  "release_state": "active",
+  "runtime_family": "framework_neutral_python_state_machine",
+  "runtime_source_digest": "sha256:9be1eec96939ae790b4a388226092941caa4033efde8c4973955b9587ec0729c",
+  "stage_handler_digests": [
+    "sha256:5ec0cfb16477bf6880967c5878e60e032dec93b86ff7ead6955f561c751300f2",
+    "sha256:e7e517092e081778b5b120b4ad29f0853d00b3423d1bdae5bfdb133dd186444d",
+    "sha256:fd60ff6af85f036454a6abb294aea38cc256dd064b943f51fd821cb544518827",
+    "sha256:42d00e4c6491c3b0320db6aa6d4fdf60117c015f0a73840b4342c1dfcad5332e",
+    "sha256:87d26e67c2ead5d146cf5c24fd4b0e3083c91010b22ff73d242215409ad38289",
+    "sha256:02df12b929709589254e73b424ee4a0c52fd89f912ed03e0e19232b62da1fa18",
+    "sha256:f0a48aef8b08a3e9f229daca9ecf86e4980d1770db8bf1de0b1cedcedc06ce1e"
+  ],
+  "task_digest": "sha256:34e19ea46d3330d37b6a6cd27e87a5c162740f54abf978a79a1e999704d27684",
+  "task_ref": "task://orbit_disease_r2/v4_attempt_004",
+  "tool_operations": [
+    "sha256:775e2996c5302a28e24d2b8b7b104788e0a782688ba847ae63c8a8b729b48f0d#fetch_public_record",
+    "sha256:775e2996c5302a28e24d2b8b7b104788e0a782688ba847ae63c8a8b729b48f0d#search_public_corpus"
+  ]
+}
+

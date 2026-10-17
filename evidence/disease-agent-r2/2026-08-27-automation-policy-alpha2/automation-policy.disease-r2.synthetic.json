@@ -1,0 +1,237 @@
+{
+  "api_version": "company-ai-os/v1alpha1",
+  "kind": "AutomationPolicy",
+  "metadata": {
+    "created_at": "2026-08-27T13:00:00Z",
+    "evidence_status": "synthetic",
+    "expires_at": "2026-09-03T13:00:00Z",
+    "policy_id": "pol_orbit_disease_r2_qualification_syn",
+    "status": "candidate",
+    "synthetic_only": true,
+    "version": "0.1.0"
+  },
+  "spec": {
+    "authority_boundary": {
+      "may_activate_agent": false,
+      "may_activate_tool": false,
+      "may_approve_model_route": false,
+      "may_issue_evaluation_grant": true,
+      "may_promote_preproduction": false,
+      "may_promote_production": false,
+      "may_register_formally": false,
+      "release_authorization": false
+    },
+    "execution_envelope": {
+      "agent_credentials": false,
+      "agent_direct_network": false,
+      "endpoint_origin_allowlist": [
+        "https://models.paper-orbit.invalid/v1/chat/completions"
+      ],
+      "evaluation_suite_refs": [
+        {
+          "digest": "sha256:b472675c9990434510ec520d7c48a22a542ed23961e64e33b3074cba016d1c5b",
+          "ref": "artifact://scientific-platform/disease-r2/evaluation-suite/0.2.0",
+          "role": "domain_evaluation_suite"
+        },
+        {
+          "digest": "sha256:044f954d8b4b2a2566cde5b4e82f4601ed5b3d85c2e776994f82b4842e3c562a",
+          "ref": "artifact://control-plane/disease-r2/evaluation-suite/0.2.0",
+          "role": "company_evaluation_suite"
+        }
+      ],
+      "input_artifact_allowlist": [
+        {
+          "digest": "sha256:e41c15f412b87c39654978a628ac7704b5cbbb2915f41b3b9d4426cf7aa4b04a",
+          "ref": "agent-release://agt_orbit_disease_research_task_syn/0.2.0",
+          "role": "agent_release"
+        },
+        {
+          "digest": "sha256:bb796b5aa76f930566e78c599eb197282595b26f2523f7b062374b7c261d6b30",
+          "ref": "dataset://public/disease-r2/fictional-stationery-literature/0.1.0",
+          "role": "public_corpus_revision"
+        },
+        {
+          "digest": "sha256:2af4bd9254b888670f6bf9b4932d6ac2ffd23d8874e5d44ea112485555135f08",
+          "ref": "artifact://public-corpus/disease-r2/manifest/0.1.0",
+          "role": "public_corpus_manifest"
+        },
+        {
+          "digest": "sha256:aa1ead1dfa83cd93edbae0f995308ba90f1cfba3bb58ff5591fa80b1a3bd60e1",
+          "ref": "approval://public-corpus/disease-r2/acquisition-review",
+          "role": "corpus_acquisition_review"
+        },
+        {
+          "digest": "sha256:4ed7fe1ebb52f586b87275f0127dc1df42f62e62fbb4fa8435c3eed356d35ec3",
+          "ref": "receipt://public-corpus/disease-r2/acquisition",
+          "role": "corpus_acquisition_receipt"
+        },
+        {
+          "digest": "sha256:4f84f4a1fa2e63c09dbf325fd21a9cf847d9b5670c7118213745feebf25c0d54",
+          "ref": "artifact://control-plane/disease-r2/v4-attempt-004/review-package",
+          "role": "r2_execution_review_package"
+        },
+        {
+          "digest": "sha256:d77b373f94f41b80b1d005c84d167979f3819181ab4c447d099deac44260ac0c",
+          "ref": "artifact://control-plane/disease-r2/v4-attempt-004/execution-intent",
+          "role": "r2_execution_intent"
+        },
+        {
+          "digest": "sha256:3e368f0f187b82c00372238cfad4f8dba555250f15d44e5cdd60e8717c4933ac",
+          "ref": "ledger://disease-r2/approval-scopes/v4-attempt-004",
+          "role": "approval_scope_ledger_snapshot"
+        },
+        {
+          "digest": "sha256:86ceea4bd3829d2f885d2e37395c01b6919fa8676ed89389cfad05cd4809ee40",
+          "ref": "artifact://control-plane/disease-r2/price-observation/2026-08-27",
+          "role": "price_observation"
+        },
+        {
+          "digest": "sha256:f8f548d87d16634d1ad9e3777280f3f577ba2358703f04e18e74007ffd3621bf",
+          "ref": "runtime://nousresearch/hermes-agent/v2026.8.16",
+          "role": "container_image_id"
+        }
+      ],
+      "isolation_profile_digests": [
+        "sha256:be699762f051fbf8e8d459027e2fef77dc033e7bb116014700f40d3d3f451b39"
+      ],
+      "max_attempts_per_stage": 3,
+      "max_concurrency": 1,
+      "max_cost_cny": "1.50",
+      "max_cost_usd": "0.20",
+      "max_input_tokens": 24000,
+      "max_model_requests": 8,
+      "max_output_tokens": 2048,
+      "max_runtime_seconds": 900,
+      "max_total_attempts": 30,
+      "model_route_refs": [
+        {
+          "digest": "sha256:8bc631ae8cf7fc7f2d07ac187eb5ca0d313de00818d77abfa7b2b4a04a5c74e7",
+          "ref": "model-route://model_route_orbit_disease_r2_fixture_gpt56sol_syn/0.1.0",
+          "role": "model_route"
+        }
+      ],
+      "nas_access": false,
+      "real_medical_data": false,
+      "tool_scopes": [
+        {
+          "operations": [
+            "fetch_public_record",
+            "search_public_corpus"
+          ],
+          "tool_release": {
+            "digest": "sha256:775e2996c5302a28e24d2b8b7b104788e0a782688ba847ae63c8a8b729b48f0d",
+            "ref": "tool-release://tool_orbit_literature_public_corpus/0.1.0",
+            "role": "literature_tool_release"
+          }
+        }
+      ],
+      "trusted_stage_handlers": [
+        {
+          "digest": "sha256:5ec0cfb16477bf6880967c5878e60e032dec93b86ff7ead6955f561c751300f2",
+          "id": "component_qualification_policy_engine",
+          "version": "0.1.0"
+        },
+        {
+          "digest": "sha256:e7e517092e081778b5b120b4ad29f0853d00b3423d1bdae5bfdb133dd186444d",
+          "id": "component_qualification_reconciler",
+          "version": "0.1.0"
+        },
+        {
+          "digest": "sha256:fd60ff6af85f036454a6abb294aea38cc256dd064b943f51fd821cb544518827",
+          "id": "component_qualification_service_gate",
+          "version": "0.1.0"
+        },
+        {
+          "digest": "sha256:42d00e4c6491c3b0320db6aa6d4fdf60117c015f0a73840b4342c1dfcad5332e",
+          "id": "component_disease_r2_qualification_adapter",
+          "version": "0.1.0"
+        },
+        {
+          "digest": "sha256:87d26e67c2ead5d146cf5c24fd4b0e3083c91010b22ff73d242215409ad38289",
+          "id": "component_disease_r2_stage_hooks",
+          "version": "0.1.0"
+        },
+        {
+          "digest": "sha256:02df12b929709589254e73b424ee4a0c52fd89f912ed03e0e19232b62da1fa18",
+          "id": "component_disease_r2_execution_worker",
+          "version": "0.1.0"
+        },
+        {
+          "digest": "sha256:f0a48aef8b08a3e9f229daca9ecf86e4980d1770db8bf1de0b1cedcedc06ce1e",
+          "id": "component_disease_r2_orchestrator",
+          "version": "0.1.0"
+        }
+      ]
+    },
+    "human_checkpoint_triggers": [
+      "purpose_or_owner_change",
+      "capability_or_tool_scope_expansion",
+      "data_classification_expansion",
+      "provider_model_or_endpoint_change",
+      "budget_ceiling_expansion",
+      "isolation_or_identity_weakening",
+      "real_data_or_nas_access",
+      "risk_waiver_or_evaluation_override",
+      "formal_registration",
+      "preproduction_promotion",
+      "production_promotion",
+      "policy_budget_exhausted"
+    ],
+    "purpose": "agent_release_qualification",
+    "remediation_envelope": {
+      "allowed_failure_classes": [
+        "engineering_compatibility",
+        "deterministic_test_failure",
+        "transient_runtime",
+        "quality_candidate_revision"
+      ],
+      "immutable_attempt_history": true,
+      "independent_verification": true,
+      "source_change_policy": "implementation_only_same_runtime_family",
+      "unchanged_boundaries": [
+        "purpose",
+        "owner",
+        "agent_id",
+        "capabilities",
+        "tool_operations",
+        "data_classification",
+        "model_route",
+        "endpoint_allowlist",
+        "budget_ceiling",
+        "isolation_profile",
+        "external_side_effects"
+      ]
+    },
+    "stage_plan": [
+      "candidate_build",
+      "contract_validation",
+      "artifact_closure",
+      "runtime_realization",
+      "isolation_e4",
+      "model_literature_r2",
+      "domain_evaluation",
+      "company_evaluation",
+      "evidence_packaging",
+      "formal_registration",
+      "release_review",
+      "preproduction_promotion",
+      "production_promotion"
+    ],
+    "subject_constraints": {
+      "agent_ids": [
+        "agt_orbit_disease_research_task_syn"
+      ],
+      "data_classifications": [
+        "synthetic",
+        "public"
+      ],
+      "release_states": [
+        "active"
+      ],
+      "runtime_families": [
+        "framework_neutral_python_state_machine"
+      ]
+    }
+  }
+}
+

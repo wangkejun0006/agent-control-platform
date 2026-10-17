@@ -1,0 +1,462 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "公司级架构交换契约，不授予真实数据访问权限。",
+  "$id": "urn:company-ai-os:schema:dataset-metadata:0.3",
+  "title": "Company AI OS Dataset Metadata Exchange Record",
+  "description": "现有 Dataset Registry 与 Company AI OS 的交换契约，不代表 Registry 内部 Schema。不得暴露 Agent 可解析的存储路径。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "registry_record_ref",
+    "title",
+    "description",
+    "domain",
+    "security_zone",
+    "classification",
+    "owner",
+    "hierarchy_binding",
+    "version",
+    "storage",
+    "usage_policy",
+    "access_policy_ref",
+    "lineage",
+    "quality",
+    "lifecycle"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.3"
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^ds_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "registry_record_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "domain": {
+      "enum": [
+        "medical_research",
+        "wearable_user",
+        "product_device",
+        "corporate_office",
+        "public_marketing",
+        "scientific",
+        "other"
+      ]
+    },
+    "security_zone": {
+      "$ref": "#/$defs/security_zone"
+    },
+    "classification": {
+      "$ref": "#/$defs/classification"
+    },
+    "sensitivity_tags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_-]{1,63}$"
+      }
+    },
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "data_owner_human_id",
+        "data_steward_human_id"
+      ],
+      "properties": {
+        "data_owner_human_id": {
+          "$ref": "#/$defs/human_id"
+        },
+        "data_steward_human_id": {
+          "$ref": "#/$defs/human_id"
+        },
+        "department_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]{1,63}$"
+        }
+      }
+    },
+    "hierarchy_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "data_node_id",
+        "source_governance_domain_node_id",
+        "consumer_org_node_ids",
+        "data_ownership_binding_refs",
+        "policy_composition",
+        "classification_inheritance"
+      ],
+      "properties": {
+        "data_node_id": {
+          "type": "string",
+          "pattern": "^hnode_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "source_governance_domain_node_id": {
+          "type": "string",
+          "pattern": "^hnode_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "consumer_org_node_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^hnode_[a-z0-9][a-z0-9_-]{2,79}$"
+          }
+        },
+        "data_ownership_binding_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^down_[a-z0-9][a-z0-9_-]{2,79}$"
+          }
+        },
+        "policy_composition": {
+          "const": "intersection"
+        },
+        "classification_inheritance": {
+          "const": "from_source"
+        }
+      }
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version_id",
+        "version_state",
+        "change_type",
+        "integrity_ref"
+      ],
+      "properties": {
+        "version_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "version_state": {
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "withdrawn"
+          ]
+        },
+        "change_type": {
+          "enum": [
+            "initial",
+            "append",
+            "replacement",
+            "correction",
+            "derived"
+          ]
+        },
+        "integrity_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "supersedes_version_id": {
+          "type": "string",
+          "maxLength": 120
+        }
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "connector_id",
+        "opaque_storage_ref",
+        "agent_visible",
+        "formats"
+      ],
+      "properties": {
+        "connector_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "opaque_storage_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "agent_visible": {
+          "const": false
+        },
+        "formats": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          }
+        },
+        "approximate_size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "region_or_site_ref": {
+          "type": "string",
+          "maxLength": 120
+        }
+      }
+    },
+    "usage_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_purposes",
+        "prohibited_uses",
+        "allowed_operations",
+        "model_training_policy",
+        "export_policy",
+        "retention_policy_ref"
+      ],
+      "properties": {
+        "allowed_purposes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 500
+          }
+        },
+        "prohibited_uses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 500
+          }
+        },
+        "allowed_operations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "discover",
+              "read",
+              "query",
+              "aggregate",
+              "transform",
+              "export",
+              "train"
+            ]
+          }
+        },
+        "model_training_policy": {
+          "enum": [
+            "denied",
+            "requires_separate_approval",
+            "allowed_by_policy"
+          ]
+        },
+        "export_policy": {
+          "enum": [
+            "denied",
+            "aggregated_only",
+            "deidentified_only",
+            "requires_approval",
+            "allowed_by_policy"
+          ]
+        },
+        "retention_policy_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "consent_or_legal_basis_status_ref": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "ethics_review_status_ref": {
+          "type": "string",
+          "maxLength": 240
+        }
+      }
+    },
+    "access_policy_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "approval_policy_ref": {
+      "type": "string",
+      "maxLength": 240
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_refs",
+        "transformation_ref",
+        "derived_asset_refs"
+      ],
+      "properties": {
+        "parent_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dataset_id",
+              "version_id"
+            ],
+            "properties": {
+              "dataset_id": {
+                "type": "string",
+                "pattern": "^ds_[a-z0-9][a-z0-9_-]{2,79}$"
+              },
+              "version_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            }
+          }
+        },
+        "transformation_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 500
+        },
+        "derived_asset_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "maxLength": 500
+          }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "assessment_refs",
+        "known_limitations"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "unknown",
+            "not_assessed",
+            "assessed",
+            "restricted_use",
+            "failed"
+          ]
+        },
+        "assessment_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "known_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "fitness_for_use_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 500
+          }
+        }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "registered_at",
+        "updated_at"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "registered",
+            "active",
+            "quarantined",
+            "deprecated",
+            "retired"
+          ]
+        },
+        "registered_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "review_due_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "human_id": {
+      "type": "string",
+      "pattern": "^hum_[a-z0-9][a-z0-9_-]{2,63}$"
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "wearable_restricted",
+        "medical_restricted"
+      ]
+    },
+    "security_zone": {
+      "enum": [
+        "public_marketing",
+        "corporate_office",
+        "product_device",
+        "wearable_user",
+        "medical_research",
+        "management"
+      ]
+    }
+  }
+}
+

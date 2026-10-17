@@ -1,0 +1,26 @@
+.wb-sharing-panel { border: 1px solid #dce6e1; border-radius: 12px; background: #fff; padding: 20px; margin: 20px 0; }
+.wb-login-boundary { border-top: 1px solid #9ebcaf; padding-top: 24px; margin-top: 32px; max-width: 490px; }
+.wb-login-boundary strong { font-size: 18px; }
+.wb-login-boundary p { font-size: 13px; line-height: 1.9; opacity: .8; }
+.wb-sharing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.wb-sharing-grid > div { border-radius: 9px; padding: 18px 20px; border-left: 3px solid; }
+.wb-sharing-grid > .wb-sharing-deny { background: #faf3ee; border-left-color: #b77754; }
+.wb-sharing-grid > .wb-sharing-allow { background: #edf6ef; border-left-color: #348368; }
+.wb-sharing-grid small { display: block; font-size: 10px; letter-spacing: 1.2px; color: #69746c; }
+.wb-sharing-grid h3 { font-size: 16px; margin: 9px 0; line-height: 1.5; }
+.wb-sharing-grid p { font-size: 13px; line-height: 1.85; margin: 0; color: #50635b; }
+.wb-sharing-foot { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 12px; margin: 16px 0 0; color: #466558; }
+.wb-sharing-foot i { font-style: normal; color: #92a399; }
+.wb-sharing-foot small { margin-left: auto; color: #6a7d72; }
+.wb-sharing-compact { padding: 14px 18px; }
+.wb-sharing-compact summary { cursor: pointer; font-size: 13px; font-weight: 650; line-height: 1.8; }
+.wb-sharing-compact summary span { margin-left: 15px; color: #6d7f74; font-weight: 400; }
+.wb-sharing-compact[open] .wb-sharing-grid { margin-top: 14px; }
+.wb-sharing-fix { display: flex; flex-direction: column; gap: 6px; padding: 15px 18px; background: #edf6ef; color: #245a45; border-radius: 8px; margin: 15px 0; }
+.wb-sharing-fix span { font-size: 12px; line-height: 1.8; }
+.wb-sharing-history { padding: 12px 0; font-size: 13px; line-height: 1.9; color: #735a3e; }
+.wb-sharing-comparison { margin-top: 22px; align-items: start; }
+.wb-sharing-comparison article { max-height: 560px; overflow: auto; border: 1px solid #dce6e1; border-radius: 8px; padding: 0 18px 18px; background: #fafcf9; }
+.wb-sharing-comparison article > h4 { position: sticky; top: 0; padding: 15px 0; margin: 0; background: #fafcf9; border-bottom: 1px solid #dce6e1; font-size: 13px; z-index: 1; }
+.wb-shell button:focus-visible, .wb-sharing-compact summary:focus-visible, .wb-shell a:focus-visible { outline: 3px solid #71a795; outline-offset: 3px; }
+@media (max-width: 760px) { .wb-sharing-grid { grid-template-columns: 1fr; gap: 10px; } .wb-sharing-panel { padding: 14px; } .wb-sharing-foot small { width: 100%; margin-left: 0; } .wb-sharing-compact summary span { display: block; margin-left: 0; } .wb-sharing-comparison article { max-height: 420px; } }

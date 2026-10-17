@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "AgentTemplate 约束临时 Agent 创建。模板不能成为新的权限来源。",
+  "$id": "urn:company-ai-os:schema:agent-template:0.1",
+  "title": "Company AI OS AgentTemplate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "AgentTemplate" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["template_id", "version", "status", "evidence_status", "synthetic_only"],
+      "properties": {
+        "template_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "version": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/semantic_version" },
+        "status": { "enum": ["draft", "evaluation", "approved", "suspended", "retired"] },
+        "evidence_status": { "enum": ["synthetic", "architecture_reference", "verified_runtime"] },
+        "synthetic_only": { "type": "boolean" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "child_definition_ref",
+        "allowed_creator_kinds",
+        "allowed_parent_kinds",
+        "approval_policy_refs",
+        "parameters_schema_ref",
+        "max_scope",
+        "cleanup",
+        "output_contract_refs"
+      ],
+      "properties": {
+        "child_definition_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+        "allowed_creator_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["human", "agent", "system"] }
+        },
+        "allowed_parent_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["company_agent", "platform_orchestrator_agent", "department_manager_agent", "specialist_agent", "execution_agent"]
+          }
+        },
+        "approval_policy_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/policy_ref" }
+        },
+        "parameters_schema_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+        "max_scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "autonomy",
+            "tool_operations",
+            "data_operations",
+            "data_classifications",
+            "agent_operations",
+            "max_delegation_depth",
+            "budget_units",
+            "max_lifetime_seconds"
+          ],
+          "properties": {
+            "autonomy": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/autonomy" },
+            "tool_operations": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/tool_operation" }
+            },
+            "data_operations": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/data_operation" }
+            },
+            "data_classifications": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/classification" }
+            },
+            "agent_operations": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/agent_operation" }
+            },
+            "max_delegation_depth": { "type": "integer", "minimum": 0 },
+            "budget_units": { "type": "integer", "minimum": 0 },
+            "max_lifetime_seconds": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "cleanup": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["runtime", "grants", "identity", "working_memory", "audit_record"],
+          "properties": {
+            "runtime": { "const": "destroy" },
+            "grants": { "const": "revoke" },
+            "identity": { "const": "soft_retire" },
+            "working_memory": { "enum": ["delete", "quarantine_then_delete"] },
+            "audit_record": { "const": "retain" }
+          }
+        },
+        "output_contract_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:orbit:data-asset:dataset-acquisition-receipt:0.1",
+  "title": "Dataset Acquisition Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "request_ref",
+    "dataset_ref",
+    "artifact_ref",
+    "content_sha256",
+    "size_bytes",
+    "bytes_transferred",
+    "status",
+    "classification",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "receipt_id": { "type": "string", "pattern": "^acqrcpt_[a-z0-9][a-z0-9_-]{2,95}$" },
+    "request_ref": { "type": "string", "pattern": "^receipt://acquisition-request/[A-Za-z0-9._:-]+$" },
+    "dataset_ref": { "type": "string", "pattern": "^dataset://[a-z0-9][a-z0-9._/-]{1,159}$" },
+    "artifact_ref": { "type": "string", "pattern": "^artifact://[A-Za-z0-9._:/-]+$" },
+    "content_sha256": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "size_bytes": { "type": "integer", "minimum": 0 },
+    "bytes_transferred": { "type": "integer", "minimum": 0 },
+    "status": { "enum": ["completed", "rejected", "failed"] },
+    "failure_code": { "type": "string", "pattern": "^[a-z][a-z0-9_]{2,95}$" },
+    "classification": { "enum": ["synthetic", "public", "internal", "confidential", "wearable_restricted", "medical_restricted"] },
+    "synthetic": { "type": "boolean" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "enum": ["rejected", "failed"] } }, "required": ["status"] },
+      "then": { "required": ["failure_code"] }
+    }
+  ]
+}
+

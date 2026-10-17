@@ -1,0 +1,42 @@
+{
+  "kind": "checkpoint_hash_delta_not_git_diff",
+  "changed": [
+    {
+      "path": "README.md",
+      "before": "11aa8e89d8d6b86d17fc3bbca7f06f8140a384976e00e096ba5dd43092f45c08",
+      "after": "559b24f8290cee03adbd248692e031488ffa433a99491918ddee2d79c10e9e2a"
+    },
+    {
+      "path": "tests/test_minimal_validation.py",
+      "before": "051c09af910d0001392722ee85db3bea0ed737733ab8b915cdfdee50052d0412",
+      "after": "243763f23f4dc482863797ee119298a8088879150af78570716f66081ff13d6f"
+    },
+    {
+      "path": "showcase/workbench/minimal_validation.py",
+      "before": "3675e804ed645d015022c5ad239814928beba9649e2e1a63007ca51a51fb45a6",
+      "after": "10d5a1c9468c80626fb1c13e7505448b60e4750dd29988a66bea92816b89fc20"
+    },
+    {
+      "path": ".agent/HANDOFF.md",
+      "before": "bd53d4b239ac65584cae705aa826d8244136a096447ca71cb89cc8207dd5d912",
+      "after": "d0c631fb5ef8674b7e85da63020b68975e35d071a54b7df7b21761b0a53091dc"
+    }
+  ],
+  "added": [
+    {
+      "path": "tests/test_rework_decision_checker.py",
+      "sha256": "11be92d3e1587e84bcd2f1da88a0b9822b46574643502b9bca1fb0e042c1d7db"
+    },
+    {
+      "path": "docs/REWORK_DECISION_CHECKER_20261017.md",
+      "sha256": "89928b5e6be0076b2cc9b3cc55da8ab74709a3dae7ce2376b8e042d22982b530"
+    },
+    {
+      "path": "reports/rework-decision-checker-offline-20261017.json",
+      "sha256": "249115ef40ced64ecd7f8e878d092fc4042996eb1bbd99a55eee12f4238e9bee"
+    }
+  ],
+  "protected_old_files": 48,
+  "preserved": true,
+  "historical_budget_files_read": false
+}

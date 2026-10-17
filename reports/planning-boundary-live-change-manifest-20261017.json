@@ -1,0 +1,33 @@
+{
+  "kind": "local_checkpoint_hash_delta_not_git_diff",
+  "changed": [
+    {
+      "path": "README.md",
+      "before": "787c628c452aa53d8e8287fd8a4509b9d01bfd09d1ebdcb949886f1c0c4edaf0",
+      "after": "11aa8e89d8d6b86d17fc3bbca7f06f8140a384976e00e096ba5dd43092f45c08"
+    },
+    {
+      "path": ".agent/HANDOFF.md",
+      "before": "a56bf05e32b8c27ff9181b16d8d2b426ef6dbac78511cf82e8adafc699e12c87",
+      "after": "bd53d4b239ac65584cae705aa826d8244136a096447ca71cb89cc8207dd5d912"
+    }
+  ],
+  "added": [
+    {
+      "path": "docs/PLANNING_BOUNDARY_LIVE_20261017.md",
+      "sha256": "2981760ad518384d5db845ddcd937a77625b2dfc2a9b38cd13dc2b6d96e513c7"
+    },
+    {
+      "path": "reports/planning-boundary-live-validation-20261017.json",
+      "sha256": "bb857f301899e205e772f2edaff0f1c8f1fec0b445bd6bf768bbb67c3a356c72"
+    },
+    {
+      "path": "reports/planning-boundary-live-outcome-20261017.json",
+      "sha256": "08780bb50592fd478988627c514e37c3574d3274ca7104b9fbf0116f61ca60de"
+    }
+  ],
+  "production_source_changed": false,
+  "old_reports_checked": 37,
+  "old_reports_unchanged": true,
+  "historical_budget_files_opened": false
+}

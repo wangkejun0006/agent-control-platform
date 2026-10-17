@@ -1,0 +1,469 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "公司级架构交换契约，不代表已部署结果服务。",
+  "$id": "urn:company-ai-os:schema:result-package:0.3",
+  "title": "Company AI OS Result Package",
+  "description": "可审计结果封装，包含证据、限制、风险、数据使用和评测摘要。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "result_id",
+    "task_id",
+    "agent_id",
+    "agent_version",
+    "agent_definition_ref",
+    "agent_binding_ref",
+    "execution_grant_ref",
+    "invocation_ref",
+    "hierarchy_snapshot_ref",
+    "status",
+    "summary",
+    "artifacts",
+    "evidence",
+    "limitations",
+    "risk_flags",
+    "tool_usage",
+    "data_usage_receipt_refs",
+    "used_dependency_refs",
+    "business_outcome",
+    "evaluation",
+    "human_disposition",
+    "audit_event_refs",
+    "produced_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.3"
+    },
+    "result_id": {
+      "type": "string",
+      "pattern": "^res_[a-z0-9][a-z0-9_-]{7,79}$"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^tsk_[a-z0-9][a-z0-9_-]{7,79}$"
+    },
+    "agent_id": {
+      "type": "string",
+      "pattern": "^agt_[a-z0-9][a-z0-9_-]{2,63}$"
+    },
+    "agent_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[a-z0-9.-]+)?$"
+    },
+    "agent_definition_ref": {
+      "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref"
+    },
+    "agent_binding_ref": {
+      "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref"
+    },
+    "execution_grant_ref": {
+      "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref"
+    },
+    "invocation_ref": {
+      "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id"
+    },
+    "hierarchy_snapshot_ref": {
+      "type": "string",
+      "pattern": "^hsnap_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "runtime_run_ref": {
+      "type": "string",
+      "maxLength": 240
+    },
+    "status": {
+      "enum": [
+        "succeeded",
+        "partial",
+        "failed",
+        "cancelled",
+        "rejected"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "artifact_ref",
+          "media_type",
+          "classification",
+          "description"
+        ],
+        "properties": {
+          "artifact_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "media_type": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "classification": {
+            "$ref": "#/$defs/classification"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "content_hash_ref": {
+            "type": "string",
+            "maxLength": 240
+          },
+          "retention_policy_ref": {
+            "type": "string",
+            "maxLength": 240
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_type",
+          "source_ref",
+          "claim_scope"
+        ],
+        "properties": {
+          "source_type": {
+            "enum": [
+              "document",
+              "structured_record",
+              "dataset",
+              "tool_receipt",
+              "human_input",
+              "public_source",
+              "evaluation"
+            ]
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "source_version": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "claim_scope": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "risk_type",
+          "severity",
+          "message"
+        ],
+        "properties": {
+          "risk_type": {
+            "enum": [
+              "grounding",
+              "privacy",
+              "security",
+              "medical",
+              "legal",
+              "financial",
+              "external_action",
+              "data_quality",
+              "incomplete",
+              "other"
+            ]
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "requires_human_action": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "tool_usage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tool_operation",
+          "call_count",
+          "side_effect_state"
+        ],
+        "properties": {
+          "tool_operation": {
+            "type": "string",
+            "pattern": "^tool_[a-z0-9_-]+:[a-z0-9_-]+$"
+          },
+          "call_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "side_effect_state": {
+            "enum": [
+              "none",
+              "pending",
+              "confirmed",
+              "failed",
+              "unknown"
+            ]
+          },
+          "receipt_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 240
+            }
+          }
+        }
+      }
+    },
+    "data_usage_receipt_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240
+      }
+    },
+    "model_usage_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "maxLength": 240
+      }
+    },
+    "used_dependency_refs": {
+      "description": "本次运行实际使用的依赖版本；必须是 Task dependency_snapshot_refs 的子集，由跨记录校验器验证。",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/dependency_ref"
+      }
+    },
+    "business_outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_system_ref",
+        "source_status",
+        "normalized_outcome",
+        "reason_codes"
+      ],
+      "properties": {
+        "source_system_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "source_status": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "normalized_outcome": {
+          "enum": [
+            "completed",
+            "degraded",
+            "abstained",
+            "blocked",
+            "requires_human_action",
+            "rolled_back",
+            "rejected",
+            "cancelled",
+            "failed"
+          ]
+        },
+        "reason_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]{1,119}$"
+          }
+        }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "evaluation_refs"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_run",
+            "passed",
+            "failed",
+            "needs_review"
+          ]
+        },
+        "evaluation_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 240
+          }
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    },
+    "human_disposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected",
+            "requires_revision",
+            "not_required"
+          ]
+        },
+        "human_id": {
+          "type": "string",
+          "pattern": "^hum_[a-z0-9][a-z0-9_-]{2,63}$"
+        },
+        "approval_ref": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "comment": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "decided_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "audit_event_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240
+      }
+    },
+    "produced_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "dependency_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref_type",
+        "authority_ref",
+        "ref_id",
+        "version"
+      ],
+      "properties": {
+        "ref_type": {
+          "enum": [
+            "registry_revision",
+            "dataset_version",
+            "knowledge_version",
+            "policy_version",
+            "approved_asset_version",
+            "model_version",
+            "prompt_version",
+            "tool_version",
+            "agent_definition",
+            "agent_binding",
+            "runtime_adapter",
+            "runtime_realization",
+            "model_route",
+            "execution_grant"
+          ]
+        },
+        "authority_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "ref_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "not": {
+            "enum": [
+              "latest",
+              "main",
+              "head"
+            ]
+          }
+        }
+      }
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "wearable_restricted",
+        "medical_restricted"
+      ]
+    }
+  }
+}
+

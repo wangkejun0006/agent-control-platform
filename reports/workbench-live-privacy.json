@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-17",
+  "exact_credential_matches": 0,
+  "files_checked": 842,
+  "excluded": [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "dist",
+    "node_modules"
+  ],
+  "private_activity_permission_errors": [],
+  "request_ledger_chain_valid": true,
+  "new_campaign_attempts": 22,
+  "new_campaign_closed": true,
+  "old_campaign_attempts": 20,
+  "old_campaign_closed": true,
+  "keys_written_to_reports_or_logs": false,
+  "scope": "Exact configured DeepSeek key plus separately declared static pattern scan; not exhaustive certification."
+}

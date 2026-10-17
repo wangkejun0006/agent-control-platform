@@ -1,0 +1,61 @@
+{
+  "registry_version": "orbit.department-planning-bindings/1",
+  "status": "fixed_control_plane_candidate",
+  "observed_at": "2026-09-01",
+  "planning_runtime_kind": "langgraph",
+  "bindings": [
+    {
+      "department_id": "product_center",
+      "planning_agent_ref": "agent_product_center_planning_syn",
+      "agent_definition_ref": "agent-definition/product-center-planning/0.2.0-synthetic",
+      "graph_ref": "langgraph-stategraph/department-planning-d0",
+      "checkpoint_namespace": "planning/product_center",
+      "route_alias": "company-route/planning-minimax-cn-approved",
+      "runtime_revision": "langgraph/1.2.11",
+      "adapter_revision": "langgraph-planning-adapter/0.1.0",
+      "evidence_status": "architecture_reference",
+      "synthetic_only": true,
+      "production_authorized": false
+    },
+    {
+      "department_id": "technology_center",
+      "planning_agent_ref": "agent_technology_center_planning_syn",
+      "agent_definition_ref": "agent-definition/technology-center-planning/0.2.0-synthetic",
+      "graph_ref": "langgraph-stategraph/department-planning-d0",
+      "checkpoint_namespace": "planning/technology_center",
+      "route_alias": "company-route/planning-minimax-cn-approved",
+      "runtime_revision": "langgraph/1.2.11",
+      "adapter_revision": "langgraph-planning-adapter/0.1.0",
+      "evidence_status": "architecture_reference",
+      "synthetic_only": true,
+      "production_authorized": false
+    },
+    {
+      "department_id": "market_center",
+      "planning_agent_ref": "agent_market_center_planning_syn",
+      "agent_definition_ref": "agent-definition/market-center-planning/0.2.0-synthetic",
+      "graph_ref": "langgraph-stategraph/department-planning-d0",
+      "checkpoint_namespace": "planning/market_center",
+      "route_alias": "company-route/planning-minimax-cn-approved",
+      "runtime_revision": "langgraph/1.2.11",
+      "adapter_revision": "langgraph-planning-adapter/0.1.0",
+      "evidence_status": "architecture_reference",
+      "synthetic_only": true,
+      "production_authorized": false
+    }
+  ],
+  "boundary": {
+    "graph_source": "fixed_agent_definition_and_control_plane_adapter",
+    "checkpoint_authoritative": false,
+    "browser_checkpoint_access": false,
+    "browser_secret_access": false,
+    "live_model_enabled": false,
+    "live_model_blockers": [
+      "provider_key_rotation_required",
+      "budget_policy_not_configured",
+      "langgraph_runtime_qualification_pending"
+    ],
+    "production_authorized": false
+  }
+}
+

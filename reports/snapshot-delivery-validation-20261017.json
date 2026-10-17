@@ -1,0 +1,193 @@
+{
+  "schema": "orbit.snapshot-review-delivery/1",
+  "status": "passed",
+  "phase": "completed",
+  "new_model_requests": 0,
+  "new_model_cost_cny": 0,
+  "checker_version": "market-rework-decisions/2",
+  "checks": [
+    {
+      "name": "source_no_active_runs_or_leases",
+      "passed": true
+    },
+    {
+      "name": "snapshot_source_preserved_state.sqlite3",
+      "passed": true
+    },
+    {
+      "name": "snapshot_source_preserved_cockpit.langgraph.sqlite3",
+      "passed": true
+    },
+    {
+      "name": "candidate_matches_original_snapshot",
+      "passed": true
+    },
+    {
+      "name": "offline_no_worker_or_broker",
+      "passed": true
+    },
+    {
+      "name": "execution_source_revision_attempt_bc511dc6b45d4a4fa4c2",
+      "passed": true
+    },
+    {
+      "name": "execution_source_revision_attempt_287f286f42fa469ab594",
+      "passed": true
+    },
+    {
+      "name": "execution_source_revision_attempt_6ded437ec15245ddabcf",
+      "passed": true
+    },
+    {
+      "name": "execution_source_revision_attempt_e8aeed4d490446758141",
+      "passed": true
+    },
+    {
+      "name": "native_cookie_login",
+      "passed": true
+    },
+    {
+      "name": "task_detail_readable",
+      "passed": true
+    },
+    {
+      "name": "market_v2_still_unreviewed",
+      "passed": true
+    },
+    {
+      "name": "unshared_row_denied",
+      "passed": true
+    },
+    {
+      "name": "approval_only_row_denied",
+      "passed": true
+    },
+    {
+      "name": "explicit_share_row_allowed",
+      "passed": true
+    },
+    {
+      "name": "checklist_scope_and_expiry",
+      "passed": true
+    },
+    {
+      "name": "independent_current_source_product_center",
+      "passed": true
+    },
+    {
+      "name": "independent_current_source_technology_center",
+      "passed": true
+    },
+    {
+      "name": "independent_current_source_market_center",
+      "passed": true
+    },
+    {
+      "name": "five_historical_real_tool_receipts",
+      "passed": true
+    },
+    {
+      "name": "actual_approved_shared_artifact_cited",
+      "passed": true
+    },
+    {
+      "name": "api_review_409",
+      "passed": true
+    },
+    {
+      "name": "stale_review_no_decision_written",
+      "passed": true
+    },
+    {
+      "name": "api_review_200",
+      "passed": true
+    },
+    {
+      "name": "api_review_200",
+      "passed": true
+    },
+    {
+      "name": "approval_idempotent",
+      "passed": true
+    },
+    {
+      "name": "api_review_409",
+      "passed": true
+    },
+    {
+      "name": "duplicate_new_key_no_extra_review",
+      "passed": true
+    },
+    {
+      "name": "api_deliver_200",
+      "passed": true
+    },
+    {
+      "name": "api_deliver_200",
+      "passed": true
+    },
+    {
+      "name": "delivered_current_versions_idempotently",
+      "passed": true
+    },
+    {
+      "name": "native_zip_download",
+      "passed": true
+    },
+    {
+      "name": "zip_members_and_integrity",
+      "passed": true
+    },
+    {
+      "name": "zip_contains_same_real_v2",
+      "passed": true
+    },
+    {
+      "name": "zip_bound_new_review",
+      "passed": true
+    },
+    {
+      "name": "all_original_candidates_unchanged_in_clone",
+      "passed": true
+    },
+    {
+      "name": "identity_roles_and_actor_unchanged",
+      "passed": true
+    },
+    {
+      "name": "no_open_runs_or_leases",
+      "passed": true
+    },
+    {
+      "name": "no_forbidden_operations",
+      "passed": true
+    }
+  ],
+  "source_state": ".runtime/workbench/planning-boundary-live-20261017",
+  "isolated_state": ".runtime/workbench/snapshot-delivery-20261017",
+  "candidate_origin": "previous real market-v2; product/technology/v1 offline fictional fixtures",
+  "reviewer_mode": "automated_authenticated_local_test_account_not_human",
+  "historical_campaign_remains_stopped": true,
+  "old_budget_read_or_reopened": false,
+  "provider_key_reads": 0,
+  "old_signing_key_reads": 0,
+  "published": false,
+  "workflow_id": "workflow_19731a7407b241108d47",
+  "identity_setup": "only cloned synthetic account password reprovisioned in memory; roles unchanged; native cookie login",
+  "zip_members": [
+    "delivery.json",
+    "market_center-evidence.json",
+    "market_center.md",
+    "product_center-evidence.json",
+    "product_center.md",
+    "review-records.json",
+    "technology_center-evidence.json",
+    "technology_center.md"
+  ],
+  "new_version_review_completed": true,
+  "local_delivery_completed": true,
+  "zip_sha256": "cd402ce5f9344fefc6e62e7f0fe45a9a05e156f30cde662b54c9242cf0cf89bd",
+  "protected_old_files": 55,
+  "protected_old_files_unchanged": true,
+  "forbidden_operations": []
+}

@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "公司级架构交换契约，不创建超级 Agent。",
+  "$id": "urn:company-ai-os:schema:system-composition:0.1",
+  "title": "Company AI OS System Composition",
+  "description": "多个独立 Agent Platform 及共享上下游依赖的联合治理记录。组合不是超级 Agent，也不替代各平台 Registry。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "composition_id",
+    "display_name",
+    "status",
+    "evidence_status",
+    "accountable_human_role_refs",
+    "units",
+    "relationships",
+    "interfaces",
+    "joint_control_refs",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "composition_id": {
+      "type": "string",
+      "pattern": "^comp_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "proposed",
+        "approved",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    },
+    "evidence_status": {
+      "enum": [
+        "architecture_assumption",
+        "human_confirmed",
+        "leadership_approved"
+      ]
+    },
+    "accountable_human_role_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/role_ref"
+      }
+    },
+    "units": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/unit"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/interface"
+      }
+    },
+    "joint_control_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "company_router_ref",
+        "task_ledger_ref",
+        "audit_policy_ref",
+        "budget_policy_ref",
+        "incident_policy_ref",
+        "compatibility_policy_ref"
+      ],
+      "properties": {
+        "company_router_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        },
+        "task_ledger_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        },
+        "audit_policy_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        },
+        "budget_policy_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        },
+        "incident_policy_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        },
+        "compatibility_policy_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        }
+      }
+    },
+    "created_at": {
+      "$ref": "#/$defs/date_time"
+    },
+    "updated_at": {
+      "$ref": "#/$defs/date_time"
+    }
+  },
+  "$defs": {
+    "date_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "role_ref": {
+      "type": "string",
+      "pattern": "^role_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "non_secret_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unit_id",
+        "unit_kind",
+        "display_name",
+        "authority_ref",
+        "owner_role_ref",
+        "lifecycle_state"
+      ],
+      "properties": {
+        "unit_id": {
+          "type": "string",
+          "pattern": "^unit_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "unit_kind": {
+          "enum": [
+            "agent_platform",
+            "platform_orchestrator_agent",
+            "workflow",
+            "tool_service",
+            "model_service",
+            "data_asset_service",
+            "control_service",
+            "safety_service"
+          ]
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "authority_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        },
+        "owner_role_ref": {
+          "$ref": "#/$defs/role_ref"
+        },
+        "lifecycle_state": {
+          "enum": [
+            "planned",
+            "prototype",
+            "evaluation",
+            "active",
+            "suspended",
+            "retired"
+          ]
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relationship_id",
+        "relationship_type",
+        "from_unit_id",
+        "to_unit_id",
+        "policy_ref"
+      ],
+      "properties": {
+        "relationship_id": {
+          "type": "string",
+          "pattern": "^rel_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "relationship_type": {
+          "enum": [
+            "contains_orchestrator",
+            "routes_to",
+            "depends_on",
+            "publishes_to",
+            "governed_by",
+            "shares_capability"
+          ]
+        },
+        "from_unit_id": {
+          "type": "string",
+          "pattern": "^unit_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "to_unit_id": {
+          "type": "string",
+          "pattern": "^unit_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "policy_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        }
+      }
+    },
+    "interface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "interface_id",
+        "from_unit_id",
+        "to_unit_id",
+        "contract_ref",
+        "interaction_mode",
+        "human_approval_required",
+        "synthetic_test_ref"
+      ],
+      "properties": {
+        "interface_id": {
+          "type": "string",
+          "pattern": "^ifc_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "from_unit_id": {
+          "type": "string",
+          "pattern": "^unit_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "to_unit_id": {
+          "type": "string",
+          "pattern": "^unit_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "contract_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        },
+        "interaction_mode": {
+          "enum": [
+            "asynchronous_event",
+            "synchronous_request",
+            "approved_asset_release"
+          ]
+        },
+        "human_approval_required": {
+          "type": "boolean"
+        },
+        "synthetic_test_ref": {
+          "$ref": "#/$defs/non_secret_ref"
+        }
+      }
+    }
+  }
+}
+

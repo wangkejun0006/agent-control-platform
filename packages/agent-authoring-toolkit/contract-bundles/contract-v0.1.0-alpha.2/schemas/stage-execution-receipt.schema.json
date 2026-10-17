@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "StageExecutionReceipt 记录一个资格验证阶段的输入、执行器、检查、实际副作用和下一动作；它不是批准。",
+  "$id": "urn:company-ai-os:schema:stage-execution-receipt:0.1",
+  "title": "Company AI OS StageExecutionReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "StageExecutionReceipt" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_id", "run_id", "stage", "attempt_id", "attempt_number", "sequence", "outcome", "evidence_status", "synthetic_only", "started_at", "completed_at"],
+      "properties": {
+        "receipt_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "run_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "stage": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/qualification_stage" },
+        "attempt_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "attempt_number": { "type": "integer", "minimum": 1 },
+        "sequence": { "type": "integer", "minimum": 0 },
+        "outcome": { "enum": ["passed", "blocked", "failed", "cancelled", "skipped"] },
+        "evidence_status": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/evidence_status" },
+        "synthetic_only": { "type": "boolean" },
+        "started_at": { "type": "string", "format": "date-time" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputs", "executor", "checks", "side_effects", "decision", "authority_boundary"],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+        },
+        "executor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["component", "deterministic", "environment_profile_digest"],
+          "properties": {
+            "component": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/component_ref" },
+            "deterministic": { "type": "boolean" },
+            "environment_profile_digest": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" }
+          }
+        },
+        "checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "status", "reason_code", "evidence_refs"],
+            "properties": {
+              "name": { "type": "string", "pattern": "^[a-z][a-z0-9_]{2,95}$" },
+              "status": { "enum": ["pass", "fail", "blocked", "not_applicable"] },
+              "reason_code": {
+                "oneOf": [
+                  { "type": "null" },
+                  { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/reason_code" }
+                ]
+              },
+              "evidence_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+              }
+            }
+          }
+        },
+        "side_effects": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["effective_task_created", "effective_grant_created", "approval_created", "provider_calls", "network_calls", "docker_started", "nas_accessed", "real_data_accessed"],
+          "properties": {
+            "effective_task_created": { "type": "boolean" },
+            "effective_grant_created": { "type": "boolean" },
+            "approval_created": { "const": false },
+            "provider_calls": { "type": "integer", "minimum": 0 },
+            "network_calls": { "type": "integer", "minimum": 0 },
+            "docker_started": { "type": "boolean" },
+            "nas_accessed": { "const": false },
+            "real_data_accessed": { "const": false }
+          }
+        },
+        "decision": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["failure_class", "next_action", "reason_codes", "human_checkpoint_scope"],
+          "properties": {
+            "failure_class": { "enum": ["none", "engineering_compatibility", "deterministic_test_failure", "transient_runtime", "quality_candidate_revision", "policy_boundary", "safety_or_quality", "unexplained_drift", "budget_exhausted"] },
+            "next_action": { "enum": ["auto_advance", "auto_remediate", "auto_retry", "human_checkpoint", "complete", "quarantine"] },
+            "reason_codes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/reason_code" }
+            },
+            "human_checkpoint_scope": {
+              "oneOf": [
+                { "type": "null" },
+                { "enum": ["automation_policy_activation", "agent_activation", "tool_activation", "model_route_approval", "execution_approval", "formal_registration", "preproduction_promotion", "production_promotion", "risk_waiver"] }
+              ]
+            }
+          }
+        },
+        "authority_boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["evidence_semantics", "human_approval", "company_registry_write", "agent_lifecycle_transition", "release_authorization"],
+          "properties": {
+            "evidence_semantics": { "enum": ["company_authoritative", "worker_observed", "runtime_reported"] },
+            "human_approval": { "const": false },
+            "company_registry_write": { "const": false },
+            "agent_lifecycle_transition": { "const": false },
+            "release_authorization": { "const": false }
+          }
+        }
+      }
+    }
+  }
+}
+

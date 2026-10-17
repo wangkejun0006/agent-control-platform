@@ -1,0 +1,51 @@
+{
+  "profile_version": "orbit.model-profile-candidate/1",
+  "model_id": "model_fixture_gpt_5_6_sol_syn",
+  "version": "0.1.0",
+  "status": "proposed-not-effective",
+  "evidence_status": "synthetic",
+  "provider_id": "fixture",
+  "requested_model_id": "fixture-structured-v1",
+  "parameters": {
+    "temperature": 0,
+    "response_format": "json_schema",
+    "fallback": "none",
+    "max_concurrency": 1,
+    "timeout_seconds": 30,
+    "max_retries": 1
+  },
+  "planned_calls": 4,
+  "normal_budget": {
+    "input_tokens": 12000,
+    "output_tokens": 1024
+  },
+  "retry_billing_ceiling": {
+    "input_tokens": 24000,
+    "output_tokens": 2048,
+    "estimated_usd": "0.18144",
+    "hard_cap_usd": "0.20",
+    "unused_usd_buffer": "0.01856"
+  },
+  "pricing_observation": {
+    "status": "verified-read-only-console-observation",
+    "source": "https://models.paper-orbit.invalid/pricing",
+    "observed_at": "2026-08-27",
+    "input_usd_per_million_tokens": "5.00",
+    "output_usd_per_million_tokens": "30.00",
+    "cached_input_usd_per_million_tokens": "0.50",
+    "recheck_required_before_execution": true
+  },
+  "cny_budget": {
+    "exchange_rate_cny_per_usd": "7.50",
+    "exchange_rate_basis": "conservative-review-factor-not-market-quote",
+    "hard_cap_cny": "1.50",
+    "status": "reviewed-candidate-hard-cap",
+    "recheck_required_before_execution": true
+  },
+  "actual_calls": 0,
+  "actual_input_tokens": 0,
+  "actual_output_tokens": 0,
+  "actual_cost_usd": "0.00",
+  "release_authorization": false
+}
+

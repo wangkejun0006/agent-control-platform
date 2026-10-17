@@ -1,0 +1,29 @@
+{
+  "kind": "local_checkpoint_hash_delta_not_git_diff",
+  "changed": [
+    {
+      "path": "README.md",
+      "before": "559b24f8290cee03adbd248692e031488ffa433a99491918ddee2d79c10e9e2a",
+      "after": "26401c25ddee8616b370ee75df580eb194c7c9fcd4abda5e7619b3a8adbd6cc1"
+    },
+    {
+      "path": ".agent/HANDOFF.md",
+      "before": "d0c631fb5ef8674b7e85da63020b68975e35d071a54b7df7b21761b0a53091dc",
+      "after": "d4ef7aa066d4cfd4a730ce69488f3ad2a643cbbd177108575aad7985b0f564cf"
+    }
+  ],
+  "added": [
+    {
+      "path": "docs/SNAPSHOT_DELIVERY_20261017.md",
+      "sha256": "da77fc455d08bec4d0cc28a11ae9f26185296e937edb31a42806f3482b815755"
+    },
+    {
+      "path": "reports/snapshot-delivery-validation-20261017.json",
+      "sha256": "30853f327a7b9f47a16a68e8c63f17bc986fc61f6aadb1d496db52b138dd3786"
+    },
+    {
+      "path": "reports/snapshot-delivery-audit-20261017.json",
+      "sha256": "1b2c1d4a34f6bd57d69e98c307a682adf47edf12f675a042bd523add7e7b8f5f"
+    }
+  ]
+}

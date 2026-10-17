@@ -1,0 +1,87 @@
+api_version: company-ai-os/v1alpha1
+kind: AgentReleaseManifest
+metadata:
+  release_id: release_orbit_disease_agent_e4_syn
+  agent_id: agt_orbit_disease_research_task_syn
+  version: 0.1.0
+  status: evaluation
+  evidence_status: synthetic
+  synthetic_only: true
+  created_at: "2026-08-26T00:00:00Z"
+spec:
+  registry_ref:
+    id: registry_orbit_disease_research_task_syn
+    schema_version: "0.3"
+    digest: sha256:ceb8d10d0ea6efa905c204cfaac728098ab843e792cb0f0163be0657d3bb639c
+  definition_ref:
+    id: agt_orbit_disease_research_task_syn
+    version: 0.1.0
+    digest: sha256:9557e19285955432f8f41a8844d212a427a2efd3d900c86bc8fd70bad824b663
+  binding_refs:
+    - id: bind_orbit_disease_research_task_d0_syn
+      version: 0.1.0
+      digest: sha256:a9edd1b1648650631cfeade592430e494e624a220b22fc528748adcb3cdd1334
+  capability_profile_refs:
+    - id: runtime_profile_orbit_disease_research_r1_syn
+      version: 0.1.0
+      digest: sha256:51c1d9c34c374c94130082fb718d95d245044cac765c789b191b42334b0b13ae
+  model_route_refs: []
+  model_selection:
+    status: not_required
+    selected_route_refs: []
+    decision_ref: null
+  runtime_realization_refs:
+    - id: runtime_realization_orbit_disease_e4_syn
+      version: 0.1.0
+      digest: sha256:e3202a3b9550ea581a51472f293b621f4944a1ae9f453ec4ec7ee09113262bc5
+  runtime_selection:
+    status: selected
+    candidates:
+      - runtime_family: container_python
+        assessment_status: eligible
+        evidence_status: synthetic
+        realization_refs:
+          - id: runtime_realization_orbit_disease_e4_syn
+            version: 0.1.0
+            digest: sha256:e3202a3b9550ea581a51472f293b621f4944a1ae9f453ec4ec7ee09113262bc5
+        capability_report_refs:
+          - id: capability_report_orbit_disease_e4_syn
+            version: 0.1.0
+            digest: sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+        limitations:
+          - 仅允许 D0 synthetic 证据；不产生预产、生产、网络、NAS、真实数据或发布授权。
+    selected_runtime_family: container_python
+    selected_realization_refs:
+      - id: runtime_realization_orbit_disease_e4_syn
+        version: 0.1.0
+        digest: sha256:e3202a3b9550ea581a51472f293b621f4944a1ae9f453ec4ec7ee09113262bc5
+    decision_ref: decision_orbit_disease_runtime_e4_syn
+  template_refs:
+    - id: tmpl_orbit_disease_research_task_d0_syn
+      version: 0.1.0
+      digest: sha256:cc80ec15bcf7a7a88949011d06a0100a62ce8bd963eff6afc84244351b91a607
+  policy_refs:
+    - pol_orbit_disease_e4_isolation_syn
+    - pol_orbit_disease_activation_exact_digest_syn
+  evaluation_suite_refs:
+    - id: eval_orbit_disease_research_task_r1_syn
+      version: 0.1.0
+      digest: sha256:f1d2c7287576d3b2e8c116e4aa47f2177005957ad03679a9c9aabbc0c61c67d3
+  evaluation_report_refs: []
+  compatibility:
+    contract_api_version: company-ai-os/v1alpha1
+    minimum_control_plane_revision_ref:
+      id: control_plane_profile_registration_lifecycle_syn
+      version: 0.1.0
+      digest: sha256:c12947d0ba559ee8ab40382d89728386fa012579787a815c6e2e22d1b66206aa
+    adapter_profile_ref:
+      id: adapter_profile_orbit_disease_container_syn
+      version: 0.1.0
+      digest: sha256:e3202a3b9550ea581a51472f293b621f4944a1ae9f453ec4ec7ee09113262bc5
+  release_gate:
+    policy_ref: pol_orbit_disease_activation_exact_digest_syn
+    required_evidence_refs:
+      - evidence://synthetic/disease-agent/e3
+      - evidence://synthetic/disease-agent/e4
+    approval_decision_refs: []
+

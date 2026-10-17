@@ -1,0 +1,24 @@
+{
+  "lock_version": "orbit.synthetic-agent-registration-approval-lock/2",
+  "status": "local-synthetic-registration-only",
+  "evidence_status": "synthetic",
+  "company_authoritative": false,
+  "review_requests": [],
+  "approved_handoffs": [
+    {
+      "handoff_id": "handoff_orbit_disease_research_task_agent_registration_syn",
+      "manifest_sha256": "sha256:76f4495b2e79292db9045658846757792b1b0e766d566ce76e4b27f96c871b4c",
+      "candidate_digest": "sha256:1eb5524baa23191f2beae80a1962785c4847c93eb42fa98ed4eb5133b67aaefe",
+      "handoff_digest": "sha256:ca0bfb071806ae13d7c20275989f9bed87ff4aff024840e41de704d5efe8f095",
+      "contract_release_id": "contract-v0.1.0-alpha.1",
+      "contract_git_tag": "contract-v0.1.0-alpha.1",
+      "contract_git_commit": "29e1ff39751791b1d9e233f3c36073303ed41fdb",
+      "registration_intake_profile": "orbit.synthetic-agent-registration-intake/1",
+      "approval_semantics": "批准精确 handoff 与 manifest 摘要用于 local synthetic registration-only intake；不批准正式 Registry、激活、Runtime、Task、Grant、模型、网络、文件系统、NAS、真实数据、预产或生产。",
+      "registration_only": true,
+      "activation_authorized": false,
+      "task_execution_authorized": false
+    }
+  ]
+}
+

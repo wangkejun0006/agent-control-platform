@@ -1,0 +1,45 @@
+[project]
+name = "orbit-agent-control-plane"
+version = "0.1.0"
+description = "D0 synthetic Company Task Router and Evaluator control-plane pilot"
+requires-python = ">=3.10"
+dependencies = [
+    "alembic>=1.16,<2",
+    "fastapi>=0.116,<1",
+    "langgraph>=1.2,<2",
+    "langgraph-checkpoint-sqlite>=3.1,<4",
+    "psycopg[binary]>=3.2,<4",
+    "pyjwt[crypto]>=2.10,<3",
+    "sqlalchemy>=2.0,<3",
+    "uvicorn>=0.35,<1",
+]
+
+[project.optional-dependencies]
+loopback-d0 = ["httpx>=0.28,<1"]
+
+[project.scripts]
+orbit-agent-control-plane = "orbit_agent_control_plane.cli:main"
+orbit-agent-control-plane-service = "orbit_agent_control_plane.service_runtime.main:run"
+orbit-agent-control-plane-runner = "orbit_agent_control_plane.service_runtime.runner_main:run"
+orbit-agent-control-plane-local-pilot = "orbit_agent_control_plane.service_runtime.local_pilot_main:run"
+orbit-agent-control-plane-cockpit-d0 = "orbit_agent_control_plane.service_runtime.department_cockpit_d0_main:run"
+orbit-agent-control-plane-console-d0 = "orbit_agent_control_plane.service_runtime.control_console_d0_main:run"
+orbit-agent-control-plane-lan = "orbit_agent_control_plane.service_runtime.lan_stage1_main:main"
+model-route = "orbit_agent_control_plane.service_runtime.model_route_cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28,<1",
+    "ruff>=0.12,<1",
+]
+

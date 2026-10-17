@@ -1,0 +1,64 @@
+{
+  "manifest_version": "orbit.dataset-tool-release/1",
+  "release_id": "dataset-tools-v0.1.0-synthetic",
+  "source_code_ref": "python-package://orbit-dataset-acquisition-registry/0.1.0",
+  "company_contract_release_ref": "contract-v0.1.0-alpha.1",
+  "minimum_control_plane_revision_ref": "control-plane-profile://tool-registry-lifecycle/0.1",
+  "status": "evaluation",
+  "tool_manifests": [
+    {
+      "tool_id": "tool_orbit_dataset_query_watchlist",
+      "path": "contracts/tools/0.1.0/query-watchlist.tool-manifest.json",
+      "sha256": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056"
+    },
+    {
+      "tool_id": "tool_orbit_dataset_acquisition_worker",
+      "path": "contracts/tools/0.1.0/acquisition-worker.tool-manifest.json",
+      "sha256": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d"
+    },
+    {
+      "tool_id": "tool_orbit_dataset_registry_publisher",
+      "path": "contracts/tools/0.1.0/registry-publisher.tool-manifest.json",
+      "sha256": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79"
+    }
+  ],
+  "domain_schemas": [
+    {
+      "schema_id": "urn:orbit:data-asset:dataset-registry-query-request:0.1",
+      "path": "schemas/dataset_registry_query_request.schema.json",
+      "sha256": "sha256:143b88e529ef8bb5ec72dc7bb1d1b0d83e9f937ff27675f6a8976ec38c106f78"
+    },
+    {
+      "schema_id": "urn:orbit:data-asset:dataset-registry-query-result:0.1",
+      "path": "schemas/dataset_registry_query_result.schema.json",
+      "sha256": "sha256:a51f13fa15c9570692496f133cea44306677d8cf229b9f85cf699dcd4769d7aa"
+    },
+    {
+      "schema_id": "urn:orbit:data-asset:dataset-acquisition-request:0.1",
+      "path": "schemas/dataset_acquisition_request.schema.json",
+      "sha256": "sha256:d3b032e3648f572f573b3b0ec8602ee4cd52171e47bb5de1b548fe10d89e1d87"
+    },
+    {
+      "schema_id": "urn:orbit:data-asset:dataset-acquisition-receipt:0.1",
+      "path": "schemas/dataset_acquisition_receipt.schema.json",
+      "sha256": "sha256:8237a17e2c557e2384c680ba1be1c843ee51c508977658b2c0f8c7eb6d839148"
+    },
+    {
+      "schema_id": "urn:orbit:data-asset:dataset-registry-patch-candidate:0.1",
+      "path": "schemas/dataset_registry_patch_candidate.schema.json",
+      "sha256": "sha256:5522a72c6880690eae9d3c1b6bc0ee08f24f39cfab7e0d9286bdc51388e8a7a3"
+    },
+    {
+      "schema_id": "urn:orbit:data-asset:dataset-registry-publication-receipt:0.1",
+      "path": "schemas/dataset_registry_publication_receipt.schema.json",
+      "sha256": "sha256:4a9982a74b1d678df563241c75837fc5aacc9b732d24a9cdbae051e4a9046b53"
+    }
+  ],
+  "agent_visible_boundary": {
+    "logical_references_only": true,
+    "physical_paths_visible": false,
+    "credentials_visible": false,
+    "nas_handles_visible": false
+  }
+}
+

@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sleep-ai.local/schemas/downloaded_data_export_manifest.schema.json",
+  "title": "Downloaded Data Export Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "export_id",
+    "scenario",
+    "dataset_id",
+    "source_schema_version",
+    "record_format",
+    "raw_path",
+    "export_path",
+    "registry_path",
+    "license_review_status",
+    "dua_scope",
+    "deidentification_status",
+    "commercial_use",
+    "track",
+    "created_by",
+    "consumer",
+    "created_at"
+  ],
+  "properties": {
+    "export_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_\\-\\.]*$"
+    },
+    "scenario": {
+      "type": "string",
+      "enum": [
+        "rag_dataset_cards",
+        "text_pretrain",
+        "sft_messages",
+        "physiological_windows",
+        "ehr_structured",
+        "health_scientist",
+        "agent_trajectories"
+      ]
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_\\-]+$"
+    },
+    "source_schema_version": {
+      "type": ["string", "integer"]
+    },
+    "record_format": {
+      "type": "string",
+      "enum": [
+        "jsonl",
+        "parquet",
+        "jsonl+parquet"
+      ]
+    },
+    "raw_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "export_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "registry_path": {
+      "type": "string",
+      "const": "registry/catalog.integrated.json"
+    },
+    "license_review_status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "pending",
+        "blocked",
+        "unknown"
+      ]
+    },
+    "dua_scope": {
+      "type": "string",
+      "enum": [
+        "not_required",
+        "dataset_specific_required",
+        "restricted",
+        "pending",
+        "unknown"
+      ]
+    },
+    "deidentification_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "not_required",
+        "pending",
+        "unknown"
+      ]
+    },
+    "commercial_use": {
+      "type": "string",
+      "enum": [
+        "Allowed",
+        "Restricted",
+        "Prohibited",
+        "Unknown"
+      ]
+    },
+    "track": {
+      "type": "string",
+      "enum": [
+        "product",
+        "research",
+        "compliance",
+        "rag"
+      ]
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "consumer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tables": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "storage_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license_scope": {
+      "type": "string",
+      "enum": [
+        "commercial_product",
+        "non_commercial",
+        "dataset_specific",
+        "unknown"
+      ]
+    },
+    "nsrr_data_used": {
+      "type": "boolean"
+    },
+    "sleepfm_weights_shipped": {
+      "type": "boolean"
+    }
+  }
+}
+

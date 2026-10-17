@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:orbit-agent-toolkit:schema:agent-package-blueprint:0.1",
+  "title": "Orbit Agent Toolkit Package Blueprint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "orbit-agent-toolkit/v0alpha1" },
+    "kind": { "const": "AgentPackageBlueprint" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["blueprint_id", "version", "status", "synthetic_only", "artifact_time"],
+      "properties": {
+        "blueprint_id": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/version" },
+        "status": { "const": "draft" },
+        "synthetic_only": { "const": true },
+        "artifact_time": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_id", "output_root", "blueprint_target_path", "generation_record_path", "required_schema_ids", "packages"],
+      "properties": {
+        "target_id": { "$ref": "#/$defs/id" },
+        "output_root": { "$ref": "#/$defs/relative_path" },
+        "blueprint_target_path": { "$ref": "#/$defs/relative_path" },
+        "generation_record_path": { "$ref": "#/$defs/relative_path" },
+        "required_schema_ids": {
+          "type": "array",
+          "minItems": 6,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^urn:company-ai-os:schema:[a-z0-9-]+:[0-9.]+$" }
+        },
+        "packages": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/package" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{2,79}$" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$" },
+    "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "relative_path": { "type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$" },
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/version" },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "interface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["interface_id", "capability", "input_contract_refs", "invocation_modes", "side_effect", "allowed_data_classifications", "requires_human_approval"],
+      "properties": {
+        "interface_id": { "$ref": "#/$defs/id" },
+        "capability": { "type": "string", "pattern": "^[a-z][a-z0-9_-]+(?:\\.[a-z][a-z0-9_-]+)+$" },
+        "input_contract_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/ref" } },
+        "output_contract_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/ref" } },
+        "invocation_modes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["synchronous", "asynchronous_task", "streaming"] } },
+        "side_effect": { "enum": ["none", "reversible", "idempotent", "non_idempotent"] },
+        "allowed_data_classifications": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["public", "internal", "confidential", "medical_restricted", "wearable_restricted"] } },
+        "requires_human_approval": { "type": "boolean" },
+        "required_model_capabilities": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{1,63}$" } }
+      }
+    },
+    "runtime_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtime_family", "assessment_status", "evidence_status", "limitations"],
+      "properties": {
+        "runtime_family": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{1,63}$" },
+        "assessment_status": { "enum": ["unassessed", "evaluating", "eligible", "ineligible", "deferred"] },
+        "evidence_status": { "enum": ["unverified", "synthetic", "architecture_reference", "verified_runtime"] },
+        "limitations": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 240 } }
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_id", "artifact_name", "definition_path", "binding_path", "capability", "registry", "release"],
+      "properties": {
+        "package_id": { "$ref": "#/$defs/id" },
+        "artifact_name": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,79}\\.synthetic\\.yaml$" },
+        "definition_path": { "$ref": "#/$defs/relative_path" },
+        "binding_path": { "$ref": "#/$defs/relative_path" },
+        "capability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["profile_id", "visibility", "interfaces", "limitations"],
+          "properties": {
+            "profile_id": { "$ref": "#/$defs/id" },
+            "visibility": { "enum": ["private", "company_internal", "allowlisted_external", "public"] },
+            "interfaces": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/interface" } },
+            "limitations": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 300 } }
+          }
+        },
+        "registry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["record_id", "retirement_policy_ref", "change_reason"],
+          "properties": {
+            "record_id": { "$ref": "#/$defs/id" },
+            "retirement_policy_ref": { "$ref": "#/$defs/id" },
+            "change_reason": { "type": "string", "minLength": 3, "maxLength": 1000 }
+          }
+        },
+        "release": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["release_id", "runtime_candidates", "release_gate_policy_ref", "required_evidence_refs", "minimum_control_plane_revision_ref", "adapter_profile_ref"],
+          "properties": {
+            "release_id": { "$ref": "#/$defs/id" },
+            "runtime_candidates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/runtime_candidate" } },
+            "release_gate_policy_ref": { "$ref": "#/$defs/id" },
+            "required_evidence_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 240 } },
+            "minimum_control_plane_revision_ref": { "$ref": "#/$defs/ref" },
+            "adapter_profile_ref": { "$ref": "#/$defs/ref" }
+          }
+        }
+      }
+    }
+  }
+}
+

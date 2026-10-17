@@ -1,0 +1,317 @@
+{
+  "schema": "orbit.sharing-live-validation/1",
+  "status": "stopped",
+  "mode": "authorized_real_provider",
+  "workflow_id": "workflow_5ab448d687ac4651909a",
+  "requests": 9,
+  "request_limit": 24,
+  "closed": true,
+  "cost_cny_with_unknown_reservations": 0.048954,
+  "cost_limit_cny": 2,
+  "close_reason": "sharing_validation_failed_preserved",
+  "protected_old_files": 85,
+  "old_evidence_unchanged": true,
+  "attempts": [
+    {
+      "actual_cost_micros": 1341,
+      "finished_at": 1792206950.5612366,
+      "http_status": 200,
+      "input_tokens": 215,
+      "number": 1,
+      "output_tokens": 58,
+      "phase": "sharing_contrast",
+      "reserved_micros": 48576,
+      "response_file": "response-01.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206949.5984137,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 1344,
+      "finished_at": 1792206951.6383736,
+      "http_status": 200,
+      "input_tokens": 216,
+      "number": 2,
+      "output_tokens": 58,
+      "phase": "sharing_contrast",
+      "reserved_micros": 48576,
+      "response_file": "response-02.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206950.5703835,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 1986,
+      "finished_at": 1792206952.9181643,
+      "http_status": 200,
+      "input_tokens": 242,
+      "number": 3,
+      "output_tokens": 105,
+      "phase": "sharing_contrast",
+      "reserved_micros": 48576,
+      "response_file": "response-03.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206951.6484625,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 11598,
+      "finished_at": 1792206957.147029,
+      "http_status": 200,
+      "input_tokens": 710,
+      "number": 4,
+      "output_tokens": 789,
+      "phase": "workbench_planning",
+      "reserved_micros": 48576,
+      "response_file": "response-04.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206953.1299841,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 6228,
+      "finished_at": 1792206959.8650646,
+      "http_status": 200,
+      "input_tokens": 584,
+      "number": 5,
+      "output_tokens": 373,
+      "phase": "workbench_planning",
+      "reserved_micros": 48576,
+      "response_file": "response-05.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206957.3724358,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 2496,
+      "finished_at": 1792206961.4950993,
+      "http_status": 200,
+      "input_tokens": 608,
+      "number": 6,
+      "output_tokens": 56,
+      "phase": "workbench_tools",
+      "reserved_micros": 48576,
+      "response_file": "response-06.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206960.517838,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 2958,
+      "finished_at": 1792206962.219071,
+      "http_status": 200,
+      "input_tokens": 862,
+      "number": 7,
+      "output_tokens": 31,
+      "phase": "workbench_tools",
+      "reserved_micros": 48576,
+      "response_file": "response-07.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206961.5825021,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 10308,
+      "finished_at": 1792206965.5548582,
+      "http_status": 200,
+      "input_tokens": 1208,
+      "number": 8,
+      "output_tokens": 557,
+      "phase": "workbench_tools",
+      "reserved_micros": 48576,
+      "response_file": "response-08.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206962.3009868,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 10695,
+      "finished_at": 1792206969.8099117,
+      "http_status": 200,
+      "input_tokens": 709,
+      "number": 9,
+      "output_tokens": 714,
+      "phase": "workbench_planning",
+      "reserved_micros": 48576,
+      "response_file": "response-09.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792206966.2228372,
+      "status": "succeeded"
+    }
+  ],
+  "checks": [
+    {
+      "name": "unshared_source",
+      "category": "model_classification",
+      "passed": true,
+      "expected": "reject",
+      "observed": {
+        "decision": "reject",
+        "readable_refs": [],
+        "source_documents_allowed": false,
+        "reason": "该资源未获批准且未共享给技术中心，来源部门原始资料也未共享；未共享资料不能访问、读取或检索，仅批准不等于共享。"
+      },
+      "actions_executed": 0
+    },
+    {
+      "name": "approved_only",
+      "category": "model_classification",
+      "passed": true,
+      "expected": "reject",
+      "observed": {
+        "decision": "reject",
+        "readable_refs": [],
+        "source_documents_allowed": false,
+        "reason": "该资源虽已批准但未显式共享给请求部门，不能读取；来源部门原始资料未共享，交接不授予访问来源部门其他资料的权限。"
+      },
+      "actions_executed": 0
+    },
+    {
+      "name": "explicit_share",
+      "category": "model_classification",
+      "passed": true,
+      "expected": "allow",
+      "observed": {
+        "decision": "allow",
+        "readable_refs": [
+          "approved-artifact@2"
+        ],
+        "source_documents_allowed": false,
+        "reason": "已批准产物已显式共享给technology_center，绑定版本2与当前版本一致且未撤权，用途delivery_design在授权范围内，可读取approved-artifact@2；来源部门原始资料source-private未共享给请求者，仅批准不等于共享，交接不授予访问来源部门其他资料的权限，故不可读取。"
+      },
+      "actions_executed": 0
+    },
+    {
+      "name": "unapproved_blocks_downstream",
+      "category": "host_workflow",
+      "passed": true
+    },
+    {
+      "name": "approval_without_share_blocks_technology_center",
+      "category": "host_workflow",
+      "passed": true
+    },
+    {
+      "name": "handoff_bound_product_center",
+      "category": "host_workflow",
+      "passed": true,
+      "handoff": {
+        "handoff_id": "handoff:d3efd4bdf83f99dd6e8dbe3e72939e72df9a0997b6c7334bde482449732beb7d",
+        "source_attempt": "attempt_4dd5e7d7ac26434a9a37",
+        "source_department": "product_center",
+        "target_department": "technology_center",
+        "candidate_digest": "sha256:2fdc8fc3d349ee5b831e2f118ea29a5c5e9ae0f4dcc797c9f9ed9a887b3076dd",
+        "artifact_ref": "artifact://department-cockpit/technology_center/artifact_d0fc0d40b1e7135791ad",
+        "approved_by": "hum_local_f9f7de0b758e6508e98d1ac2_syn",
+        "recorded_at": "2026-10-17T03:16:05Z"
+      },
+      "version": 1
+    },
+    {
+      "name": "private_source_excluded_product_center",
+      "category": "host_workflow",
+      "passed": true
+    }
+  ],
+  "events": [
+    {
+      "digest": "sha256:f9cb5216dbf0b1b410310064890365c4d605cb264a839b6e5a367c541523aa91",
+      "kind": "workbench_plan_validated",
+      "payload": {
+        "department": "product_center",
+        "key": "delivery-plan:grant_planning_90f8dcab6c0a6c5782cc:generate_questions:858b6a2e67ed24d2",
+        "output_digest": "sha256:0a6e7668bdbec607e955dd87ea95959b06acd2f6b0ff66dd7db108305d5ea833",
+        "stage": "generate_questions"
+      },
+      "previous": "genesis",
+      "sequence": 0
+    },
+    {
+      "digest": "sha256:a2b64399d3ee0348ca1a1ca2eb7a1b39ddb5a9b294b1ce5de5bb810c2bf157b1",
+      "kind": "workbench_plan_validated",
+      "payload": {
+        "department": "product_center",
+        "key": "delivery-plan:grant_planning_90f8dcab6c0a6c5782cc:generate_task_package:555576b7067acef0",
+        "output_digest": "sha256:4c4ca18689608552aeece552eaaceaf25ff1f6acb1a841400c1b01eca3f492ac",
+        "stage": "generate_task_package"
+      },
+      "previous": "sha256:f9cb5216dbf0b1b410310064890365c4d605cb264a839b6e5a367c541523aa91",
+      "sequence": 1
+    },
+    {
+      "digest": "sha256:decc7fe96871e429f20850b8e87596040e97b0c5aee87d7753db9c6604b0103c",
+      "kind": "workbench_tool_intents_validated",
+      "payload": {
+        "attempt_id": "attempt_4dd5e7d7ac26434a9a37",
+        "calls_digest": "sha256:a5ee1495696768e22e2654273c7d7804e6faa64acb37f1d5f445bdae4ce32fdd",
+        "run_id": "run_54ee1e4ce979a0fa45b7",
+        "stage": 0
+      },
+      "previous": "sha256:a2b64399d3ee0348ca1a1ca2eb7a1b39ddb5a9b294b1ce5de5bb810c2bf157b1",
+      "sequence": 2
+    },
+    {
+      "digest": "sha256:f82b6f8d234391fc3dc9f22c2aabd59c5dde94b4cdf661e1780cd09696a5407b",
+      "kind": "workbench_tool_intents_validated",
+      "payload": {
+        "attempt_id": "attempt_4dd5e7d7ac26434a9a37",
+        "calls_digest": "sha256:62a481439d629b80a2c4599d63251846fee1d3a2d902d9446ed9c857167ba14a",
+        "run_id": "run_54ee1e4ce979a0fa45b7",
+        "stage": 1
+      },
+      "previous": "sha256:decc7fe96871e429f20850b8e87596040e97b0c5aee87d7753db9c6604b0103c",
+      "sequence": 3
+    },
+    {
+      "digest": "sha256:f13c8fb254009feb140e695a7d71df444ef9c2f4670c34774bcf95f431b6c213",
+      "kind": "workbench_tool_intents_validated",
+      "payload": {
+        "attempt_id": "attempt_4dd5e7d7ac26434a9a37",
+        "calls_digest": "sha256:f9fe6de5ed5b36b67dccf1fdc3328e7bd4215680e6a2bda93dc591de7554855b",
+        "run_id": "run_54ee1e4ce979a0fa45b7",
+        "stage": 2
+      },
+      "previous": "sha256:f82b6f8d234391fc3dc9f22c2aabd59c5dde94b4cdf661e1780cd09696a5407b",
+      "sequence": 4
+    },
+    {
+      "digest": "sha256:b6a71ef01f220fdf8288feba5b449a80d40e64d74a584ab112daebffc0c8e2bd",
+      "kind": "workbench_validation_candidate",
+      "payload": {
+        "actual_tool_receipts": 5,
+        "body_digest": "sha256:d5e53698d7e62b6bac0ff6463ce84eec7e6a92e8387f5271a91061eebe1435eb",
+        "checks_passed": true,
+        "department": "product_center",
+        "digest": "sha256:2fdc8fc3d349ee5b831e2f118ea29a5c5e9ae0f4dcc797c9f9ed9a887b3076dd",
+        "revision": 1,
+        "workflow": "workflow_5ab448d687ac4651909a"
+      },
+      "previous": "sha256:f13c8fb254009feb140e695a7d71df444ef9c2f4670c34774bcf95f431b6c213",
+      "sequence": 5
+    },
+    {
+      "digest": "sha256:e8850a8afd975c5a538445ed839f21c61bc361159b335c40596b99ebb558e458",
+      "kind": "workbench_plan_contract_failed",
+      "payload": {
+        "key": "delivery-plan:grant_planning_bdc2d0b07932d07b0b49:generate_questions:86ef2d6a8adf7306",
+        "stage": "generate_questions"
+      },
+      "previous": "sha256:b6a71ef01f220fdf8288feba5b449a80d40e64d74a584ab112daebffc0c8e2bd",
+      "sequence": 6
+    },
+    {
+      "digest": "sha256:3b53dc4df0e8d0ad44790984e433e65a56bfb99d70bdda65cc2bb0b30e4b92d9",
+      "kind": "validation_stopped",
+      "payload": {
+        "exception_type": "TypeError",
+        "reason": "validation_internal_error"
+      },
+      "previous": "sha256:e8850a8afd975c5a538445ed839f21c61bc361159b335c40596b99ebb558e458",
+      "sequence": 7
+    }
+  ],
+  "reviewer_mode": "automated_authenticated_local_test_account_not_human",
+  "production_authorized": false,
+  "published": false,
+  "limitations": "Three contrastive cases and one synthetic workflow/rework; bounded Chinese checks and exact policy copying do not certify general semantic understanding. No user human approval or security proof."
+}

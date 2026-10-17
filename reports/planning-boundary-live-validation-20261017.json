@@ -1,0 +1,202 @@
+{
+  "schema": "orbit.minimal-market-rework/1",
+  "status": "stopped",
+  "phase": "model_free_review",
+  "workflow_id": "workflow_19731a7407b241108d47",
+  "mode": "authorized_real_provider",
+  "requests": 5,
+  "request_limit": 5,
+  "cost_limit_cny": 0.3,
+  "cost_cny_conservative_not_invoice": 0.036252,
+  "closed": true,
+  "close_reason": "request_budget_exhausted",
+  "source_revision": "sha256:15f6b11f0e80c82fb75c2bb9617ad05116e5529829ed19546532d7c9d0deaf2a",
+  "checks": [
+    {
+      "name": "offline_precondition_product_center",
+      "passed": true
+    },
+    {
+      "name": "offline_precondition_technology_center",
+      "passed": true
+    },
+    {
+      "name": "offline_precondition_market_center",
+      "passed": true
+    },
+    {
+      "name": "zero_paid_preconditions",
+      "passed": true
+    },
+    {
+      "name": "unshared_row_denied",
+      "passed": false
+    }
+  ],
+  "attempts": [
+    {
+      "actual_cost_micros": 7107,
+      "finished_at": 1792217545.2789297,
+      "http_status": 200,
+      "input_tokens": 925,
+      "number": 1,
+      "output_tokens": 361,
+      "phase": "workbench_planning",
+      "reserved_micros": 48576,
+      "response_file": "response-01.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792217543.35846,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 8265,
+      "finished_at": 1792217548.1078162,
+      "http_status": 200,
+      "input_tokens": 959,
+      "number": 2,
+      "output_tokens": 449,
+      "phase": "workbench_planning",
+      "reserved_micros": 48576,
+      "response_file": "response-02.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792217545.5489833,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 3417,
+      "finished_at": 1792217549.8408127,
+      "http_status": 200,
+      "input_tokens": 915,
+      "number": 3,
+      "output_tokens": 56,
+      "phase": "workbench_tools",
+      "reserved_micros": 48576,
+      "response_file": "response-03.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792217548.8169124,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 4533,
+      "finished_at": 1792217550.9128773,
+      "http_status": 200,
+      "input_tokens": 1387,
+      "number": 4,
+      "output_tokens": 31,
+      "phase": "workbench_tools",
+      "reserved_micros": 48576,
+      "response_file": "response-04.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792217549.9219494,
+      "status": "succeeded"
+    },
+    {
+      "actual_cost_micros": 12930,
+      "finished_at": 1792217554.8347328,
+      "http_status": 200,
+      "input_tokens": 1742,
+      "number": 5,
+      "output_tokens": 642,
+      "phase": "workbench_tools",
+      "reserved_micros": 48576,
+      "response_file": "response-05.json",
+      "returned_model": "deepseek-flash",
+      "started_at": 1792217551.0016258,
+      "status": "succeeded"
+    }
+  ],
+  "events": [
+    {
+      "digest": "sha256:e24ef5cc0f36d7a7fff3ad26aceb1b87b16e74e1471960b14e2d01d45a1a395c",
+      "kind": "workbench_plan_validated",
+      "payload": {
+        "department": "market_center",
+        "key": "delivery-plan:grant_planning_228e4f58ee8c2b2bde70:generate_questions:1a09fe3fae04e9bb",
+        "output_digest": "sha256:f67f6636e84cabdd6567f2ecdc49b7fb3b39a5bb7926de71745b633cc336a5ee",
+        "stage": "generate_questions"
+      },
+      "previous": "genesis",
+      "sequence": 0
+    },
+    {
+      "digest": "sha256:13d3a9cb78264f63ed55728cb75b69c95e80a2d862049fa90412ca922547fa10",
+      "kind": "workbench_plan_validated",
+      "payload": {
+        "department": "market_center",
+        "key": "delivery-plan:grant_planning_228e4f58ee8c2b2bde70:generate_task_package:97f5bfb970db2ce4",
+        "output_digest": "sha256:b88fc60e115e6e7d8cc838b4e494c510d9059aa99c50d78921297a1ad6736cd2",
+        "stage": "generate_task_package"
+      },
+      "previous": "sha256:e24ef5cc0f36d7a7fff3ad26aceb1b87b16e74e1471960b14e2d01d45a1a395c",
+      "sequence": 1
+    },
+    {
+      "digest": "sha256:9287ad8a7d73f62394388175dae6a53e8851d30c61ec44cbb97642e2fda8961b",
+      "kind": "workbench_tool_intents_validated",
+      "payload": {
+        "attempt_id": "attempt_e8aeed4d490446758141",
+        "calls_digest": "sha256:8fc0fa512d2ed3f0e6ac39c822d28fc48c4fe8f77f5ae7d455676a05e51549cf",
+        "run_id": "run_511281a393adc03ed7dc",
+        "stage": 0
+      },
+      "previous": "sha256:13d3a9cb78264f63ed55728cb75b69c95e80a2d862049fa90412ca922547fa10",
+      "sequence": 2
+    },
+    {
+      "digest": "sha256:9ab619f2a6f13064aaa27d30ffbbed7fd38bb588ebdf1f1179c4c4c067fb23c8",
+      "kind": "workbench_tool_intents_validated",
+      "payload": {
+        "attempt_id": "attempt_e8aeed4d490446758141",
+        "calls_digest": "sha256:7bd82f14cabdb233989f09dcc8d2ad2c7673fb11da193cdac89d3c894c377bb3",
+        "run_id": "run_511281a393adc03ed7dc",
+        "stage": 1
+      },
+      "previous": "sha256:9287ad8a7d73f62394388175dae6a53e8851d30c61ec44cbb97642e2fda8961b",
+      "sequence": 3
+    },
+    {
+      "digest": "sha256:0e87f8916b7b344240881e4d5570b89ce3123c3c8b546f613cc4c2d597d1e0e1",
+      "kind": "workbench_tool_intents_validated",
+      "payload": {
+        "attempt_id": "attempt_e8aeed4d490446758141",
+        "calls_digest": "sha256:c9bb6f16b823bc3d9dfa3663b1cde6fbfa40244182d3dc26093e2e5224832d8e",
+        "run_id": "run_511281a393adc03ed7dc",
+        "stage": 2
+      },
+      "previous": "sha256:9ab619f2a6f13064aaa27d30ffbbed7fd38bb588ebdf1f1179c4c4c067fb23c8",
+      "sequence": 4
+    },
+    {
+      "digest": "sha256:3e1264744f2b77abf89292d33d0c7eff3b69d57c99bd71532dd66ff69ad40570",
+      "kind": "workbench_validation_candidate",
+      "payload": {
+        "actual_tool_receipts": 5,
+        "body_digest": "sha256:86b5465d653c4d714c5c534a9a7dd42ab92d6837a23cb82745f588ca08f1b1a1",
+        "checks_passed": true,
+        "department": "market_center",
+        "digest": "sha256:6f0065298022f7a8b9153c7feac8045e4c11c26b61a48eb9cc9e0f2bc1a80b01",
+        "revision": 2,
+        "workflow": "workflow_19731a7407b241108d47"
+      },
+      "previous": "sha256:0e87f8916b7b344240881e4d5570b89ce3123c3c8b546f613cc4c2d597d1e0e1",
+      "sequence": 5
+    },
+    {
+      "digest": "sha256:c4d13b529ec006b74152a7ceacffedfc29890cb0ce24c25cad85816f0ccc3b95",
+      "kind": "minimal_validation_stopped",
+      "payload": {
+        "exception_type": "LiveError",
+        "phase": "model_free_review",
+        "reason": "minimal_validation_failed:unshared_row_denied"
+      },
+      "previous": "sha256:3e1264744f2b77abf89292d33d0c7eff3b69d57c99bd71532dd66ff69ad40570",
+      "sequence": 6
+    }
+  ],
+  "upstream_and_first_market_mode": "offline_deterministic",
+  "reviewer_mode": "automated_authenticated_local_test_account_not_human",
+  "historical_budgets_read_or_reopened": false,
+  "production_authorized": false,
+  "published": false,
+  "limitations": "One fictional market rework. Upstream and v1 are explicit offline fixtures. Bounded Chinese checks do not certify arbitrary prose; human review still required."
+}

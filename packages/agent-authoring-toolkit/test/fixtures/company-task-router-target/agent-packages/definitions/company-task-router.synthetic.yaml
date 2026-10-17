@@ -1,0 +1,95 @@
+api_version: company-ai-os/v1alpha1
+kind: AgentDefinition
+metadata:
+  agent_id: agt_company_task_router_syn
+  version: 0.1.0
+  display_name: Company Task Router Synthetic
+  description: 只执行确定性公司到可路由目标路由的纯合成参考定义。
+  status: draft
+  evidence_status: synthetic
+  synthetic_only: true
+  reference_role: company_task_router
+spec:
+  agent_kind: company_agent
+  purpose:
+    statement: 根据确定性规则发现已登记可路由目标，并把 Company Task 有界交接到 SystemComposition/System Orchestrator 或 Agent System。
+    allowed_outcomes:
+      - 目标 Routing Target 选择结果
+      - 可审计的任务交接或拒绝
+    prohibited_outcomes:
+      - 进行健康、研究、营销或其他领域判断
+      - 直接读取业务数据
+      - 调用 Shell 或通用执行工具
+      - 进入平台内部任务分解
+      - 创建新的 Agent Identity
+  responsibility:
+    accountable_role_ref: role_company_routing_owner_syn
+    human_checkpoints:
+      - 未匹配确定性路由规则时交还人类
+      - 跨域或高影响任务必须取得相应人类批准
+    separation_of_duties:
+      - Router 不得同时成为目标平台的业务批准者
+  system_prompt:
+    version: 0.1.0
+    digest: sha256:3dacae7997cdcfa25be44c06e41f2e19b5b255843e536d474a14b0a60eae5349
+    inline: |-
+      你依据确定性路由规则把公司任务交给已登记的可路由目标。多 Platform System 的目标是 SystemComposition/System Orchestrator；单 Platform 或独立 Agent 应用可直接是 Agent System。不得做领域判断、读取业务数据、调用 Shell、进入 System 或 Platform 内部编排或创建新 Agent。
+  skills: []
+  capabilities:
+    provides:
+      - company_task.route
+      - routing_target.discover
+    excludes:
+      - domain.decide
+      - business_data.read
+      - shell.execute
+      - platform_internal.orchestrate
+      - agent.spawn
+  memory:
+    allowed_classes:
+      - working
+    read_policy_refs:
+      - pol_routing_registry_read_syn
+    write_policy_refs: []
+    provenance_required: true
+    poisoning_controls:
+      - source_label
+      - content_scan
+    disposition_policy_ref: pol_working_memory_delete_syn
+  model_requirements:
+    usage: forbidden
+    capabilities: []
+    allowed_data_classifications: []
+    fallback_allowed: false
+  permission_requests:
+    tools: []
+    data: []
+    agents:
+      default: deny
+      rules:
+        - operation: discover
+          target_agent_refs:
+            - agt_registered_system_catalog_syn
+          template_refs: []
+        - operation: handoff
+          target_agent_refs:
+            - agt_orbit_health_system_syn
+            - agt_rednote_system_syn
+          template_refs: []
+  max_autonomy: L2
+  output_contract_refs:
+    - id: result_company_route_syn
+      version: 0.1.0
+      digest: sha256:1717171717171717171717171717171717171717171717171717171717171717
+  evaluation:
+    suite_refs:
+      - id: eval_company_router_syn
+        version: 0.1.0
+        digest: sha256:1818181818181818181818181818181818181818181818181818181818181818
+    release_gate: human_and_security_required
+  lifecycle:
+    review_policy_ref: pol_agent_review_syn
+    retirement_conditions:
+      - 公司路由职责被替代
+      - 路由规则无法保持确定性与审计性
+

@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "AgentInvocation 是控制平面派发或 Agent 间调用的最小信封；上下文只允许受控引用，不携带隐式权限。",
+  "$id": "urn:company-ai-os:schema:agent-invocation:0.1",
+  "title": "Company AI OS AgentInvocation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "AgentInvocation" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["invocation_id", "task_id", "status", "evidence_status", "synthetic_only", "created_at"],
+      "properties": {
+        "invocation_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "task_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "status": { "enum": ["created", "accepted", "running", "completed", "failed", "cancelled"] },
+        "evidence_status": { "enum": ["synthetic", "architecture_reference", "verified_runtime"] },
+        "synthetic_only": { "type": "boolean" },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caller",
+        "callee_agent_ref",
+        "callee_binding_ref",
+        "operation",
+        "execution_grant_ref",
+        "parent_invocation_ref",
+        "template_ref",
+        "idempotency_key",
+        "input_artifact_refs",
+        "context_projection",
+        "output_contract_refs",
+        "delivery",
+        "deadline_at",
+        "trace_context_ref"
+      ],
+      "properties": {
+        "caller": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "id"],
+          "properties": {
+            "kind": { "enum": ["human", "agent", "control_plane"] },
+            "id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" }
+          }
+        },
+        "callee_agent_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+        "callee_binding_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+        "operation": { "enum": ["dispatch", "call", "handoff", "delegate", "spawn"] },
+        "execution_grant_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+        "parent_invocation_ref": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" }
+          ]
+        },
+        "template_ref": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+          ]
+        },
+        "idempotency_key": { "type": "string", "minLength": 8, "maxLength": 200 },
+        "input_artifact_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 240 } },
+        "context_projection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policy_ref", "allowed_field_refs", "excluded_classifications", "memory_inheritance"],
+          "properties": {
+            "policy_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/policy_ref" },
+            "allowed_field_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3, "maxLength": 240 } },
+            "excluded_classifications": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/classification" } },
+            "memory_inheritance": { "const": "none" }
+          }
+        },
+        "output_contract_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" } },
+        "delivery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode", "semantics", "reply_to_ref"],
+          "properties": {
+            "mode": { "enum": ["synchronous", "asynchronous_task", "streaming"] },
+            "semantics": { "enum": ["at_most_once", "at_least_once_idempotent"] },
+            "reply_to_ref": { "type": "string", "minLength": 3, "maxLength": 240 }
+          }
+        },
+        "deadline_at": { "type": "string", "format": "date-time" },
+        "trace_context_ref": { "type": "string", "minLength": 3, "maxLength": 240 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "operation": { "const": "spawn" } }, "required": ["operation"] },
+          "then": { "properties": { "template_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" } } },
+          "else": { "properties": { "template_ref": { "type": "null" } } }
+        },
+        {
+          "if": { "properties": { "operation": { "const": "dispatch" } }, "required": ["operation"] },
+          "then": { "properties": { "caller": { "type": "object", "properties": { "kind": { "const": "control_plane" } } }, "parent_invocation_ref": { "type": "null" } } }
+        }
+      ]
+    }
+  }
+}
+

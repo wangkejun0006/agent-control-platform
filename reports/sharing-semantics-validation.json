@@ -1,0 +1,182 @@
+{
+  "date": "2026-10-17",
+  "mode": "offline_only",
+  "new_model_requests": 0,
+  "policy_version": "delivery-sharing/1",
+  "semantic_regression_passed": true,
+  "scope": "Bounded Chinese policy consistency checks, not complete natural-language semantic certification. Native permission and handoff checks remain authoritative.",
+  "historical_replay": {
+    "candidate_revision": 2,
+    "original_body_sha256": "f5fd3d6574e29961412b6638caa66ad580b870358f393d2b7c3a570b12034b61",
+    "would_pass_new_gate": false,
+    "checks": [
+      {
+        "name": "未共享资料明确拒绝访问",
+        "code": "unshared_access_denied",
+        "passed": false
+      },
+      {
+        "name": "批准且显式共享的产物允许交接",
+        "code": "approved_shared_artifact_allowed",
+        "passed": false
+      },
+      {
+        "name": "交接限定接收部门、版本和授权范围",
+        "code": "handoff_scope_bounded",
+        "passed": false
+      },
+      {
+        "name": "批准不自动等于共享",
+        "code": "approval_is_not_sharing",
+        "passed": false
+      },
+      {
+        "name": "无绝对隔离或全面开放的矛盾表述",
+        "code": "no_conflicting_blanket_claim",
+        "passed": false,
+        "evidence": [
+          "跨部门资料不得进入结果集"
+        ]
+      }
+    ],
+    "original_preserved": true
+  },
+  "offline_corrected_example": {
+    "path": "docs/examples/sharing-corrected-market.md",
+    "model_generated": false,
+    "checks": [
+      {
+        "name": "未共享资料明确拒绝访问",
+        "code": "unshared_access_denied",
+        "passed": true
+      },
+      {
+        "name": "批准且显式共享的产物允许交接",
+        "code": "approved_shared_artifact_allowed",
+        "passed": true
+      },
+      {
+        "name": "交接限定接收部门、版本和授权范围",
+        "code": "handoff_scope_bounded",
+        "passed": true
+      },
+      {
+        "name": "批准不自动等于共享",
+        "code": "approval_is_not_sharing",
+        "passed": true
+      },
+      {
+        "name": "无绝对隔离或全面开放的矛盾表述",
+        "code": "no_conflicting_blanket_claim",
+        "passed": true,
+        "evidence": []
+      }
+    ]
+  },
+  "historical_activities": [
+    {
+      "activity": "live-20261016",
+      "requests": 20,
+      "closed": true,
+      "sha256": "6e0dd6b748990339aa48ee6364e2c85a3c44d0c3164adf9c52fcfeb2e2c1edf4"
+    },
+    {
+      "activity": "workbench-live-20261017",
+      "requests": 22,
+      "closed": true,
+      "sha256": "5599ede189d2cddb46e59a52113d5d35bad1ba9b47f49c4b93da7a4bf11ad7f2"
+    }
+  ],
+  "historical_files_sha256": {
+    ".runtime/live-20261016/tools-adversarial0-1.jsonl": "83419ad91b929d1f3ce74fca399299d6ff9f1cec805b9bbde91b6c9388d5184c",
+    ".runtime/live-20261016/response-03.json": "f6c53fadeefa65a7bcafed0e70b89bad9e510902ac8a00002b6351a0e690a3f7",
+    ".runtime/live-20261016/planning-operations-1.json": "21edc8de41f5f63a7d08460671697e0b0c99b76d59d0bf9500218055c993e521",
+    ".runtime/live-20261016/planning-checkpoints.sqlite3": "843a142679e41763d70ecefdf6f508a21a69d0cd839a9b3c21a38bf8cb591a7c",
+    ".runtime/live-20261016/planning-inventory-1.json": "1cb65b88c4e1744a3cc9b6a74890e09124789ce86fddc5717fce5f83ac0d55d6",
+    ".runtime/live-20261016/response-04.json": "ee97e34bf0e0c7eb56e8e28c8cc27a4d7b9eb28b7d6cd288ce7c6ec717a6408b",
+    ".runtime/live-20261016/response-20.json": "b5fd853abb33bcb12e3d1cced927109ba827d0a3ff4d6c1bd94e41d559fd5bad",
+    ".runtime/live-20261016/candidate-inventory-2.json": "4c46d1d50935788589cb0557b90dc9e5223802981ad43435d07f2cc211f58051",
+    ".runtime/live-20261016/response-07.json": "0ff9da69e66071cde5566a0c46de9faf98cc8dce0e5976e6847d44f9ffb50bea",
+    ".runtime/live-20261016/budget.json": "6e0dd6b748990339aa48ee6364e2c85a3c44d0c3164adf9c52fcfeb2e2c1edf4",
+    ".runtime/live-20261016/response-06.json": "48ec253efc58bbae00dbf53e5d8f7f17d0ab9bec2557d99600f42ade2f3e44f0",
+    ".runtime/live-20261016/tools-inventory-1.jsonl": "c3c0d06ab4d59bccc0d228c9f238db6ab2f308fa124aa8322fdd7fff529108ae",
+    ".runtime/live-20261016/response-15.json": "2d7da3ff47ece6aa32644a8df89d5be0aa9aff9a42f74c11114ee62d984e9bad",
+    ".runtime/live-20261016/response-09.json": "df5807122e347f7e26c15789b98e3634b43834e16c82c18dc6c4f75846cfdf1c",
+    ".runtime/live-20261016/response-19.json": "767e8f13f63d324ce6059a76f86ed109c96ca938d82c47e27fdbcfed18c1b806",
+    ".runtime/live-20261016/response-18.json": "1a20f7409ee64a2111178deabff9b4062bf1121c87df6e43686412898c13bbb4",
+    ".runtime/live-20261016/response-14.json": "cc7ab00ebc4bba40fa099c8b17d76be550b5e77fa8361f652ad6f76cac7d753a",
+    ".runtime/live-20261016/response-12.json": "a112c2830d2e4c1af8740e6cd14452fd79f5435c7cee458e67827895ec18c8a5",
+    ".runtime/live-20261016/tools-adversarial1-1.jsonl": "f663c7a6ee3813e07290b73f8d71531fe9c041ebff92c5c6e87be65fa5ad3f3c",
+    ".runtime/live-20261016/response-17.json": "ff54e319b894359fb0c258400e6cc7b8f1b8cb8799b0162197805aa7f99ba8a7",
+    ".runtime/live-20261016/tools-operations-1.jsonl": "b295e213fc55443ce52da71b7124a0cdb1658f1e937e4fe90caca4576b0b4472",
+    ".runtime/live-20261016/planning-inventory-2.json": "a3d04c99fa785d7d7d74dcf4eb271ad74a225f5f41d472cee17613b8cc174652",
+    ".runtime/live-20261016/response-10.json": "181acb6342fe51120f02a8a0bbbe2a69cdccf484ba5a9cd325801dd42bacb70b",
+    ".runtime/live-20261016/candidate-inventory-1.json": "76d8c17a3f3a2569243945babc96a2b459340f4c77238673f3d77d0d174d146f",
+    ".runtime/live-20261016/planning.sqlite3": "731eb0a3848407ffb4d35c706c171b9d18bde78750f2f066af503543f04002f8",
+    ".runtime/live-20261016/response-13.json": "c67de34385fa81fa4b76c038d2a1290759b8af74f823f3da882983d2add15bc5",
+    ".runtime/live-20261016/tools-inventory-2.jsonl": "a55a82ef76845706e0c95df134fee2039d57322351a0932a7c930e1d4c590ea7",
+    ".runtime/live-20261016/response-11.json": "7b01ee06e636b8d4569edf88408918a870361c00337210928acc2d7aa6683304",
+    ".runtime/live-20261016/response-16.json": "4ea7a687767f6d839329e0e75852ae96820bcdc49980d640a74cc9b69820fe5c",
+    ".runtime/live-20261016/response-08.json": "e69b7d49417164f72280135280355490e498214096cc35a4fcab794349010cf9",
+    ".runtime/live-20261016/response-02.json": "219cf8689db23368655646e7f7e5f0037c22a33b5d0af5126376d190d04a2032",
+    ".runtime/live-20261016/response-05.json": "aab33bec4acae952eb9d32e35237235657712b5244578719e9a9999c092f4c21",
+    ".runtime/live-20261016/candidate-operations-1.json": "1f3cc6ddcd61c9b41cbb737103fb151e76b675c08ad9deafdd9efd0b70c6ecc1",
+    ".runtime/workbench-live-20261017/response-03.json": "165f0a8ef9ba075f3b890b2f2c37411030636f24414ab4b698e61282a17de81b",
+    ".runtime/workbench-live-20261017/final-workflow.json": "cd23a897f081b7d20f24e870ecffa7ef20fac14126b0252b62f3b3c8f150f111",
+    ".runtime/workbench-live-20261017/response-04.json": "fe4a58b29c8d6f0727a1c178c229975a37748265632e29829ac6f3be63d047d3",
+    ".runtime/workbench-live-20261017/delivery.zip": "80239ec3bb500d8dac09f1c6fc998d0ed421b4a35db86e07fa7f8aba24f5c030",
+    ".runtime/workbench-live-20261017/response-20.json": "dd4c78fe2ef392ada78dced44a2bd4d912300113566540beabb3528d7e4eb0b7",
+    ".runtime/workbench-live-20261017/response-07.json": "6ad24c3f46e138eb160a882e774ab9408bd227c351ed9de33bfb93bdb643276f",
+    ".runtime/workbench-live-20261017/budget.json": "5599ede189d2cddb46e59a52113d5d35bad1ba9b47f49c4b93da7a4bf11ad7f2",
+    ".runtime/workbench-live-20261017/response-06.json": "c8a169a560cd8521e5b46ad3332f374a6448f74792501670f1e1414aa647e67a",
+    ".runtime/workbench-live-20261017/response-15.json": "4fe957ad1f5d35bedb641eb11248b57401ad83e649bcfd22681c18c4d53ae193",
+    ".runtime/workbench-live-20261017/response-22.json": "64bb9900a6dd5d76f8282d3805d0b171201e7162657bbb3654f3dd47f48289e3",
+    ".runtime/workbench-live-20261017/response-01.json": "44ea038ec8df436ddee4291540e4c14bf598995e4153ad265721091f00b4b77f",
+    ".runtime/workbench-live-20261017/workflow.json": "b1fe17c75d837d28514b13e1f109d2281d3ee754297ea00ceb9625516a381e8e",
+    ".runtime/workbench-live-20261017/response-09.json": "7d424d2d938a80359067c729e4a8f9dc96bd35e1306e4c76c2e0471e707365c5",
+    ".runtime/workbench-live-20261017/response-19.json": "46553b33b075c03b6736c194bea718e719f2d82d9e95504ae70eef2463f79609",
+    ".runtime/workbench-live-20261017/response-18.json": "0c8697268236a1f1677045740971cbb22341cb069a8a398d16ffd3caab3d66e6",
+    ".runtime/workbench-live-20261017/response-14.json": "be7e84ee0b2070208439eacaef5a927b32392f3beb3bc4933f598529c9bb23f0",
+    ".runtime/workbench-live-20261017/response-12.json": "03530dc43fe38d23ca3674186255d420cbaa8e6d8283b9680c5c6aed0a068efe",
+    ".runtime/workbench-live-20261017/response-17.json": "7aa74bdc605daee70a041c6633106e1e236b959fff71c425fa14bac0e8bb00fb",
+    ".runtime/workbench-live-20261017/response-10.json": "9af5dd90caf403bba5d1b60727983251b0b304b87d86214dac142e3838eb5d8c",
+    ".runtime/workbench-live-20261017/validation-report.json": "1506e2b0ef7501580890df8240fa4771e845ef636e4972e6fd34a3bddc7af6be",
+    ".runtime/workbench-live-20261017/response-13.json": "a355b3190f6173b740ea7de01796f1c77840900bcc3e7268f2c7f4ee838cf0e0",
+    ".runtime/workbench-live-20261017/response-21.json": "338cde9d655eadf48c42b0ae1a6f2acaa67fdbf1a787b5e3c5071fb1f93a09f0",
+    ".runtime/workbench-live-20261017/response-11.json": "822bb8b5b4d454cd8575f7ef1160879cb4c92c512403e8113135f2b5e4a5fff8",
+    ".runtime/workbench-live-20261017/response-16.json": "adf66f42ddb46f657698909c31429bfa202768b0cb9452793d23bcc810738a35",
+    ".runtime/workbench-live-20261017/response-08.json": "7a2bfd0f229a891d33fcd098a7d89b80878f4a3d1be047b38fa5ec654e8925d0",
+    ".runtime/workbench-live-20261017/response-02.json": "fb3acadefcbf957b8340ded17dbee4b3a2a7cae0babd3c7f711b8621153a4937",
+    ".runtime/workbench-live-20261017/response-05.json": "792244901b41c0049e5b645aba20fd410bbedda7268a69e050e37a69e8faa87c",
+    ".runtime/workbench-live-20261017/rework-comparison.json": "85653542fcbed991a710fe5f67741c68cdf41dd8c7d46142580b4c95f1767373"
+  },
+  "tests": {
+    "core_portable_before_final_legacy_operation_guards": {
+      "tests_run": 399,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 8,
+      "elapsed_seconds": 407.35,
+      "external_network_attempts_blocked": 0
+    },
+    "final_authority_and_workflows": {
+      "run": 32,
+      "passed": 32,
+      "log": ".runtime/sharing-final-authority-tests.log"
+    },
+    "frontend": {
+      "lint_types_build": "passed",
+      "unit_passed": 3
+    },
+    "final_browser": {
+      "passed": 6,
+      "log": ".runtime/sharing-browser-final.log"
+    },
+    "scope_note": "Overlapping scopes, not an additive total. Final operation gates covered by targeted32 and browser6 after the core portable run."
+  },
+  "legacy_operations": {
+    "old_records_rewritten": false,
+    "approval_handoff_downstream_and_final_delivery_rechecked": true,
+    "author_region_and_version_bound": true
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "schema": "orbit.public-source/1",
+  "directories": ["src", "showcase", "tests", "packages", "references", "candidate_support", "evidence", "alembic", "docs", "examples", "reports", ".agents", ".github", "release", "scripts"],
+  "files": ["README.md", "LICENSE", "NOTICE.md", "AGENTS.md", "pyproject.toml", "uv.lock", "alembic.ini", ".gitignore", ".python-version", ".node-version", "scripts/run_demo.sh", "scripts/validate_offline.py", "scripts/export_release.py"],
+  "excluded_parts": [".runtime", ".venv", ".git", ".agent", "node_modules", "dist", "build", "__pycache__", ".ruff_cache", ".pytest_cache", "test-results", "playwright-report"],
+  "excluded_suffixes": [".pyc", ".pyo", ".sqlite", ".sqlite3", ".pem", ".key", ".log"],
+  "excluded_names": [".env", ".DS_Store", "prepare_showcase.py"]
+}

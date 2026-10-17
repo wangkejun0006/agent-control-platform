@@ -1,0 +1,1 @@
+{"version": 1, "说明": "检索接口必须检查权限并返回引用；撤权后拒绝。", "input": ["question", "department"], "output": ["answer", "citations", "limitations"], "errors": ["forbidden", "insufficient_evidence"]}

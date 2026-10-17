@@ -1,0 +1,89 @@
+{
+  "schema": "orbit.release-readiness/1",
+  "status": "local_candidate_ready_not_published",
+  "owner_confirmed_public_scope": true,
+  "owner_selected_license": "MIT",
+  "model_calls": 0,
+  "provider_key_reads": 0,
+  "old_budget_reads": 0,
+  "original_repo_modified": false,
+  "pushed_or_published": false,
+  "git_initialized_or_committed": false,
+  "python": {
+    "tests_run": 442,
+    "passed": 432,
+    "skipped": 10,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 582.61,
+    "full_report": "release-python-validation-20261017.json",
+    "scope": "current portable suite; inherited exclusions explicit"
+  },
+  "toolkit_tests": 14,
+  "toolkit_contract_verify": "passed",
+  "frontend": {
+    "lint_types": "passed",
+    "unit_tests": 3,
+    "build": "passed",
+    "e2e_tests": 6,
+    "e2e_seconds": 44.2,
+    "historical_report_files_not_overwritten_by_e2e": true
+  },
+  "fresh_snapshot_cli": {
+    "status": "passed",
+    "health": {
+      "status": "snapshot_ready",
+      "read_only": true,
+      "live_model_enabled": false,
+      "database_opened": false
+    },
+    "empty_user_home": true,
+    "private_runtime_snapshot_not_used": true,
+    "zip_sha256": "cd402ce5f9344fefc6e62e7f0fe45a9a05e156f30cde662b54c9242cf0cf89bd",
+    "model_calls": 0
+  },
+  "python_behavior_files_identical_to_full_validation": 244,
+  "fresh_output_overwrite_refusal": "passed",
+  "protected_old_files": 52,
+  "old_bytes_unchanged": true,
+  "candidate_pattern_scan": "text and nested ZIP credential/origin patterns passed; not exhaustive certification",
+  "screenshot_review": "all 7 inherited and 2 current screenshots viewed",
+  "current_doc_links": "passed",
+  "ci_definition": "locally parsed only; remote Actions not run",
+  "environment": {
+    "node": "v24.16.0",
+    "npm": "11.13.0",
+    "uv": "uv 0.11.29 (x86_64-unknown-linux-gnu)",
+    "python": "Python 3.14.6"
+  },
+  "clean_environment_limits": "fresh source, venv, node_modules, no author runtime; same WSL host and shared package/browser caches, not empty-cache physical-machine verification",
+  "superseded_attempts": [
+    {
+      "stage": "v1",
+      "result": "startup failed: missing required harness source; partial Python interrupted and retained"
+    },
+    {
+      "stage": "v2",
+      "result": "5/6 E2E, missing historical private files; partial Python interrupted and retained"
+    },
+    {
+      "stage": "v3",
+      "result": "5/6 E2E, public0644 rejected by private reader; partial Python interrupted and retained"
+    },
+    {
+      "stage": "v4",
+      "result": "442 Python and 6 E2E passed"
+    },
+    {
+      "stage": "v5",
+      "result": "same Python behavior bytes; frontend checks and 6 E2E passed after screenshot output change"
+    }
+  ],
+  "limitations": [
+    "No new real-model evaluation",
+    "No remote CI execution",
+    "No production deployment or strong OS sandbox",
+    "Bounded Chinese checks are not full prose certification",
+    "Ownership statement is from project owner, not independent legal verification"
+  ]
+}

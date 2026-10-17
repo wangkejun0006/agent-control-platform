@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "requests": 20,
+  "campaign_closed": true,
+  "external_requests": 0,
+  "model_requests_during_view": 0,
+  "checks": [
+    "live evidence panel visible",
+    "public report matches closed campaign",
+    "no external browser requests"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "registry_version": "orbit.control-plane-system-registry-seed/1",
+  "status": "human_confirmed_projection",
+  "semantic_authority_release_id": "semantic-authority-v0.1.0-alpha.7",
+  "systems": [
+    {
+      "system_id": "sys_orbit_health",
+      "system_version": "1.0.0",
+      "display_name": "Orbit Health System",
+      "lifecycle_status": "active",
+      "ownership_status": "human_confirmed",
+      "department_ref": "technology_center",
+      "responsible_role_ref": "role_technology_center_owner",
+      "composition_ref": "composition://orbit/orbit-health-system",
+      "source_locations": ["project://orbit-health-system"],
+      "migration_status": "physical_move_deferred",
+      "decision_refs": ["architecture://ADR-0021"],
+      "evidence_status": "human_confirmed",
+      "runtime_effective": false,
+      "production_authorized": false
+    },
+    {
+      "system_id": "sys_smart_jewelry_ai_growth",
+      "system_version": "1.0.0",
+      "display_name": "Smart Jewelry AI Growth System",
+      "lifecycle_status": "active",
+      "ownership_status": "human_confirmed",
+      "department_ref": "market_center",
+      "responsible_role_ref": "role_market_center_owner",
+      "composition_ref": "composition://orbit/smart-jewelry-ai-growth",
+      "source_locations": ["fixture://paper-orbit/content-workflow"],
+      "migration_status": "physical_move_deferred",
+      "decision_refs": ["architecture://ADR-0021"],
+      "evidence_status": "human_confirmed",
+      "runtime_effective": false,
+      "production_authorized": false
+    }
+  ],
+  "non_claims": [
+    "logical_ownership_is_not_a_physical_directory_move",
+    "registry_presence_is_not_runtime_effectivity",
+    "registry_presence_is_not_production_authorization"
+  ]
+}
+

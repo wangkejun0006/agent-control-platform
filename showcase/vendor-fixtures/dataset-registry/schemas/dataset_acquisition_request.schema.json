@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:orbit:data-asset:dataset-acquisition-request:0.1",
+  "title": "Dataset Acquisition Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "task_ref",
+    "execution_grant_ref",
+    "dataset_ref",
+    "source_artifact_ref",
+    "expected_content_sha256",
+    "expected_size_bytes",
+    "license_ref",
+    "classification",
+    "idempotency_key"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "request_id": { "type": "string", "pattern": "^acqreq_[a-z0-9][a-z0-9_-]{2,95}$" },
+    "task_ref": { "type": "string", "pattern": "^task_[a-z0-9][a-z0-9_-]{2,95}$" },
+    "execution_grant_ref": { "type": "string", "pattern": "^grant_[a-z0-9][a-z0-9_-]{2,95}$" },
+    "dataset_ref": { "type": "string", "pattern": "^dataset://[a-z0-9][a-z0-9._/-]{1,159}$" },
+    "source_artifact_ref": { "type": "string", "pattern": "^(?:artifact|release)://[A-Za-z0-9._:/-]+$" },
+    "expected_content_sha256": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "expected_size_bytes": { "type": "integer", "minimum": 0 },
+    "license_ref": { "type": "string", "pattern": "^license://[A-Za-z0-9._:/-]+$" },
+    "classification": { "enum": ["synthetic", "public", "internal", "confidential", "wearable_restricted", "medical_restricted"] },
+    "idempotency_key": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{2,191}$" }
+  }
+}
+

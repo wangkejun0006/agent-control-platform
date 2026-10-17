@@ -1,0 +1,120 @@
+{
+  "authority_boundary": {
+    "automation_policy_activated": false,
+    "effective_grant_created": false,
+    "effective_task_created": false,
+    "formal_registry_written": false,
+    "model_called": false,
+    "nas_accessed": false,
+    "network_accessed": false,
+    "preproduction_authorized": false,
+    "production_authorized": false,
+    "release_authorization": false,
+    "runtime_started": false,
+    "service_deployed": false
+  },
+  "automatic_scope": {
+    "immutable_attempt_history": true,
+    "may_auto_remediate_implementation_only": true,
+    "may_auto_retry_transient_failures": true,
+    "may_issue_single_use_evaluation_grants": true
+  },
+  "automation_policy": {
+    "canonical_digest": "sha256:0785ff86017656a0668715413f7908802380847da6750bc0a422fb4c9f3d58bd",
+    "effective": false,
+    "expires_at": "2026-09-03T13:00:00Z",
+    "policy_id": "pol_orbit_disease_r2_qualification_syn",
+    "raw_file_digest": "sha256:527c950fcf0d1f346c4df13bb7b754e3ec1e67a9ba2b91b7e08e20c3d3340a57",
+    "version": "0.1.0"
+  },
+  "contract_release": {
+    "git_commit": "bc7f21e67dbadd6aa618954fea4656b3387382f9",
+    "git_tag": "contract-v0.1.0-alpha.2",
+    "release_id": "contract-v0.1.0-alpha.2",
+    "release_manifest_sha256": "sha256:ffc9b78cda101e263dcbc0a60060cc48c5c11dec0eb1aba5aca50a74b489521a"
+  },
+  "evidence_status": "synthetic",
+  "handler_bindings": [
+    {
+      "digest": "sha256:5ec0cfb16477bf6880967c5878e60e032dec93b86ff7ead6955f561c751300f2",
+      "id": "component_qualification_policy_engine",
+      "version": "0.1.0"
+    },
+    {
+      "digest": "sha256:e7e517092e081778b5b120b4ad29f0853d00b3423d1bdae5bfdb133dd186444d",
+      "id": "component_qualification_reconciler",
+      "version": "0.1.0"
+    },
+    {
+      "digest": "sha256:fd60ff6af85f036454a6abb294aea38cc256dd064b943f51fd821cb544518827",
+      "id": "component_qualification_service_gate",
+      "version": "0.1.0"
+    },
+    {
+      "digest": "sha256:42d00e4c6491c3b0320db6aa6d4fdf60117c015f0a73840b4342c1dfcad5332e",
+      "id": "component_disease_r2_qualification_adapter",
+      "version": "0.1.0"
+    },
+    {
+      "digest": "sha256:87d26e67c2ead5d146cf5c24fd4b0e3083c91010b22ff73d242215409ad38289",
+      "id": "component_disease_r2_stage_hooks",
+      "version": "0.1.0"
+    },
+    {
+      "digest": "sha256:02df12b929709589254e73b424ee4a0c52fd89f912ed03e0e19232b62da1fa18",
+      "id": "component_disease_r2_execution_worker",
+      "version": "0.1.0"
+    },
+    {
+      "digest": "sha256:f0a48aef8b08a3e9f229daca9ecf86e4980d1770db8bf1de0b1cedcedc06ce1e",
+      "id": "component_disease_r2_orchestrator",
+      "version": "0.1.0"
+    }
+  ],
+  "human_checkpoints": [
+    "automation_policy_activation",
+    "formal_registration",
+    "agent_activation",
+    "preproduction_promotion",
+    "production_promotion",
+    "risk_waiver"
+  ],
+  "predecessor_r2_review": {
+    "attempt_id": "attempt_orbit_disease_r2_v4_004_syn",
+    "execution_status": "pending_human_execution_approval",
+    "raw_file_digest": "sha256:4f84f4a1fa2e63c09dbf325fd21a9cf847d9b5670c7118213745feebf25c0d54",
+    "review_package_digest": "sha256:91e306cce150fda26ba6d046bf72bb641caeb5e12954df7332e10387b9dca49c"
+  },
+  "review_id": "review_orbit_disease_r2_automation_policy_alpha2_syn",
+  "review_version": "orbit.disease-r2-automation-policy-review/1",
+  "service_readiness": {
+    "assessment_raw_file_digest": "sha256:b76efe1d80ea56b80e5fcd396ccf9e4799246514a5c9f5c313ac32a53150d07d",
+    "blocker_codes": [
+      "missing_adapter_authoritative_store",
+      "missing_adapter_schema_migrations",
+      "missing_adapter_transactional_outbox",
+      "missing_adapter_human_identity",
+      "missing_adapter_workload_identity",
+      "missing_adapter_grant_signer",
+      "missing_adapter_grant_revocation",
+      "missing_adapter_worker_lease",
+      "missing_adapter_secret_resolver",
+      "missing_adapter_audit_export",
+      "missing_adapter_backup_restore",
+      "missing_adapter_observability"
+    ],
+    "profile_digest": "sha256:dde9cec57d440052352427a65d6b1e62ed32900e8734f7df90c71cfa720c7f5e",
+    "profile_ref": "artifact://control-plane/qualification-service/profile/0.1.0",
+    "status": "not_ready"
+  },
+  "status": "candidate_prepared_awaiting_human_policy_activation",
+  "subject_candidate": {
+    "agent_release_digest": "sha256:e41c15f412b87c39654978a628ac7704b5cbbb2915f41b3b9d4426cf7aa4b04a",
+    "attempt_id": "attempt_orbit_disease_r2_v4_004_syn",
+    "canonical_digest": "sha256:06d7c163cb667bee8547448d96fe64521c6b69bee0723611db8352b5d8137ec1",
+    "composition_digest": "sha256:53ec2355a4e84bed6405cac3bb233248b83fb071d81a7520f0a0aac2aec9c1cf",
+    "raw_file_digest": "sha256:0062657291bb1af6d1437d2be4d5300365304c22c01d625e69cd6f052107b421",
+    "runtime_source_digest": "sha256:9be1eec96939ae790b4a388226092941caa4033efde8c4973955b9587ec0729c"
+  }
+}
+

@@ -1,0 +1,21 @@
+{
+  "name": "@orbit/agent-authoring-toolkit",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Standalone deterministic authoring CLI for locked Orbit Agent Contract bundles.",
+  "type": "module",
+  "bin": {
+    "orbit-agent-author": "bin/orbit-agent-author.mjs"
+  },
+  "scripts": {
+    "test": "node --check bin/orbit-agent-author.mjs && node --check src/toolkit.mjs && node --test",
+    "check": "npm test",
+    "verify:bundle": "node bin/orbit-agent-author.mjs contract verify"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "yaml": "2.9.0"
+  }
+}
+

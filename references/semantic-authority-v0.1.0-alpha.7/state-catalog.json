@@ -1,0 +1,1567 @@
+{
+  "catalog_version": "orbit.architecture-state-catalog/1",
+  "catalog_id": "orbit-company-agent-formal-states",
+  "status": "human_confirmed",
+  "definition_authority": "orbit-agent-architecture",
+  "concept_catalog": {
+    "version": "orbit.architecture-concept-catalog/2",
+    "path": "architecture/authority/concepts/concept-catalog.json"
+  },
+  "term_registry": {
+    "version": "orbit.architecture-term-classification/2",
+    "path": "architecture/authority/terms/term-classification.json"
+  },
+  "vocabulary_rule": "优先复用 Contract 与状态机领域常用词；active 表示长期可用，approved 表示精确范围获批，running 表示正在执行，suspended 表示长期对象停用，paused 表示可恢复任务暂停，blocked 表示生效前被阻止，failed 表示已开始后失败。",
+  "machines": [
+    {
+      "id": "orbit.state/agent-lifecycle",
+      "term_zh": "Agent 生命周期",
+      "term_en": "Agent Lifecycle",
+      "publication_stage": "release",
+      "evidence_status": "human_confirmed",
+      "machine_kind": "lifecycle",
+      "subject_refs": [
+        "orbit.concept/agent"
+      ],
+      "definition": "描述 Agent 业务身份从设计、评测、可接收任务、暂停到永久退役的公司级生命周期；状态转换本身不产生 Task 权限。",
+      "instance_state_authority": "Agent Registry 与 Agent Lifecycle Ledger",
+      "dimensions": [
+        {
+          "id": "lifecycle",
+          "term_zh": "生命周期",
+          "term_en": "Lifecycle",
+          "initial_states": [
+            "draft"
+          ],
+          "terminal_states": [
+            "retired"
+          ],
+          "states": [
+            {
+              "id": "draft",
+              "term_zh": "草拟",
+              "term_en": "Draft",
+              "definition": "Agent 已有候选身份、Owner 与评测计划，但只能进行设计和离线准备。",
+              "not_a": [
+                "不是可接收正式 Task 的 active Agent",
+                "不是未登记的自然语言角色"
+              ]
+            },
+            {
+              "id": "evaluation",
+              "term_zh": "评测中",
+              "term_en": "Evaluation",
+              "definition": "Agent 正在隔离环境内针对精确 Release 运行资格、安全和能力评测。",
+              "not_a": [
+                "不是 active",
+                "不是 production authorized"
+              ]
+            },
+            {
+              "id": "active",
+              "term_zh": "活动",
+              "term_en": "Active",
+              "definition": "Agent 业务身份可在已批准边界内接收新 Task，但每次执行仍需独立 Task 与 ExecutionGrant。",
+              "not_a": [
+                "不是有效 ExecutionGrant",
+                "不是 Deployment running"
+              ]
+            },
+            {
+              "id": "suspended",
+              "term_zh": "已暂停",
+              "term_en": "Suspended",
+              "definition": "Agent 暂停接收新 Task 和新 Grant，历史身份与证据继续保留。",
+              "not_a": [
+                "不是 retired",
+                "不是某个 Task 的 paused"
+              ]
+            },
+            {
+              "id": "retired",
+              "term_zh": "已退役",
+              "term_en": "Retired",
+              "definition": "Agent 永久停止新增运行能力，身份 ID、历史 Release、决定和审计引用继续保留。",
+              "not_a": [
+                "不是可恢复的 suspended",
+                "不是删除历史证据"
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "id": "submit_for_evaluation",
+              "from": "draft",
+              "to": "evaluation",
+              "trigger": "候选与最小评测计划结构闭合",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/agent-release",
+                "orbit.concept/evaluation-report"
+              ],
+              "guard": "只允许隔离评测，不创建生产 Task、Grant 或部署事实。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "return_for_revision",
+              "from": "evaluation",
+              "to": "draft",
+              "trigger": "评测发现需要修改的候选缺口",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/evaluation-report"
+              ],
+              "guard": "保留失败评测；实现或边界变化形成新的不可变 Release。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "activate_stable_agent",
+              "from": "evaluation",
+              "to": "active",
+              "trigger": "稳定 Agent 的精确 Release 通过评测并获激活决定",
+              "transition_control": "human_decision",
+              "decision_scope": "agent_activation",
+              "required_refs": [
+                "orbit.concept/agent-release",
+                "orbit.concept/evaluation-report",
+                "orbit.concept/approval-decision"
+              ],
+              "guard": "ApprovalDecision 必须绑定精确 Agent、Release digest、环境、scope 与有效期。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "activate_template_task_agent",
+              "from": "evaluation",
+              "to": "active",
+              "trigger": "批准 Template 下的临时 Task Agent 通过确定性子集证明",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/agent-template",
+                "orbit.concept/task",
+                "orbit.concept/policy",
+                "orbit.concept/approval-decision"
+              ],
+              "guard": "Capability、权限、预算、期限、数据等级、委派深度与审批义务均不宽于父 Task 和已批准 Template。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "suspend_agent",
+              "from": "active",
+              "to": "suspended",
+              "trigger": "风险、Owner 缺失、撤权或紧急停止条件成立",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "停止新 Task 与新 Grant；运行中 Task 按其独立状态和风险处理。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "resume_evaluation",
+              "from": "suspended",
+              "to": "evaluation",
+              "trigger": "修复完成并申请重新评测",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/evaluation-report",
+                "orbit.concept/policy"
+              ],
+              "guard": "恢复前重新评测，不能直接从 suspended 回到 active。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "retire_active_agent",
+              "from": "active",
+              "to": "retired",
+              "trigger": "责任人决定永久退役活动 Agent",
+              "transition_control": "human_decision",
+              "decision_scope": "agent_retirement",
+              "required_refs": [
+                "orbit.concept/approval-decision"
+              ],
+              "guard": "撤销运行能力并保留身份、Release、决定与审计引用。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "retire_suspended_agent",
+              "from": "suspended",
+              "to": "retired",
+              "trigger": "责任人决定不再恢复已暂停 Agent",
+              "transition_control": "human_decision",
+              "decision_scope": "agent_retirement",
+              "required_refs": [
+                "orbit.concept/approval-decision"
+              ],
+              "guard": "不得删除或改写暂停前的失败、撤权和审计证据。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            }
+          ],
+          "view_transition_ids": [
+            "submit_for_evaluation",
+            "return_for_revision",
+            "activate_stable_agent",
+            "activate_template_task_agent",
+            "suspend_agent",
+            "resume_evaluation",
+            "retire_active_agent",
+            "retire_suspended_agent"
+          ]
+        }
+      ],
+      "architecture_refs": [
+        "architecture/supporting/governance/agent-governance.md",
+        "architecture/supporting/decisions/0013-agent-lifecycle-automation-and-assurance.md",
+        "architecture/supporting/decisions/0017-formal-state-authority.md"
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-registry.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "状态枚举一致；转换、人工决定范围、registration-only 组合语义由本 State 目录领先定义。"
+        }
+      ],
+      "view_projections": [
+        {
+          "path": "architecture/views/control-plane-governed-loop-overview.md",
+          "block_id": "agent-lifecycle"
+        },
+        {
+          "path": "architecture/views/agent-management-deployment-plan.md",
+          "block_id": "management-agent-lifecycle"
+        }
+      ],
+      "invariants": [
+        "draft 与 evaluation 合称 registration-only；active 也不能替代 Task、ApprovalDecision 或 ExecutionGrant。"
+      ]
+    },
+    {
+      "id": "orbit.state/agent-release-lifecycle",
+      "term_zh": "Agent Release 生命周期",
+      "term_en": "Agent Release Lifecycle",
+      "publication_stage": "release",
+      "evidence_status": "human_confirmed",
+      "machine_kind": "lifecycle",
+      "subject_refs": [
+        "orbit.concept/agent-release"
+      ],
+      "definition": "描述不可变 Agent Release 候选从草拟、评测、批准、暂停到退役的状态；不把 Release 资格转换为 Agent 激活或执行授权。",
+      "instance_state_authority": "Agent Registry 与 Agent Release Lifecycle Ledger",
+      "dimensions": [
+        {
+          "id": "lifecycle",
+          "term_zh": "生命周期",
+          "term_en": "Lifecycle",
+          "initial_states": [
+            "draft"
+          ],
+          "terminal_states": [
+            "retired"
+          ],
+          "states": [
+            {
+              "id": "draft",
+              "term_zh": "草拟",
+              "term_en": "Draft",
+              "definition": "精确 Release 候选正在闭合摘要、依赖与评测输入。",
+              "not_a": [
+                "不是 approved",
+                "不是可变更已发布 Release"
+              ]
+            },
+            {
+              "id": "evaluation",
+              "term_zh": "评测中",
+              "term_en": "Evaluation",
+              "definition": "正在针对同一不可变 Release digest 运行资格和独立评测。",
+              "not_a": [
+                "不是 Agent evaluation 状态",
+                "不是 approved"
+              ]
+            },
+            {
+              "id": "approved",
+              "term_zh": "已批准",
+              "term_en": "Approved",
+              "definition": "精确 Release digest 在声明的评测和责任范围内获得批准，可被 Agent 生命周期引用。",
+              "not_a": [
+                "不是 Agent active",
+                "不是 Deployment running 或有效 Grant"
+              ]
+            },
+            {
+              "id": "suspended",
+              "term_zh": "已暂停",
+              "term_en": "Suspended",
+              "definition": "Release 因风险、依赖或证据变化暂停用于新激活和新 Task。",
+              "not_a": [
+                "不是 retired",
+                "不是 Task paused"
+              ]
+            },
+            {
+              "id": "retired",
+              "term_zh": "已退役",
+              "term_en": "Retired",
+              "definition": "Release 永久停止用于新激活和新 Task，摘要和历史证据继续保留。",
+              "not_a": [
+                "不是删除 Release",
+                "不是可恢复的 suspended"
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "id": "submit_release_evaluation",
+              "from": "draft",
+              "to": "evaluation",
+              "trigger": "候选摘要和评测输入闭合",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/agent-release",
+                "orbit.concept/evaluation-report"
+              ],
+              "guard": "评测始终绑定同一不可变 Release digest。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "abandon_draft_release",
+              "from": "draft",
+              "to": "retired",
+              "trigger": "候选被放弃或由新候选取代",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/agent-release"
+              ],
+              "guard": "保留候选摘要和取代关系，不生成 approved 结论。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "approve_release",
+              "from": "evaluation",
+              "to": "approved",
+              "trigger": "精确 Release 通过门槛并获得发布范围决定",
+              "transition_control": "human_decision",
+              "decision_scope": "agent_release_approval",
+              "required_refs": [
+                "orbit.concept/evaluation-report",
+                "orbit.concept/approval-decision"
+              ],
+              "guard": "决定只覆盖精确 Release digest、评测范围、环境和有效期。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "close_failed_release_evaluation",
+              "from": "evaluation",
+              "to": "retired",
+              "trigger": "评测失败、撤回或候选被取代",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/evaluation-report"
+              ],
+              "guard": "失败保持失败；修复形成新 Release，不返回修改原候选。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "suspend_release",
+              "from": "approved",
+              "to": "suspended",
+              "trigger": "风险、依赖、撤权或证据退化条件成立",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "立即停止该 Release 的新激活和新 Task，不改写历史使用证据。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "reevaluate_suspended_release",
+              "from": "suspended",
+              "to": "evaluation",
+              "trigger": "同一不可变 Release 申请重新评测",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/evaluation-report",
+                "orbit.concept/policy"
+              ],
+              "guard": "内容摘要变化必须形成新 Release；只有未变字节可重新评测。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "retire_approved_release",
+              "from": "approved",
+              "to": "retired",
+              "trigger": "责任人决定永久停止已批准 Release 的新增使用",
+              "transition_control": "human_decision",
+              "decision_scope": "agent_release_retirement",
+              "required_refs": [
+                "orbit.concept/approval-decision"
+              ],
+              "guard": "保留 Release、评测、批准和历史 Task 引用。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "retire_suspended_release",
+              "from": "suspended",
+              "to": "retired",
+              "trigger": "责任人决定不再恢复已暂停 Release",
+              "transition_control": "human_decision",
+              "decision_scope": "agent_release_retirement",
+              "required_refs": [
+                "orbit.concept/approval-decision"
+              ],
+              "guard": "不得删除或转换原暂停与失败证据。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            }
+          ],
+          "view_transition_ids": [
+            "submit_release_evaluation",
+            "abandon_draft_release",
+            "approve_release",
+            "close_failed_release_evaluation",
+            "suspend_release",
+            "reevaluate_suspended_release",
+            "retire_approved_release",
+            "retire_suspended_release"
+          ]
+        }
+      ],
+      "architecture_refs": [
+        "architecture/supporting/models/execution-contract-model.md",
+        "architecture/supporting/decisions/0011-release-and-execution-contracts.md",
+        "architecture/supporting/decisions/0017-formal-state-authority.md"
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/agent-release-manifest.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "状态名称一致；转换、人工决定范围和不可变失败处理由本 State 目录领先定义。"
+        }
+      ],
+      "view_projections": [
+        {
+          "path": "architecture/views/control-plane-governed-loop-overview.md",
+          "block_id": "agent-release-lifecycle"
+        }
+      ],
+      "invariants": [
+        "approved 只表示精确 Release 范围获批，不自动产生 Agent active、Deployment running 或 ExecutionGrant。"
+      ]
+    },
+    {
+      "id": "orbit.state/task-lifecycle",
+      "term_zh": "Task 生命周期",
+      "term_en": "Task Lifecycle",
+      "publication_stage": "release",
+      "evidence_status": "human_confirmed",
+      "machine_kind": "workflow",
+      "subject_refs": [
+        "orbit.concept/task"
+      ],
+      "definition": "描述公司 Task Ledger 中目标补充、审批等待、排队、运行、暂停和终态；Lease、Invocation、Evaluation 与 Receipt 保持独立对象。",
+      "instance_state_authority": "Control Plane Task Ledger",
+      "dimensions": [
+        {
+          "id": "lifecycle",
+          "term_zh": "生命周期",
+          "term_en": "Lifecycle",
+          "initial_states": [
+            "draft"
+          ],
+          "terminal_states": [
+            "succeeded",
+            "failed",
+            "rejected",
+            "cancelled"
+          ],
+          "states": [
+            {
+              "id": "draft",
+              "term_zh": "草拟",
+              "term_en": "Draft",
+              "definition": "Task 已建立但目标、输入或约束尚未完成确定性检查。",
+              "not_a": [
+                "不是 queued",
+                "不是已获 Grant"
+              ]
+            },
+            {
+              "id": "need_details",
+              "term_zh": "待补充",
+              "term_en": "Need Details",
+              "definition": "Task 缺少继续授权计算所需的目标、输入、责任或边界信息。",
+              "not_a": [
+                "不是 rejected",
+                "不是人工审批状态"
+              ]
+            },
+            {
+              "id": "pending_approval",
+              "term_zh": "待审批",
+              "term_en": "Pending Approval",
+              "definition": "Policy 已确定本 Task 需要一个精确的人类决定，Task 等待该既有审批范围。",
+              "not_a": [
+                "不是 approved",
+                "不是新增多重门禁"
+              ]
+            },
+            {
+              "id": "queued",
+              "term_zh": "已排队",
+              "term_en": "Queued",
+              "definition": "Task 已满足派发前置条件，等待符合条件的 Worker 与 Lease。",
+              "not_a": [
+                "不是 leased 状态",
+                "不是 running"
+              ]
+            },
+            {
+              "id": "running",
+              "term_zh": "运行中",
+              "term_en": "Running",
+              "definition": "至少一个受控 Attempt 正在有效 Grant、Composition 和 Lease 边界内运行。",
+              "not_a": [
+                "不是 RuntimeEvent completed",
+                "不是 succeeded"
+              ]
+            },
+            {
+              "id": "paused",
+              "term_zh": "已暂停",
+              "term_en": "Paused",
+              "definition": "Task 暂停继续推进，可在预算、Policy、Grant 和检查点重新满足后恢复。",
+              "not_a": [
+                "不是 Agent suspended",
+                "不是 terminal"
+              ]
+            },
+            {
+              "id": "succeeded",
+              "term_zh": "成功",
+              "term_en": "Succeeded",
+              "definition": "Task Ledger 已根据结果契约和最低评价要求判定任务成功。",
+              "not_a": [
+                "不是单纯 Runtime completed",
+                "不是人类接受"
+              ]
+            },
+            {
+              "id": "failed",
+              "term_zh": "失败",
+              "term_en": "Failed",
+              "definition": "Task 已开始执行但最终未满足成功条件，并已保留失败 Attempt 与证据。",
+              "not_a": [
+                "不是生效前 blocked",
+                "不是可覆盖的历史"
+              ]
+            },
+            {
+              "id": "rejected",
+              "term_zh": "已拒绝",
+              "term_en": "Rejected",
+              "definition": "Task 在执行前因精确审批拒绝或不可满足的 Policy 边界而终止。",
+              "not_a": [
+                "不是运行后 failed",
+                "不是 paused"
+              ]
+            },
+            {
+              "id": "cancelled",
+              "term_zh": "已取消",
+              "term_en": "Cancelled",
+              "definition": "Task 按责任人、Policy 或父 Task 终止信号结束，并完成必要清理。",
+              "not_a": [
+                "不是 rejected",
+                "不是自动删除结果"
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "id": "request_task_details",
+              "from": "draft",
+              "to": "need_details",
+              "trigger": "确定性检查发现必要信息缺失",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/task"
+              ],
+              "guard": "只请求完成授权计算所必需的信息，不扩大 Task Purpose。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "complete_task_details",
+              "from": "need_details",
+              "to": "draft",
+              "trigger": "缺失信息已补齐并形成新 Task Revision",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/task"
+              ],
+              "guard": "保留前一 Revision 与补充来源。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "wait_for_task_approval",
+              "from": "draft",
+              "to": "pending_approval",
+              "trigger": "Policy 判定本 Task 需要人类决定",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "只创建一个与 Task 精确 scope 对应的待审批状态，不复制其他发布或激活门禁。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "queue_task_without_approval",
+              "from": "draft",
+              "to": "queued",
+              "trigger": "信息闭合且 Policy 判定无需人类审批",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy",
+                "orbit.concept/route",
+                "orbit.concept/execution-grant"
+              ],
+              "guard": "Route 与 Grant 必须绑定同一 Task、Release、环境、预算和期限。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "queue_approved_task",
+              "from": "pending_approval",
+              "to": "queued",
+              "trigger": "收到精确 Task scope 的有效 ApprovalDecision",
+              "transition_control": "human_decision",
+              "decision_scope": "task_execution_approval",
+              "required_refs": [
+                "orbit.concept/approval-decision",
+                "orbit.concept/route",
+                "orbit.concept/execution-grant"
+              ],
+              "guard": "复用本 Task 唯一审批范围；参数或 scope 实质变化必须返回 draft 重新计算。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "reject_task_approval",
+              "from": "pending_approval",
+              "to": "rejected",
+              "trigger": "精确 Task scope 被人类拒绝",
+              "transition_control": "human_decision",
+              "decision_scope": "task_execution_approval",
+              "required_refs": [
+                "orbit.concept/approval-decision"
+              ],
+              "guard": "拒绝保持可审计，不能转换成失败或由重试覆盖。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "start_queued_task",
+              "from": "queued",
+              "to": "running",
+              "trigger": "有效 WorkerLease 与 AgentInvocation 被接受",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/execution-grant",
+                "orbit.concept/runtime-composition",
+                "orbit.concept/worker-lease",
+                "orbit.concept/agent-invocation"
+              ],
+              "guard": "Preflight 通过且 Grant 未撤销、过期或消费；不新增人工门禁。",
+              "emits": [
+                "orbit.concept/runtime-event",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "pause_queued_task",
+              "from": "queued",
+              "to": "paused",
+              "trigger": "预算、Policy、依赖或父 Task 要求暂停",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "暂停不消费执行结果，也不转换为 failed。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "cancel_queued_task",
+              "from": "queued",
+              "to": "cancelled",
+              "trigger": "执行前收到有效取消信号",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/task"
+              ],
+              "guard": "撤销未消费 Grant 和 Lease，并保留取消来源。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "pause_running_task",
+              "from": "running",
+              "to": "paused",
+              "trigger": "预算、Policy、人工接管或可恢复故障要求暂停",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy",
+                "orbit.concept/worker-lease"
+              ],
+              "guard": "先形成检查点并闭合当前 Lease；不可逆副作用未确认时不得自动重跑。",
+              "emits": [
+                "orbit.concept/runtime-event",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "complete_task_success",
+              "from": "running",
+              "to": "succeeded",
+              "trigger": "结果契约和最低评价要求满足",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/result-package",
+                "orbit.concept/evaluation-report"
+              ],
+              "guard": "Runtime completed 不能单独触发 succeeded；Task Ledger 独立判定。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "complete_task_failure",
+              "from": "running",
+              "to": "failed",
+              "trigger": "已开始的 Task 最终未满足成功条件",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/runtime-event",
+                "orbit.concept/result-package"
+              ],
+              "guard": "所有失败 Attempt、Lease、Grant 和清理事实必须闭合且不可覆盖。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "cancel_running_task",
+              "from": "running",
+              "to": "cancelled",
+              "trigger": "运行中收到有效取消信号",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/worker-lease",
+                "orbit.concept/execution-grant"
+              ],
+              "guard": "先传播取消并闭合 Lease、Grant、结果与清理状态。",
+              "emits": [
+                "orbit.concept/runtime-event",
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "requeue_paused_task",
+              "from": "paused",
+              "to": "queued",
+              "trigger": "恢复条件满足但需要新 Lease 或新 Invocation",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy",
+                "orbit.concept/execution-grant"
+              ],
+              "guard": "检查 Grant、预算、期限和副作用幂等性；无需扩大 scope。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "resume_paused_task",
+              "from": "paused",
+              "to": "running",
+              "trigger": "同一有效 Composition 可从检查点安全恢复",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/runtime-composition",
+                "orbit.concept/worker-lease",
+                "orbit.concept/execution-grant"
+              ],
+              "guard": "只在原批准范围内恢复，不因 paused 创建新人工门禁。",
+              "emits": [
+                "orbit.concept/runtime-event",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "fail_paused_task",
+              "from": "paused",
+              "to": "failed",
+              "trigger": "恢复条件永久不可满足或安全闭合判定失败",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "保留暂停原因、已开始 Attempt 和终态闭合证据。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "cancel_paused_task",
+              "from": "paused",
+              "to": "cancelled",
+              "trigger": "暂停期间收到有效取消信号",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/task"
+              ],
+              "guard": "撤销剩余 Grant、Lease 和临时资源并保留检查点证据。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "cancel_draft_task",
+              "from": "draft",
+              "to": "cancelled",
+              "trigger": "Task 在派发前被撤回",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/task"
+              ],
+              "guard": "不产生 Grant 或运行事实。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "cancel_details_task",
+              "from": "need_details",
+              "to": "cancelled",
+              "trigger": "待补充 Task 被撤回或超期关闭",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.concept/task"
+              ],
+              "guard": "保留缺失信息原因。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "cancel_pending_task",
+              "from": "pending_approval",
+              "to": "cancelled",
+              "trigger": "待审批 Task 被责任人撤回或超期关闭",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/task"
+              ],
+              "guard": "取消不伪造 rejected ApprovalDecision。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            }
+          ],
+          "view_transition_ids": [
+            "request_task_details",
+            "complete_task_details",
+            "wait_for_task_approval",
+            "queue_task_without_approval",
+            "queue_approved_task",
+            "reject_task_approval",
+            "start_queued_task",
+            "pause_running_task",
+            "resume_paused_task",
+            "complete_task_success",
+            "complete_task_failure",
+            "cancel_running_task"
+          ]
+        }
+      ],
+      "architecture_refs": [
+        "architecture/supporting/governance/agent-governance.md",
+        "architecture/supporting/models/execution-contract-model.md",
+        "architecture/supporting/decisions/0017-formal-state-authority.md"
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/schemas/task.schema.json",
+          "publication_stage": "release",
+          "alignment": "partial",
+          "gap": "十个 Task 状态值精确一致；转换、单审批范围以及 Lease/Evaluation/Receipt 的对象分离由本 State 目录领先定义。"
+        }
+      ],
+      "view_projections": [
+        {
+          "path": "architecture/views/control-plane-governed-loop-overview.md",
+          "block_id": "task-lifecycle"
+        }
+      ],
+      "invariants": [
+        "Task 只有一个 task_execution_approval 人工决定范围；leased、evaluating 和 closed 不作为 Task 状态。",
+        "blocked 表示执行生效前被阻止，failed 只表示 Task 已开始后失败。"
+      ]
+    },
+    {
+      "id": "orbit.state/deployment-convergence",
+      "term_zh": "Deployment 收敛状态",
+      "term_en": "Deployment Convergence State",
+      "publication_stage": "draft",
+      "evidence_status": "architecture_assumption",
+      "machine_kind": "convergence",
+      "subject_refs": [
+        "orbit.term/deployment-instance",
+        "orbit.term/reconciler"
+      ],
+      "definition": "以期望状态和观察状态两个维度描述部署候选实例的环境收敛；当前仅为架构草案，不代表已有 Deployment Registry、Reconciler 或运行实现。",
+      "instance_state_authority": "未来独立实施仓库的 Deployment Registry；当前不存在权威运行实例",
+      "dimensions": [
+        {
+          "id": "desired_state",
+          "term_zh": "期望状态",
+          "term_en": "Desired State",
+          "initial_states": [
+            "absent"
+          ],
+          "terminal_states": [],
+          "states": [
+            {
+              "id": "running",
+              "term_zh": "期望运行",
+              "term_en": "Running",
+              "definition": "期望部署候选在指定环境保持运行。",
+              "not_a": [
+                "不是 observed running",
+                "不是 Agent active"
+              ]
+            },
+            {
+              "id": "stopped",
+              "term_zh": "期望停止",
+              "term_en": "Stopped",
+              "definition": "期望保留部署身份但停止运行资源。",
+              "not_a": [
+                "不是 retired",
+                "不是 observed stopped"
+              ]
+            },
+            {
+              "id": "absent",
+              "term_zh": "期望不存在",
+              "term_en": "Absent",
+              "definition": "期望环境中不存在该部署候选的运行资源。",
+              "not_a": [
+                "不是删除 Release",
+                "不是 observed not_deployed"
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "id": "desire_running_from_absent",
+              "from": "absent",
+              "to": "running",
+              "trigger": "已批准范围请求形成运行目标",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy",
+                "orbit.concept/agent-release"
+              ],
+              "guard": "本 draft State 不创建部署批准；真实实施必须使用独立决定和 Registry。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "desire_stopped",
+              "from": "running",
+              "to": "stopped",
+              "trigger": "计划停止或维护窗口开始",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "期望变化不等于资源已经停止。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "desire_running_from_stopped",
+              "from": "stopped",
+              "to": "running",
+              "trigger": "允许恢复运行目标",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "重新核对 Release、环境和风险，不继承 Task Grant。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "desire_absent_from_stopped",
+              "from": "stopped",
+              "to": "absent",
+              "trigger": "决定移除环境运行资源",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "只移除运行资源，不删除 Release、Task、Result 或 Audit。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "desire_absent_from_running",
+              "from": "running",
+              "to": "absent",
+              "trigger": "紧急撤除或退役要求移除资源",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "Reconciler 必须先安全停止再收敛到 absent。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            }
+          ],
+          "view_transition_ids": [
+            "desire_running_from_absent",
+            "desire_stopped",
+            "desire_running_from_stopped",
+            "desire_absent_from_stopped",
+            "desire_absent_from_running"
+          ]
+        },
+        {
+          "id": "observed_state",
+          "term_zh": "观察状态",
+          "term_en": "Observed State",
+          "initial_states": [
+            "not_deployed"
+          ],
+          "terminal_states": [],
+          "states": [
+            {
+              "id": "not_deployed",
+              "term_zh": "未部署",
+              "term_en": "Not Deployed",
+              "definition": "环境中未观察到该部署候选的运行资源。",
+              "not_a": [
+                "不是 desired absent",
+                "不是 Release retired"
+              ]
+            },
+            {
+              "id": "starting",
+              "term_zh": "启动中",
+              "term_en": "Starting",
+              "definition": "运行资源正在创建或启动，尚未达到健康运行。",
+              "not_a": [
+                "不是 running",
+                "不是 Agent active"
+              ]
+            },
+            {
+              "id": "running",
+              "term_zh": "运行中",
+              "term_en": "Running",
+              "definition": "环境健康检查观察到部署资源正在运行。",
+              "not_a": [
+                "不是 Task running",
+                "不是有效 ExecutionGrant"
+              ]
+            },
+            {
+              "id": "degraded",
+              "term_zh": "降级",
+              "term_en": "Degraded",
+              "definition": "资源仍提供有限服务，但健康或能力低于声明基线。",
+              "not_a": [
+                "不是 failed Task",
+                "不是 suspended Agent"
+              ]
+            },
+            {
+              "id": "unhealthy",
+              "term_zh": "不健康",
+              "term_en": "Unhealthy",
+              "definition": "资源存在但不满足最低健康条件，需要恢复或停止。",
+              "not_a": [
+                "不是 Release rejected",
+                "不是 Task failed"
+              ]
+            },
+            {
+              "id": "stopping",
+              "term_zh": "停止中",
+              "term_en": "Stopping",
+              "definition": "资源正在执行安全终止与清理。",
+              "not_a": [
+                "不是 stopped",
+                "不是 cancelled Task"
+              ]
+            },
+            {
+              "id": "stopped",
+              "term_zh": "已停止",
+              "term_en": "Stopped",
+              "definition": "部署身份仍可追踪，但运行资源已停止。",
+              "not_a": [
+                "不是 not_deployed",
+                "不是 retired"
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "id": "observe_starting",
+              "from": "not_deployed",
+              "to": "starting",
+              "trigger": "Reconciler 开始创建运行资源",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "只记录环境事实，不产生 Task 或 Grant。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_running",
+              "from": "starting",
+              "to": "running",
+              "trigger": "最低健康检查持续通过",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "running 只表示部署观察事实。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_start_degraded",
+              "from": "starting",
+              "to": "degraded",
+              "trigger": "启动完成但部分能力低于基线",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "保留健康证据并按 Policy 决定恢复或停止。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_start_unhealthy",
+              "from": "starting",
+              "to": "unhealthy",
+              "trigger": "启动未达到最低健康条件",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "不得把不健康资源解释为可接收 Task。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_running_degraded",
+              "from": "running",
+              "to": "degraded",
+              "trigger": "健康或能力下降但仍有限服务",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "不直接改写 Agent、Release 或 Task 状态。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_running_unhealthy",
+              "from": "running",
+              "to": "unhealthy",
+              "trigger": "最低健康条件失败",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "触发独立 Policy 响应，不自动创造人工门禁。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_degraded_recovery",
+              "from": "degraded",
+              "to": "running",
+              "trigger": "健康与能力恢复到基线",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "恢复只更新观察事实。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_degraded_unhealthy",
+              "from": "degraded",
+              "to": "unhealthy",
+              "trigger": "退化继续恶化并低于最低健康条件",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "保留退化到不健康的证据链。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_stopping_from_starting",
+              "from": "starting",
+              "to": "stopping",
+              "trigger": "启动期间收到停止或撤除目标",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "先完成安全清理。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_stopping_from_running",
+              "from": "running",
+              "to": "stopping",
+              "trigger": "运行资源收到停止或撤除目标",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "停止部署不直接取消独立 Task；由 Task Policy 协调。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_stopping_from_degraded",
+              "from": "degraded",
+              "to": "stopping",
+              "trigger": "降级资源决定停止",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "保留降级和停止证据。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_stopping_from_unhealthy",
+              "from": "unhealthy",
+              "to": "stopping",
+              "trigger": "不健康资源决定停止",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "停止优先于无界自动重启。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_stopped",
+              "from": "stopping",
+              "to": "stopped",
+              "trigger": "运行资源和临时凭据完成清理",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "保留部署身份与审计引用。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_restart",
+              "from": "stopped",
+              "to": "starting",
+              "trigger": "期望状态重新变为 running",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "重新核对当前 Release 和环境边界。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "observe_removed",
+              "from": "stopped",
+              "to": "not_deployed",
+              "trigger": "期望状态为 absent 且资源移除完成",
+              "transition_control": "automatic",
+              "required_refs": [
+                "orbit.term/reconciler"
+              ],
+              "guard": "资源移除不删除历史状态、Release 或审计。",
+              "emits": [
+                "orbit.concept/audit-event"
+              ]
+            }
+          ],
+          "view_transition_ids": [
+            "observe_starting",
+            "observe_running",
+            "observe_start_unhealthy",
+            "observe_running_degraded",
+            "observe_running_unhealthy",
+            "observe_degraded_recovery",
+            "observe_stopping_from_running",
+            "observe_stopping_from_unhealthy",
+            "observe_stopped",
+            "observe_restart",
+            "observe_removed"
+          ]
+        }
+      ],
+      "architecture_refs": [
+        "architecture/supporting/decisions/0017-formal-state-authority.md",
+        "architecture/authority/states/README.md"
+      ],
+      "contract_refs": [],
+      "view_projections": [
+        {
+          "path": "architecture/views/control-plane-governed-loop-overview.md",
+          "block_id": "deployment-convergence"
+        },
+        {
+          "path": "architecture/views/agent-management-deployment-plan.md",
+          "block_id": "management-deployment-convergence"
+        }
+      ],
+      "invariants": [
+        "Deployment 目前是 draft Term 与 draft State，不得写成当前 Registry、Reconciler、Contract 或生产事实。",
+        "期望状态变化和观察状态变化都不新增 Agent 激活、Task 审批或 ExecutionGrant 门禁。"
+      ]
+    },
+    {
+      "id": "orbit.state/model-catalog-lifecycle",
+      "term_zh": "公司模型目录生命周期",
+      "term_en": "Model Catalog Lifecycle",
+      "publication_stage": "draft",
+      "evidence_status": "human_confirmed",
+      "machine_kind": "lifecycle",
+      "subject_refs": [
+        "orbit.term/model-catalog-entry"
+      ],
+      "definition": "描述公司模型目录项从候选、可供部门Agent申报到停止新增申报的生命周期；目录状态不批准ModelRoute、不激活Agent，也不产生模型调用或Task执行权限。",
+      "instance_state_authority": "Company Control Plane Model Catalog Registry 与追加式 Receipt/Audit；当前仅有D0实施候选",
+      "dimensions": [
+        {
+          "id": "lifecycle",
+          "term_zh": "生命周期",
+          "term_en": "Lifecycle",
+          "initial_states": [
+            "candidate"
+          ],
+          "terminal_states": [
+            "retired"
+          ],
+          "states": [
+            {
+              "id": "candidate",
+              "term_zh": "待核对",
+              "term_en": "Candidate",
+              "definition": "目录项已形成不可变候选，但尚未完成凭据健康、能力、数据边界、观察时效与公司策略核对。",
+              "not_a": [
+                "不是可供部门申报",
+                "不是ModelRoute candidate或approved"
+              ]
+            },
+            {
+              "id": "available_for_proposal",
+              "term_zh": "可供申报",
+              "term_en": "Available for Proposal",
+              "definition": "目录项证据在有效期内且可由部门负责人选择为Agent申报输入。",
+              "not_a": [
+                "不是ModelRoute approval",
+                "不是Agent active或ExecutionGrant effective"
+              ]
+            },
+            {
+              "id": "retired",
+              "term_zh": "停止新增申报",
+              "term_en": "Retired",
+              "definition": "目录项永久停止进入新的部门Agent申报，历史申报、路线、决定与审计引用继续保留。",
+              "not_a": [
+                "不是删除历史ModelRoute",
+                "不是自动撤销已批准路线"
+              ]
+            }
+          ],
+          "transitions": [
+            {
+              "id": "publish_for_department_proposal",
+              "from": "candidate",
+              "to": "available_for_proposal",
+              "trigger": "公司管理员请求上架且确定性核对全部目录证据通过",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy",
+                "orbit.concept/receipt",
+                "orbit.term/model-provider-preset",
+                "orbit.term/provider-observation"
+              ],
+              "guard": "凭据健康、能力、数据分类、协议、观察时效与供应商预设必须精确匹配；该动作不创建ApprovalDecision。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "retire_catalog_candidate",
+              "from": "candidate",
+              "to": "retired",
+              "trigger": "公司停止继续核对候选并记录原因",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "只停止候选继续上架，保留候选摘要与失败或撤回证据。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            },
+            {
+              "id": "retire_catalog_entry",
+              "from": "available_for_proposal",
+              "to": "retired",
+              "trigger": "公司停止该目录项进入新的部门Agent申报",
+              "transition_control": "policy_checked",
+              "required_refs": [
+                "orbit.concept/policy"
+              ],
+              "guard": "不得自动撤销、改写或删除历史ModelRoute、AgentBinding、ApprovalDecision或运行证据。",
+              "emits": [
+                "orbit.concept/receipt",
+                "orbit.concept/audit-event"
+              ]
+            }
+          ],
+          "view_transition_ids": [
+            "publish_for_department_proposal",
+            "retire_catalog_candidate",
+            "retire_catalog_entry"
+          ]
+        }
+      ],
+      "architecture_refs": [
+        "architecture/supporting/decisions/0028-model-catalog-and-department-agent-proposal.md",
+        "architecture/authority/states/README.md"
+      ],
+      "contract_refs": [
+        {
+          "path": "contracts/drafts/v0.4/model-catalog-entry.schema.json",
+          "publication_stage": "draft",
+          "alignment": "exact"
+        }
+      ],
+      "view_projections": [
+        {
+          "path": "architecture/views/control-plane-governed-loop-overview.md",
+          "block_id": "model-catalog-lifecycle"
+        }
+      ],
+      "invariants": [
+        "模型目录上架只生成Receipt与AuditEvent，不新增Approval scope，也不产生ModelRoute、Agent激活、ExecutionGrant或模型调用权限。",
+        "retired只阻止新的部门申报；历史ModelRoute是否暂停或撤销必须走其独立生命周期和决定范围。"
+      ]
+    }
+  ]
+}
+

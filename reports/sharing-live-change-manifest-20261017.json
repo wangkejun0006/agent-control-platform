@@ -1,0 +1,90 @@
+{
+  "comparison": "pre-round local tar; not Git diff",
+  "files": [
+    {
+      "path": "README.md",
+      "change": "modified",
+      "sha256": "1f18489b1602100aa6fc267e55722e9b4426daad18772cf1f6fe8f76d6695f31"
+    },
+    {
+      "path": "reports/sharing-live-continuation-20261017.json",
+      "change": "added",
+      "sha256": "3cc888b4283fcbcfaa7e5a4de5f9fe7d663d9ecfd90cd5737b62fa184ba487c5"
+    },
+    {
+      "path": "reports/sharing-live-validation-20261017.json",
+      "change": "added",
+      "sha256": "c72db68a28394be981b81c0bed6cc896b42d2a466a4cb2278f60a0ab7377a2af"
+    },
+    {
+      "path": "reports/sharing-live-outcome-20261017.json",
+      "change": "added",
+      "sha256": "f6de4b094ffdf122a97fec88ae33afb2f40197168f09fd897857cd141fff44dc"
+    },
+    {
+      "path": "reports/sharing-live-privacy-20261017.json",
+      "change": "added",
+      "sha256": "e45afea32b72414ce3f96c30b11f9a24c4a0761b7fb16da1128ecd20a18a7c5d"
+    },
+    {
+      "path": "reports/sharing-live-quality-review-20261017.json",
+      "change": "added",
+      "sha256": "da829021c01d66bbb303a52149f540bc2effa2d9b1827b3588c3d1f398a9d161"
+    },
+    {
+      "path": "tests/test_sharing_live_validation.py",
+      "change": "added",
+      "sha256": "e7774e5496999f1936a9b756055cc8f5b99189700910efb2a86e0f033f9ceefc"
+    },
+    {
+      "path": "showcase/live_budget.py",
+      "change": "modified",
+      "sha256": "e07b839306e6edbbd1411484ade9471b7a48241e88b1d0b7f508ba70cbb5e45a"
+    },
+    {
+      "path": "showcase/workbench/sharing_policy.py",
+      "change": "modified",
+      "sha256": "bf7d3924cf440d7ad5a17f1a8d46f6fe9f675ee717445b8536e6f1de701829dc"
+    },
+    {
+      "path": "showcase/workbench/service.py",
+      "change": "modified",
+      "sha256": "4d0004376c5159e9bf12e711cc6eb424e583b5503fc65199624aad338d632135"
+    },
+    {
+      "path": "showcase/workbench/live.py",
+      "change": "modified",
+      "sha256": "873fb198037e34939fe3ee8e17b5a60c90c441097fa8dcab25a362f1b7ee4dc6"
+    },
+    {
+      "path": "showcase/workbench/live_validation.py",
+      "change": "modified",
+      "sha256": "3818ede67cfe63a2345f6f9b77644a8ec06a755a987a4d55bab6ba316e46abd2"
+    },
+    {
+      "path": "showcase/workbench/worker.py",
+      "change": "modified",
+      "sha256": "854f73ed053538a15a0cf1fc1a943cf85735b3b9688b1e2d903f5896b48d9a38"
+    },
+    {
+      "path": "showcase/workbench/tools.py",
+      "change": "modified",
+      "sha256": "ccd090d9b268c36445aff50d795be9eb055bd50a780e79d4f8c0050d2063e74a"
+    },
+    {
+      "path": "showcase/workbench/sharing_validation.py",
+      "change": "added",
+      "sha256": "2b792250fe3962ab33bb804d9135500288195f3ab3c12c5607793e88d4e421e0"
+    },
+    {
+      "path": "docs/SHARING_LIVE_VALIDATION_20261017.md",
+      "change": "added",
+      "sha256": "4a2a29386888693cec0cb8b1cfec997ea2407dd54fa73dfd3209d293a74c37a8"
+    },
+    {
+      "path": ".agent/HANDOFF.md",
+      "change": "modified",
+      "sha256": "ce0633a9dce8d09652f4ae2c896ed7322509fc426fccabf6d9db62232e789d73"
+    }
+  ]
+}

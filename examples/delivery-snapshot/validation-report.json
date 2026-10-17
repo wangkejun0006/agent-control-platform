@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "new_model_requests": 0,
+  "new_model_cost_cny": 0,
+  "local_delivery_completed": true,
+  "zip_sha256": "cd402ce5f9344fefc6e62e7f0fe45a9a05e156f30cde662b54c9242cf0cf89bd",
+  "reviewer_mode": "automated_authenticated_local_test_account_not_human",
+  "candidate_origin": "previous real market-v2; product/technology/v1 offline fictional fixtures",
+  "checker_version": "market-rework-decisions/2",
+  "historical_campaign_remains_stopped": true
+}

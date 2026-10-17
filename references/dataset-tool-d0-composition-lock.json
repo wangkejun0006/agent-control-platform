@@ -1,0 +1,114 @@
+{
+  "lock_version": "orbit.dataset-tool-d0-composition-lock/1",
+  "created_at": "2026-08-25T12:00:00Z",
+  "status_ceiling": "D0 synthetic active",
+  "company_contract": {
+    "release_id": "contract-v0.1.0-alpha.1",
+    "git_tag": "contract-v0.1.0-alpha.1",
+    "git_commit": "29e1ff39751791b1d9e233f3c36073303ed41fdb",
+    "release_manifest_sha256": "sha256:413d799163c5e8c3da6b0bb01562cf567499529e7584038ca61145f03d34a638",
+    "consumer_lock_sha256": "sha256:fd1f5a6f17a8a51824cad7ce1273954724e0602787bf2a976655538a5483c058",
+    "consumer_bundle_lock_sha256": "sha256:16221c3d632fb29d6389a0be34b40317e680a891f4ac6537064001d1f4105123",
+    "released_schema_count": 22,
+    "execution_grant_schema_sha256": "sha256:3115da53ce3881d1c92e3ff23296b0f39cdab4565da266ae49005cd9f0e9c5b5"
+  },
+  "agent_release": {
+    "repository_id": "orbit-scientific-research-platform",
+    "repository_commit": "68dff38c16cb74c4668a480efbd715079f11eee3",
+    "agent_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+    "version": "0.1.0",
+    "candidate_set_digest": "sha256:ba3f1e5f928f09c675f5dc25dfd65fcf9094a8d66bcf4e94dc3f146fa5af8ba4",
+    "candidate_manifest_sha256": "sha256:4c7cea742fe65b7a38a778713ebe8d2116ad36fc853c02a0f8dcbaedf1e5c91f",
+    "release_digest": "sha256:23d15bd03ef82199805165d20b428fdc2cd280c4fbc65c475fd1b94e39f345ef",
+    "definition_digest": "sha256:05dee592970d5ce17e7d431c9484e32c07c9767832edc7e85b194b687846c0c3",
+    "binding_digest": "sha256:5eb6473ae8ec7d9dbd36dce637ce971a129e574980a250f396b2be0811316872",
+    "model_route_digest": "sha256:99b2c0844dafe1bf1b4eaf40ced7599058bc780f912a88422d1c4ad6a3c2a2ee"
+  },
+  "tool_release": {
+    "repository_id": "dataset-acquisition-registry",
+    "repository_commit": "1f4e4d001e68f6acb368feac69a3886389f8d75d",
+    "release_id": "dataset-tools-v0.1.0-synthetic",
+    "release_manifest_digest": "sha256:c16ace9eb4619b5d58e4e464e3d924d21a4c2c13f96007f9c7d37a209cc6075e",
+    "tools": [
+      {
+        "tool_id": "tool_orbit_dataset_query_watchlist",
+        "version": "0.1.0-synthetic",
+        "release_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+        "capability": "dataset_registry.query_watchlist",
+        "operation_id": "query_registry_watchlist"
+      },
+      {
+        "tool_id": "tool_orbit_dataset_acquisition_worker",
+        "version": "0.1.0-synthetic",
+        "release_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+        "capability": "dataset_acquisition.authorized_execute",
+        "operation_id": "acquire_synthetic_artifact"
+      },
+      {
+        "tool_id": "tool_orbit_dataset_registry_publisher",
+        "version": "0.1.0-synthetic",
+        "release_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+        "capability": "dataset_registry.publish_candidate",
+        "operation_id": "publish_registry_patch"
+      }
+    ]
+  },
+  "control_plane_implementation": {
+    "base_commit": "0e8c8c2d46185065253b10ad1b9eada43e980f1d",
+    "harness_sha256": "sha256:c51fcb8011d80673f60b18d5dbd73a22abd67be9f0c8e46128ee9ddcc726693d",
+    "docker_runner_sha256": "sha256:1bdd66330d6fef7d1f445e4df5a45e08eaac770d0e7f1ae8a5c9a267443aff99",
+    "tool_intake_profile_sha256": "sha256:5877b52102f1df1b5b49dae2a458cab34dcd40386d4b2d6130f83876741f64a1"
+  },
+  "runtime_composition": {
+    "composition_id": "composition_02f1ff9df03c11c2b9c7",
+    "task_id": "task_synthetic_dataset_full_chain_d0_syn",
+    "execution_grant_ref": "grant_dataset_full_chain_d0_syn",
+    "execution_grant_digest": "sha256:640bd01f8eb37a30fbfca2aea085d12de66379e30f391755f7230b67d8918e00",
+    "policy_ref": "policy_dataset_tools_d0_syn",
+    "policy_digest": "sha256:33a15ac2b73cb4ccd7f01a7b3e34101318d445ad7ea11f0433d6a071674fc53e",
+    "input_registry_revision": "registry://revision/sha256/ff1a0c9f20844989433792bcad006923d78df220bce6e5790c50f79cbd473b8e",
+    "budget_units": 10
+  },
+  "container": {
+    "image_ref": "nousresearch/hermes-agent:v2026.8.16",
+    "image_id": "sha256:f8f548d87d16634d1ad9e3777280f3f577ba2358703f04e18e74007ffd3621bf",
+    "pulled_for_run": false,
+    "network": "none",
+    "root_filesystem": "read_only",
+    "effective_uid": 65532,
+    "capabilities": "none",
+    "no_new_privileges": true,
+    "memory_limit": "256m",
+    "cpu_limit": 1,
+    "pids_limit": 64
+  },
+  "evidence": {
+    "path": "evidence/dataset-tools-d0/2026-08-25/result.json",
+    "sha256": "sha256:0dfe9af3244c22ab3727c7a3786ddc2d2c3b862ad701f702db236215efd08e4b",
+    "acceptance_report_path": "evidence/dataset-tools-d0/2026-08-25/acceptance-report.zh-CN.md",
+    "acceptance_report_sha256": "sha256:0b038b53b530c8f12e8eb53a1cee894f6d1015c1507becda400b1dcc59af7f55",
+    "skill_review_path": "evidence/dataset-tools-d0/2026-08-25/skill-review-summary.json",
+    "skill_review_sha256": "sha256:72064a19b11937675cafc9bcf80c43a83445da141a73857af283c1328d183ade",
+    "checks_passed": 27,
+    "checks_failed": 0
+  },
+  "version_relationships": {
+    "domain_repositories_lock_company_contract_only": true,
+    "domain_repositories_lock_control_plane_git": false,
+    "control_plane_registry_uses_immutable_agent_and_tool_release_digests": true,
+    "formal_registration_receipt_embedded_in_domain_candidates": false,
+    "circular_release_lock": false
+  },
+  "denies": {
+    "production_authorized": false,
+    "pre_production_accepted": false,
+    "real_data_authorized": false,
+    "real_network_authorized": false,
+    "real_registry_authorized": false,
+    "real_storage_authorized": false,
+    "credentials_authorized": false,
+    "nas_handles_authorized": false,
+    "scheduler_authorized": false
+  }
+}
+

@@ -1,0 +1,50 @@
+{
+  "lock_version": "orbit.semantic-authority-lock/1",
+  "publication_stage": "release",
+  "definition_authority": "orbit-agent-architecture",
+  "authority_order": [
+    "concept",
+    "term",
+    "state",
+    "contract"
+  ],
+  "sources": [
+    {
+      "role": "concept_catalog",
+      "version": "orbit.architecture-concept-catalog/2",
+      "path": "architecture/authority/concepts/concept-catalog.json",
+      "sha256": "sha256:0d32597d5c1b4da6cfc511bb01da5c8f4a2266aa895edba2b7af3dc474119e0a"
+    },
+    {
+      "role": "term_registry",
+      "version": "orbit.architecture-term-classification/2",
+      "path": "architecture/authority/terms/term-classification.json",
+      "sha256": "sha256:c573c88b407145e07c7506402d744700703155fa2e5dd33ec6779be7a4fcf9ac"
+    },
+    {
+      "role": "state_catalog",
+      "version": "orbit.architecture-state-catalog/1",
+      "path": "architecture/authority/states/state-catalog.json",
+      "sha256": "sha256:2497d328fbcdae0fac90204a423c1b355ac25213fde20c2dd425557a1d92cb07"
+    },
+    {
+      "role": "contract_enum_index",
+      "version": "orbit.architecture-contract-enum-index/1",
+      "path": "architecture/locks/contract-enum-index.json",
+      "sha256": "sha256:76c76b29c9ecb2cb0dd387222622476d5f779ae8afe57cadc9f4e3d4e9504dcd"
+    }
+  ],
+  "contract_release": {
+    "current_index_path": "contracts/releases/current.json",
+    "current_index_sha256": "sha256:9be865cda008445042cc0b07087c68e1f4a99f04fbd68476030d812d07245069",
+    "release_id": "contract-v0.1.0-alpha.2",
+    "manifest_path": "contracts/releases/contract-v0.1.0-alpha.2/manifest.json",
+    "manifest_sha256": "sha256:ffc9b78cda101e263dcbc0a60060cc48c5c11dec0eb1aba5aca50a74b489521a"
+  },
+  "non_claims": [
+    "本锁只证明仓库内语义源与 Contract Release 的精确字节组合，不产生运行权限。",
+    "release 锁发布的是精确语义组合，不会把组合内的 draft 条目或 Contract 草案自动晋级。",
+    "本锁不构成 Runtime、生产、Orbit 写入或外部系统接入授权。"
+  ]
+}
+

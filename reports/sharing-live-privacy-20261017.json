@@ -1,0 +1,11 @@
+{
+  "scope": "local project and private runtime; no provider calls",
+  "credential_files_scanned": 946,
+  "credential_matches": [],
+  "activity_permission_exceptions": [],
+  "old_files_checked": 86,
+  "old_files_unchanged": true,
+  "first_nine_attempts_unchanged": true,
+  "model_calls_by_audit": 0,
+  "limitations": "Exact configured credential scan is not exhaustive secret detection."
+}

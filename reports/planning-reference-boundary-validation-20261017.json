@@ -1,0 +1,61 @@
+{
+  "schema": "orbit.planning-reference-boundary/1",
+  "status": "passed",
+  "real_model_requests": 0,
+  "provider_credentials_read": false,
+  "historical_budget_files_opened": 0,
+  "planning_rule_version": "delivery-planning-references/1",
+  "execution_content_version_unchanged": "delivery-content/1",
+  "planning_prompt_samples_verified": 6,
+  "phases": [
+    "generate_questions",
+    "generate_task_package"
+  ],
+  "departments": [
+    "product_center",
+    "technology_center",
+    "market_center"
+  ],
+  "tests": [
+    {
+      "log": ".runtime/planning-boundary-regression-20261017.log",
+      "tests": 52,
+      "seconds": 216.387,
+      "passed": true
+    },
+    {
+      "log": ".runtime/planning-boundary-final-tests-20261017.log",
+      "tests": 7,
+      "seconds": 0.658,
+      "passed": true
+    }
+  ],
+  "test_scopes_overlap": true,
+  "protected_files": 41,
+  "protected_files_unchanged": true,
+  "historical_response": {
+    "path": ".runtime/minimal-rework-live-20261017/response-02.json",
+    "sha256": "f7a705395b45d0751a664917f9d645059e29f54a05e00b35d40d3f495a4429b1",
+    "rewritten": false,
+    "current_rejected_codes": [
+      "source_basis_consistent",
+      "planning_reference_boundary"
+    ]
+  },
+  "corrected_planning_fixture": {
+    "mode": "offline_authored_example_not_model_response",
+    "text": "将先检索本部门授权资料及获准交接产物，再逐项核对来源、版本、行号和授权范围，执行后提交有实际证据的候选。"
+  },
+  "execution_and_review_source_checks": "retained; native tampered-source and prose approval tests pass",
+  "minimal_validation": {
+    "executed": false,
+    "requires_new_authorization": true,
+    "fresh_campaign_required": true,
+    "hard_request_limit": 5,
+    "cost_limit_cny": 0.3,
+    "max_reservation_cny": 0.24288,
+    "upstream_and_first_market_mode": "explicit_offline_fixtures",
+    "target": "market rework planning, actual tools, revised review, local ZIP"
+  },
+  "limitations": "Offline fake responses and bounded Chinese checks; no real-model success or human/production approval claimed."
+}

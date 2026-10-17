@@ -1,0 +1,1360 @@
+{
+  "schema_version": "orbit.offline-demo/1",
+  "evidence_status": "synthetic",
+  "model_calls": 0,
+  "cost_cny": "0",
+  "checks": {
+    "success": true,
+    "bad_quality": true,
+    "wrong_task": true,
+    "duplicate_json": true,
+    "timeout": true,
+    "cancel": true,
+    "output_limit": true,
+    "missing_grant": true,
+    "unknown_capability": true,
+    "private_input": true,
+    "idempotent_replay": true,
+    "approval_gate": true,
+    "runtime_composition": true,
+    "tool_operation_gate": true
+  },
+  "passed": true,
+  "cases": [
+    {
+      "scenario": "success",
+      "status": "pass",
+      "reason_codes": [
+        "fixed_suite_pass"
+      ],
+      "worker_invocations": 1,
+      "receipt": {
+        "artifact": {
+          "collections": 3,
+          "open_support": 2,
+          "out_of_stock": [
+            "PO-102"
+          ],
+          "records": 9,
+          "revision": "catalog-demo-v3",
+          "shipment_units": 8
+        },
+        "cost_cny": "0",
+        "external_side_effects": [],
+        "fixture_sha256": "684f4251c1376beda0148f17ae7d5d58094b7d6443e3b15b29a73cebbb92f2b7",
+        "model_calls": 0,
+        "schema_version": "orbit.offline-receipt/1",
+        "task_id": "task_synthetic_orbit_success"
+      },
+      "replayed": false,
+      "ledger": {
+        "records_checked": 4,
+        "last_record_hash": "sha256:8de1466e92b42e1ca46c9b04566aebba242e70f1624a0c1ffa0d5ee66de0e364",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_success",
+              "capability": "dataset_acquisition.request_create",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": true,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": null,
+            "control_audit_events": [],
+            "control_attempts": [],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_3a45744ce07895a09f74",
+              "task_id": "task_synthetic_orbit_success",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "completed",
+              "revision": 1,
+              "cancellation_requested": false,
+              "last_event_ref": "audit_4ab3fd786801144a9bc9"
+            },
+            "dataset_outcome": {
+              "status": "pass",
+              "reason_codes": [
+                "fixed_suite_pass"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_success",
+                  "capability": "dataset_acquisition.request_create",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": true,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_3d8812847cb9b7b206b5",
+                  "task_id": "task_synthetic_orbit_success",
+                  "status": "routed",
+                  "target_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                  "reason_codes": [
+                    "deterministic_policy_match"
+                  ]
+                },
+                "result": {
+                  "result_id": "result_b1ebe3e133b2d48cd8c4",
+                  "task_id": "task_synthetic_orbit_success",
+                  "target_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                  "status": "completed",
+                  "output_ref": "artifact://synthetic/task_synthetic_orbit_success/receipt_17f0c638c1e001e9746d",
+                  "audit_event_refs": [
+                    "audit_b1ebe3e133b2d48cd8c4"
+                  ],
+                  "side_effects": []
+                },
+                "evaluation": {
+                  "report_id": "evaluation_90756caa52dd1dd715c2",
+                  "evaluator_agent_id": "agt_evaluator_syn",
+                  "subject_result_id": "result_b1ebe3e133b2d48cd8c4",
+                  "verdict": "pass",
+                  "reason_codes": [
+                    "fixed_suite_pass"
+                  ],
+                  "release_authorization": false
+                },
+                "audit_events": [
+                  {
+                    "event_id": "audit_route_3d8812847cb9b7b206b5",
+                    "task_id": "task_synthetic_orbit_success",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  },
+                  {
+                    "event_id": "audit_b1ebe3e133b2d48cd8c4",
+                    "task_id": "task_synthetic_orbit_success",
+                    "event_type": "dataset_agent_process_completed",
+                    "subject_ref": "agt_orbit_research_dataset_scout_acquisition_syn"
+                  }
+                ],
+                "control_snapshot": null
+              },
+              "adapter_evidence": {
+                "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+                "domain_schema_version": "orbit.offline-receipt/1",
+                "agent_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                "runtime_family": "frozen_offline_python_worker",
+                "receipt_id": "receipt_17f0c638c1e001e9746d",
+                "receipt_status": "verified",
+                "actual_size_bytes": 120,
+                "actual_sha256": "60cc3263acb6723fd7f737162d31d886db4e67bc59f3478b3fdface42ddba003",
+                "domain_evaluation_report_id": "evaluation_b1ebe3e133b2d48cd8c4",
+                "domain_evaluation_decision": "pass",
+                "domain_audit_event_refs": [
+                  "audit_7d821ca69242155a7faf",
+                  "audit_c1544b53bdad0741c131",
+                  "audit_e92cff62bb42bb49145b",
+                  "audit_26faa81f5d40ff191cd9"
+                ],
+                "model_provider_id": "synthetic-deterministic",
+                "model_id": "structured-model-fixture-v1",
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cached_input_tokens": 0,
+                "model_cost_cny": "0",
+                "storage_write_performed": false,
+                "data_use_approved": false,
+                "registry_publish_performed": false,
+                "approved_asset_release_created": false
+              }
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "bad_quality",
+      "status": "blocked",
+      "reason_codes": [
+        "offline_artifact_quality_failed"
+      ],
+      "worker_invocations": 1,
+      "receipt": {
+        "artifact": {
+          "collections": 3,
+          "open_support": 2,
+          "out_of_stock": [
+            "PO-102"
+          ],
+          "records": 900,
+          "revision": "catalog-demo-v3",
+          "shipment_units": 8
+        },
+        "cost_cny": "0",
+        "external_side_effects": [],
+        "fixture_sha256": "684f4251c1376beda0148f17ae7d5d58094b7d6443e3b15b29a73cebbb92f2b7",
+        "model_calls": 0,
+        "schema_version": "orbit.offline-receipt/1",
+        "task_id": "task_synthetic_orbit_bad_quality"
+      },
+      "replayed": false,
+      "ledger": {
+        "records_checked": 4,
+        "last_record_hash": "sha256:4407fb1aaaf53199d861b039c7c3805b3134fc8df85151b00d3b695d5ae28b21",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_bad_quality",
+              "capability": "dataset_acquisition.request_create",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": true,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": null,
+            "control_audit_events": [],
+            "control_attempts": [],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_55f166c2351bebdf3a10",
+              "task_id": "task_synthetic_orbit_bad_quality",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "failed",
+              "revision": 1,
+              "cancellation_requested": false,
+              "last_event_ref": "audit_371997bf8966b92eb28a"
+            },
+            "dataset_outcome": {
+              "status": "blocked",
+              "reason_codes": [
+                "offline_artifact_quality_failed"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_bad_quality",
+                  "capability": "dataset_acquisition.request_create",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": true,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_7828670bbe9996f86432",
+                  "task_id": "task_synthetic_orbit_bad_quality",
+                  "status": "routed",
+                  "target_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                  "reason_codes": [
+                    "deterministic_policy_match"
+                  ]
+                },
+                "result": null,
+                "evaluation": null,
+                "audit_events": [
+                  {
+                    "event_id": "audit_route_7828670bbe9996f86432",
+                    "task_id": "task_synthetic_orbit_bad_quality",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  }
+                ],
+                "control_snapshot": null
+              },
+              "adapter_evidence": null
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "wrong_task",
+      "status": "blocked",
+      "reason_codes": [
+        "offline_receipt_task_mismatch"
+      ],
+      "worker_invocations": 1,
+      "receipt": {
+        "artifact": {
+          "collections": 3,
+          "open_support": 2,
+          "out_of_stock": [
+            "PO-102"
+          ],
+          "records": 9,
+          "revision": "catalog-demo-v3",
+          "shipment_units": 8
+        },
+        "cost_cny": "0",
+        "external_side_effects": [],
+        "fixture_sha256": "684f4251c1376beda0148f17ae7d5d58094b7d6443e3b15b29a73cebbb92f2b7",
+        "model_calls": 0,
+        "schema_version": "orbit.offline-receipt/1",
+        "task_id": "task_synthetic_other"
+      },
+      "replayed": false,
+      "ledger": {
+        "records_checked": 4,
+        "last_record_hash": "sha256:07c7263d09c899bc94d5159586b5d5ab53c0b04f05d2f2a1cc9f50a4a05e2d43",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_wrong_task",
+              "capability": "dataset_acquisition.request_create",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": true,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": null,
+            "control_audit_events": [],
+            "control_attempts": [],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_dcd33d5c9975682548d4",
+              "task_id": "task_synthetic_orbit_wrong_task",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "failed",
+              "revision": 1,
+              "cancellation_requested": false,
+              "last_event_ref": "audit_d0b321e0853796c44e3b"
+            },
+            "dataset_outcome": {
+              "status": "blocked",
+              "reason_codes": [
+                "offline_receipt_task_mismatch"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_wrong_task",
+                  "capability": "dataset_acquisition.request_create",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": true,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_1fc3ec4884c7c109620a",
+                  "task_id": "task_synthetic_orbit_wrong_task",
+                  "status": "routed",
+                  "target_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                  "reason_codes": [
+                    "deterministic_policy_match"
+                  ]
+                },
+                "result": null,
+                "evaluation": null,
+                "audit_events": [
+                  {
+                    "event_id": "audit_route_1fc3ec4884c7c109620a",
+                    "task_id": "task_synthetic_orbit_wrong_task",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  }
+                ],
+                "control_snapshot": null
+              },
+              "adapter_evidence": null
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "duplicate_json",
+      "status": "blocked",
+      "reason_codes": [
+        "dataset_agent_duplicate_json_key"
+      ],
+      "worker_invocations": 1,
+      "receipt": null,
+      "replayed": false,
+      "ledger": {
+        "records_checked": 4,
+        "last_record_hash": "sha256:882d7e641596f2cb86c8266aa4b75a527a514f4409e4edbd55c3061eeceb7811",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_duplicate_json",
+              "capability": "dataset_acquisition.request_create",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": true,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": null,
+            "control_audit_events": [],
+            "control_attempts": [],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_5c5890028fb66dd6263a",
+              "task_id": "task_synthetic_orbit_duplicate_json",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "failed",
+              "revision": 1,
+              "cancellation_requested": false,
+              "last_event_ref": "audit_b6f0349c174917a27546"
+            },
+            "dataset_outcome": {
+              "status": "blocked",
+              "reason_codes": [
+                "dataset_agent_duplicate_json_key"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_duplicate_json",
+                  "capability": "dataset_acquisition.request_create",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": true,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_73ad0dc352374569b969",
+                  "task_id": "task_synthetic_orbit_duplicate_json",
+                  "status": "routed",
+                  "target_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                  "reason_codes": [
+                    "deterministic_policy_match"
+                  ]
+                },
+                "result": null,
+                "evaluation": null,
+                "audit_events": [
+                  {
+                    "event_id": "audit_route_73ad0dc352374569b969",
+                    "task_id": "task_synthetic_orbit_duplicate_json",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  }
+                ],
+                "control_snapshot": null
+              },
+              "adapter_evidence": null
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "timeout",
+      "status": "blocked",
+      "reason_codes": [
+        "dataset_agent_process_timeout"
+      ],
+      "worker_invocations": 1,
+      "receipt": null,
+      "replayed": false,
+      "ledger": {
+        "records_checked": 4,
+        "last_record_hash": "sha256:c60ee6ad9411b9f4c6ff18446382c431c1bb08c4f94b3c40e8fbf2552631b3d0",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_timeout",
+              "capability": "dataset_acquisition.request_create",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": true,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": null,
+            "control_audit_events": [],
+            "control_attempts": [],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_4ec26498f27020eb054a",
+              "task_id": "task_synthetic_orbit_timeout",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "failed",
+              "revision": 1,
+              "cancellation_requested": false,
+              "last_event_ref": "audit_619fff947bfbfffa4ee7"
+            },
+            "dataset_outcome": {
+              "status": "blocked",
+              "reason_codes": [
+                "dataset_agent_process_timeout"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_timeout",
+                  "capability": "dataset_acquisition.request_create",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": true,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_d835d63fa5c962ca5d80",
+                  "task_id": "task_synthetic_orbit_timeout",
+                  "status": "routed",
+                  "target_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                  "reason_codes": [
+                    "deterministic_policy_match"
+                  ]
+                },
+                "result": null,
+                "evaluation": null,
+                "audit_events": [
+                  {
+                    "event_id": "audit_route_d835d63fa5c962ca5d80",
+                    "task_id": "task_synthetic_orbit_timeout",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  }
+                ],
+                "control_snapshot": null
+              },
+              "adapter_evidence": null
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "cancel",
+      "status": "blocked",
+      "reason_codes": [
+        "dataset_agent_process_cancelled"
+      ],
+      "worker_invocations": 1,
+      "receipt": null,
+      "replayed": false,
+      "ledger": {
+        "records_checked": 5,
+        "last_record_hash": "sha256:a1e8d97d78b03a8bc2699ddffdb874235e4dcc04ea7cab3ebe3c9dc3f14377d5",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_cancel",
+              "capability": "dataset_acquisition.request_create",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": true,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": {
+              "task_id": "task_synthetic_orbit_cancel",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "task_status": "cancelled",
+              "grant_status": "revoked",
+              "owner_kind": "control_plane",
+              "revision": 1,
+              "last_control_event_ref": "control_0723b434d6d425068d3c"
+            },
+            "control_audit_events": [
+              {
+                "event_id": "control_0723b434d6d425068d3c",
+                "task_id": "task_synthetic_orbit_cancel",
+                "event_type": "task_control_cancel_applied",
+                "subject_ref": "human_operator_demo_reviewer_syn"
+              }
+            ],
+            "control_attempts": [
+              {
+                "idempotency_key": "demo:cancel",
+                "authorization": {
+                  "decision_id": "operator_authz_0b152e9a1f7fa5cd5a4f",
+                  "grant_snapshot": {
+                    "version": "orbit.synthetic-operator-grant/1",
+                    "grant_id": "operator_grant_demo_cancel_syn",
+                    "operator_ref": "human_operator_demo_reviewer_syn",
+                    "task_id": "task_synthetic_orbit_cancel",
+                    "allowed_actions": [
+                      "cancel"
+                    ],
+                    "issued_at": "2026-10-16T12:11:15.030290Z",
+                    "expires_at": "2026-10-16T12:16:16.030290Z",
+                    "evidence_status": "synthetic",
+                    "synthetic_only": true
+                  },
+                  "operator_ref": "human_operator_demo_reviewer_syn",
+                  "task_id": "task_synthetic_orbit_cancel",
+                  "action": "cancel",
+                  "request_reason": "Scripted fictional reviewer cancellation",
+                  "checked_at": "2026-10-16T12:11:16.030290Z",
+                  "confirmed_action": "cancel",
+                  "allowed": true,
+                  "reason_codes": [
+                    "synthetic_operator_authorized"
+                  ]
+                },
+                "transition": {
+                  "action": "cancel",
+                  "applied": true,
+                  "reason_code": "task_cancelled",
+                  "before": {
+                    "task_id": "task_synthetic_orbit_cancel",
+                    "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                    "task_status": "active",
+                    "grant_status": "active",
+                    "owner_kind": "control_plane",
+                    "revision": 0,
+                    "last_control_event_ref": null
+                  },
+                  "after": {
+                    "task_id": "task_synthetic_orbit_cancel",
+                    "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                    "task_status": "cancelled",
+                    "grant_status": "revoked",
+                    "owner_kind": "control_plane",
+                    "revision": 1,
+                    "last_control_event_ref": "control_0723b434d6d425068d3c"
+                  },
+                  "audit_event": {
+                    "event_id": "control_0723b434d6d425068d3c",
+                    "task_id": "task_synthetic_orbit_cancel",
+                    "event_type": "task_control_cancel_applied",
+                    "subject_ref": "human_operator_demo_reviewer_syn"
+                  }
+                }
+              }
+            ],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_b2131a12c51f14e1ad3d",
+              "task_id": "task_synthetic_orbit_cancel",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "cancelled",
+              "revision": 1,
+              "cancellation_requested": true,
+              "last_event_ref": "audit_2c3fc598bb42bb3ae7dc"
+            },
+            "dataset_outcome": {
+              "status": "blocked",
+              "reason_codes": [
+                "dataset_agent_process_cancelled"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_cancel",
+                  "capability": "dataset_acquisition.request_create",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": true,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_41a027dec60081dc9324",
+                  "task_id": "task_synthetic_orbit_cancel",
+                  "status": "routed",
+                  "target_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                  "reason_codes": [
+                    "deterministic_policy_match"
+                  ]
+                },
+                "result": null,
+                "evaluation": null,
+                "audit_events": [
+                  {
+                    "event_id": "control_0723b434d6d425068d3c",
+                    "task_id": "task_synthetic_orbit_cancel",
+                    "event_type": "task_control_cancel_applied",
+                    "subject_ref": "human_operator_demo_reviewer_syn"
+                  },
+                  {
+                    "event_id": "audit_route_41a027dec60081dc9324",
+                    "task_id": "task_synthetic_orbit_cancel",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  }
+                ],
+                "control_snapshot": {
+                  "task_id": "task_synthetic_orbit_cancel",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "task_status": "cancelled",
+                  "grant_status": "revoked",
+                  "owner_kind": "control_plane",
+                  "revision": 1,
+                  "last_control_event_ref": "control_0723b434d6d425068d3c"
+                }
+              },
+              "adapter_evidence": null
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "output_limit",
+      "status": "blocked",
+      "reason_codes": [
+        "dataset_agent_stdout_limit_exceeded"
+      ],
+      "worker_invocations": 1,
+      "receipt": null,
+      "replayed": false,
+      "ledger": {
+        "records_checked": 4,
+        "last_record_hash": "sha256:9e9391117516ef5bbb793e0e2c96c6fc584b660d75999ca9317b1d78660d60f0",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_output_limit",
+              "capability": "dataset_acquisition.request_create",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": true,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": null,
+            "control_audit_events": [],
+            "control_attempts": [],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_898d183a7dfcb25b3137",
+              "task_id": "task_synthetic_orbit_output_limit",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "failed",
+              "revision": 1,
+              "cancellation_requested": false,
+              "last_event_ref": "audit_08e194cf0e8370c75d44"
+            },
+            "dataset_outcome": {
+              "status": "blocked",
+              "reason_codes": [
+                "dataset_agent_stdout_limit_exceeded"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_output_limit",
+                  "capability": "dataset_acquisition.request_create",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": true,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_ee18695d5e1f6f957a51",
+                  "task_id": "task_synthetic_orbit_output_limit",
+                  "status": "routed",
+                  "target_id": "agt_orbit_research_dataset_scout_acquisition_syn",
+                  "reason_codes": [
+                    "deterministic_policy_match"
+                  ]
+                },
+                "result": null,
+                "evaluation": null,
+                "audit_events": [
+                  {
+                    "event_id": "audit_route_ee18695d5e1f6f957a51",
+                    "task_id": "task_synthetic_orbit_output_limit",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  }
+                ],
+                "control_snapshot": null
+              },
+              "adapter_evidence": null
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "missing_grant",
+      "status": "blocked",
+      "reason_codes": [
+        "grant_inactive_or_expired"
+      ],
+      "worker_invocations": 0,
+      "receipt": null,
+      "replayed": false,
+      "ledger": {
+        "records_checked": 4,
+        "last_record_hash": "sha256:4d3768f274b8c89ede957dedc7625c0fca8472bdeafda345c65bcfe085b1e6f0",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_missing_grant",
+              "capability": "dataset_acquisition.request_create",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": false,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": null,
+            "control_audit_events": [],
+            "control_attempts": [],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_8dbb38b69abfa6f261d9",
+              "task_id": "task_synthetic_orbit_missing_grant",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "failed",
+              "revision": 1,
+              "cancellation_requested": false,
+              "last_event_ref": "audit_ae249e956b603774a1e6"
+            },
+            "dataset_outcome": {
+              "status": "blocked",
+              "reason_codes": [
+                "grant_inactive_or_expired"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_missing_grant",
+                  "capability": "dataset_acquisition.request_create",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": false,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_059f40c9ef37e71a2fd2",
+                  "task_id": "task_synthetic_orbit_missing_grant",
+                  "status": "blocked",
+                  "target_id": null,
+                  "reason_codes": [
+                    "grant_inactive_or_expired"
+                  ]
+                },
+                "result": null,
+                "evaluation": null,
+                "audit_events": [
+                  {
+                    "event_id": "audit_route_059f40c9ef37e71a2fd2",
+                    "task_id": "task_synthetic_orbit_missing_grant",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  }
+                ],
+                "control_snapshot": null
+              },
+              "adapter_evidence": null
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "unknown_capability",
+      "status": "blocked",
+      "reason_codes": [
+        "capability_not_supported"
+      ],
+      "worker_invocations": 0,
+      "receipt": null,
+      "replayed": false,
+      "ledger": {
+        "records_checked": 4,
+        "last_record_hash": "sha256:9d027c225beea7efbcb25978fdc1d034e9259cd98b51cabb6165dea47630f064",
+        "tasks": [
+          {
+            "task": {
+              "task_id": "task_synthetic_orbit_unknown_capability",
+              "capability": "unregistered.operation",
+              "data_classification": "public",
+              "grant_id": "grant_synthetic_company_dataset_d0_syn",
+              "grant_active": true,
+              "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+            },
+            "control_snapshot": null,
+            "control_audit_events": [],
+            "control_attempts": [],
+            "outcome": null,
+            "worker_lease": {
+              "lease_id": "lease_5c05656c3b507ed1d2da",
+              "task_id": "task_synthetic_orbit_unknown_capability",
+              "worker_id": "worker_orbit_dataset_acquisition_deterministic_syn",
+              "implementation_revision": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "status": "failed",
+              "revision": 1,
+              "cancellation_requested": false,
+              "last_event_ref": "audit_1a472be7849bf84013e1"
+            },
+            "dataset_outcome": {
+              "status": "blocked",
+              "reason_codes": [
+                "capability_not_supported"
+              ],
+              "company_outcome": {
+                "task": {
+                  "task_id": "task_synthetic_orbit_unknown_capability",
+                  "capability": "unregistered.operation",
+                  "data_classification": "public",
+                  "grant_id": "grant_synthetic_company_dataset_d0_syn",
+                  "grant_active": true,
+                  "requested_target_id": "agt_orbit_research_dataset_scout_acquisition_syn"
+                },
+                "route_decision": {
+                  "decision_id": "route_3edb2add2e6fb70bdc0c",
+                  "task_id": "task_synthetic_orbit_unknown_capability",
+                  "status": "blocked",
+                  "target_id": null,
+                  "reason_codes": [
+                    "capability_not_supported"
+                  ]
+                },
+                "result": null,
+                "evaluation": null,
+                "audit_events": [
+                  {
+                    "event_id": "audit_route_3edb2add2e6fb70bdc0c",
+                    "task_id": "task_synthetic_orbit_unknown_capability",
+                    "event_type": "route_decision_recorded",
+                    "subject_ref": "agt_company_task_router_syn"
+                  }
+                ],
+                "control_snapshot": null
+              },
+              "adapter_evidence": null
+            },
+            "watchlist_outcome": null,
+            "disease_r1_outcome": null
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "private_input",
+      "status": "blocked",
+      "reason_codes": [
+        "data_classification_not_allowed"
+      ],
+      "worker_invocations": 0
+    }
+  ],
+  "lifecycle": {
+    "without_approval": "approval_decision_missing",
+    "scripted_fixture_only": true,
+    "state": {
+      "records_checked": 4,
+      "last_record_hash": "sha256:911c267fea2af722f0b048c744df378444e9d66b9a2f6578c505b58c1c0ba6c7",
+      "agents": [
+        {
+          "candidate": {
+            "agent_id": "agt_orbit_dataset_demo_syn",
+            "release_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+            "definition_ref": "definition_orbit_dataset_syn",
+            "binding_ref": "binding_orbit_dataset_syn",
+            "owner_role_ref": "role_demo_owner_syn",
+            "agent_system_ref": "agent_system_demo_syn",
+            "change_fields": [
+              "new_stable_agent",
+              "purpose"
+            ],
+            "structural_change": true,
+            "evidence_status": "synthetic",
+            "synthetic_only": true
+          },
+          "status": "active",
+          "revision": 2,
+          "evaluation": {
+            "report_id": "evaluation_demo_syn",
+            "subject_agent_id": "agt_orbit_dataset_demo_syn",
+            "subject_release_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+            "evaluator_agent_id": "agt_independent_fixture_evaluator_syn",
+            "verdict": "pass",
+            "release_recommendation": "recommend",
+            "evidence_refs": [
+              "evidence_offline_suite_syn"
+            ],
+            "risk_flags": [],
+            "release_authorization": false
+          },
+          "approvals": [
+            {
+              "decision_id": "decision_demo_activate_syn",
+              "action": "activate",
+              "subject_agent_id": "agt_orbit_dataset_demo_syn",
+              "subject_release_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "decided_by_human_ref": "human_demo_reviewer_syn",
+              "decision": "approve",
+              "reason": "Scripted fictional approval fixture",
+              "evidence_status": "synthetic",
+              "synthetic_only": true
+            }
+          ],
+          "transitions": [
+            {
+              "transition_id": "transition_2ffeee0ae7007caf673e",
+              "agent_id": "agt_orbit_dataset_demo_syn",
+              "release_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "before": "draft",
+              "after": "evaluation",
+              "reason_code": "submitted_for_evaluation",
+              "actor_kind": "system",
+              "actor_ref": "system_agent_lifecycle_policy_syn",
+              "approval_decision_ref": null,
+              "automatic": true,
+              "revision": 1
+            },
+            {
+              "transition_id": "transition_b950304601b96d45610c",
+              "agent_id": "agt_orbit_dataset_demo_syn",
+              "release_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+              "before": "evaluation",
+              "after": "active",
+              "reason_code": "human_approved_release",
+              "actor_kind": "human",
+              "actor_ref": "human_demo_reviewer_syn",
+              "approval_decision_ref": "decision_demo_activate_syn",
+              "automatic": false,
+              "revision": 2
+            }
+          ],
+          "task_instantiation": null,
+          "cleanup": null
+        }
+      ]
+    }
+  },
+  "composition": {
+    "composition": {
+      "composition_id": "composition_9dc8f330397dc2946edb",
+      "task_id": "task_orbit_composition_syn",
+      "agent_id": "agt_orbit_dataset_demo_syn",
+      "agent_release_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+      "tool_releases": [
+        {
+          "request_name": "tool_0",
+          "tool_id": "tool_orbit_dataset_acquisition_worker",
+          "version": "0.1.0-synthetic",
+          "release_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+          "capability": "dataset_acquisition.authorized_execute",
+          "operation_id": "acquire_synthetic_artifact"
+        },
+        {
+          "request_name": "tool_1",
+          "tool_id": "tool_orbit_dataset_query_watchlist",
+          "version": "0.1.0-synthetic",
+          "release_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+          "capability": "dataset_registry.query_watchlist",
+          "operation_id": "query_registry_watchlist"
+        },
+        {
+          "request_name": "tool_2",
+          "tool_id": "tool_orbit_dataset_registry_publisher",
+          "version": "0.1.0-synthetic",
+          "release_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+          "capability": "dataset_registry.publish_candidate",
+          "operation_id": "publish_registry_patch"
+        }
+      ],
+      "model_route_ref": "model_route_offline_fixture_syn",
+      "model_route_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+      "policy_ref": "policy_demo_no_network_syn",
+      "policy_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+      "execution_grant_ref": "grant_demo_composition_syn",
+      "execution_grant_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3",
+      "input_registry_revision": "catalog-demo-v3",
+      "budget_units": 1,
+      "evidence_status": "synthetic",
+      "production_authorized": false
+    },
+    "tool_lifecycle": {
+      "records_checked": 12,
+      "last_record_hash": "sha256:ab1c79413824c6dc1c335462a8a890dfed52d9d067b5a756ed91a7d323968ba9",
+      "tools": [
+        {
+          "candidate": {
+            "tool_id": "tool_orbit_dataset_acquisition_worker",
+            "version": "0.1.0-synthetic",
+            "release_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+            "manifest_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+            "source_release_id": "dataset-tools-v0.1.0-synthetic",
+            "source_release_manifest_digest": "sha256:c16ace9eb4619b5d58e4e464e3d924d21a4c2c13f96007f9c7d37a209cc6075e",
+            "owner_human_ref": "hum_technology_data_owner_syn",
+            "capabilities": [
+              "dataset_acquisition.authorized_execute"
+            ],
+            "operation_ids": [
+              "acquire_synthetic_artifact",
+              "acquire_authorized_artifact"
+            ],
+            "d0_allowed_operation_ids": [
+              "acquire_synthetic_artifact"
+            ],
+            "allowed_data_classifications": [
+              "public"
+            ],
+            "risk_classes": [
+              "high",
+              "medium"
+            ],
+            "source_manifest_status": "evaluation",
+            "registry_status": "draft",
+            "evidence_status": "synthetic",
+            "synthetic_only": true,
+            "company_authoritative": false
+          },
+          "status": "active",
+          "revision": 2,
+          "evaluation": {
+            "report_id": "eval_demo_tool_0_syn",
+            "subject_tool_id": "tool_orbit_dataset_acquisition_worker",
+            "subject_release_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+            "evaluator_ref": "agt_demo_independent_evaluator_syn",
+            "verdict": "pass",
+            "release_recommendation": "recommend",
+            "allowed_operation_ids": [
+              "acquire_synthetic_artifact"
+            ],
+            "evidence_refs": [
+              "evidence_demo_tool_0_syn"
+            ],
+            "risk_flags": [],
+            "release_authorization": false
+          },
+          "approvals": [
+            {
+              "decision_id": "approval_demo_tool_0_syn",
+              "action": "activate",
+              "subject_tool_id": "tool_orbit_dataset_acquisition_worker",
+              "subject_release_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+              "decided_by_human_ref": "hum_demo_reviewer_syn",
+              "decision": "approve",
+              "reason": "Scripted fictional tool approval fixture",
+              "evidence_status": "synthetic",
+              "synthetic_only": true
+            }
+          ],
+          "transitions": [
+            {
+              "transition_id": "tool_transition_2821c34ca98f899cf0a8",
+              "audit_event_ref": "audit_199a1e046fd4fc3c4f67",
+              "tool_id": "tool_orbit_dataset_acquisition_worker",
+              "release_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+              "before": "draft",
+              "after": "evaluation",
+              "reason_code": "submitted_for_evaluation",
+              "actor_kind": "system",
+              "actor_ref": "system_tool_lifecycle_policy_syn",
+              "approval_decision_ref": null,
+              "automatic": true,
+              "revision": 1
+            },
+            {
+              "transition_id": "tool_transition_af01921f7799e9f2a552",
+              "audit_event_ref": "audit_b42b99a27f915e6ebb45",
+              "tool_id": "tool_orbit_dataset_acquisition_worker",
+              "release_digest": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+              "before": "evaluation",
+              "after": "active",
+              "reason_code": "human_approved_synthetic_tool_release",
+              "actor_kind": "human",
+              "actor_ref": "hum_demo_reviewer_syn",
+              "approval_decision_ref": "approval_demo_tool_0_syn",
+              "automatic": false,
+              "revision": 2
+            }
+          ]
+        },
+        {
+          "candidate": {
+            "tool_id": "tool_orbit_dataset_query_watchlist",
+            "version": "0.1.0-synthetic",
+            "release_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+            "manifest_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+            "source_release_id": "dataset-tools-v0.1.0-synthetic",
+            "source_release_manifest_digest": "sha256:c16ace9eb4619b5d58e4e464e3d924d21a4c2c13f96007f9c7d37a209cc6075e",
+            "owner_human_ref": "hum_technology_data_owner_syn",
+            "capabilities": [
+              "dataset_registry.query_watchlist"
+            ],
+            "operation_ids": [
+              "query_registry_watchlist"
+            ],
+            "d0_allowed_operation_ids": [
+              "query_registry_watchlist"
+            ],
+            "allowed_data_classifications": [
+              "public"
+            ],
+            "risk_classes": [
+              "low"
+            ],
+            "source_manifest_status": "evaluation",
+            "registry_status": "draft",
+            "evidence_status": "synthetic",
+            "synthetic_only": true,
+            "company_authoritative": false
+          },
+          "status": "active",
+          "revision": 2,
+          "evaluation": {
+            "report_id": "eval_demo_tool_1_syn",
+            "subject_tool_id": "tool_orbit_dataset_query_watchlist",
+            "subject_release_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+            "evaluator_ref": "agt_demo_independent_evaluator_syn",
+            "verdict": "pass",
+            "release_recommendation": "recommend",
+            "allowed_operation_ids": [
+              "query_registry_watchlist"
+            ],
+            "evidence_refs": [
+              "evidence_demo_tool_1_syn"
+            ],
+            "risk_flags": [],
+            "release_authorization": false
+          },
+          "approvals": [
+            {
+              "decision_id": "approval_demo_tool_1_syn",
+              "action": "activate",
+              "subject_tool_id": "tool_orbit_dataset_query_watchlist",
+              "subject_release_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+              "decided_by_human_ref": "hum_demo_reviewer_syn",
+              "decision": "approve",
+              "reason": "Scripted fictional tool approval fixture",
+              "evidence_status": "synthetic",
+              "synthetic_only": true
+            }
+          ],
+          "transitions": [
+            {
+              "transition_id": "tool_transition_c1da2705dd981f9d867d",
+              "audit_event_ref": "audit_8f35aa6a85119a833f68",
+              "tool_id": "tool_orbit_dataset_query_watchlist",
+              "release_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+              "before": "draft",
+              "after": "evaluation",
+              "reason_code": "submitted_for_evaluation",
+              "actor_kind": "system",
+              "actor_ref": "system_tool_lifecycle_policy_syn",
+              "approval_decision_ref": null,
+              "automatic": true,
+              "revision": 1
+            },
+            {
+              "transition_id": "tool_transition_33db0ce0e9effa7f2f87",
+              "audit_event_ref": "audit_3804353f1b558036bff3",
+              "tool_id": "tool_orbit_dataset_query_watchlist",
+              "release_digest": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+              "before": "evaluation",
+              "after": "active",
+              "reason_code": "human_approved_synthetic_tool_release",
+              "actor_kind": "human",
+              "actor_ref": "hum_demo_reviewer_syn",
+              "approval_decision_ref": "approval_demo_tool_1_syn",
+              "automatic": false,
+              "revision": 2
+            }
+          ]
+        },
+        {
+          "candidate": {
+            "tool_id": "tool_orbit_dataset_registry_publisher",
+            "version": "0.1.0-synthetic",
+            "release_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+            "manifest_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+            "source_release_id": "dataset-tools-v0.1.0-synthetic",
+            "source_release_manifest_digest": "sha256:c16ace9eb4619b5d58e4e464e3d924d21a4c2c13f96007f9c7d37a209cc6075e",
+            "owner_human_ref": "hum_technology_data_owner_syn",
+            "capabilities": [
+              "dataset_registry.publish_candidate"
+            ],
+            "operation_ids": [
+              "publish_registry_patch",
+              "rollback_registry_patch"
+            ],
+            "d0_allowed_operation_ids": [
+              "publish_registry_patch",
+              "rollback_registry_patch"
+            ],
+            "allowed_data_classifications": [
+              "confidential",
+              "internal",
+              "medical_restricted",
+              "public",
+              "wearable_restricted"
+            ],
+            "risk_classes": [
+              "high"
+            ],
+            "source_manifest_status": "evaluation",
+            "registry_status": "draft",
+            "evidence_status": "synthetic",
+            "synthetic_only": true,
+            "company_authoritative": false
+          },
+          "status": "active",
+          "revision": 2,
+          "evaluation": {
+            "report_id": "eval_demo_tool_2_syn",
+            "subject_tool_id": "tool_orbit_dataset_registry_publisher",
+            "subject_release_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+            "evaluator_ref": "agt_demo_independent_evaluator_syn",
+            "verdict": "pass",
+            "release_recommendation": "recommend",
+            "allowed_operation_ids": [
+              "publish_registry_patch",
+              "rollback_registry_patch"
+            ],
+            "evidence_refs": [
+              "evidence_demo_tool_2_syn"
+            ],
+            "risk_flags": [],
+            "release_authorization": false
+          },
+          "approvals": [
+            {
+              "decision_id": "approval_demo_tool_2_syn",
+              "action": "activate",
+              "subject_tool_id": "tool_orbit_dataset_registry_publisher",
+              "subject_release_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+              "decided_by_human_ref": "hum_demo_reviewer_syn",
+              "decision": "approve",
+              "reason": "Scripted fictional tool approval fixture",
+              "evidence_status": "synthetic",
+              "synthetic_only": true
+            }
+          ],
+          "transitions": [
+            {
+              "transition_id": "tool_transition_2f29642c0dfb617d8b6a",
+              "audit_event_ref": "audit_0cceb099f97f51ec1247",
+              "tool_id": "tool_orbit_dataset_registry_publisher",
+              "release_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+              "before": "draft",
+              "after": "evaluation",
+              "reason_code": "submitted_for_evaluation",
+              "actor_kind": "system",
+              "actor_ref": "system_tool_lifecycle_policy_syn",
+              "approval_decision_ref": null,
+              "automatic": true,
+              "revision": 1
+            },
+            {
+              "transition_id": "tool_transition_7b6b202ad86c42f27ade",
+              "audit_event_ref": "audit_fae97576ff8c0ebed9a1",
+              "tool_id": "tool_orbit_dataset_registry_publisher",
+              "release_digest": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+              "before": "evaluation",
+              "after": "active",
+              "reason_code": "human_approved_synthetic_tool_release",
+              "actor_kind": "human",
+              "actor_ref": "hum_demo_reviewer_syn",
+              "approval_decision_ref": "approval_demo_tool_2_syn",
+              "automatic": false,
+              "revision": 2
+            }
+          ]
+        }
+      ]
+    },
+    "widened_operation_refusal": "active_tool_release_not_found",
+    "scripted_approval_fixture": true,
+    "tools_executed": false,
+    "registry_published": false
+  },
+  "production_authorized": false
+}

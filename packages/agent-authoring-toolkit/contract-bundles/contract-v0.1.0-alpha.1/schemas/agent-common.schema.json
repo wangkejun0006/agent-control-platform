@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "公司级 Agent Contract 共享类型。它只表达架构契约，不授予权限或启动 Agent。",
+  "$id": "urn:company-ai-os:schema:agent-common:0.1",
+  "title": "Company AI OS Agent Contract Common Types",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9][a-z0-9_-]{1,78})$"
+    },
+    "semantic_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[a-z0-9.-]+)?$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "versioned_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/semantic_version" },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "policy_ref": {
+      "type": "string",
+      "pattern": "^pol_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "role_ref": {
+      "type": "string",
+      "pattern": "^role_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "node_ref": {
+      "type": "string",
+      "pattern": "^hnode_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "autonomy": {
+      "enum": ["L0", "L1", "L2", "L3", "L4"]
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "wearable_restricted",
+        "medical_restricted"
+      ]
+    },
+    "security_zone": {
+      "enum": [
+        "public_marketing",
+        "corporate_office",
+        "product_device",
+        "wearable_user",
+        "medical_research",
+        "management"
+      ]
+    },
+    "tool_operation": {
+      "enum": [
+        "discover",
+        "read",
+        "query",
+        "create",
+        "update",
+        "execute",
+        "export",
+        "publish",
+        "delete",
+        "approve",
+        "manage"
+      ]
+    },
+    "data_operation": {
+      "enum": ["discover", "read", "query", "aggregate", "transform", "export", "train"]
+    },
+    "agent_operation": {
+      "enum": ["discover", "call", "handoff", "delegate", "spawn"]
+    }
+  }
+}
+

@@ -1,0 +1,82 @@
+{
+  "comparison": "local pre-edit tar, not Git diff",
+  "files": [
+    {
+      "path": ".agent/HANDOFF.md",
+      "change": "modified",
+      "sha256": "6aa6b6559452db6d2d1c3f70843dcc2db83d9ffa9b6de6bc03d5ab963498397a"
+    },
+    {
+      "path": "README.md",
+      "change": "modified",
+      "sha256": "c20ff1d45011b4f93ad15580c9cf50ec603ac6284bf895a56bb37a00e027927e"
+    },
+    {
+      "path": "docs/OFFLINE_REWORK_REPAIR_20261017.md",
+      "change": "added",
+      "sha256": "452fe8693676363a79e1a80cd62065613cb03cb3260daac9cbe4cb8c313d3e39"
+    },
+    {
+      "path": "reports/offline-rework-validation-20261017.json",
+      "change": "added",
+      "sha256": "2d6e407c390e5dd6d7ff8b07f5debe624cb57d94dbaa15bf736ab3dbc47903ff"
+    },
+    {
+      "path": "showcase/workbench/api.py",
+      "change": "modified",
+      "sha256": "4a5b9bc62c03d75b9e9570330c6b63acbe01c83bc4be543e1af95cabb14c4a89"
+    },
+    {
+      "path": "showcase/workbench/content_contract.py",
+      "change": "added",
+      "sha256": "5516293a35816b3481bbcc292392df08bea8abb67154b699aa3b4052075102b2"
+    },
+    {
+      "path": "showcase/workbench/live.py",
+      "change": "modified",
+      "sha256": "ee3692adf51b3018ed42f65c4613afbe5ef043c72d91e43bb3f5c641354c8c9f"
+    },
+    {
+      "path": "showcase/workbench/planning_contract.py",
+      "change": "added",
+      "sha256": "8d8e652230afe3b209f1db4e871711d1dfa519e06ab87b6f1230ba7773091603"
+    },
+    {
+      "path": "showcase/workbench/service.py",
+      "change": "modified",
+      "sha256": "865d793c6212ec0d6defbdb17391c959458777d9e833ae88e718adac7927b80c"
+    },
+    {
+      "path": "showcase/workbench/tools.py",
+      "change": "modified",
+      "sha256": "1e994f33bf5eb75081d2b7218ce1dea9dfdf02ed80a79289596ea4ae15e69e05"
+    },
+    {
+      "path": "tests/test_rework_content_contract.py",
+      "change": "added",
+      "sha256": "d6d6da319141d5928df5ca08896e8043ce4adcdd841d22224091e54c1a59e3e1"
+    },
+    {
+      "path": "tests/test_rework_native_boundaries.py",
+      "change": "added",
+      "sha256": "0eb379461a9f59d9a0bfec451476ac1c6ac4defb9d6b6bee44df0a860b592ed3"
+    },
+    {
+      "path": "tests/test_sharing_live_validation.py",
+      "change": "modified",
+      "sha256": "51ff60e920c4a52dce357d296eb19cc3aaff3ebcf005d2d0597072296a0e340b"
+    },
+    {
+      "path": "tests/test_sharing_semantics.py",
+      "change": "modified",
+      "sha256": "20a8b93d25b0f8f8527b7ac9ff7771a0115eabebce81fa827f555ed0eb68a218"
+    },
+    {
+      "path": "tests/test_workbench_live.py",
+      "change": "modified",
+      "sha256": "04d9f8085ddfa8129796187a5cf21b0bcc799308473b3c8ad7fe2c01ef625051"
+    }
+  ],
+  "pattern_findings": [],
+  "configured_credentials_not_read": true
+}

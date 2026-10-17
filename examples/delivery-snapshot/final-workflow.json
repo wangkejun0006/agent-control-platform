@@ -1,0 +1,3138 @@
+{
+  "workflow_id": "workflow_19731a7407b241108d47",
+  "title": "虚构知识助手市场返工最小验证",
+  "status": "delivered",
+  "nodes": [
+    {
+      "department_id": "product_center",
+      "candidate": {
+        "candidate_id": "candidate:attempt_bc511dc6b45d4a4fa4c2",
+        "attempt_id": "attempt_bc511dc6b45d4a4fa4c2",
+        "workflow_id": "workflow_19731a7407b241108d47",
+        "department_id": "product_center",
+        "revision": 1,
+        "run_id": "run_b32ceff4626a501ba313",
+        "payload": {
+          "artifact_ref": "artifact://synthetic/task_professional_002118ed0ce6b37ed943/candidate",
+          "body": "# 需求说明\n\n## 交付目标（用户输入，不构成权限授权）\n以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n\n## 部门交付说明\n目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。\n\n## 依据\n- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}\n- [1] user-research.md v1 第3行：技术用户希望复现权限检查和引用定位。\n- [2] api-contract.json v1 第1行：{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}\n- [3] user-research.md v1 第2行：产品用户希望从需求中定位验收依据。\n- [4] data-dictionary.json v1 第1行：{\"资料字段\": [\"文档ID\", \"版本\", \"所属部门\", \"共享部门\", \"内容摘要\"], \"引用字段\": [\"artifact_ref\", \"版本\", \"行号\"], \"权限\": \"不允许按路径直接读取资料\"}\n- [5] requirements-v2.md v2 第3行：目标：团队知识助手按权限检索资料并返回原文引用。\n- [6] requirements-v2.md v2 第6行：验收：越权结果为0；引用可定位；交付须负责人审核。\n- [7] incident-version.md v1 第2行：旧需求引用已经失效；不能把旧版全部门检索要求当作现行权限。\n\n## 来源与授权依据（宿主生成）\n- requirements-v2.md v2：local_department_source / department_authorization / 来源部门 product_center\n- user-research.md v1：local_department_source / department_authorization / 来源部门 product_center\n- api-contract.json v1：local_department_source / department_authorization / 来源部门 product_center\n- permissions.csv v1：local_department_source / department_authorization / 来源部门 product_center\n- data-dictionary.json v1：local_department_source / department_authorization / 来源部门 product_center\n- faq-scope.md v1：local_department_source / department_authorization / 来源部门 product_center\n- faq-citations.md v1：local_department_source / department_authorization / 来源部门 product_center\n- faq-access-v2.md v2：local_department_source / department_authorization / 来源部门 product_center\n- incident-access.md v1：local_department_source / department_authorization / 来源部门 product_center\n- incident-version.md v1：local_department_source / department_authorization / 来源部门 product_center\n- acceptance-cases.json v1：local_department_source / department_authorization / 来源部门 product_center\n- untrusted-note.md v1：local_department_source / department_authorization / 来源部门 product_center\n\n## 检查与风险\n- 通过：需求包含权限\n- 通过：需求包含引用\n- 通过：需求包含撤权\n- 通过：需求包含验收\n- 通过：同一文档版本没有内容冲突\n- 通过：无未解决的旧版需求冲突\n- 通过：product_center检索结果不越部门\n- 通过：technology_center检索结果不越部门\n- 通过：market_center检索结果不越部门\n- 通过：引用可以定位到原文版本和行\n- 通过：未共享资料不可进入执行快照\n- 通过：角色权限验收\n- 通过：未共享资料明确拒绝访问\n- 通过：批准且显式共享的产物允许交接\n- 通过：交接限定接收部门、版本和授权范围\n- 通过：批准不自动等于共享\n- 通过：无绝对隔离或全面开放的矛盾表述\n- 通过：本部门资料与交接产物来源不混淆\n- 通过：正文引用由宿主定位来源，不编写文件名\n- 通过：恢复信息未混入业务正文\n- 通过：没有未实现的能力或删除承诺\n- 通过：执行陈述与实际工具回执一致",
+          "authored_prose": "目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。",
+          "sharing_policy_version": "delivery-sharing/1",
+          "content_contract_version": "delivery-content/1",
+          "source_manifest": [
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_8a83f5ecf29f9b535546",
+              "filename": "requirements-v2.md",
+              "version": 2,
+              "content_digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_329b3a13bb6dcf401ece",
+              "filename": "user-research.md",
+              "version": 1,
+              "content_digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_5a362865f34994ffa2a0",
+              "filename": "api-contract.json",
+              "version": 1,
+              "content_digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_431a4e4f179a7b984c17",
+              "filename": "permissions.csv",
+              "version": 1,
+              "content_digest": "sha256:ee34ad3970f0b7f1555c0d1d3fcb70dca6e429eb538c71206dbc7cf91770d8bc",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_5b3cecd4591b2e608a3e",
+              "filename": "data-dictionary.json",
+              "version": 1,
+              "content_digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_dc8e97c95e9b14872f22",
+              "filename": "faq-scope.md",
+              "version": 1,
+              "content_digest": "sha256:7701bd0f313dc5d087f1708ca64603fa80d9b91c17bfe954aa777d227506437a",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_c8df3cb35d4351ab9daa",
+              "filename": "faq-citations.md",
+              "version": 1,
+              "content_digest": "sha256:9fee71b0dbc8e245ef9ec675bdee08717b9fd7611f75ea469dfbe613a596eb71",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_eedce74eba3983a6b317",
+              "filename": "faq-access-v2.md",
+              "version": 2,
+              "content_digest": "sha256:7f75fb57bfd6d1e96643772ac6a3d334fc08883cac8ace4fedaa6283cac7f522",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_802fe8928470408b420f",
+              "filename": "incident-access.md",
+              "version": 1,
+              "content_digest": "sha256:ddac7f861b7fcd422afc6e7869be3d9f026b9d78e09c802b5a2ddf3770f1c2ec",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_8fd95574c38f24802a2b",
+              "filename": "incident-version.md",
+              "version": 1,
+              "content_digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_ea6d44241bb9e39c3c51",
+              "filename": "acceptance-cases.json",
+              "version": 1,
+              "content_digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_aa6e073c6a00f88669b5",
+              "filename": "untrusted-note.md",
+              "version": 1,
+              "content_digest": "sha256:e628c52aa05a9dda8333da83958da18ec7b1146f51e0a9a5545cad3fca532310",
+              "department_id": "product_center",
+              "source_kind": "local_department_source",
+              "source_department": "product_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            }
+          ],
+          "citations": [
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_ea6d44241bb9e39c3c51",
+              "filename": "acceptance-cases.json",
+              "version": 1,
+              "digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+              "line": 1,
+              "text": "{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}",
+              "score": 4
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_329b3a13bb6dcf401ece",
+              "filename": "user-research.md",
+              "version": 1,
+              "digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+              "line": 3,
+              "text": "技术用户希望复现权限检查和引用定位。",
+              "score": 3
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_5a362865f34994ffa2a0",
+              "filename": "api-contract.json",
+              "version": 1,
+              "digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+              "line": 1,
+              "text": "{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}",
+              "score": 3
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_329b3a13bb6dcf401ece",
+              "filename": "user-research.md",
+              "version": 1,
+              "digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+              "line": 2,
+              "text": "产品用户希望从需求中定位验收依据。",
+              "score": 2
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_5b3cecd4591b2e608a3e",
+              "filename": "data-dictionary.json",
+              "version": 1,
+              "digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+              "line": 1,
+              "text": "{\"资料字段\": [\"文档ID\", \"版本\", \"所属部门\", \"共享部门\", \"内容摘要\"], \"引用字段\": [\"artifact_ref\", \"版本\", \"行号\"], \"权限\": \"不允许按路径直接读取资料\"}",
+              "score": 2
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_8a83f5ecf29f9b535546",
+              "filename": "requirements-v2.md",
+              "version": 2,
+              "digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+              "line": 3,
+              "text": "目标：团队知识助手按权限检索资料并返回原文引用。",
+              "score": 2
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_8a83f5ecf29f9b535546",
+              "filename": "requirements-v2.md",
+              "version": 2,
+              "digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+              "line": 6,
+              "text": "验收：越权结果为0；引用可定位；交付须负责人审核。",
+              "score": 2
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/product_center/artifact_8fd95574c38f24802a2b",
+              "filename": "incident-version.md",
+              "version": 1,
+              "digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+              "line": 2,
+              "text": "旧需求引用已经失效；不能把旧版全部门检索要求当作现行权限。",
+              "score": 2
+            }
+          ],
+          "checks": [
+            {
+              "name": "需求包含权限",
+              "passed": true
+            },
+            {
+              "name": "需求包含引用",
+              "passed": true
+            },
+            {
+              "name": "需求包含撤权",
+              "passed": true
+            },
+            {
+              "name": "需求包含验收",
+              "passed": true
+            },
+            {
+              "name": "同一文档版本没有内容冲突",
+              "passed": true
+            },
+            {
+              "name": "无未解决的旧版需求冲突",
+              "passed": true
+            },
+            {
+              "name": "product_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "technology_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "market_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "引用可以定位到原文版本和行",
+              "passed": true
+            },
+            {
+              "name": "未共享资料不可进入执行快照",
+              "passed": true
+            },
+            {
+              "name": "角色权限验收",
+              "passed": true
+            },
+            {
+              "name": "本部门资料与交接产物来源不混淆",
+              "code": "source_basis_consistent",
+              "passed": true
+            },
+            {
+              "name": "正文引用由宿主定位来源，不编写文件名",
+              "code": "host_owned_source_labels",
+              "passed": true
+            },
+            {
+              "name": "恢复信息未混入业务正文",
+              "code": "no_operational_feedback_leak",
+              "passed": true
+            },
+            {
+              "name": "没有未实现的能力或删除承诺",
+              "code": "no_unsupported_promises",
+              "passed": true
+            },
+            {
+              "name": "执行陈述与实际工具回执一致",
+              "code": "execution_claims_grounded",
+              "passed": true
+            },
+            {
+              "name": "未共享资料明确拒绝访问",
+              "code": "unshared_access_denied",
+              "passed": true
+            },
+            {
+              "name": "批准且显式共享的产物允许交接",
+              "code": "approved_shared_artifact_allowed",
+              "passed": true
+            },
+            {
+              "name": "交接限定接收部门、版本和授权范围",
+              "code": "handoff_scope_bounded",
+              "passed": true
+            },
+            {
+              "name": "批准不自动等于共享",
+              "code": "approval_is_not_sharing",
+              "passed": true
+            },
+            {
+              "name": "无绝对隔离或全面开放的矛盾表述",
+              "code": "no_conflicting_blanket_claim",
+              "passed": true,
+              "evidence": []
+            },
+            {
+              "name": "受检正文与实际产物一致",
+              "passed": true
+            },
+            {
+              "name": "独立CompanyEvaluator",
+              "passed": true
+            },
+            {
+              "name": "引用对应批准的资料版本与原文",
+              "passed": true
+            },
+            {
+              "name": "执行快照与授权绑定一致",
+              "passed": true
+            },
+            {
+              "name": "固定工具确实执行且模型模式与授权一致",
+              "passed": true
+            },
+            {
+              "name": "本部门资料与交接产物来源不混淆",
+              "code": "source_basis_consistent",
+              "passed": true
+            },
+            {
+              "name": "正文引用由宿主定位来源，不编写文件名",
+              "code": "host_owned_source_labels",
+              "passed": true
+            },
+            {
+              "name": "恢复信息未混入业务正文",
+              "code": "no_operational_feedback_leak",
+              "passed": true
+            },
+            {
+              "name": "没有未实现的能力或删除承诺",
+              "code": "no_unsupported_promises",
+              "passed": true
+            },
+            {
+              "name": "执行陈述与实际工具回执一致",
+              "code": "execution_claims_grounded",
+              "passed": true
+            },
+            {
+              "name": "正文规则与宿主来源清单匹配",
+              "code": "content_version_and_source_binding",
+              "passed": true
+            }
+          ],
+          "tool_receipts": [
+            {
+              "operation": "query_documents",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:70b61c0bdc0c7894d48a539a609ff438d214301eda8b67ce3c7df0777067843e",
+              "pid": 74309,
+              "actual_execution": true
+            },
+            {
+              "operation": "retrieve_evidence",
+              "arguments_digest": "sha256:087f64703c8bd587c4f8242fe768f5c884c6739ad61437235d64cf7cc92065f8",
+              "output_digest": "sha256:e3ed4284179f242e5d4aff5cc69677fdcc1fa38e2f86e75a80e128666b0dc668",
+              "pid": 74309,
+              "actual_execution": true
+            },
+            {
+              "operation": "validate_requirements",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:d82421d76f1ec9ccf65913da122d1c20b7c0ecb08cb3e9bbac28a81ebe2b3ea7",
+              "pid": 74309,
+              "actual_execution": true
+            },
+            {
+              "operation": "run_acceptance",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:ca43fbb1086cf04617ed3bdbd6f95eef25de4f9dc6a640c6e2d338a1c06bff2e",
+              "pid": 74309,
+              "actual_execution": true
+            },
+            {
+              "operation": "submit_candidate",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:d354627a0aaa0f7b1e7a10c299b33dee05a7d4448e90f99193acb90485b0c5ae",
+              "pid": 74309,
+              "actual_execution": true
+            }
+          ],
+          "snapshot_digest": "sha256:b7379f373353e28a586fdf781b4ed82e17782c823f855905f7cb36a53f5e88be",
+          "input_refs": [
+            "artifact://department-cockpit/product_center/artifact_8a83f5ecf29f9b535546",
+            "artifact://department-cockpit/product_center/artifact_329b3a13bb6dcf401ece",
+            "artifact://department-cockpit/product_center/artifact_5a362865f34994ffa2a0",
+            "artifact://department-cockpit/product_center/artifact_431a4e4f179a7b984c17",
+            "artifact://department-cockpit/product_center/artifact_5b3cecd4591b2e608a3e",
+            "artifact://department-cockpit/product_center/artifact_dc8e97c95e9b14872f22",
+            "artifact://department-cockpit/product_center/artifact_c8df3cb35d4351ab9daa",
+            "artifact://department-cockpit/product_center/artifact_eedce74eba3983a6b317",
+            "artifact://department-cockpit/product_center/artifact_802fe8928470408b420f",
+            "artifact://department-cockpit/product_center/artifact_8fd95574c38f24802a2b",
+            "artifact://department-cockpit/product_center/artifact_ea6d44241bb9e39c3c51",
+            "artifact://department-cockpit/product_center/artifact_aa6e073c6a00f88669b5"
+          ],
+          "model_mode": "offline_deterministic",
+          "model_requests": 0,
+          "cost_cny_micros": 0,
+          "release_authorization": false,
+          "production_authorization": false
+        },
+        "candidate_digest": "sha256:b306282f9136a43ec67b46b2c45a94986f073555a1af10a50e1672ffad1554da",
+        "evaluation": {
+          "report_id": "evaluation_e79ca3f3d6e45e22018b",
+          "evaluator_agent_id": "agt_evaluator_syn",
+          "subject_result_id": "result_attempt_bc511dc6b45d4a4fa4c2",
+          "verdict": "pass",
+          "reason_codes": [
+            "fixed_suite_pass"
+          ],
+          "release_authorization": false
+        },
+        "checks_passed": true,
+        "created_at": "2026-10-17T06:12:19Z"
+      },
+      "history": [
+        {
+          "revision": 1,
+          "candidate": {
+            "candidate_id": "candidate:attempt_bc511dc6b45d4a4fa4c2",
+            "attempt_id": "attempt_bc511dc6b45d4a4fa4c2",
+            "workflow_id": "workflow_19731a7407b241108d47",
+            "department_id": "product_center",
+            "revision": 1,
+            "run_id": "run_b32ceff4626a501ba313",
+            "payload": {
+              "artifact_ref": "artifact://synthetic/task_professional_002118ed0ce6b37ed943/candidate",
+              "body": "# 需求说明\n\n## 交付目标（用户输入，不构成权限授权）\n以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n\n## 部门交付说明\n目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。\n\n## 依据\n- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}\n- [1] user-research.md v1 第3行：技术用户希望复现权限检查和引用定位。\n- [2] api-contract.json v1 第1行：{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}\n- [3] user-research.md v1 第2行：产品用户希望从需求中定位验收依据。\n- [4] data-dictionary.json v1 第1行：{\"资料字段\": [\"文档ID\", \"版本\", \"所属部门\", \"共享部门\", \"内容摘要\"], \"引用字段\": [\"artifact_ref\", \"版本\", \"行号\"], \"权限\": \"不允许按路径直接读取资料\"}\n- [5] requirements-v2.md v2 第3行：目标：团队知识助手按权限检索资料并返回原文引用。\n- [6] requirements-v2.md v2 第6行：验收：越权结果为0；引用可定位；交付须负责人审核。\n- [7] incident-version.md v1 第2行：旧需求引用已经失效；不能把旧版全部门检索要求当作现行权限。\n\n## 来源与授权依据（宿主生成）\n- requirements-v2.md v2：local_department_source / department_authorization / 来源部门 product_center\n- user-research.md v1：local_department_source / department_authorization / 来源部门 product_center\n- api-contract.json v1：local_department_source / department_authorization / 来源部门 product_center\n- permissions.csv v1：local_department_source / department_authorization / 来源部门 product_center\n- data-dictionary.json v1：local_department_source / department_authorization / 来源部门 product_center\n- faq-scope.md v1：local_department_source / department_authorization / 来源部门 product_center\n- faq-citations.md v1：local_department_source / department_authorization / 来源部门 product_center\n- faq-access-v2.md v2：local_department_source / department_authorization / 来源部门 product_center\n- incident-access.md v1：local_department_source / department_authorization / 来源部门 product_center\n- incident-version.md v1：local_department_source / department_authorization / 来源部门 product_center\n- acceptance-cases.json v1：local_department_source / department_authorization / 来源部门 product_center\n- untrusted-note.md v1：local_department_source / department_authorization / 来源部门 product_center\n\n## 检查与风险\n- 通过：需求包含权限\n- 通过：需求包含引用\n- 通过：需求包含撤权\n- 通过：需求包含验收\n- 通过：同一文档版本没有内容冲突\n- 通过：无未解决的旧版需求冲突\n- 通过：product_center检索结果不越部门\n- 通过：technology_center检索结果不越部门\n- 通过：market_center检索结果不越部门\n- 通过：引用可以定位到原文版本和行\n- 通过：未共享资料不可进入执行快照\n- 通过：角色权限验收\n- 通过：未共享资料明确拒绝访问\n- 通过：批准且显式共享的产物允许交接\n- 通过：交接限定接收部门、版本和授权范围\n- 通过：批准不自动等于共享\n- 通过：无绝对隔离或全面开放的矛盾表述\n- 通过：本部门资料与交接产物来源不混淆\n- 通过：正文引用由宿主定位来源，不编写文件名\n- 通过：恢复信息未混入业务正文\n- 通过：没有未实现的能力或删除承诺\n- 通过：执行陈述与实际工具回执一致",
+              "authored_prose": "目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。",
+              "sharing_policy_version": "delivery-sharing/1",
+              "content_contract_version": "delivery-content/1",
+              "source_manifest": [
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_8a83f5ecf29f9b535546",
+                  "filename": "requirements-v2.md",
+                  "version": 2,
+                  "content_digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_329b3a13bb6dcf401ece",
+                  "filename": "user-research.md",
+                  "version": 1,
+                  "content_digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_5a362865f34994ffa2a0",
+                  "filename": "api-contract.json",
+                  "version": 1,
+                  "content_digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_431a4e4f179a7b984c17",
+                  "filename": "permissions.csv",
+                  "version": 1,
+                  "content_digest": "sha256:ee34ad3970f0b7f1555c0d1d3fcb70dca6e429eb538c71206dbc7cf91770d8bc",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_5b3cecd4591b2e608a3e",
+                  "filename": "data-dictionary.json",
+                  "version": 1,
+                  "content_digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_dc8e97c95e9b14872f22",
+                  "filename": "faq-scope.md",
+                  "version": 1,
+                  "content_digest": "sha256:7701bd0f313dc5d087f1708ca64603fa80d9b91c17bfe954aa777d227506437a",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_c8df3cb35d4351ab9daa",
+                  "filename": "faq-citations.md",
+                  "version": 1,
+                  "content_digest": "sha256:9fee71b0dbc8e245ef9ec675bdee08717b9fd7611f75ea469dfbe613a596eb71",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_eedce74eba3983a6b317",
+                  "filename": "faq-access-v2.md",
+                  "version": 2,
+                  "content_digest": "sha256:7f75fb57bfd6d1e96643772ac6a3d334fc08883cac8ace4fedaa6283cac7f522",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_802fe8928470408b420f",
+                  "filename": "incident-access.md",
+                  "version": 1,
+                  "content_digest": "sha256:ddac7f861b7fcd422afc6e7869be3d9f026b9d78e09c802b5a2ddf3770f1c2ec",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_8fd95574c38f24802a2b",
+                  "filename": "incident-version.md",
+                  "version": 1,
+                  "content_digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_ea6d44241bb9e39c3c51",
+                  "filename": "acceptance-cases.json",
+                  "version": 1,
+                  "content_digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_aa6e073c6a00f88669b5",
+                  "filename": "untrusted-note.md",
+                  "version": 1,
+                  "content_digest": "sha256:e628c52aa05a9dda8333da83958da18ec7b1146f51e0a9a5545cad3fca532310",
+                  "department_id": "product_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "product_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                }
+              ],
+              "citations": [
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_ea6d44241bb9e39c3c51",
+                  "filename": "acceptance-cases.json",
+                  "version": 1,
+                  "digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+                  "line": 1,
+                  "text": "{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}",
+                  "score": 4
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_329b3a13bb6dcf401ece",
+                  "filename": "user-research.md",
+                  "version": 1,
+                  "digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+                  "line": 3,
+                  "text": "技术用户希望复现权限检查和引用定位。",
+                  "score": 3
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_5a362865f34994ffa2a0",
+                  "filename": "api-contract.json",
+                  "version": 1,
+                  "digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+                  "line": 1,
+                  "text": "{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}",
+                  "score": 3
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_329b3a13bb6dcf401ece",
+                  "filename": "user-research.md",
+                  "version": 1,
+                  "digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+                  "line": 2,
+                  "text": "产品用户希望从需求中定位验收依据。",
+                  "score": 2
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_5b3cecd4591b2e608a3e",
+                  "filename": "data-dictionary.json",
+                  "version": 1,
+                  "digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+                  "line": 1,
+                  "text": "{\"资料字段\": [\"文档ID\", \"版本\", \"所属部门\", \"共享部门\", \"内容摘要\"], \"引用字段\": [\"artifact_ref\", \"版本\", \"行号\"], \"权限\": \"不允许按路径直接读取资料\"}",
+                  "score": 2
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_8a83f5ecf29f9b535546",
+                  "filename": "requirements-v2.md",
+                  "version": 2,
+                  "digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+                  "line": 3,
+                  "text": "目标：团队知识助手按权限检索资料并返回原文引用。",
+                  "score": 2
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_8a83f5ecf29f9b535546",
+                  "filename": "requirements-v2.md",
+                  "version": 2,
+                  "digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+                  "line": 6,
+                  "text": "验收：越权结果为0；引用可定位；交付须负责人审核。",
+                  "score": 2
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/product_center/artifact_8fd95574c38f24802a2b",
+                  "filename": "incident-version.md",
+                  "version": 1,
+                  "digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+                  "line": 2,
+                  "text": "旧需求引用已经失效；不能把旧版全部门检索要求当作现行权限。",
+                  "score": 2
+                }
+              ],
+              "checks": [
+                {
+                  "name": "需求包含权限",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含引用",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含撤权",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含验收",
+                  "passed": true
+                },
+                {
+                  "name": "同一文档版本没有内容冲突",
+                  "passed": true
+                },
+                {
+                  "name": "无未解决的旧版需求冲突",
+                  "passed": true
+                },
+                {
+                  "name": "product_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "technology_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "market_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "引用可以定位到原文版本和行",
+                  "passed": true
+                },
+                {
+                  "name": "未共享资料不可进入执行快照",
+                  "passed": true
+                },
+                {
+                  "name": "角色权限验收",
+                  "passed": true
+                },
+                {
+                  "name": "本部门资料与交接产物来源不混淆",
+                  "code": "source_basis_consistent",
+                  "passed": true
+                },
+                {
+                  "name": "正文引用由宿主定位来源，不编写文件名",
+                  "code": "host_owned_source_labels",
+                  "passed": true
+                },
+                {
+                  "name": "恢复信息未混入业务正文",
+                  "code": "no_operational_feedback_leak",
+                  "passed": true
+                },
+                {
+                  "name": "没有未实现的能力或删除承诺",
+                  "code": "no_unsupported_promises",
+                  "passed": true
+                },
+                {
+                  "name": "执行陈述与实际工具回执一致",
+                  "code": "execution_claims_grounded",
+                  "passed": true
+                },
+                {
+                  "name": "未共享资料明确拒绝访问",
+                  "code": "unshared_access_denied",
+                  "passed": true
+                },
+                {
+                  "name": "批准且显式共享的产物允许交接",
+                  "code": "approved_shared_artifact_allowed",
+                  "passed": true
+                },
+                {
+                  "name": "交接限定接收部门、版本和授权范围",
+                  "code": "handoff_scope_bounded",
+                  "passed": true
+                },
+                {
+                  "name": "批准不自动等于共享",
+                  "code": "approval_is_not_sharing",
+                  "passed": true
+                },
+                {
+                  "name": "无绝对隔离或全面开放的矛盾表述",
+                  "code": "no_conflicting_blanket_claim",
+                  "passed": true,
+                  "evidence": []
+                },
+                {
+                  "name": "受检正文与实际产物一致",
+                  "passed": true
+                },
+                {
+                  "name": "独立CompanyEvaluator",
+                  "passed": true
+                },
+                {
+                  "name": "引用对应批准的资料版本与原文",
+                  "passed": true
+                },
+                {
+                  "name": "执行快照与授权绑定一致",
+                  "passed": true
+                },
+                {
+                  "name": "固定工具确实执行且模型模式与授权一致",
+                  "passed": true
+                },
+                {
+                  "name": "本部门资料与交接产物来源不混淆",
+                  "code": "source_basis_consistent",
+                  "passed": true
+                },
+                {
+                  "name": "正文引用由宿主定位来源，不编写文件名",
+                  "code": "host_owned_source_labels",
+                  "passed": true
+                },
+                {
+                  "name": "恢复信息未混入业务正文",
+                  "code": "no_operational_feedback_leak",
+                  "passed": true
+                },
+                {
+                  "name": "没有未实现的能力或删除承诺",
+                  "code": "no_unsupported_promises",
+                  "passed": true
+                },
+                {
+                  "name": "执行陈述与实际工具回执一致",
+                  "code": "execution_claims_grounded",
+                  "passed": true
+                },
+                {
+                  "name": "正文规则与宿主来源清单匹配",
+                  "code": "content_version_and_source_binding",
+                  "passed": true
+                }
+              ],
+              "tool_receipts": [
+                {
+                  "operation": "query_documents",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:70b61c0bdc0c7894d48a539a609ff438d214301eda8b67ce3c7df0777067843e",
+                  "pid": 74309,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "retrieve_evidence",
+                  "arguments_digest": "sha256:087f64703c8bd587c4f8242fe768f5c884c6739ad61437235d64cf7cc92065f8",
+                  "output_digest": "sha256:e3ed4284179f242e5d4aff5cc69677fdcc1fa38e2f86e75a80e128666b0dc668",
+                  "pid": 74309,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "validate_requirements",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:d82421d76f1ec9ccf65913da122d1c20b7c0ecb08cb3e9bbac28a81ebe2b3ea7",
+                  "pid": 74309,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "run_acceptance",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:ca43fbb1086cf04617ed3bdbd6f95eef25de4f9dc6a640c6e2d338a1c06bff2e",
+                  "pid": 74309,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "submit_candidate",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:d354627a0aaa0f7b1e7a10c299b33dee05a7d4448e90f99193acb90485b0c5ae",
+                  "pid": 74309,
+                  "actual_execution": true
+                }
+              ],
+              "snapshot_digest": "sha256:b7379f373353e28a586fdf781b4ed82e17782c823f855905f7cb36a53f5e88be",
+              "input_refs": [
+                "artifact://department-cockpit/product_center/artifact_8a83f5ecf29f9b535546",
+                "artifact://department-cockpit/product_center/artifact_329b3a13bb6dcf401ece",
+                "artifact://department-cockpit/product_center/artifact_5a362865f34994ffa2a0",
+                "artifact://department-cockpit/product_center/artifact_431a4e4f179a7b984c17",
+                "artifact://department-cockpit/product_center/artifact_5b3cecd4591b2e608a3e",
+                "artifact://department-cockpit/product_center/artifact_dc8e97c95e9b14872f22",
+                "artifact://department-cockpit/product_center/artifact_c8df3cb35d4351ab9daa",
+                "artifact://department-cockpit/product_center/artifact_eedce74eba3983a6b317",
+                "artifact://department-cockpit/product_center/artifact_802fe8928470408b420f",
+                "artifact://department-cockpit/product_center/artifact_8fd95574c38f24802a2b",
+                "artifact://department-cockpit/product_center/artifact_ea6d44241bb9e39c3c51",
+                "artifact://department-cockpit/product_center/artifact_aa6e073c6a00f88669b5"
+              ],
+              "model_mode": "offline_deterministic",
+              "model_requests": 0,
+              "cost_cny_micros": 0,
+              "release_authorization": false,
+              "production_authorization": false
+            },
+            "candidate_digest": "sha256:b306282f9136a43ec67b46b2c45a94986f073555a1af10a50e1672ffad1554da",
+            "evaluation": {
+              "report_id": "evaluation_e79ca3f3d6e45e22018b",
+              "evaluator_agent_id": "agt_evaluator_syn",
+              "subject_result_id": "result_attempt_bc511dc6b45d4a4fa4c2",
+              "verdict": "pass",
+              "reason_codes": [
+                "fixed_suite_pass"
+              ],
+              "release_authorization": false
+            },
+            "checks_passed": true,
+            "created_at": "2026-10-17T06:12:19Z"
+          }
+        }
+      ]
+    },
+    {
+      "department_id": "technology_center",
+      "candidate": {
+        "candidate_id": "candidate:attempt_287f286f42fa469ab594",
+        "attempt_id": "attempt_287f286f42fa469ab594",
+        "workflow_id": "workflow_19731a7407b241108d47",
+        "department_id": "technology_center",
+        "revision": 1,
+        "run_id": "run_e795c38d0908e6f4bba8",
+        "payload": {
+          "artifact_ref": "artifact://synthetic/task_professional_831f27986718874582ea/candidate",
+          "body": "# 技术方案与检查报告\n\n## 交付目标（用户输入，不构成权限授权）\n以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n\n## 部门交付说明\n方案：部门隔离的资料索引、确定性检索、版本化引用、受控工具和独立检查。接口遵循任务包授权，工具不能批准自身结果。实现边界：离线规划、本机单Worker，不代表生产RAG或OS沙箱。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。\n\n## 依据\n- [0] approved-product_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n- [1] approved-product_center-v1.md v1 第7行：目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n- [2] approved-product_center-v1.md v1 第14行：- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}\n- [3] approved-product_center-v1.md v1 第15行：- [1] user-research.md v1 第3行：技术用户希望复现权限检查和引用定位。\n- [4] approved-product_center-v1.md v1 第16行：- [2] api-contract.json v1 第1行：{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}\n- [5] approved-product_center-v1.md v1 第3行：## 交付目标（用户输入，不构成权限授权）\n- [6] approved-product_center-v1.md v1 第10行：未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n- [7] approved-product_center-v1.md v1 第17行：- [3] user-research.md v1 第2行：产品用户希望从需求中定位验收依据。\n\n## 来源与授权依据（宿主生成）\n- requirements-v2.md v2：local_department_source / department_authorization / 来源部门 technology_center\n- user-research.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- api-contract.json v1：local_department_source / department_authorization / 来源部门 technology_center\n- permissions.csv v1：local_department_source / department_authorization / 来源部门 technology_center\n- data-dictionary.json v1：local_department_source / department_authorization / 来源部门 technology_center\n- faq-scope.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- faq-citations.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- faq-access-v2.md v2：local_department_source / department_authorization / 来源部门 technology_center\n- incident-access.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- incident-version.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- acceptance-cases.json v1：local_department_source / department_authorization / 来源部门 technology_center\n- untrusted-note.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- approved-product_center-v1.md v1：approved_shared_artifact / approved_explicit_handoff / 来源部门 product_center\n\n## 检查与风险\n- 通过：需求包含权限\n- 通过：需求包含引用\n- 通过：需求包含撤权\n- 通过：需求包含验收\n- 通过：同一文档版本没有内容冲突\n- 通过：无未解决的旧版需求冲突\n- 通过：product_center检索结果不越部门\n- 通过：technology_center检索结果不越部门\n- 通过：market_center检索结果不越部门\n- 通过：引用可以定位到原文版本和行\n- 通过：未共享资料不可进入执行快照\n- 通过：角色权限验收\n- 通过：未共享资料明确拒绝访问\n- 通过：批准且显式共享的产物允许交接\n- 通过：交接限定接收部门、版本和授权范围\n- 通过：批准不自动等于共享\n- 通过：无绝对隔离或全面开放的矛盾表述\n- 通过：本部门资料与交接产物来源不混淆\n- 通过：正文引用由宿主定位来源，不编写文件名\n- 通过：恢复信息未混入业务正文\n- 通过：没有未实现的能力或删除承诺\n- 通过：执行陈述与实际工具回执一致",
+          "authored_prose": "方案：部门隔离的资料索引、确定性检索、版本化引用、受控工具和独立检查。接口遵循任务包授权，工具不能批准自身结果。实现边界：离线规划、本机单Worker，不代表生产RAG或OS沙箱。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。",
+          "sharing_policy_version": "delivery-sharing/1",
+          "content_contract_version": "delivery-content/1",
+          "source_manifest": [
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_4aee083bcbef52bc0e58",
+              "filename": "requirements-v2.md",
+              "version": 2,
+              "content_digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_7f19860ffb2677cbb226",
+              "filename": "user-research.md",
+              "version": 1,
+              "content_digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_d34b47ec9763e9f3aaf5",
+              "filename": "api-contract.json",
+              "version": 1,
+              "content_digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_4bf3fdb9b66df2f19a78",
+              "filename": "permissions.csv",
+              "version": 1,
+              "content_digest": "sha256:ee34ad3970f0b7f1555c0d1d3fcb70dca6e429eb538c71206dbc7cf91770d8bc",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_a9f7e23278e2318f51e2",
+              "filename": "data-dictionary.json",
+              "version": 1,
+              "content_digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_bc89013e5489b9b08032",
+              "filename": "faq-scope.md",
+              "version": 1,
+              "content_digest": "sha256:7701bd0f313dc5d087f1708ca64603fa80d9b91c17bfe954aa777d227506437a",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_766e0d9d4ab51f7a741b",
+              "filename": "faq-citations.md",
+              "version": 1,
+              "content_digest": "sha256:9fee71b0dbc8e245ef9ec675bdee08717b9fd7611f75ea469dfbe613a596eb71",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_91e1f14da1c83ea45fe8",
+              "filename": "faq-access-v2.md",
+              "version": 2,
+              "content_digest": "sha256:7f75fb57bfd6d1e96643772ac6a3d334fc08883cac8ace4fedaa6283cac7f522",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c5e5f3d58f728a559188",
+              "filename": "incident-access.md",
+              "version": 1,
+              "content_digest": "sha256:ddac7f861b7fcd422afc6e7869be3d9f026b9d78e09c802b5a2ddf3770f1c2ec",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_7f808906ae26a3c8e52e",
+              "filename": "incident-version.md",
+              "version": 1,
+              "content_digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_95a517a293de0bd7a7c8",
+              "filename": "acceptance-cases.json",
+              "version": 1,
+              "content_digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_03547c3b9889415948f4",
+              "filename": "untrusted-note.md",
+              "version": 1,
+              "content_digest": "sha256:e628c52aa05a9dda8333da83958da18ec7b1146f51e0a9a5545cad3fca532310",
+              "department_id": "technology_center",
+              "source_kind": "local_department_source",
+              "source_department": "technology_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "content_digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "department_id": "technology_center",
+              "source_kind": "approved_shared_artifact",
+              "source_department": "product_center",
+              "source_candidate_digest": "sha256:b306282f9136a43ec67b46b2c45a94986f073555a1af10a50e1672ffad1554da",
+              "access_basis": "approved_explicit_handoff"
+            }
+          ],
+          "citations": [
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "line": 4,
+              "text": "以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。",
+              "score": 4
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "line": 7,
+              "text": "目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。",
+              "score": 4
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "line": 14,
+              "text": "- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}",
+              "score": 4
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "line": 15,
+              "text": "- [1] user-research.md v1 第3行：技术用户希望复现权限检查和引用定位。",
+              "score": 3
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "line": 16,
+              "text": "- [2] api-contract.json v1 第1行：{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}",
+              "score": 3
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "line": 3,
+              "text": "## 交付目标（用户输入，不构成权限授权）",
+              "score": 2
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "line": 10,
+              "text": "未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。",
+              "score": 2
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+              "filename": "approved-product_center-v1.md",
+              "version": 1,
+              "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+              "line": 17,
+              "text": "- [3] user-research.md v1 第2行：产品用户希望从需求中定位验收依据。",
+              "score": 2
+            }
+          ],
+          "checks": [
+            {
+              "name": "需求包含权限",
+              "passed": true
+            },
+            {
+              "name": "需求包含引用",
+              "passed": true
+            },
+            {
+              "name": "需求包含撤权",
+              "passed": true
+            },
+            {
+              "name": "需求包含验收",
+              "passed": true
+            },
+            {
+              "name": "同一文档版本没有内容冲突",
+              "passed": true
+            },
+            {
+              "name": "无未解决的旧版需求冲突",
+              "passed": true
+            },
+            {
+              "name": "product_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "technology_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "market_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "引用可以定位到原文版本和行",
+              "passed": true
+            },
+            {
+              "name": "未共享资料不可进入执行快照",
+              "passed": true
+            },
+            {
+              "name": "角色权限验收",
+              "passed": true
+            },
+            {
+              "name": "本部门资料与交接产物来源不混淆",
+              "code": "source_basis_consistent",
+              "passed": true
+            },
+            {
+              "name": "正文引用由宿主定位来源，不编写文件名",
+              "code": "host_owned_source_labels",
+              "passed": true
+            },
+            {
+              "name": "恢复信息未混入业务正文",
+              "code": "no_operational_feedback_leak",
+              "passed": true
+            },
+            {
+              "name": "没有未实现的能力或删除承诺",
+              "code": "no_unsupported_promises",
+              "passed": true
+            },
+            {
+              "name": "执行陈述与实际工具回执一致",
+              "code": "execution_claims_grounded",
+              "passed": true
+            },
+            {
+              "name": "未共享资料明确拒绝访问",
+              "code": "unshared_access_denied",
+              "passed": true
+            },
+            {
+              "name": "批准且显式共享的产物允许交接",
+              "code": "approved_shared_artifact_allowed",
+              "passed": true
+            },
+            {
+              "name": "交接限定接收部门、版本和授权范围",
+              "code": "handoff_scope_bounded",
+              "passed": true
+            },
+            {
+              "name": "批准不自动等于共享",
+              "code": "approval_is_not_sharing",
+              "passed": true
+            },
+            {
+              "name": "无绝对隔离或全面开放的矛盾表述",
+              "code": "no_conflicting_blanket_claim",
+              "passed": true,
+              "evidence": []
+            },
+            {
+              "name": "受检正文与实际产物一致",
+              "passed": true
+            },
+            {
+              "name": "独立CompanyEvaluator",
+              "passed": true
+            },
+            {
+              "name": "引用对应批准的资料版本与原文",
+              "passed": true
+            },
+            {
+              "name": "执行快照与授权绑定一致",
+              "passed": true
+            },
+            {
+              "name": "固定工具确实执行且模型模式与授权一致",
+              "passed": true
+            },
+            {
+              "name": "本部门资料与交接产物来源不混淆",
+              "code": "source_basis_consistent",
+              "passed": true
+            },
+            {
+              "name": "正文引用由宿主定位来源，不编写文件名",
+              "code": "host_owned_source_labels",
+              "passed": true
+            },
+            {
+              "name": "恢复信息未混入业务正文",
+              "code": "no_operational_feedback_leak",
+              "passed": true
+            },
+            {
+              "name": "没有未实现的能力或删除承诺",
+              "code": "no_unsupported_promises",
+              "passed": true
+            },
+            {
+              "name": "执行陈述与实际工具回执一致",
+              "code": "execution_claims_grounded",
+              "passed": true
+            },
+            {
+              "name": "正文规则与宿主来源清单匹配",
+              "code": "content_version_and_source_binding",
+              "passed": true
+            }
+          ],
+          "tool_receipts": [
+            {
+              "operation": "query_documents",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:39f87dde57390461e85a7998de7608c0aeedfef8e662e7c39ea9b22886fd39b4",
+              "pid": 74331,
+              "actual_execution": true
+            },
+            {
+              "operation": "retrieve_evidence",
+              "arguments_digest": "sha256:087f64703c8bd587c4f8242fe768f5c884c6739ad61437235d64cf7cc92065f8",
+              "output_digest": "sha256:5ed55d3331cf8763bf618c235237a52177c35751321da94d5d4bf9e8e2507845",
+              "pid": 74331,
+              "actual_execution": true
+            },
+            {
+              "operation": "validate_requirements",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:d82421d76f1ec9ccf65913da122d1c20b7c0ecb08cb3e9bbac28a81ebe2b3ea7",
+              "pid": 74331,
+              "actual_execution": true
+            },
+            {
+              "operation": "run_acceptance",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:ca43fbb1086cf04617ed3bdbd6f95eef25de4f9dc6a640c6e2d338a1c06bff2e",
+              "pid": 74331,
+              "actual_execution": true
+            },
+            {
+              "operation": "submit_candidate",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:d354627a0aaa0f7b1e7a10c299b33dee05a7d4448e90f99193acb90485b0c5ae",
+              "pid": 74331,
+              "actual_execution": true
+            }
+          ],
+          "snapshot_digest": "sha256:6898a7fb9811bd00e7910a25de23896ce00c22cc6ec6f87db10528df31e7a868",
+          "input_refs": [
+            "artifact://department-cockpit/technology_center/artifact_4aee083bcbef52bc0e58",
+            "artifact://department-cockpit/technology_center/artifact_7f19860ffb2677cbb226",
+            "artifact://department-cockpit/technology_center/artifact_d34b47ec9763e9f3aaf5",
+            "artifact://department-cockpit/technology_center/artifact_4bf3fdb9b66df2f19a78",
+            "artifact://department-cockpit/technology_center/artifact_a9f7e23278e2318f51e2",
+            "artifact://department-cockpit/technology_center/artifact_bc89013e5489b9b08032",
+            "artifact://department-cockpit/technology_center/artifact_766e0d9d4ab51f7a741b",
+            "artifact://department-cockpit/technology_center/artifact_91e1f14da1c83ea45fe8",
+            "artifact://department-cockpit/technology_center/artifact_c5e5f3d58f728a559188",
+            "artifact://department-cockpit/technology_center/artifact_7f808906ae26a3c8e52e",
+            "artifact://department-cockpit/technology_center/artifact_95a517a293de0bd7a7c8",
+            "artifact://department-cockpit/technology_center/artifact_03547c3b9889415948f4",
+            "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4"
+          ],
+          "model_mode": "offline_deterministic",
+          "model_requests": 0,
+          "cost_cny_micros": 0,
+          "release_authorization": false,
+          "production_authorization": false
+        },
+        "candidate_digest": "sha256:4c2570477eecd4aaf8580aaadcbee9f71ce5ddbf145c1fd99bd1de92bdb59235",
+        "evaluation": {
+          "report_id": "evaluation_4a7ed2fc6e5cc47cd34c",
+          "evaluator_agent_id": "agt_evaluator_syn",
+          "subject_result_id": "result_attempt_287f286f42fa469ab594",
+          "verdict": "pass",
+          "reason_codes": [
+            "fixed_suite_pass"
+          ],
+          "release_authorization": false
+        },
+        "checks_passed": true,
+        "created_at": "2026-10-17T06:12:20Z"
+      },
+      "history": [
+        {
+          "revision": 1,
+          "candidate": {
+            "candidate_id": "candidate:attempt_287f286f42fa469ab594",
+            "attempt_id": "attempt_287f286f42fa469ab594",
+            "workflow_id": "workflow_19731a7407b241108d47",
+            "department_id": "technology_center",
+            "revision": 1,
+            "run_id": "run_e795c38d0908e6f4bba8",
+            "payload": {
+              "artifact_ref": "artifact://synthetic/task_professional_831f27986718874582ea/candidate",
+              "body": "# 技术方案与检查报告\n\n## 交付目标（用户输入，不构成权限授权）\n以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n\n## 部门交付说明\n方案：部门隔离的资料索引、确定性检索、版本化引用、受控工具和独立检查。接口遵循任务包授权，工具不能批准自身结果。实现边界：离线规划、本机单Worker，不代表生产RAG或OS沙箱。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。\n\n## 依据\n- [0] approved-product_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n- [1] approved-product_center-v1.md v1 第7行：目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n- [2] approved-product_center-v1.md v1 第14行：- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}\n- [3] approved-product_center-v1.md v1 第15行：- [1] user-research.md v1 第3行：技术用户希望复现权限检查和引用定位。\n- [4] approved-product_center-v1.md v1 第16行：- [2] api-contract.json v1 第1行：{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}\n- [5] approved-product_center-v1.md v1 第3行：## 交付目标（用户输入，不构成权限授权）\n- [6] approved-product_center-v1.md v1 第10行：未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n- [7] approved-product_center-v1.md v1 第17行：- [3] user-research.md v1 第2行：产品用户希望从需求中定位验收依据。\n\n## 来源与授权依据（宿主生成）\n- requirements-v2.md v2：local_department_source / department_authorization / 来源部门 technology_center\n- user-research.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- api-contract.json v1：local_department_source / department_authorization / 来源部门 technology_center\n- permissions.csv v1：local_department_source / department_authorization / 来源部门 technology_center\n- data-dictionary.json v1：local_department_source / department_authorization / 来源部门 technology_center\n- faq-scope.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- faq-citations.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- faq-access-v2.md v2：local_department_source / department_authorization / 来源部门 technology_center\n- incident-access.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- incident-version.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- acceptance-cases.json v1：local_department_source / department_authorization / 来源部门 technology_center\n- untrusted-note.md v1：local_department_source / department_authorization / 来源部门 technology_center\n- approved-product_center-v1.md v1：approved_shared_artifact / approved_explicit_handoff / 来源部门 product_center\n\n## 检查与风险\n- 通过：需求包含权限\n- 通过：需求包含引用\n- 通过：需求包含撤权\n- 通过：需求包含验收\n- 通过：同一文档版本没有内容冲突\n- 通过：无未解决的旧版需求冲突\n- 通过：product_center检索结果不越部门\n- 通过：technology_center检索结果不越部门\n- 通过：market_center检索结果不越部门\n- 通过：引用可以定位到原文版本和行\n- 通过：未共享资料不可进入执行快照\n- 通过：角色权限验收\n- 通过：未共享资料明确拒绝访问\n- 通过：批准且显式共享的产物允许交接\n- 通过：交接限定接收部门、版本和授权范围\n- 通过：批准不自动等于共享\n- 通过：无绝对隔离或全面开放的矛盾表述\n- 通过：本部门资料与交接产物来源不混淆\n- 通过：正文引用由宿主定位来源，不编写文件名\n- 通过：恢复信息未混入业务正文\n- 通过：没有未实现的能力或删除承诺\n- 通过：执行陈述与实际工具回执一致",
+              "authored_prose": "方案：部门隔离的资料索引、确定性检索、版本化引用、受控工具和独立检查。接口遵循任务包授权，工具不能批准自身结果。实现边界：离线规划、本机单Worker，不代表生产RAG或OS沙箱。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。",
+              "sharing_policy_version": "delivery-sharing/1",
+              "content_contract_version": "delivery-content/1",
+              "source_manifest": [
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_4aee083bcbef52bc0e58",
+                  "filename": "requirements-v2.md",
+                  "version": 2,
+                  "content_digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_7f19860ffb2677cbb226",
+                  "filename": "user-research.md",
+                  "version": 1,
+                  "content_digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_d34b47ec9763e9f3aaf5",
+                  "filename": "api-contract.json",
+                  "version": 1,
+                  "content_digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_4bf3fdb9b66df2f19a78",
+                  "filename": "permissions.csv",
+                  "version": 1,
+                  "content_digest": "sha256:ee34ad3970f0b7f1555c0d1d3fcb70dca6e429eb538c71206dbc7cf91770d8bc",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_a9f7e23278e2318f51e2",
+                  "filename": "data-dictionary.json",
+                  "version": 1,
+                  "content_digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_bc89013e5489b9b08032",
+                  "filename": "faq-scope.md",
+                  "version": 1,
+                  "content_digest": "sha256:7701bd0f313dc5d087f1708ca64603fa80d9b91c17bfe954aa777d227506437a",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_766e0d9d4ab51f7a741b",
+                  "filename": "faq-citations.md",
+                  "version": 1,
+                  "content_digest": "sha256:9fee71b0dbc8e245ef9ec675bdee08717b9fd7611f75ea469dfbe613a596eb71",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_91e1f14da1c83ea45fe8",
+                  "filename": "faq-access-v2.md",
+                  "version": 2,
+                  "content_digest": "sha256:7f75fb57bfd6d1e96643772ac6a3d334fc08883cac8ace4fedaa6283cac7f522",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c5e5f3d58f728a559188",
+                  "filename": "incident-access.md",
+                  "version": 1,
+                  "content_digest": "sha256:ddac7f861b7fcd422afc6e7869be3d9f026b9d78e09c802b5a2ddf3770f1c2ec",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_7f808906ae26a3c8e52e",
+                  "filename": "incident-version.md",
+                  "version": 1,
+                  "content_digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_95a517a293de0bd7a7c8",
+                  "filename": "acceptance-cases.json",
+                  "version": 1,
+                  "content_digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_03547c3b9889415948f4",
+                  "filename": "untrusted-note.md",
+                  "version": 1,
+                  "content_digest": "sha256:e628c52aa05a9dda8333da83958da18ec7b1146f51e0a9a5545cad3fca532310",
+                  "department_id": "technology_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "content_digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "department_id": "technology_center",
+                  "source_kind": "approved_shared_artifact",
+                  "source_department": "product_center",
+                  "source_candidate_digest": "sha256:b306282f9136a43ec67b46b2c45a94986f073555a1af10a50e1672ffad1554da",
+                  "access_basis": "approved_explicit_handoff"
+                }
+              ],
+              "citations": [
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "line": 4,
+                  "text": "以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。",
+                  "score": 4
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "line": 7,
+                  "text": "目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。",
+                  "score": 4
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "line": 14,
+                  "text": "- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}",
+                  "score": 4
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "line": 15,
+                  "text": "- [1] user-research.md v1 第3行：技术用户希望复现权限检查和引用定位。",
+                  "score": 3
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "line": 16,
+                  "text": "- [2] api-contract.json v1 第1行：{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}",
+                  "score": 3
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "line": 3,
+                  "text": "## 交付目标（用户输入，不构成权限授权）",
+                  "score": 2
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "line": 10,
+                  "text": "未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。",
+                  "score": 2
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4",
+                  "filename": "approved-product_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:00372ad4218dc5256f042830d7723bd4e8651ab4ecdd58dc4ab3a64be6687ca1",
+                  "line": 17,
+                  "text": "- [3] user-research.md v1 第2行：产品用户希望从需求中定位验收依据。",
+                  "score": 2
+                }
+              ],
+              "checks": [
+                {
+                  "name": "需求包含权限",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含引用",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含撤权",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含验收",
+                  "passed": true
+                },
+                {
+                  "name": "同一文档版本没有内容冲突",
+                  "passed": true
+                },
+                {
+                  "name": "无未解决的旧版需求冲突",
+                  "passed": true
+                },
+                {
+                  "name": "product_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "technology_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "market_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "引用可以定位到原文版本和行",
+                  "passed": true
+                },
+                {
+                  "name": "未共享资料不可进入执行快照",
+                  "passed": true
+                },
+                {
+                  "name": "角色权限验收",
+                  "passed": true
+                },
+                {
+                  "name": "本部门资料与交接产物来源不混淆",
+                  "code": "source_basis_consistent",
+                  "passed": true
+                },
+                {
+                  "name": "正文引用由宿主定位来源，不编写文件名",
+                  "code": "host_owned_source_labels",
+                  "passed": true
+                },
+                {
+                  "name": "恢复信息未混入业务正文",
+                  "code": "no_operational_feedback_leak",
+                  "passed": true
+                },
+                {
+                  "name": "没有未实现的能力或删除承诺",
+                  "code": "no_unsupported_promises",
+                  "passed": true
+                },
+                {
+                  "name": "执行陈述与实际工具回执一致",
+                  "code": "execution_claims_grounded",
+                  "passed": true
+                },
+                {
+                  "name": "未共享资料明确拒绝访问",
+                  "code": "unshared_access_denied",
+                  "passed": true
+                },
+                {
+                  "name": "批准且显式共享的产物允许交接",
+                  "code": "approved_shared_artifact_allowed",
+                  "passed": true
+                },
+                {
+                  "name": "交接限定接收部门、版本和授权范围",
+                  "code": "handoff_scope_bounded",
+                  "passed": true
+                },
+                {
+                  "name": "批准不自动等于共享",
+                  "code": "approval_is_not_sharing",
+                  "passed": true
+                },
+                {
+                  "name": "无绝对隔离或全面开放的矛盾表述",
+                  "code": "no_conflicting_blanket_claim",
+                  "passed": true,
+                  "evidence": []
+                },
+                {
+                  "name": "受检正文与实际产物一致",
+                  "passed": true
+                },
+                {
+                  "name": "独立CompanyEvaluator",
+                  "passed": true
+                },
+                {
+                  "name": "引用对应批准的资料版本与原文",
+                  "passed": true
+                },
+                {
+                  "name": "执行快照与授权绑定一致",
+                  "passed": true
+                },
+                {
+                  "name": "固定工具确实执行且模型模式与授权一致",
+                  "passed": true
+                },
+                {
+                  "name": "本部门资料与交接产物来源不混淆",
+                  "code": "source_basis_consistent",
+                  "passed": true
+                },
+                {
+                  "name": "正文引用由宿主定位来源，不编写文件名",
+                  "code": "host_owned_source_labels",
+                  "passed": true
+                },
+                {
+                  "name": "恢复信息未混入业务正文",
+                  "code": "no_operational_feedback_leak",
+                  "passed": true
+                },
+                {
+                  "name": "没有未实现的能力或删除承诺",
+                  "code": "no_unsupported_promises",
+                  "passed": true
+                },
+                {
+                  "name": "执行陈述与实际工具回执一致",
+                  "code": "execution_claims_grounded",
+                  "passed": true
+                },
+                {
+                  "name": "正文规则与宿主来源清单匹配",
+                  "code": "content_version_and_source_binding",
+                  "passed": true
+                }
+              ],
+              "tool_receipts": [
+                {
+                  "operation": "query_documents",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:39f87dde57390461e85a7998de7608c0aeedfef8e662e7c39ea9b22886fd39b4",
+                  "pid": 74331,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "retrieve_evidence",
+                  "arguments_digest": "sha256:087f64703c8bd587c4f8242fe768f5c884c6739ad61437235d64cf7cc92065f8",
+                  "output_digest": "sha256:5ed55d3331cf8763bf618c235237a52177c35751321da94d5d4bf9e8e2507845",
+                  "pid": 74331,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "validate_requirements",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:d82421d76f1ec9ccf65913da122d1c20b7c0ecb08cb3e9bbac28a81ebe2b3ea7",
+                  "pid": 74331,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "run_acceptance",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:ca43fbb1086cf04617ed3bdbd6f95eef25de4f9dc6a640c6e2d338a1c06bff2e",
+                  "pid": 74331,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "submit_candidate",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:d354627a0aaa0f7b1e7a10c299b33dee05a7d4448e90f99193acb90485b0c5ae",
+                  "pid": 74331,
+                  "actual_execution": true
+                }
+              ],
+              "snapshot_digest": "sha256:6898a7fb9811bd00e7910a25de23896ce00c22cc6ec6f87db10528df31e7a868",
+              "input_refs": [
+                "artifact://department-cockpit/technology_center/artifact_4aee083bcbef52bc0e58",
+                "artifact://department-cockpit/technology_center/artifact_7f19860ffb2677cbb226",
+                "artifact://department-cockpit/technology_center/artifact_d34b47ec9763e9f3aaf5",
+                "artifact://department-cockpit/technology_center/artifact_4bf3fdb9b66df2f19a78",
+                "artifact://department-cockpit/technology_center/artifact_a9f7e23278e2318f51e2",
+                "artifact://department-cockpit/technology_center/artifact_bc89013e5489b9b08032",
+                "artifact://department-cockpit/technology_center/artifact_766e0d9d4ab51f7a741b",
+                "artifact://department-cockpit/technology_center/artifact_91e1f14da1c83ea45fe8",
+                "artifact://department-cockpit/technology_center/artifact_c5e5f3d58f728a559188",
+                "artifact://department-cockpit/technology_center/artifact_7f808906ae26a3c8e52e",
+                "artifact://department-cockpit/technology_center/artifact_95a517a293de0bd7a7c8",
+                "artifact://department-cockpit/technology_center/artifact_03547c3b9889415948f4",
+                "artifact://department-cockpit/technology_center/artifact_c09cb21d5a419778dfa4"
+              ],
+              "model_mode": "offline_deterministic",
+              "model_requests": 0,
+              "cost_cny_micros": 0,
+              "release_authorization": false,
+              "production_authorization": false
+            },
+            "candidate_digest": "sha256:4c2570477eecd4aaf8580aaadcbee9f71ce5ddbf145c1fd99bd1de92bdb59235",
+            "evaluation": {
+              "report_id": "evaluation_4a7ed2fc6e5cc47cd34c",
+              "evaluator_agent_id": "agt_evaluator_syn",
+              "subject_result_id": "result_attempt_287f286f42fa469ab594",
+              "verdict": "pass",
+              "reason_codes": [
+                "fixed_suite_pass"
+              ],
+              "release_authorization": false
+            },
+            "checks_passed": true,
+            "created_at": "2026-10-17T06:12:20Z"
+          }
+        }
+      ]
+    },
+    {
+      "department_id": "market_center",
+      "candidate": {
+        "candidate_id": "candidate:attempt_e8aeed4d490446758141",
+        "attempt_id": "attempt_e8aeed4d490446758141",
+        "workflow_id": "workflow_19731a7407b241108d47",
+        "department_id": "market_center",
+        "revision": 2,
+        "run_id": "run_511281a393adc03ed7dc",
+        "payload": {
+          "artifact_ref": "artifact://synthetic/task_professional_65dc808488eebe8985cc/candidate",
+          "body": "# 用户说明与能力承诺审查\n\n## 交付目标（用户输入，不构成权限授权）\n以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n\n## 部门交付说明\n# 市场中心交付说明（本地预览版）\n\n## 一、适用范围与权限边界\n本说明面向市场中心本地预览，用于核对部门权限、引用、撤权与验收，不扩大任何权限。规范表述如下，逐字保留以便核查：\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门应用方式：市场中心只读取本部门授权原始资料，以及上游明确共享给市场中心的指定产物版本；对上游其他资料不发起读取，也不因交接而获得来源部门其余资料的访问权。\n\n## 二、三态决策表\n| 状态 | 读取决定 | 原因 |\n| --- | --- | --- |\n| 未共享资料 | 不读取、不检索、不进入执行快照 | 未经共享即无访问依据，交接不附带来源部门其他资料权限 |\n| 仅批准未共享产物 | 不读取 | 仅批准不等于共享，缺少对接收部门的显式共享与绑定版本 |\n| 已批准并显式共享产物 | 在接收部门、绑定版本、授权范围内读取使用 | 满足交接三要素，超出范围或撤权、失效即停止 |\n\n## 三、上游产物使用方式\n本轮使用技术中心共享的 v1 产物作为需求与验收依据[0]，其中转述的产品中心 v1 目标与范围（仅本地虚构资料、不自动发布、不承诺全部回答正确）用于界定预览边界[1]，验收用例（权限过滤、引用定位、撤权停止、失败不自动通过、新版使旧批准失效）用于核对[2]。上述引用仅限该绑定版本与授权范围，不据此读取产品中心或技术中心其他原始资料。\n\n## 四、交接验收清单\n1. 接收部门：确认为市场中心，非接收部门不得使用。\n2. 绑定版本：核对为 v1，版本变更即重新核对。\n3. 授权范围：仅限本地预览与验收核对，不用于对外发布。\n4. 撤权及失效：撤权或版本失效后停止后续使用；历史审计证据按本机记录保留，不承诺删除副本。\n\n## 五、证据边界与待人工审核\n本轮工具回执显示需求校验与验收检查均通过，包括未共享资料不可进入执行快照、引用可定位到原文版本与行[3]。该结果仅证明本轮检查执行情况，不构成生产可用或零幻觉承诺。本提案为候选正文，须经人工审核后方可交付，不得自批或发布。\n\n## 依据\n- [0] approved-technology_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n- [1] approved-technology_center-v1.md v1 第14行：- [0] approved-product_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n- [2] approved-technology_center-v1.md v1 第15行：- [1] approved-product_center-v1.md v1 第7行：目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n- [3] approved-technology_center-v1.md v1 第16行：- [2] approved-product_center-v1.md v1 第14行：- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}\n\n## 来源与授权依据（宿主生成）\n- requirements-v2.md v2：local_department_source / department_authorization / 来源部门 market_center\n- user-research.md v1：local_department_source / department_authorization / 来源部门 market_center\n- api-contract.json v1：local_department_source / department_authorization / 来源部门 market_center\n- permissions.csv v1：local_department_source / department_authorization / 来源部门 market_center\n- data-dictionary.json v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-scope.md v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-citations.md v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-access-v2.md v2：local_department_source / department_authorization / 来源部门 market_center\n- incident-access.md v1：local_department_source / department_authorization / 来源部门 market_center\n- incident-version.md v1：local_department_source / department_authorization / 来源部门 market_center\n- acceptance-cases.json v1：local_department_source / department_authorization / 来源部门 market_center\n- untrusted-note.md v1：local_department_source / department_authorization / 来源部门 market_center\n- approved-technology_center-v1.md v1：approved_shared_artifact / approved_explicit_handoff / 来源部门 technology_center\n\n## 检查与风险\n- 通过：需求包含权限\n- 通过：需求包含引用\n- 通过：需求包含撤权\n- 通过：需求包含验收\n- 通过：同一文档版本没有内容冲突\n- 通过：无未解决的旧版需求冲突\n- 通过：product_center检索结果不越部门\n- 通过：technology_center检索结果不越部门\n- 通过：market_center检索结果不越部门\n- 通过：引用可以定位到原文版本和行\n- 通过：未共享资料不可进入执行快照\n- 通过：角色权限验收\n- 通过：未共享资料明确拒绝访问\n- 通过：批准且显式共享的产物允许交接\n- 通过：交接限定接收部门、版本和授权范围\n- 通过：批准不自动等于共享\n- 通过：无绝对隔离或全面开放的矛盾表述\n- 通过：本部门资料与交接产物来源不混淆\n- 通过：正文引用由宿主定位来源，不编写文件名\n- 通过：恢复信息未混入业务正文\n- 通过：没有未实现的能力或删除承诺\n- 通过：执行陈述与实际工具回执一致",
+          "authored_prose": "# 市场中心交付说明（本地预览版）\n\n## 一、适用范围与权限边界\n本说明面向市场中心本地预览，用于核对部门权限、引用、撤权与验收，不扩大任何权限。规范表述如下，逐字保留以便核查：\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门应用方式：市场中心只读取本部门授权原始资料，以及上游明确共享给市场中心的指定产物版本；对上游其他资料不发起读取，也不因交接而获得来源部门其余资料的访问权。\n\n## 二、三态决策表\n| 状态 | 读取决定 | 原因 |\n| --- | --- | --- |\n| 未共享资料 | 不读取、不检索、不进入执行快照 | 未经共享即无访问依据，交接不附带来源部门其他资料权限 |\n| 仅批准未共享产物 | 不读取 | 仅批准不等于共享，缺少对接收部门的显式共享与绑定版本 |\n| 已批准并显式共享产物 | 在接收部门、绑定版本、授权范围内读取使用 | 满足交接三要素，超出范围或撤权、失效即停止 |\n\n## 三、上游产物使用方式\n本轮使用技术中心共享的 v1 产物作为需求与验收依据[0]，其中转述的产品中心 v1 目标与范围（仅本地虚构资料、不自动发布、不承诺全部回答正确）用于界定预览边界[1]，验收用例（权限过滤、引用定位、撤权停止、失败不自动通过、新版使旧批准失效）用于核对[2]。上述引用仅限该绑定版本与授权范围，不据此读取产品中心或技术中心其他原始资料。\n\n## 四、交接验收清单\n1. 接收部门：确认为市场中心，非接收部门不得使用。\n2. 绑定版本：核对为 v1，版本变更即重新核对。\n3. 授权范围：仅限本地预览与验收核对，不用于对外发布。\n4. 撤权及失效：撤权或版本失效后停止后续使用；历史审计证据按本机记录保留，不承诺删除副本。\n\n## 五、证据边界与待人工审核\n本轮工具回执显示需求校验与验收检查均通过，包括未共享资料不可进入执行快照、引用可定位到原文版本与行[3]。该结果仅证明本轮检查执行情况，不构成生产可用或零幻觉承诺。本提案为候选正文，须经人工审核后方可交付，不得自批或发布。",
+          "sharing_policy_version": "delivery-sharing/1",
+          "content_contract_version": "delivery-content/1",
+          "source_manifest": [
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_4dc85fff92b3f278b155",
+              "filename": "requirements-v2.md",
+              "version": 2,
+              "content_digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_ec561a27bd3754e9b8c2",
+              "filename": "user-research.md",
+              "version": 1,
+              "content_digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_7ccd38c9ca64f743c90c",
+              "filename": "api-contract.json",
+              "version": 1,
+              "content_digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_e368ee90994eaf707423",
+              "filename": "permissions.csv",
+              "version": 1,
+              "content_digest": "sha256:ee34ad3970f0b7f1555c0d1d3fcb70dca6e429eb538c71206dbc7cf91770d8bc",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_8b6fd52c99c652435480",
+              "filename": "data-dictionary.json",
+              "version": 1,
+              "content_digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_4d6e971847069fedbe1c",
+              "filename": "faq-scope.md",
+              "version": 1,
+              "content_digest": "sha256:7701bd0f313dc5d087f1708ca64603fa80d9b91c17bfe954aa777d227506437a",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_274252c2f3dd4fe42eee",
+              "filename": "faq-citations.md",
+              "version": 1,
+              "content_digest": "sha256:9fee71b0dbc8e245ef9ec675bdee08717b9fd7611f75ea469dfbe613a596eb71",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_e388e6c91da5b3a08059",
+              "filename": "faq-access-v2.md",
+              "version": 2,
+              "content_digest": "sha256:7f75fb57bfd6d1e96643772ac6a3d334fc08883cac8ace4fedaa6283cac7f522",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_6e2fccbd763ae9e67994",
+              "filename": "incident-access.md",
+              "version": 1,
+              "content_digest": "sha256:ddac7f861b7fcd422afc6e7869be3d9f026b9d78e09c802b5a2ddf3770f1c2ec",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_4079395403c1f4f5e900",
+              "filename": "incident-version.md",
+              "version": 1,
+              "content_digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_ecf34b9236ed016bebb4",
+              "filename": "acceptance-cases.json",
+              "version": 1,
+              "content_digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_a32e853bc52874d44baf",
+              "filename": "untrusted-note.md",
+              "version": 1,
+              "content_digest": "sha256:e628c52aa05a9dda8333da83958da18ec7b1146f51e0a9a5545cad3fca532310",
+              "department_id": "market_center",
+              "source_kind": "local_department_source",
+              "source_department": "market_center",
+              "source_candidate_digest": null,
+              "access_basis": "department_authorization"
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+              "filename": "approved-technology_center-v1.md",
+              "version": 1,
+              "content_digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+              "department_id": "market_center",
+              "source_kind": "approved_shared_artifact",
+              "source_department": "technology_center",
+              "source_candidate_digest": "sha256:4c2570477eecd4aaf8580aaadcbee9f71ce5ddbf145c1fd99bd1de92bdb59235",
+              "access_basis": "approved_explicit_handoff"
+            }
+          ],
+          "citations": [
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+              "filename": "approved-technology_center-v1.md",
+              "version": 1,
+              "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+              "line": 4,
+              "text": "以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。",
+              "score": 4,
+              "evidence_index": 0
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+              "filename": "approved-technology_center-v1.md",
+              "version": 1,
+              "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+              "line": 14,
+              "text": "- [0] approved-product_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。",
+              "score": 4,
+              "evidence_index": 1
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+              "filename": "approved-technology_center-v1.md",
+              "version": 1,
+              "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+              "line": 15,
+              "text": "- [1] approved-product_center-v1.md v1 第7行：目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。",
+              "score": 4,
+              "evidence_index": 2
+            },
+            {
+              "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+              "filename": "approved-technology_center-v1.md",
+              "version": 1,
+              "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+              "line": 16,
+              "text": "- [2] approved-product_center-v1.md v1 第14行：- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}",
+              "score": 4,
+              "evidence_index": 3
+            }
+          ],
+          "checks": [
+            {
+              "name": "需求包含权限",
+              "passed": true
+            },
+            {
+              "name": "需求包含引用",
+              "passed": true
+            },
+            {
+              "name": "需求包含撤权",
+              "passed": true
+            },
+            {
+              "name": "需求包含验收",
+              "passed": true
+            },
+            {
+              "name": "同一文档版本没有内容冲突",
+              "passed": true
+            },
+            {
+              "name": "无未解决的旧版需求冲突",
+              "passed": true
+            },
+            {
+              "name": "product_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "technology_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "market_center检索结果不越部门",
+              "passed": true
+            },
+            {
+              "name": "引用可以定位到原文版本和行",
+              "passed": true
+            },
+            {
+              "name": "未共享资料不可进入执行快照",
+              "passed": true
+            },
+            {
+              "name": "角色权限验收",
+              "passed": true
+            },
+            {
+              "name": "本部门资料与交接产物来源不混淆",
+              "code": "source_basis_consistent",
+              "passed": true
+            },
+            {
+              "name": "正文引用由宿主定位来源，不编写文件名",
+              "code": "host_owned_source_labels",
+              "passed": true
+            },
+            {
+              "name": "恢复信息未混入业务正文",
+              "code": "no_operational_feedback_leak",
+              "passed": true
+            },
+            {
+              "name": "没有未实现的能力或删除承诺",
+              "code": "no_unsupported_promises",
+              "passed": true
+            },
+            {
+              "name": "执行陈述与实际工具回执一致",
+              "code": "execution_claims_grounded",
+              "passed": true
+            },
+            {
+              "name": "未共享资料明确拒绝访问",
+              "code": "unshared_access_denied",
+              "passed": true
+            },
+            {
+              "name": "批准且显式共享的产物允许交接",
+              "code": "approved_shared_artifact_allowed",
+              "passed": true
+            },
+            {
+              "name": "交接限定接收部门、版本和授权范围",
+              "code": "handoff_scope_bounded",
+              "passed": true
+            },
+            {
+              "name": "批准不自动等于共享",
+              "code": "approval_is_not_sharing",
+              "passed": true
+            },
+            {
+              "name": "无绝对隔离或全面开放的矛盾表述",
+              "code": "no_conflicting_blanket_claim",
+              "passed": true,
+              "evidence": []
+            },
+            {
+              "name": "受检正文与实际产物一致",
+              "passed": true
+            },
+            {
+              "name": "独立CompanyEvaluator",
+              "passed": true
+            },
+            {
+              "name": "引用对应批准的资料版本与原文",
+              "passed": true
+            },
+            {
+              "name": "执行快照与授权绑定一致",
+              "passed": true
+            },
+            {
+              "name": "固定工具确实执行且模型模式与授权一致",
+              "passed": true
+            },
+            {
+              "name": "本部门资料与交接产物来源不混淆",
+              "code": "source_basis_consistent",
+              "passed": true
+            },
+            {
+              "name": "正文引用由宿主定位来源，不编写文件名",
+              "code": "host_owned_source_labels",
+              "passed": true
+            },
+            {
+              "name": "恢复信息未混入业务正文",
+              "code": "no_operational_feedback_leak",
+              "passed": true
+            },
+            {
+              "name": "没有未实现的能力或删除承诺",
+              "code": "no_unsupported_promises",
+              "passed": true
+            },
+            {
+              "name": "执行陈述与实际工具回执一致",
+              "code": "execution_claims_grounded",
+              "passed": true
+            },
+            {
+              "name": "正文规则与宿主来源清单匹配",
+              "code": "content_version_and_source_binding",
+              "passed": true
+            }
+          ],
+          "tool_receipts": [
+            {
+              "operation": "query_documents",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:f6e0d4c063ff0270ff23d4ff87134ef8f41c861628586f3c7d568c3657fe886a",
+              "pid": 74382,
+              "actual_execution": true
+            },
+            {
+              "operation": "retrieve_evidence",
+              "arguments_digest": "sha256:087f64703c8bd587c4f8242fe768f5c884c6739ad61437235d64cf7cc92065f8",
+              "output_digest": "sha256:f619954aacb203fcd0b66b482902241056c635f8bcdd4918a353ec647598f0bf",
+              "pid": 74382,
+              "actual_execution": true
+            },
+            {
+              "operation": "validate_requirements",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:d82421d76f1ec9ccf65913da122d1c20b7c0ecb08cb3e9bbac28a81ebe2b3ea7",
+              "pid": 74382,
+              "actual_execution": true
+            },
+            {
+              "operation": "run_acceptance",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:ca43fbb1086cf04617ed3bdbd6f95eef25de4f9dc6a640c6e2d338a1c06bff2e",
+              "pid": 74382,
+              "actual_execution": true
+            },
+            {
+              "operation": "submit_candidate",
+              "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "output_digest": "sha256:d354627a0aaa0f7b1e7a10c299b33dee05a7d4448e90f99193acb90485b0c5ae",
+              "pid": 74382,
+              "actual_execution": true
+            }
+          ],
+          "snapshot_digest": "sha256:b3f80fd256031b0445bd1022892386052db92b40398be3449336d178a9acb536",
+          "input_refs": [
+            "artifact://department-cockpit/market_center/artifact_4dc85fff92b3f278b155",
+            "artifact://department-cockpit/market_center/artifact_ec561a27bd3754e9b8c2",
+            "artifact://department-cockpit/market_center/artifact_7ccd38c9ca64f743c90c",
+            "artifact://department-cockpit/market_center/artifact_e368ee90994eaf707423",
+            "artifact://department-cockpit/market_center/artifact_8b6fd52c99c652435480",
+            "artifact://department-cockpit/market_center/artifact_4d6e971847069fedbe1c",
+            "artifact://department-cockpit/market_center/artifact_274252c2f3dd4fe42eee",
+            "artifact://department-cockpit/market_center/artifact_e388e6c91da5b3a08059",
+            "artifact://department-cockpit/market_center/artifact_6e2fccbd763ae9e67994",
+            "artifact://department-cockpit/market_center/artifact_4079395403c1f4f5e900",
+            "artifact://department-cockpit/market_center/artifact_ecf34b9236ed016bebb4",
+            "artifact://department-cockpit/market_center/artifact_a32e853bc52874d44baf",
+            "artifact://department-cockpit/market_center/artifact_69813926fe7831032051"
+          ],
+          "model_mode": "live_authorized_campaign",
+          "model_requests": 3,
+          "cost_cny_micros": 20880,
+          "release_authorization": false,
+          "production_authorization": false
+        },
+        "candidate_digest": "sha256:6f0065298022f7a8b9153c7feac8045e4c11c26b61a48eb9cc9e0f2bc1a80b01",
+        "evaluation": {
+          "report_id": "evaluation_50595ddffe9b95fc8a6f",
+          "evaluator_agent_id": "agt_evaluator_syn",
+          "subject_result_id": "result_attempt_e8aeed4d490446758141",
+          "verdict": "pass",
+          "reason_codes": [
+            "fixed_suite_pass"
+          ],
+          "release_authorization": false
+        },
+        "checks_passed": true,
+        "created_at": "2026-10-17T06:12:35Z"
+      },
+      "history": [
+        {
+          "revision": 1,
+          "candidate": {
+            "candidate_id": "candidate:attempt_6ded437ec15245ddabcf",
+            "attempt_id": "attempt_6ded437ec15245ddabcf",
+            "workflow_id": "workflow_19731a7407b241108d47",
+            "department_id": "market_center",
+            "revision": 1,
+            "run_id": "run_3de646d45edb3798f6bb",
+            "payload": {
+              "artifact_ref": "artifact://synthetic/task_professional_02649d84aa8ef6254f29/candidate",
+              "body": "# 用户说明与能力承诺审查\n\n## 交付目标（用户输入，不构成权限授权）\n以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n\n## 部门交付说明\n用户说明：这是使用虚构资料的本机知识助手演示。仅可检索获共享的资料；回答依据可追溯到文档版本和行。资料不足时需补充证据，不能宣称零幻觉、生产可用或自动合规。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。\n\n## 依据\n- [0] approved-technology_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n- [1] approved-technology_center-v1.md v1 第14行：- [0] approved-product_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n- [2] approved-technology_center-v1.md v1 第15行：- [1] approved-product_center-v1.md v1 第7行：目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n- [3] approved-technology_center-v1.md v1 第16行：- [2] approved-product_center-v1.md v1 第14行：- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}\n- [4] approved-technology_center-v1.md v1 第17行：- [3] approved-product_center-v1.md v1 第15行：- [1] user-research.md v1 第3行：技术用户希望复现权限检查和引用定位。\n- [5] approved-technology_center-v1.md v1 第18行：- [4] approved-product_center-v1.md v1 第16行：- [2] api-contract.json v1 第1行：{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}\n- [6] approved-technology_center-v1.md v1 第3行：## 交付目标（用户输入，不构成权限授权）\n- [7] approved-technology_center-v1.md v1 第10行：未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n\n## 来源与授权依据（宿主生成）\n- requirements-v2.md v2：local_department_source / department_authorization / 来源部门 market_center\n- user-research.md v1：local_department_source / department_authorization / 来源部门 market_center\n- api-contract.json v1：local_department_source / department_authorization / 来源部门 market_center\n- permissions.csv v1：local_department_source / department_authorization / 来源部门 market_center\n- data-dictionary.json v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-scope.md v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-citations.md v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-access-v2.md v2：local_department_source / department_authorization / 来源部门 market_center\n- incident-access.md v1：local_department_source / department_authorization / 来源部门 market_center\n- incident-version.md v1：local_department_source / department_authorization / 来源部门 market_center\n- acceptance-cases.json v1：local_department_source / department_authorization / 来源部门 market_center\n- untrusted-note.md v1：local_department_source / department_authorization / 来源部门 market_center\n- approved-technology_center-v1.md v1：approved_shared_artifact / approved_explicit_handoff / 来源部门 technology_center\n\n## 检查与风险\n- 通过：需求包含权限\n- 通过：需求包含引用\n- 通过：需求包含撤权\n- 通过：需求包含验收\n- 通过：同一文档版本没有内容冲突\n- 通过：无未解决的旧版需求冲突\n- 通过：product_center检索结果不越部门\n- 通过：technology_center检索结果不越部门\n- 通过：market_center检索结果不越部门\n- 通过：引用可以定位到原文版本和行\n- 通过：未共享资料不可进入执行快照\n- 通过：角色权限验收\n- 通过：未共享资料明确拒绝访问\n- 通过：批准且显式共享的产物允许交接\n- 通过：交接限定接收部门、版本和授权范围\n- 通过：批准不自动等于共享\n- 通过：无绝对隔离或全面开放的矛盾表述\n- 通过：本部门资料与交接产物来源不混淆\n- 通过：正文引用由宿主定位来源，不编写文件名\n- 通过：恢复信息未混入业务正文\n- 通过：没有未实现的能力或删除承诺\n- 通过：执行陈述与实际工具回执一致",
+              "authored_prose": "用户说明：这是使用虚构资料的本机知识助手演示。仅可检索获共享的资料；回答依据可追溯到文档版本和行。资料不足时需补充证据，不能宣称零幻觉、生产可用或自动合规。\n\n## 资料访问与交接边界\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。",
+              "sharing_policy_version": "delivery-sharing/1",
+              "content_contract_version": "delivery-content/1",
+              "source_manifest": [
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_4dc85fff92b3f278b155",
+                  "filename": "requirements-v2.md",
+                  "version": 2,
+                  "content_digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_ec561a27bd3754e9b8c2",
+                  "filename": "user-research.md",
+                  "version": 1,
+                  "content_digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_7ccd38c9ca64f743c90c",
+                  "filename": "api-contract.json",
+                  "version": 1,
+                  "content_digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_e368ee90994eaf707423",
+                  "filename": "permissions.csv",
+                  "version": 1,
+                  "content_digest": "sha256:ee34ad3970f0b7f1555c0d1d3fcb70dca6e429eb538c71206dbc7cf91770d8bc",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_8b6fd52c99c652435480",
+                  "filename": "data-dictionary.json",
+                  "version": 1,
+                  "content_digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_4d6e971847069fedbe1c",
+                  "filename": "faq-scope.md",
+                  "version": 1,
+                  "content_digest": "sha256:7701bd0f313dc5d087f1708ca64603fa80d9b91c17bfe954aa777d227506437a",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_274252c2f3dd4fe42eee",
+                  "filename": "faq-citations.md",
+                  "version": 1,
+                  "content_digest": "sha256:9fee71b0dbc8e245ef9ec675bdee08717b9fd7611f75ea469dfbe613a596eb71",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_e388e6c91da5b3a08059",
+                  "filename": "faq-access-v2.md",
+                  "version": 2,
+                  "content_digest": "sha256:7f75fb57bfd6d1e96643772ac6a3d334fc08883cac8ace4fedaa6283cac7f522",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_6e2fccbd763ae9e67994",
+                  "filename": "incident-access.md",
+                  "version": 1,
+                  "content_digest": "sha256:ddac7f861b7fcd422afc6e7869be3d9f026b9d78e09c802b5a2ddf3770f1c2ec",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_4079395403c1f4f5e900",
+                  "filename": "incident-version.md",
+                  "version": 1,
+                  "content_digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_ecf34b9236ed016bebb4",
+                  "filename": "acceptance-cases.json",
+                  "version": 1,
+                  "content_digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_a32e853bc52874d44baf",
+                  "filename": "untrusted-note.md",
+                  "version": 1,
+                  "content_digest": "sha256:e628c52aa05a9dda8333da83958da18ec7b1146f51e0a9a5545cad3fca532310",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "content_digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "department_id": "market_center",
+                  "source_kind": "approved_shared_artifact",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": "sha256:4c2570477eecd4aaf8580aaadcbee9f71ce5ddbf145c1fd99bd1de92bdb59235",
+                  "access_basis": "approved_explicit_handoff"
+                }
+              ],
+              "citations": [
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 4,
+                  "text": "以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。",
+                  "score": 4
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 14,
+                  "text": "- [0] approved-product_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。",
+                  "score": 4
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 15,
+                  "text": "- [1] approved-product_center-v1.md v1 第7行：目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。",
+                  "score": 4
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 16,
+                  "text": "- [2] approved-product_center-v1.md v1 第14行：- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}",
+                  "score": 4
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 17,
+                  "text": "- [3] approved-product_center-v1.md v1 第15行：- [1] user-research.md v1 第3行：技术用户希望复现权限检查和引用定位。",
+                  "score": 3
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 18,
+                  "text": "- [4] approved-product_center-v1.md v1 第16行：- [2] api-contract.json v1 第1行：{\"version\": 1, \"说明\": \"检索接口必须检查权限并返回引用；撤权后拒绝。\", \"input\": [\"question\", \"department\"], \"output\": [\"answer\", \"citations\", \"limitations\"], \"errors\": [\"forbidden\", \"insufficient_evidence\"]}",
+                  "score": 3
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 3,
+                  "text": "## 交付目标（用户输入，不构成权限授权）",
+                  "score": 2
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 10,
+                  "text": "未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。",
+                  "score": 2
+                }
+              ],
+              "checks": [
+                {
+                  "name": "需求包含权限",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含引用",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含撤权",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含验收",
+                  "passed": true
+                },
+                {
+                  "name": "同一文档版本没有内容冲突",
+                  "passed": true
+                },
+                {
+                  "name": "无未解决的旧版需求冲突",
+                  "passed": true
+                },
+                {
+                  "name": "product_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "technology_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "market_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "引用可以定位到原文版本和行",
+                  "passed": true
+                },
+                {
+                  "name": "未共享资料不可进入执行快照",
+                  "passed": true
+                },
+                {
+                  "name": "角色权限验收",
+                  "passed": true
+                },
+                {
+                  "name": "本部门资料与交接产物来源不混淆",
+                  "code": "source_basis_consistent",
+                  "passed": true
+                },
+                {
+                  "name": "正文引用由宿主定位来源，不编写文件名",
+                  "code": "host_owned_source_labels",
+                  "passed": true
+                },
+                {
+                  "name": "恢复信息未混入业务正文",
+                  "code": "no_operational_feedback_leak",
+                  "passed": true
+                },
+                {
+                  "name": "没有未实现的能力或删除承诺",
+                  "code": "no_unsupported_promises",
+                  "passed": true
+                },
+                {
+                  "name": "执行陈述与实际工具回执一致",
+                  "code": "execution_claims_grounded",
+                  "passed": true
+                },
+                {
+                  "name": "未共享资料明确拒绝访问",
+                  "code": "unshared_access_denied",
+                  "passed": true
+                },
+                {
+                  "name": "批准且显式共享的产物允许交接",
+                  "code": "approved_shared_artifact_allowed",
+                  "passed": true
+                },
+                {
+                  "name": "交接限定接收部门、版本和授权范围",
+                  "code": "handoff_scope_bounded",
+                  "passed": true
+                },
+                {
+                  "name": "批准不自动等于共享",
+                  "code": "approval_is_not_sharing",
+                  "passed": true
+                },
+                {
+                  "name": "无绝对隔离或全面开放的矛盾表述",
+                  "code": "no_conflicting_blanket_claim",
+                  "passed": true,
+                  "evidence": []
+                },
+                {
+                  "name": "受检正文与实际产物一致",
+                  "passed": true
+                },
+                {
+                  "name": "独立CompanyEvaluator",
+                  "passed": true
+                },
+                {
+                  "name": "引用对应批准的资料版本与原文",
+                  "passed": true
+                },
+                {
+                  "name": "执行快照与授权绑定一致",
+                  "passed": true
+                },
+                {
+                  "name": "固定工具确实执行且模型模式与授权一致",
+                  "passed": true
+                },
+                {
+                  "name": "本部门资料与交接产物来源不混淆",
+                  "code": "source_basis_consistent",
+                  "passed": true
+                },
+                {
+                  "name": "正文引用由宿主定位来源，不编写文件名",
+                  "code": "host_owned_source_labels",
+                  "passed": true
+                },
+                {
+                  "name": "恢复信息未混入业务正文",
+                  "code": "no_operational_feedback_leak",
+                  "passed": true
+                },
+                {
+                  "name": "没有未实现的能力或删除承诺",
+                  "code": "no_unsupported_promises",
+                  "passed": true
+                },
+                {
+                  "name": "执行陈述与实际工具回执一致",
+                  "code": "execution_claims_grounded",
+                  "passed": true
+                },
+                {
+                  "name": "正文规则与宿主来源清单匹配",
+                  "code": "content_version_and_source_binding",
+                  "passed": true
+                }
+              ],
+              "tool_receipts": [
+                {
+                  "operation": "query_documents",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:f6e0d4c063ff0270ff23d4ff87134ef8f41c861628586f3c7d568c3657fe886a",
+                  "pid": 74353,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "retrieve_evidence",
+                  "arguments_digest": "sha256:087f64703c8bd587c4f8242fe768f5c884c6739ad61437235d64cf7cc92065f8",
+                  "output_digest": "sha256:f619954aacb203fcd0b66b482902241056c635f8bcdd4918a353ec647598f0bf",
+                  "pid": 74353,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "validate_requirements",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:d82421d76f1ec9ccf65913da122d1c20b7c0ecb08cb3e9bbac28a81ebe2b3ea7",
+                  "pid": 74353,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "run_acceptance",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:ca43fbb1086cf04617ed3bdbd6f95eef25de4f9dc6a640c6e2d338a1c06bff2e",
+                  "pid": 74353,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "submit_candidate",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:d354627a0aaa0f7b1e7a10c299b33dee05a7d4448e90f99193acb90485b0c5ae",
+                  "pid": 74353,
+                  "actual_execution": true
+                }
+              ],
+              "snapshot_digest": "sha256:6cdd5f011f4b5363404bac7250bf7bee48fb9615fc019acf73b55255fde9aa40",
+              "input_refs": [
+                "artifact://department-cockpit/market_center/artifact_4dc85fff92b3f278b155",
+                "artifact://department-cockpit/market_center/artifact_ec561a27bd3754e9b8c2",
+                "artifact://department-cockpit/market_center/artifact_7ccd38c9ca64f743c90c",
+                "artifact://department-cockpit/market_center/artifact_e368ee90994eaf707423",
+                "artifact://department-cockpit/market_center/artifact_8b6fd52c99c652435480",
+                "artifact://department-cockpit/market_center/artifact_4d6e971847069fedbe1c",
+                "artifact://department-cockpit/market_center/artifact_274252c2f3dd4fe42eee",
+                "artifact://department-cockpit/market_center/artifact_e388e6c91da5b3a08059",
+                "artifact://department-cockpit/market_center/artifact_6e2fccbd763ae9e67994",
+                "artifact://department-cockpit/market_center/artifact_4079395403c1f4f5e900",
+                "artifact://department-cockpit/market_center/artifact_ecf34b9236ed016bebb4",
+                "artifact://department-cockpit/market_center/artifact_a32e853bc52874d44baf",
+                "artifact://department-cockpit/market_center/artifact_69813926fe7831032051"
+              ],
+              "model_mode": "offline_deterministic",
+              "model_requests": 0,
+              "cost_cny_micros": 0,
+              "release_authorization": false,
+              "production_authorization": false
+            },
+            "candidate_digest": "sha256:83557a4ddbae3fc364048571a65aab8cb1bc066527c7476482af86aa14fabd49",
+            "evaluation": {
+              "report_id": "evaluation_001482610ddf465fd66b",
+              "evaluator_agent_id": "agt_evaluator_syn",
+              "subject_result_id": "result_attempt_6ded437ec15245ddabcf",
+              "verdict": "pass",
+              "reason_codes": [
+                "fixed_suite_pass"
+              ],
+              "release_authorization": false
+            },
+            "checks_passed": true,
+            "created_at": "2026-10-17T06:12:22Z"
+          }
+        },
+        {
+          "revision": 2,
+          "candidate": {
+            "candidate_id": "candidate:attempt_e8aeed4d490446758141",
+            "attempt_id": "attempt_e8aeed4d490446758141",
+            "workflow_id": "workflow_19731a7407b241108d47",
+            "department_id": "market_center",
+            "revision": 2,
+            "run_id": "run_511281a393adc03ed7dc",
+            "payload": {
+              "artifact_ref": "artifact://synthetic/task_professional_65dc808488eebe8985cc/candidate",
+              "body": "# 用户说明与能力承诺审查\n\n## 交付目标（用户输入，不构成权限授权）\n以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n\n## 部门交付说明\n# 市场中心交付说明（本地预览版）\n\n## 一、适用范围与权限边界\n本说明面向市场中心本地预览，用于核对部门权限、引用、撤权与验收，不扩大任何权限。规范表述如下，逐字保留以便核查：\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门应用方式：市场中心只读取本部门授权原始资料，以及上游明确共享给市场中心的指定产物版本；对上游其他资料不发起读取，也不因交接而获得来源部门其余资料的访问权。\n\n## 二、三态决策表\n| 状态 | 读取决定 | 原因 |\n| --- | --- | --- |\n| 未共享资料 | 不读取、不检索、不进入执行快照 | 未经共享即无访问依据，交接不附带来源部门其他资料权限 |\n| 仅批准未共享产物 | 不读取 | 仅批准不等于共享，缺少对接收部门的显式共享与绑定版本 |\n| 已批准并显式共享产物 | 在接收部门、绑定版本、授权范围内读取使用 | 满足交接三要素，超出范围或撤权、失效即停止 |\n\n## 三、上游产物使用方式\n本轮使用技术中心共享的 v1 产物作为需求与验收依据[0]，其中转述的产品中心 v1 目标与范围（仅本地虚构资料、不自动发布、不承诺全部回答正确）用于界定预览边界[1]，验收用例（权限过滤、引用定位、撤权停止、失败不自动通过、新版使旧批准失效）用于核对[2]。上述引用仅限该绑定版本与授权范围，不据此读取产品中心或技术中心其他原始资料。\n\n## 四、交接验收清单\n1. 接收部门：确认为市场中心，非接收部门不得使用。\n2. 绑定版本：核对为 v1，版本变更即重新核对。\n3. 授权范围：仅限本地预览与验收核对，不用于对外发布。\n4. 撤权及失效：撤权或版本失效后停止后续使用；历史审计证据按本机记录保留，不承诺删除副本。\n\n## 五、证据边界与待人工审核\n本轮工具回执显示需求校验与验收检查均通过，包括未共享资料不可进入执行快照、引用可定位到原文版本与行[3]。该结果仅证明本轮检查执行情况，不构成生产可用或零幻觉承诺。本提案为候选正文，须经人工审核后方可交付，不得自批或发布。\n\n## 依据\n- [0] approved-technology_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n- [1] approved-technology_center-v1.md v1 第14行：- [0] approved-product_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。\n- [2] approved-technology_center-v1.md v1 第15行：- [1] approved-product_center-v1.md v1 第7行：目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。\n- [3] approved-technology_center-v1.md v1 第16行：- [2] approved-product_center-v1.md v1 第14行：- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}\n\n## 来源与授权依据（宿主生成）\n- requirements-v2.md v2：local_department_source / department_authorization / 来源部门 market_center\n- user-research.md v1：local_department_source / department_authorization / 来源部门 market_center\n- api-contract.json v1：local_department_source / department_authorization / 来源部门 market_center\n- permissions.csv v1：local_department_source / department_authorization / 来源部门 market_center\n- data-dictionary.json v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-scope.md v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-citations.md v1：local_department_source / department_authorization / 来源部门 market_center\n- faq-access-v2.md v2：local_department_source / department_authorization / 来源部门 market_center\n- incident-access.md v1：local_department_source / department_authorization / 来源部门 market_center\n- incident-version.md v1：local_department_source / department_authorization / 来源部门 market_center\n- acceptance-cases.json v1：local_department_source / department_authorization / 来源部门 market_center\n- untrusted-note.md v1：local_department_source / department_authorization / 来源部门 market_center\n- approved-technology_center-v1.md v1：approved_shared_artifact / approved_explicit_handoff / 来源部门 technology_center\n\n## 检查与风险\n- 通过：需求包含权限\n- 通过：需求包含引用\n- 通过：需求包含撤权\n- 通过：需求包含验收\n- 通过：同一文档版本没有内容冲突\n- 通过：无未解决的旧版需求冲突\n- 通过：product_center检索结果不越部门\n- 通过：technology_center检索结果不越部门\n- 通过：market_center检索结果不越部门\n- 通过：引用可以定位到原文版本和行\n- 通过：未共享资料不可进入执行快照\n- 通过：角色权限验收\n- 通过：未共享资料明确拒绝访问\n- 通过：批准且显式共享的产物允许交接\n- 通过：交接限定接收部门、版本和授权范围\n- 通过：批准不自动等于共享\n- 通过：无绝对隔离或全面开放的矛盾表述\n- 通过：本部门资料与交接产物来源不混淆\n- 通过：正文引用由宿主定位来源，不编写文件名\n- 通过：恢复信息未混入业务正文\n- 通过：没有未实现的能力或删除承诺\n- 通过：执行陈述与实际工具回执一致",
+              "authored_prose": "# 市场中心交付说明（本地预览版）\n\n## 一、适用范围与权限边界\n本说明面向市场中心本地预览，用于核对部门权限、引用、撤权与验收，不扩大任何权限。规范表述如下，逐字保留以便核查：\n未经共享的资料不能访问、读取或检索。已批准并显式共享的产物可以交接使用，仅限接收部门、绑定版本和授权范围。仅批准不等于共享，交接不授予访问来源部门其他资料的权限；撤权或版本失效后停止使用。\n本部门应用方式：市场中心只读取本部门授权原始资料，以及上游明确共享给市场中心的指定产物版本；对上游其他资料不发起读取，也不因交接而获得来源部门其余资料的访问权。\n\n## 二、三态决策表\n| 状态 | 读取决定 | 原因 |\n| --- | --- | --- |\n| 未共享资料 | 不读取、不检索、不进入执行快照 | 未经共享即无访问依据，交接不附带来源部门其他资料权限 |\n| 仅批准未共享产物 | 不读取 | 仅批准不等于共享，缺少对接收部门的显式共享与绑定版本 |\n| 已批准并显式共享产物 | 在接收部门、绑定版本、授权范围内读取使用 | 满足交接三要素，超出范围或撤权、失效即停止 |\n\n## 三、上游产物使用方式\n本轮使用技术中心共享的 v1 产物作为需求与验收依据[0]，其中转述的产品中心 v1 目标与范围（仅本地虚构资料、不自动发布、不承诺全部回答正确）用于界定预览边界[1]，验收用例（权限过滤、引用定位、撤权停止、失败不自动通过、新版使旧批准失效）用于核对[2]。上述引用仅限该绑定版本与授权范围，不据此读取产品中心或技术中心其他原始资料。\n\n## 四、交接验收清单\n1. 接收部门：确认为市场中心，非接收部门不得使用。\n2. 绑定版本：核对为 v1，版本变更即重新核对。\n3. 授权范围：仅限本地预览与验收核对，不用于对外发布。\n4. 撤权及失效：撤权或版本失效后停止后续使用；历史审计证据按本机记录保留，不承诺删除副本。\n\n## 五、证据边界与待人工审核\n本轮工具回执显示需求校验与验收检查均通过，包括未共享资料不可进入执行快照、引用可定位到原文版本与行[3]。该结果仅证明本轮检查执行情况，不构成生产可用或零幻觉承诺。本提案为候选正文，须经人工审核后方可交付，不得自批或发布。",
+              "sharing_policy_version": "delivery-sharing/1",
+              "content_contract_version": "delivery-content/1",
+              "source_manifest": [
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_4dc85fff92b3f278b155",
+                  "filename": "requirements-v2.md",
+                  "version": 2,
+                  "content_digest": "sha256:54478f02ac23f60978c98fd13c13946518806f6587603f88b05bbabb9c02162d",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_ec561a27bd3754e9b8c2",
+                  "filename": "user-research.md",
+                  "version": 1,
+                  "content_digest": "sha256:b7e059540fe1ae1fd960b3ba6c701194ef2344da5e82990cc584faa49c938b83",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_7ccd38c9ca64f743c90c",
+                  "filename": "api-contract.json",
+                  "version": 1,
+                  "content_digest": "sha256:bfad0f6152e046de6acb2e332765a62a3b3a34c80845697e0b70c4f1e617d0ea",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_e368ee90994eaf707423",
+                  "filename": "permissions.csv",
+                  "version": 1,
+                  "content_digest": "sha256:ee34ad3970f0b7f1555c0d1d3fcb70dca6e429eb538c71206dbc7cf91770d8bc",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_8b6fd52c99c652435480",
+                  "filename": "data-dictionary.json",
+                  "version": 1,
+                  "content_digest": "sha256:27c1352e3074a1b36266f9ab9ed55742579bf4f261ac7564ecb95aed2bd2bf91",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_4d6e971847069fedbe1c",
+                  "filename": "faq-scope.md",
+                  "version": 1,
+                  "content_digest": "sha256:7701bd0f313dc5d087f1708ca64603fa80d9b91c17bfe954aa777d227506437a",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_274252c2f3dd4fe42eee",
+                  "filename": "faq-citations.md",
+                  "version": 1,
+                  "content_digest": "sha256:9fee71b0dbc8e245ef9ec675bdee08717b9fd7611f75ea469dfbe613a596eb71",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_e388e6c91da5b3a08059",
+                  "filename": "faq-access-v2.md",
+                  "version": 2,
+                  "content_digest": "sha256:7f75fb57bfd6d1e96643772ac6a3d334fc08883cac8ace4fedaa6283cac7f522",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_6e2fccbd763ae9e67994",
+                  "filename": "incident-access.md",
+                  "version": 1,
+                  "content_digest": "sha256:ddac7f861b7fcd422afc6e7869be3d9f026b9d78e09c802b5a2ddf3770f1c2ec",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_4079395403c1f4f5e900",
+                  "filename": "incident-version.md",
+                  "version": 1,
+                  "content_digest": "sha256:43ee91946e244b36cad5c4b2ad1fe1d2f8dba908766a30724faecc8bc6742ac0",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_ecf34b9236ed016bebb4",
+                  "filename": "acceptance-cases.json",
+                  "version": 1,
+                  "content_digest": "sha256:19e2582aa55e3449a1862a9cba08bb3f2bc8236a1cbd81196e80409eaf677957",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_a32e853bc52874d44baf",
+                  "filename": "untrusted-note.md",
+                  "version": 1,
+                  "content_digest": "sha256:e628c52aa05a9dda8333da83958da18ec7b1146f51e0a9a5545cad3fca532310",
+                  "department_id": "market_center",
+                  "source_kind": "local_department_source",
+                  "source_department": "market_center",
+                  "source_candidate_digest": null,
+                  "access_basis": "department_authorization"
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "content_digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "department_id": "market_center",
+                  "source_kind": "approved_shared_artifact",
+                  "source_department": "technology_center",
+                  "source_candidate_digest": "sha256:4c2570477eecd4aaf8580aaadcbee9f71ce5ddbf145c1fd99bd1de92bdb59235",
+                  "access_basis": "approved_explicit_handoff"
+                }
+              ],
+              "citations": [
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 4,
+                  "text": "以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。",
+                  "score": 4,
+                  "evidence_index": 0
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 14,
+                  "text": "- [0] approved-product_center-v1.md v1 第4行：以虚构团队知识助手为案例，核对部门权限、引用、撤权和验收。市场说明须区分本部门授权资料与上游显式交接产物，仅供本地预览，不扩大权限。",
+                  "score": 4,
+                  "evidence_index": 1
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 15,
+                  "text": "- [1] approved-product_center-v1.md v1 第7行：目标：团队知识助手支持按部门权限检索资料，返回可核验引用。范围：仅本地虚构资料；不自动发布或承诺全部回答正确。验收：权限过滤、引用定位、撤权后停止、人工审核。",
+                  "score": 4,
+                  "evidence_index": 2
+                },
+                {
+                  "artifact_ref": "artifact://department-cockpit/market_center/artifact_69813926fe7831032051",
+                  "filename": "approved-technology_center-v1.md",
+                  "version": 1,
+                  "digest": "sha256:b31623ebaecca6f3ebe28424ab8ebc7029b33e201d89d89fd6ec7e1dcf5e8fc3",
+                  "line": 16,
+                  "text": "- [2] approved-product_center-v1.md v1 第14行：- [0] acceptance-cases.json v1 第1行：{\"验收\": [\"资料按权限过滤\", \"引用精确定位\", \"撤权停止执行\", \"失败不自动通过\", \"新版使旧批准失效\"], \"production_ready\": false}",
+                  "score": 4,
+                  "evidence_index": 3
+                }
+              ],
+              "checks": [
+                {
+                  "name": "需求包含权限",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含引用",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含撤权",
+                  "passed": true
+                },
+                {
+                  "name": "需求包含验收",
+                  "passed": true
+                },
+                {
+                  "name": "同一文档版本没有内容冲突",
+                  "passed": true
+                },
+                {
+                  "name": "无未解决的旧版需求冲突",
+                  "passed": true
+                },
+                {
+                  "name": "product_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "technology_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "market_center检索结果不越部门",
+                  "passed": true
+                },
+                {
+                  "name": "引用可以定位到原文版本和行",
+                  "passed": true
+                },
+                {
+                  "name": "未共享资料不可进入执行快照",
+                  "passed": true
+                },
+                {
+                  "name": "角色权限验收",
+                  "passed": true
+                },
+                {
+                  "name": "本部门资料与交接产物来源不混淆",
+                  "code": "source_basis_consistent",
+                  "passed": true
+                },
+                {
+                  "name": "正文引用由宿主定位来源，不编写文件名",
+                  "code": "host_owned_source_labels",
+                  "passed": true
+                },
+                {
+                  "name": "恢复信息未混入业务正文",
+                  "code": "no_operational_feedback_leak",
+                  "passed": true
+                },
+                {
+                  "name": "没有未实现的能力或删除承诺",
+                  "code": "no_unsupported_promises",
+                  "passed": true
+                },
+                {
+                  "name": "执行陈述与实际工具回执一致",
+                  "code": "execution_claims_grounded",
+                  "passed": true
+                },
+                {
+                  "name": "未共享资料明确拒绝访问",
+                  "code": "unshared_access_denied",
+                  "passed": true
+                },
+                {
+                  "name": "批准且显式共享的产物允许交接",
+                  "code": "approved_shared_artifact_allowed",
+                  "passed": true
+                },
+                {
+                  "name": "交接限定接收部门、版本和授权范围",
+                  "code": "handoff_scope_bounded",
+                  "passed": true
+                },
+                {
+                  "name": "批准不自动等于共享",
+                  "code": "approval_is_not_sharing",
+                  "passed": true
+                },
+                {
+                  "name": "无绝对隔离或全面开放的矛盾表述",
+                  "code": "no_conflicting_blanket_claim",
+                  "passed": true,
+                  "evidence": []
+                },
+                {
+                  "name": "受检正文与实际产物一致",
+                  "passed": true
+                },
+                {
+                  "name": "独立CompanyEvaluator",
+                  "passed": true
+                },
+                {
+                  "name": "引用对应批准的资料版本与原文",
+                  "passed": true
+                },
+                {
+                  "name": "执行快照与授权绑定一致",
+                  "passed": true
+                },
+                {
+                  "name": "固定工具确实执行且模型模式与授权一致",
+                  "passed": true
+                },
+                {
+                  "name": "本部门资料与交接产物来源不混淆",
+                  "code": "source_basis_consistent",
+                  "passed": true
+                },
+                {
+                  "name": "正文引用由宿主定位来源，不编写文件名",
+                  "code": "host_owned_source_labels",
+                  "passed": true
+                },
+                {
+                  "name": "恢复信息未混入业务正文",
+                  "code": "no_operational_feedback_leak",
+                  "passed": true
+                },
+                {
+                  "name": "没有未实现的能力或删除承诺",
+                  "code": "no_unsupported_promises",
+                  "passed": true
+                },
+                {
+                  "name": "执行陈述与实际工具回执一致",
+                  "code": "execution_claims_grounded",
+                  "passed": true
+                },
+                {
+                  "name": "正文规则与宿主来源清单匹配",
+                  "code": "content_version_and_source_binding",
+                  "passed": true
+                }
+              ],
+              "tool_receipts": [
+                {
+                  "operation": "query_documents",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:f6e0d4c063ff0270ff23d4ff87134ef8f41c861628586f3c7d568c3657fe886a",
+                  "pid": 74382,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "retrieve_evidence",
+                  "arguments_digest": "sha256:087f64703c8bd587c4f8242fe768f5c884c6739ad61437235d64cf7cc92065f8",
+                  "output_digest": "sha256:f619954aacb203fcd0b66b482902241056c635f8bcdd4918a353ec647598f0bf",
+                  "pid": 74382,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "validate_requirements",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:d82421d76f1ec9ccf65913da122d1c20b7c0ecb08cb3e9bbac28a81ebe2b3ea7",
+                  "pid": 74382,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "run_acceptance",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:ca43fbb1086cf04617ed3bdbd6f95eef25de4f9dc6a640c6e2d338a1c06bff2e",
+                  "pid": 74382,
+                  "actual_execution": true
+                },
+                {
+                  "operation": "submit_candidate",
+                  "arguments_digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                  "output_digest": "sha256:d354627a0aaa0f7b1e7a10c299b33dee05a7d4448e90f99193acb90485b0c5ae",
+                  "pid": 74382,
+                  "actual_execution": true
+                }
+              ],
+              "snapshot_digest": "sha256:b3f80fd256031b0445bd1022892386052db92b40398be3449336d178a9acb536",
+              "input_refs": [
+                "artifact://department-cockpit/market_center/artifact_4dc85fff92b3f278b155",
+                "artifact://department-cockpit/market_center/artifact_ec561a27bd3754e9b8c2",
+                "artifact://department-cockpit/market_center/artifact_7ccd38c9ca64f743c90c",
+                "artifact://department-cockpit/market_center/artifact_e368ee90994eaf707423",
+                "artifact://department-cockpit/market_center/artifact_8b6fd52c99c652435480",
+                "artifact://department-cockpit/market_center/artifact_4d6e971847069fedbe1c",
+                "artifact://department-cockpit/market_center/artifact_274252c2f3dd4fe42eee",
+                "artifact://department-cockpit/market_center/artifact_e388e6c91da5b3a08059",
+                "artifact://department-cockpit/market_center/artifact_6e2fccbd763ae9e67994",
+                "artifact://department-cockpit/market_center/artifact_4079395403c1f4f5e900",
+                "artifact://department-cockpit/market_center/artifact_ecf34b9236ed016bebb4",
+                "artifact://department-cockpit/market_center/artifact_a32e853bc52874d44baf",
+                "artifact://department-cockpit/market_center/artifact_69813926fe7831032051"
+              ],
+              "model_mode": "live_authorized_campaign",
+              "model_requests": 3,
+              "cost_cny_micros": 20880,
+              "release_authorization": false,
+              "production_authorization": false
+            },
+            "candidate_digest": "sha256:6f0065298022f7a8b9153c7feac8045e4c11c26b61a48eb9cc9e0f2bc1a80b01",
+            "evaluation": {
+              "report_id": "evaluation_50595ddffe9b95fc8a6f",
+              "evaluator_agent_id": "agt_evaluator_syn",
+              "subject_result_id": "result_attempt_e8aeed4d490446758141",
+              "verdict": "pass",
+              "reason_codes": [
+                "fixed_suite_pass"
+              ],
+              "release_authorization": false
+            },
+            "checks_passed": true,
+            "created_at": "2026-10-17T06:12:35Z"
+          }
+        }
+      ]
+    }
+  ]
+}

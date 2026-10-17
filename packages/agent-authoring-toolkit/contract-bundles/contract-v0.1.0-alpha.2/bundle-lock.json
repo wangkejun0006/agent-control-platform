@@ -1,0 +1,181 @@
+{
+  "lock_version": "orbit.contract-consumer-bundle/1",
+  "authority": {
+    "repository_id": "orbit-agent-architecture",
+    "contract_release_id": "contract-v0.1.0-alpha.2",
+    "contract_git_tag": "contract-v0.1.0-alpha.2",
+    "contract_git_commit": "bc7f21e67dbadd6aa618954fea4656b3387382f9",
+    "release_manifest_sha256": "sha256:ffc9b78cda101e263dcbc0a60060cc48c5c11dec0eb1aba5aca50a74b489521a"
+  },
+  "authoring_draft": {
+    "status": "draft_non_authoritative",
+    "source_commit": "60059649126c68a453b3cd4e5ca2114b10b84277",
+    "schemas": [
+      {
+        "schema_id": "urn:company-ai-os:schema:agent-scaffold-request:0.1",
+        "source_path": "contracts/drafts/v0.2/schemas/agent-scaffold-request.schema.json",
+        "bundle_path": "authoring-schemas/agent-scaffold-request.schema.json",
+        "sha256": "sha256:eba3faf28462a8f65ff19425b405d9ec297614f5fea8c076e43b67eda9ec86eb"
+      },
+      {
+        "schema_id": "urn:company-ai-os:schema:runtime-selection-assessment:0.1",
+        "source_path": "contracts/drafts/v0.2/schemas/runtime-selection-assessment.schema.json",
+        "bundle_path": "authoring-schemas/runtime-selection-assessment.schema.json",
+        "sha256": "sha256:c1d3f97bdcabab60615db401414bd8d74c9755f2999846b9f7fe864c4f9af960"
+      }
+    ]
+  },
+  "released_schemas": [
+    {
+      "schema_id": "urn:company-ai-os:schema:adapter-capability-report:0.1",
+      "bundle_path": "schemas/adapter-capability-report.schema.json",
+      "sha256": "sha256:42a20e61e53d1de1dd4069b7b6f4aac458e6dd0c425270870e244c2b7e1de581"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:agent-binding:0.1",
+      "bundle_path": "schemas/agent-binding.schema.json",
+      "sha256": "sha256:6e8a1e23bff0eff50a4a9ff05b02714d52aeef1f8222e5721d362542b8760b91"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:agent-capability-profile:0.1",
+      "bundle_path": "schemas/agent-capability-profile.schema.json",
+      "sha256": "sha256:9c2325ae679b51640b1572f9758ac93a859bd6e4732dc5e70ba8c447927d393f"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:agent-common:0.1",
+      "bundle_path": "schemas/agent-common.schema.json",
+      "sha256": "sha256:19345696c52a8e3822f1d681f41605e75be02d6f99ba64a70971aa726a08b122"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:agent-definition:0.1",
+      "bundle_path": "schemas/agent-definition.schema.json",
+      "sha256": "sha256:1ed80d3e4dc7d2b8fe64220bd8fe86cb304bd52e5cb09c0895f1eec076b43b43"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:agent-invocation:0.1",
+      "bundle_path": "schemas/agent-invocation.schema.json",
+      "sha256": "sha256:c5972f4029ee83b410334779f02af0fa7fae8276bcd5df0b3bc0618664df3fcb"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:agent-registry:0.3",
+      "bundle_path": "schemas/agent-registry.schema.json",
+      "sha256": "sha256:e95dc1d9c6445807d78f6a7501e1944bf1df791ba8fe65e317f79d761fee1b4b"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:agent-release-manifest:0.1",
+      "bundle_path": "schemas/agent-release-manifest.schema.json",
+      "sha256": "sha256:6067eb402a023c7eb8e2541f3864ffb5eaac6913af4c34891f96d552af3643c6"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:agent-template:0.1",
+      "bundle_path": "schemas/agent-template.schema.json",
+      "sha256": "sha256:a17f81d9a5d220efac5dbf96155cd2a907915a53fc676a1f6cb618326830bad3"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:approval-decision:0.1",
+      "bundle_path": "schemas/approval-decision.schema.json",
+      "sha256": "sha256:7f02292e4fcf5a02273d216768a7b3285e30dfd94c080cc6209d67ec1f7479df"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:audit-event:0.1",
+      "bundle_path": "schemas/audit-event.schema.json",
+      "sha256": "sha256:fbc2989e905d33660ff0bb3300d46a32378dc4dc34d0296c4b2d254eb95981ed"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:automation-common:0.1",
+      "bundle_path": "schemas/automation-common.schema.json",
+      "sha256": "sha256:cba5f4ed468315b05cbba2b5ede692c1c81d786d54e96dfef1e8e436f21edada"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:automation-policy-activation-receipt:0.1",
+      "bundle_path": "schemas/automation-policy-activation-receipt.schema.json",
+      "sha256": "sha256:2fa3d2a94cc72d34f8d1664d0faf02e510584e7cb0fb52e484c083f998d089d5"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:automation-policy:0.1",
+      "bundle_path": "schemas/automation-policy.schema.json",
+      "sha256": "sha256:59d6ea8831fa8534a89683bbc5e78de89273784d0f4ef074a562e2a025666a3c"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:dataset-metadata:0.3",
+      "bundle_path": "schemas/dataset-metadata.schema.json",
+      "sha256": "sha256:8753b6dafc4d8f99e6816c51197809f6650634e6893fd7704b2cd6b8f7036c22"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:evaluation-report:0.1",
+      "bundle_path": "schemas/evaluation-report.schema.json",
+      "sha256": "sha256:d6fa0293357c3c937a5b70f84211a917b2b773fc0f697b2d3eb1b9d43651f55c"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:execution-closure-receipt:0.1",
+      "bundle_path": "schemas/execution-closure-receipt.schema.json",
+      "sha256": "sha256:1599fdb362378023b4ff3949bea47cb6dd098a5662c9dc930243fa215b3be749"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:execution-grant:0.1",
+      "bundle_path": "schemas/execution-grant.schema.json",
+      "sha256": "sha256:3115da53ce3881d1c92e3ff23296b0f39cdab4565da266ae49005cd9f0e9c5b5"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:hierarchy-model:0.2",
+      "bundle_path": "schemas/hierarchy-model.schema.json",
+      "sha256": "sha256:a005993fc7d231e5b0d5c0d327de379674dafffcdc592478bf5c65e0dcb4ddb1"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:model-route:0.1",
+      "bundle_path": "schemas/model-route.schema.json",
+      "sha256": "sha256:fa5b3b779731d2b0bfc962123a4a2cc00ab46eba15d91e495f21bd4da8903208"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:policy-decision-receipt:0.1",
+      "bundle_path": "schemas/policy-decision-receipt.schema.json",
+      "sha256": "sha256:0139efb99025244cb9f8d6e2610cf745fdb7c9514b903c2c94372bd6c030dadd"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:qualification-run:0.1",
+      "bundle_path": "schemas/qualification-run.schema.json",
+      "sha256": "sha256:2cf8e961695047a26613107f26cdb7e17623d5b4164a903042e2c200f769d01a"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:remediation-receipt:0.1",
+      "bundle_path": "schemas/remediation-receipt.schema.json",
+      "sha256": "sha256:4bd7741ee1ff1d1ddf06182450cefec3e2766365632d0da6911a41af462a9acd"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:result-package:0.3",
+      "bundle_path": "schemas/result-package.schema.json",
+      "sha256": "sha256:c91ca9c88ee662d4b7ec490f2bab83080e637184f5f8398c623ee9e7f5bf089b"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:runtime-event:0.1",
+      "bundle_path": "schemas/runtime-event.schema.json",
+      "sha256": "sha256:3eaa8ee54a74cbfbb7172dacf1500be0f49157047379d970410a60d08db45434"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:runtime-realization:0.1",
+      "bundle_path": "schemas/runtime-realization.schema.json",
+      "sha256": "sha256:6d4653043fea17fea9414b8261be27ccce349c694a8458925a484e3b7d2af0fd"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:stage-execution-receipt:0.1",
+      "bundle_path": "schemas/stage-execution-receipt.schema.json",
+      "sha256": "sha256:5b83528e1b73667042bf010fe7f6c0bd148d97f78fd41dbbc3d58f07ae406211"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:system-composition:0.1",
+      "bundle_path": "schemas/system-composition.schema.json",
+      "sha256": "sha256:ec7a66cdce1b2b09bc8194bdf60ccbc0c45f9d100e607acea50f9bc4ee4ad27d"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:task:0.3",
+      "bundle_path": "schemas/task.schema.json",
+      "sha256": "sha256:37b4ece28592796aa876b2232d8785899817b93228f5bc9fedbe4119c6899111"
+    },
+    {
+      "schema_id": "urn:company-ai-os:schema:tool-manifest:0.3",
+      "bundle_path": "schemas/tool-manifest.schema.json",
+      "sha256": "sha256:717475b9e81e2939c9e42e0a9e4cefc164822e106145ff3d85ed36ffed51b014"
+    }
+  ]
+}
+

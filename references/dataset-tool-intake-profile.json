@@ -1,0 +1,56 @@
+{
+  "profile_version": "orbit.synthetic-tool-intake-profile/1",
+  "profile_id": "profile_orbit_dataset_tools_d0_syn",
+  "evidence_status": "synthetic",
+  "company_authoritative": false,
+  "contract_release_id": "contract-v0.1.0-alpha.1",
+  "source_release": {
+    "release_id": "dataset-tools-v0.1.0-synthetic",
+    "manifest_sha256": "sha256:c16ace9eb4619b5d58e4e464e3d924d21a4c2c13f96007f9c7d37a209cc6075e"
+  },
+  "tools": [
+    {
+      "tool_id": "tool_orbit_dataset_query_watchlist",
+      "version": "0.1.0-synthetic",
+      "manifest_sha256": "sha256:9957bc16e43bf18bfc9527b16f1d2ffbea97aca4d8929cf7745da1dc9f497056",
+      "capabilities": [
+        "dataset_registry.query_watchlist"
+      ],
+      "d0_allowed_operation_ids": [
+        "query_registry_watchlist"
+      ]
+    },
+    {
+      "tool_id": "tool_orbit_dataset_acquisition_worker",
+      "version": "0.1.0-synthetic",
+      "manifest_sha256": "sha256:3e72948eec17962ad9f103f7541b4085272edcd2e6936decf67eb87b4645df5d",
+      "capabilities": [
+        "dataset_acquisition.authorized_execute"
+      ],
+      "d0_allowed_operation_ids": [
+        "acquire_synthetic_artifact"
+      ]
+    },
+    {
+      "tool_id": "tool_orbit_dataset_registry_publisher",
+      "version": "0.1.0-synthetic",
+      "manifest_sha256": "sha256:395abb09fc46b56487a411174eff35324b99203449768f548441259f2147fa79",
+      "capabilities": [
+        "dataset_registry.publish_candidate"
+      ],
+      "d0_allowed_operation_ids": [
+        "publish_registry_patch",
+        "rollback_registry_patch"
+      ]
+    }
+  ],
+  "boundary": {
+    "registration_only": true,
+    "activation_authorized": false,
+    "production_authorized": false,
+    "real_network_authorized": false,
+    "real_storage_authorized": false,
+    "real_registry_authorized": false
+  }
+}
+

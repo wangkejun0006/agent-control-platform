@@ -1,0 +1,48 @@
+{
+  "lock_version": "orbit.semantic-authority-consumer-lock/1",
+  "status": "released_internal_alpha",
+  "authority": {
+    "repository_id": "orbit-agent-architecture",
+    "architecture_commit": "d9d8a67e27e61f19bdd9c8050e379f5e8e68841e",
+    "semantic_authority_release_id": "semantic-authority-v0.1.0-alpha.7",
+    "semantic_authority_release_manifest_path": "architecture/locks/releases/semantic-authority-v0.1.0-alpha.7/manifest.json",
+    "semantic_authority_release_manifest_sha256": "sha256:6d11d58b1ef8e535334c62157d9cb8de8b3fb5967da54301536d20e507355815",
+    "semantic_authority_lock_path": "architecture/locks/semantic-authority-lock.json",
+    "semantic_authority_lock_sha256": "sha256:ecf2f5d2e165addde44c9349edc01a52bbc3efa6c27ead5c8ce36a1c33d65407",
+    "publication_stage": "release"
+  },
+  "sources": {
+    "concept_catalog": {
+      "version": "orbit.architecture-concept-catalog/2",
+      "sha256": "sha256:d862c4f81ada477f6b8a60622a5f7803f7d85e261eba890027ab22ced96e6921"
+    },
+    "term_registry": {
+      "version": "orbit.architecture-term-classification/2",
+      "sha256": "sha256:344f7c68ebcca2f1175d5a662dc2a36a97fd78b7a4c14d7a455332f227878b7e"
+    },
+    "state_catalog": {
+      "version": "orbit.architecture-state-catalog/1",
+      "sha256": "sha256:9ee15d7fbe177d0e6e46151a072b22fae3807b0c11cb8cd0792b54625e5e9b76"
+    },
+    "contract_enum_index": {
+      "version": "orbit.architecture-contract-enum-index/1",
+      "sha256": "sha256:138ca44eff31bcea0971a1ea1d1ade49b0f7f0ff7f7994fa374f654adbf4f2a6"
+    }
+  },
+  "contract_release": {
+    "release_id": "contract-v0.2.0-alpha.1",
+    "manifest_sha256": "sha256:52de94434ec5fc2cfdb692c83041c0b0faaabe2f6ae415bd27ce395fbfe0e87e"
+  },
+  "historical_replay": [
+    {
+      "release_id": "contract-v0.1.0-alpha.1",
+      "consumer_lock_path": "references/company-contract-lock.alpha.1.history.json"
+    }
+  ],
+  "non_claims": [
+    "本锁只固定已发布内部 Alpha 语义源和 Contract 字节，不产生运行权限。",
+    "Control Plane 只建立只读投影，不成为 Concept、Term 或 State 的第二定义源。",
+    "Alpha.1 仅允许显式历史回放，不得作为新候选、注册、执行或发布的默认基线。"
+  ]
+}
+

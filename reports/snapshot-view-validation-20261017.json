@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:8433/",
+  "bind": "127.0.0.1",
+  "pid": 79603,
+  "read_only": true,
+  "model_calls": 0,
+  "provider_key_reads": 0,
+  "budget_reads": 0,
+  "database_opened_by_viewer": false,
+  "offline_tests": {
+    "count": 5,
+    "seconds": 0.035,
+    "status": "passed"
+  },
+  "browser_verified": [
+    "new_tab_opened_and_preserved",
+    "market_v1_and_v2_visible_in_accessibility_tree",
+    "review_navigation_clicked_and_rendered"
+  ],
+  "live_download_sha256": "cd402ce5f9344fefc6e62e7f0fe45a9a05e156f30cde662b54c9242cf0cf89bd",
+  "live_post_rejected": 405,
+  "default_workbench_healthy": true,
+  "default_live_model_enabled": false,
+  "protected_old_files": 52,
+  "protected_old_files_unchanged": true,
+  "runtime_health": {
+    "status": "snapshot_ready",
+    "read_only": true,
+    "live_model_enabled": false,
+    "database_opened": false
+  },
+  "published": false
+}

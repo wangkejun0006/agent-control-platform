@@ -1,0 +1,38 @@
+{
+  "schema": "orbit.minimal-rework-outcome/1",
+  "status": "stopped_incomplete",
+  "requests": 2,
+  "request_limit": 5,
+  "unused_requests_not_carried_forward": 3,
+  "closed": true,
+  "cost_cny_conservative_not_invoice": 0.014799,
+  "input_tokens": 1637,
+  "output_tokens": 824,
+  "planning_questions_passed": true,
+  "package_prose_structure_passed_offline_reproduction": true,
+  "rejected_codes": [
+    "source_basis_consistent"
+  ],
+  "real_professional_tool_requests": 0,
+  "new_market_candidate": false,
+  "new_version_review_completed": false,
+  "final_delivery_completed": false,
+  "offline_preconditions": {
+    "candidates": 3,
+    "actual_tool_receipts": 15,
+    "handoffs": 2,
+    "mode": "offline_deterministic"
+  },
+  "open_runs": 0,
+  "open_leases": 0,
+  "old_reports_checked": 32,
+  "old_reports_unchanged": true,
+  "historical_budget_files_read_or_updated": false,
+  "credential_scan_new_files": 25,
+  "credential_matches": [],
+  "private_permission_exceptions": [],
+  "diagnosis": "Package prose slots are valid. Planning has no retrieved evidence, but the shared prompt contains literal example source labels with [0]/[1]. The model repeated those labels; the current evidence-binding gate correctly rejects unavailable references. Separate planning policy descriptions from execution evidence prompts before a future validation. No normalization, gate bypass or retry performed.",
+  "reviewer": "Codex AI read-only diagnosis, not user human approval",
+  "additional_model_calls_by_audit": 0,
+  "published": false
+}

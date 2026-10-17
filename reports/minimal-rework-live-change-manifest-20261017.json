@@ -1,0 +1,58 @@
+{
+  "comparison": "local recovery tar, not Git diff",
+  "files": [
+    {
+      "path": "README.md",
+      "change": "modified",
+      "sha256": "618247e0eea5c469347043e56068c6ca653f0773fe696d1aaf03c9cc3d17c32c"
+    },
+    {
+      "path": "reports/minimal-rework-live-validation-20261017.json",
+      "change": "added",
+      "sha256": "5c97eba29f69a62102e557aad09f3cd80167df4857c655b29f9974c9d7acf226"
+    },
+    {
+      "path": "reports/minimal-rework-live-outcome-20261017.json",
+      "change": "added",
+      "sha256": "e61f84fdcc23754ddd23162d8ac6493e638937940ca773a4d6683985c8b76f65"
+    },
+    {
+      "path": "tests/test_minimal_validation.py",
+      "change": "added",
+      "sha256": "051c09af910d0001392722ee85db3bea0ed737733ab8b915cdfdee50052d0412"
+    },
+    {
+      "path": "showcase/workbench/minimal_validation.py",
+      "change": "added",
+      "sha256": "3675e804ed645d015022c5ad239814928beba9649e2e1a63007ca51a51fb45a6"
+    },
+    {
+      "path": "docs/MINIMAL_REWORK_LIVE_20261017.md",
+      "change": "added",
+      "sha256": "eb524584bb52668fb98407ff24c7a80a47cf000a48f55fd57ce1b959697e2b0e"
+    },
+    {
+      "path": ".agent/HANDOFF.md",
+      "change": "modified",
+      "sha256": "3cb2b15bac7b26695a837da784e87fbc67b978be1168407d74c44929b2466143"
+    }
+  ],
+  "tests": [
+    {
+      "log": ".runtime/minimal-live-driver-offline-20261017.log",
+      "tests": 3,
+      "seconds": 23.626,
+      "passed": true
+    },
+    {
+      "log": ".runtime/minimal-live-failure-regression-20261017.log",
+      "tests": 1,
+      "seconds": 0.003,
+      "passed": true
+    }
+  ],
+  "old_reports_checked": 32,
+  "old_reports_unchanged": true,
+  "historical_budget_files_opened": 0,
+  "new_activity_closed": true
+}

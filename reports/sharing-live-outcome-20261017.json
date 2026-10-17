@@ -1,0 +1,40 @@
+{
+  "status": "incomplete_closed_no_additional_calls",
+  "requests": 21,
+  "max_requests": 24,
+  "cost_cny_conservative_not_invoice": 0.122883,
+  "closed": true,
+  "unused_requests_not_carried_forward": 3,
+  "contrasts_passed": 3,
+  "approved_explicit_handoffs": 2,
+  "actual_tool_receipts": 15,
+  "candidate_count": 3,
+  "record_counts": {
+    "command": 27,
+    "workflow": 1,
+    "event": 67,
+    "artifact": 41,
+    "attempt": 5,
+    "candidate": 3,
+    "review": 3,
+    "handoff": 2
+  },
+  "market_return_recorded": true,
+  "revised_market_candidate_generated": false,
+  "final_delivery_approved": false,
+  "provider_http_successes": 21,
+  "host_planning_contract_failures": [
+    9,
+    21
+  ],
+  "failure_9": "Technology questions omitted recommended and added non-question fields; response rejected. Fixed stage-specific prompt; retained response and old attempt, explicit bounded repair created a new attempt.",
+  "failure_21": "Market rework package replaced result_kind with type and added sections; rejected, no plan approval or tool execution. Remaining 3 calls insufficient for one regenerated package plus 3 tool stages.",
+  "manual_evidence_review": {
+    "performed_by": "Codex AI read-only inspection, not user human approval",
+    "classification_reasons": "Three responses independently explain reject/reject/allow with source documents denied.",
+    "candidate_policy": "Three submitted bodies pass current bounded sharing checks; requires human review, no semantic certification.",
+    "rework_gap": "Return and new questions recorded, regenerated task package rejected; no revised prose or final ZIP."
+  },
+  "reviewer": "authenticated synthetic local test account; native approvals, not user human approval",
+  "published": false
+}

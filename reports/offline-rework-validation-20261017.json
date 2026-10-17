@@ -1,0 +1,78 @@
+{
+  "schema": "orbit.offline-rework-repair/1",
+  "status": "passed",
+  "real_model_requests": 0,
+  "provider_credentials_read": false,
+  "protected_files": 153,
+  "protected_files_unchanged": true,
+  "historical_campaigns": [
+    {
+      "name": "live-20261016",
+      "requests": 20,
+      "closed": true
+    },
+    {
+      "name": "workbench-live-20261017",
+      "requests": 22,
+      "closed": true
+    },
+    {
+      "name": "sharing-live-20261017",
+      "requests": 21,
+      "closed": true
+    }
+  ],
+  "historical_response_21_still_rejected": true,
+  "historical_prose_rechecks": [
+    {
+      "department": "product_center",
+      "candidate_digest": "sha256:2fdc8fc3d349ee5b831e2f118ea29a5c5e9ae0f4dcc797c9f9ed9a887b3076dd",
+      "rejected_codes": [
+        "source_basis_consistent"
+      ]
+    },
+    {
+      "department": "technology_center",
+      "candidate_digest": "sha256:0f9093eeaae3c01b36baa03082a761188da3cc99878555c7016d9f824833d9c1",
+      "rejected_codes": [
+        "host_owned_source_labels",
+        "no_operational_feedback_leak",
+        "execution_claims_grounded"
+      ]
+    },
+    {
+      "department": "market_center",
+      "candidate_digest": "sha256:1ea160542ffc95250c561670c26341ea04fb853c4bd79fcecba4e1aca7744774",
+      "rejected_codes": [
+        "host_owned_source_labels",
+        "no_unsupported_promises"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "log": ".runtime/offline-rework-regression-20261017.log",
+      "tests": 47,
+      "seconds": 252.222,
+      "passed": true
+    },
+    {
+      "log": ".runtime/offline-rework-final-native-20261017.log",
+      "tests": 10,
+      "seconds": 39.828,
+      "passed": true
+    }
+  ],
+  "test_scopes_overlap": true,
+  "minimum_live_plan": {
+    "authorized": false,
+    "new_campaign_required": true,
+    "requests": 5,
+    "hard_limit": 5,
+    "cost_limit_cny": 0.3,
+    "max_reservation_cny": 0.24288,
+    "upstream_mode": "explicit_offline_fixtures",
+    "five_call_native_closure_verified_with": "fake transport only; not real model output"
+  },
+  "limitations": "Deterministic structure/provenance plus bounded Chinese prose checks; not full semantic or production certification. Existing responses never rewritten."
+}

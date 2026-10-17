@@ -1,0 +1,83 @@
+{
+  "schema": "orbit.planning-boundary-live-outcome/1",
+  "status": "stopped_incomplete",
+  "requests": 5,
+  "request_limit": 5,
+  "closed": true,
+  "cost_limit_cny": 0.3,
+  "cost_cny_conservative_not_invoice": 0.036252,
+  "input_tokens": 5928,
+  "output_tokens": 1539,
+  "real_planning_requests": 2,
+  "real_professional_requests": 3,
+  "actual_market_v2_tool_receipts": 5,
+  "planning_and_native_candidate_checks_passed": true,
+  "independent_read_only_payload_checks": [
+    {
+      "name": "本部门资料与交接产物来源不混淆",
+      "code": "source_basis_consistent",
+      "passed": true
+    },
+    {
+      "name": "正文引用由宿主定位来源，不编写文件名",
+      "code": "host_owned_source_labels",
+      "passed": true
+    },
+    {
+      "name": "恢复信息未混入业务正文",
+      "code": "no_operational_feedback_leak",
+      "passed": true
+    },
+    {
+      "name": "没有未实现的能力或删除承诺",
+      "code": "no_unsupported_promises",
+      "passed": true
+    },
+    {
+      "name": "执行陈述与实际工具回执一致",
+      "code": "execution_claims_grounded",
+      "passed": true
+    },
+    {
+      "name": "正文规则与宿主来源清单匹配",
+      "code": "content_version_and_source_binding",
+      "passed": true
+    }
+  ],
+  "all_driver_body_checks_read_only": [
+    {
+      "name": "unshared_row_denied",
+      "passed": false
+    },
+    {
+      "name": "approval_only_row_denied",
+      "passed": false
+    },
+    {
+      "name": "explicit_share_row_allowed",
+      "passed": false
+    },
+    {
+      "name": "checklist_scope_and_expiry",
+      "passed": true
+    }
+  ],
+  "new_market_candidate": true,
+  "new_version_review_completed": false,
+  "stale_approval_probe_completed": false,
+  "final_delivery_completed": false,
+  "offline_upstream_and_v1": true,
+  "open_runs": 0,
+  "open_leases": 0,
+  "old_reports_checked": 37,
+  "old_reports_unchanged": true,
+  "historical_budget_files_read_or_updated": false,
+  "credential_scan_new_files": 36,
+  "credential_matches": [],
+  "private_permission_exceptions": [],
+  "diagnosis": "Driver phrase matching rejects semantically negative 不读取、不检索 and positive 在接收部门、绑定版本、授权范围内读取使用. No checker fix, output cleanup, approval, delivery, retry or status rewrite performed. Native payload checks pass, but full validation remains incomplete.",
+  "semantic_review": "Codex AI read-only review, not user human approval: table distinguishes all three states, checklist binds department/version/scope/revocation; approved artifact is cited. General prose truth is not certified.",
+  "reviewer": "No market-v2 approval; previous synthetic test account is not a human reviewer.",
+  "additional_model_calls_by_audit": 0,
+  "published": false
+}

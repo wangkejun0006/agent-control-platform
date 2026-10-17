@@ -1,0 +1,86 @@
+{
+  "scope": "portable_candidate_files_only",
+  "files_scanned": 524,
+  "excluded_generated_or_private_directories": [
+    ".git",
+    ".ruff_cache",
+    ".runtime",
+    ".venv",
+    "__pycache__",
+    "dist",
+    "node_modules",
+    "playwright-report",
+    "test-results"
+  ],
+  "findings": [
+    {
+      "path": "src/orbit_agent_control_plane/service_runtime/config.py",
+      "line": 250,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_department_cockpit.py",
+      "line": 583,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_disease_r1.py",
+      "line": 196,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_qualification_service_runtime.py",
+      "line": 442,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_qualification_service_runtime.py",
+      "line": 449,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_qualification_service_runtime.py",
+      "line": 452,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_qualification_service_runtime_adapter.py",
+      "line": 88,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_registration.py",
+      "line": 489,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_registration_cli.py",
+      "line": 106,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_runtime_artifacts.py",
+      "line": 425,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    },
+    {
+      "path": "tests/test_runtime_artifacts.py",
+      "line": 794,
+      "category": "original_user_home",
+      "classification": "synthetic_or_platform_example"
+    }
+  ],
+  "review_required": 0,
+  "model_calls": 0,
+  "limitations": "Pattern scan plus source boundary review; not proof of exhaustive secret detection."
+}

@@ -1,0 +1,30 @@
+{
+  "profile_version": "orbit.control-plane-disease-r2-compatibility/1",
+  "profile_id": "control_plane_profile_disease_r2_composition_candidate",
+  "version": "0.1.0",
+  "status": "proposed-not-effective",
+  "required_capabilities": [
+    "immutable_agent_release_selection",
+    "immutable_tool_release_selection",
+    "model_route_selection",
+    "task_grant_intersection",
+    "budget_enforcement",
+    "cancellation_propagation",
+    "worker_lease_terminal_cleanup",
+    "metadata_only_audit"
+  ],
+  "approval_scopes": [
+    "agent_activation",
+    "tool_activation",
+    "model_route_approval",
+    "one_time_r2_execution"
+  ],
+  "scope_conversion_allowed": false,
+  "effective_task_created": false,
+  "effective_grant_created": false,
+  "worker_started": false,
+  "external_model_called": false,
+  "external_network_used": false,
+  "release_authorization": false
+}
+

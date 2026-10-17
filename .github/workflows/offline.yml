@@ -1,0 +1,34 @@
+name: Offline portfolio verification
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: python -m pip install uv
+      - run: uv sync --locked --extra loopback-d0
+      - run: uv run --locked python scripts/validate_offline.py --report .runtime/ci/report.json --log .runtime/ci/tests.log
+      - run: npm ci --prefix packages/agent-authoring-toolkit --ignore-scripts
+      - run: npm test --prefix packages/agent-authoring-toolkit && npm run verify:bundle --prefix packages/agent-authoring-toolkit
+      - run: npm ci --prefix packages/orbit-control-plane-console --ignore-scripts
+      - run: npm run lint --prefix packages/orbit-control-plane-console && npm test --prefix packages/orbit-control-plane-console && npm run build --prefix packages/orbit-control-plane-console
+      - run: cd packages/orbit-control-plane-console && npx playwright install --with-deps chromium
+      - run: npm run test:e2e --prefix packages/orbit-control-plane-console
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: offline-verification
+          path: |
+            .runtime/ci/
+            packages/orbit-control-plane-console/playwright-report/

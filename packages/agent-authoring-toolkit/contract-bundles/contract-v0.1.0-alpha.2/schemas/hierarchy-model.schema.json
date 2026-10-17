@@ -1,0 +1,1587 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "公司级架构交换契约，工作规则仍需人类批准。",
+  "$id": "urn:company-ai-os:schema:hierarchy-model:0.2",
+  "title": "Company AI OS Hierarchy Model",
+  "description": "组织、Agent、权限和数据层级的统一交换契约。工作规则尚待公司领导确认。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "hierarchy_model_id",
+    "model_version",
+    "status",
+    "evidence_status",
+    "nodes",
+    "edges",
+    "memberships",
+    "permission_grants",
+    "delegations",
+    "approval_policies",
+    "data_ownership_bindings",
+    "owner_transition_policies",
+    "memory_disposition_policies",
+    "override_records",
+    "lifecycle_events",
+    "snapshots",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2"
+    },
+    "hierarchy_model_id": {
+      "type": "string",
+      "pattern": "^hmodel_[a-z0-9][a-z0-9_-]{2,63}$"
+    },
+    "model_version": {
+      "$ref": "#/$defs/version"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "proposed",
+        "approved",
+        "superseded"
+      ]
+    },
+    "evidence_status": {
+      "enum": [
+        "architecture_assumption",
+        "human_confirmed",
+        "leadership_approved"
+      ]
+    },
+    "assumption_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^HM-A-[0-9]{2}$"
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hierarchy_node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hierarchy_edge"
+      }
+    },
+    "memberships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/membership"
+      }
+    },
+    "permission_grants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/permission_grant"
+      }
+    },
+    "delegations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/delegation"
+      }
+    },
+    "approval_policies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/approval_policy"
+      }
+    },
+    "data_ownership_bindings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/data_ownership_binding"
+      }
+    },
+    "owner_transition_policies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/owner_transition_policy"
+      }
+    },
+    "memory_disposition_policies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/memory_disposition_policy"
+      }
+    },
+    "override_records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/override_record"
+      }
+    },
+    "lifecycle_events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lifecycle_event"
+      }
+    },
+    "snapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hierarchy_snapshot"
+      }
+    },
+    "created_at": {
+      "$ref": "#/$defs/date_time"
+    },
+    "updated_at": {
+      "$ref": "#/$defs/date_time"
+    }
+  },
+  "$defs": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[a-z0-9.-]+)?$"
+    },
+    "date_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "node_id": {
+      "type": "string",
+      "pattern": "^hnode_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "human_id": {
+      "type": "string",
+      "pattern": "^hum_[a-z0-9][a-z0-9_-]{2,63}$"
+    },
+    "agent_id": {
+      "type": "string",
+      "pattern": "^agt_[a-z0-9][a-z0-9_-]{2,63}$"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^tsk_[a-z0-9][a-z0-9_-]{7,79}$"
+    },
+    "role_ref": {
+      "type": "string",
+      "pattern": "^role_[a-z0-9][a-z0-9_-]{2,79}$"
+    },
+    "audit_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "subject_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject_type",
+        "subject_id"
+      ],
+      "properties": {
+        "subject_type": {
+          "enum": [
+            "human",
+            "agent",
+            "role",
+            "membership",
+            "task",
+            "hierarchy_node"
+          ]
+        },
+        "subject_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        }
+      }
+    },
+    "resource_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource_type",
+        "resource_id"
+      ],
+      "properties": {
+        "resource_type": {
+          "enum": [
+            "hierarchy_node",
+            "tool_operation",
+            "dataset",
+            "dataset_asset",
+            "knowledge",
+            "model_route",
+            "approval_scope"
+          ]
+        },
+        "resource_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "version": {
+          "type": "string",
+          "maxLength": 120
+        }
+      }
+    },
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valid_from"
+      ],
+      "properties": {
+        "valid_from": {
+          "$ref": "#/$defs/date_time"
+        },
+        "valid_until": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/date_time"
+        }
+      }
+    },
+    "hierarchy_node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_id",
+        "dimension",
+        "node_type",
+        "display_name",
+        "status",
+        "authority_ref",
+        "version",
+        "owner_role_refs",
+        "policy_refs",
+        "validity",
+        "audit_event_ref"
+      ],
+      "properties": {
+        "node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "dimension": {
+          "enum": [
+            "organization",
+            "agent",
+            "permission",
+            "data"
+          ]
+        },
+        "node_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "active",
+            "suspended",
+            "closed",
+            "retired",
+            "superseded"
+          ]
+        },
+        "authority_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "external_identity_ref": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "version": {
+          "$ref": "#/$defs/version"
+        },
+        "owner_role_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/role_ref"
+          }
+        },
+        "policy_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          }
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        },
+        "audit_event_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "dimension": {
+                "const": "organization"
+              }
+            },
+            "required": [
+              "dimension"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_type": {
+                "enum": [
+                  "company",
+                  "department",
+                  "team",
+                  "project"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "dimension": {
+                "const": "agent"
+              }
+            },
+            "required": [
+              "dimension"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_type": {
+                "enum": [
+                  "agent_system",
+                  "company_agent",
+                  "platform_orchestrator_agent",
+                  "department_manager_agent",
+                  "specialist_agent",
+                  "execution_agent",
+                  "task_agent",
+                  "agent_template",
+                  "workflow",
+                  "model_service"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "dimension": {
+                "const": "permission"
+              }
+            },
+            "required": [
+              "dimension"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_type": {
+                "enum": [
+                  "baseline_read_scope",
+                  "explicit_grant_scope",
+                  "deny_scope",
+                  "approval_scope"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "dimension": {
+                "const": "data"
+              }
+            },
+            "required": [
+              "dimension"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_type": {
+                "enum": [
+                  "dataset",
+                  "domain",
+                  "asset",
+                  "feature",
+                  "derived_knowledge"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "hierarchy_edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edge_id",
+        "edge_type",
+        "from_node_id",
+        "to_node_id",
+        "status",
+        "validity",
+        "created_by",
+        "audit_event_ref"
+      ],
+      "properties": {
+        "edge_id": {
+          "type": "string",
+          "pattern": "^hedge_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "edge_type": {
+          "enum": [
+            "contains",
+            "primary_parent",
+            "project_participation",
+            "supervises",
+            "created_from_template",
+            "created_for_task",
+            "delegates_to",
+            "narrows",
+            "inherits_baseline_from",
+            "requires_approval",
+            "derived_from",
+            "governed_by_source_domain",
+            "consumed_by_org",
+            "belongs_to_org",
+            "bound_to_scope",
+            "accountable_to_role"
+          ]
+        },
+        "from_node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "to_node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "status": {
+          "enum": [
+            "active",
+            "ended",
+            "revoked"
+          ]
+        },
+        "authority": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "may_override_conclusions": {
+              "type": "boolean"
+            },
+            "must_preserve_original_result": {
+              "const": true
+            },
+            "may_expand_permissions": {
+              "const": false
+            },
+            "human_required_actions": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/high_impact_action"
+              }
+            }
+          }
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        },
+        "created_by": {
+          "$ref": "#/$defs/subject_ref"
+        },
+        "audit_event_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "edge_type": {
+                "const": "supervises"
+              }
+            },
+            "required": [
+              "edge_type"
+            ]
+          },
+          "then": {
+            "required": [
+              "authority"
+            ],
+            "properties": {
+              "authority": {}
+            }
+          }
+        }
+      ]
+    },
+    "membership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "membership_id",
+        "subject",
+        "org_node_id",
+        "membership_type",
+        "is_primary",
+        "status",
+        "inheritance_mode",
+        "baseline_grant_refs",
+        "human_authorization_ref",
+        "notification",
+        "validity",
+        "audit_event_ref"
+      ],
+      "properties": {
+        "membership_id": {
+          "type": "string",
+          "pattern": "^mbr_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "subject": {
+          "$ref": "#/$defs/subject_ref"
+        },
+        "org_node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "membership_type": {
+          "enum": [
+            "company",
+            "department",
+            "team",
+            "project"
+          ]
+        },
+        "is_primary": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "active",
+            "ended",
+            "revoked"
+          ]
+        },
+        "inheritance_mode": {
+          "enum": [
+            "none",
+            "team_baseline_read"
+          ]
+        },
+        "baseline_grant_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^grant_[a-z0-9][a-z0-9_-]{2,79}$"
+          }
+        },
+        "human_authorization_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "notification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required",
+            "target_role_refs",
+            "notification_event_ref"
+          ],
+          "properties": {
+            "required": {
+              "const": true
+            },
+            "target_role_refs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/role_ref"
+              }
+            },
+            "notification_event_ref": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            }
+          }
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        },
+        "audit_event_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "membership_type": {
+                "const": "team"
+              },
+              "status": {
+                "const": "active"
+              }
+            },
+            "required": [
+              "membership_type",
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "inheritance_mode": {
+                "const": "team_baseline_read"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "permission_grant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grant_id",
+        "grant_kind",
+        "effect",
+        "subject",
+        "resources",
+        "actions",
+        "purpose_constraints",
+        "inheritance_mode",
+        "status",
+        "non_delegable",
+        "validity",
+        "created_by",
+        "audit_event_ref"
+      ],
+      "properties": {
+        "grant_id": {
+          "type": "string",
+          "pattern": "^grant_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "grant_kind": {
+          "enum": [
+            "explicit",
+            "team_baseline_read",
+            "delegated_task",
+            "deny"
+          ]
+        },
+        "effect": {
+          "enum": [
+            "allow",
+            "deny"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/subject_ref"
+        },
+        "resources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/resource_ref"
+          }
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/action"
+          }
+        },
+        "purpose_constraints": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 500
+          }
+        },
+        "security_zone_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        },
+        "approval_policy_ref": {
+          "type": "string",
+          "pattern": "^apol_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "inheritance_mode": {
+          "enum": [
+            "none",
+            "active_team_members"
+          ]
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "active",
+            "suspended",
+            "revoked",
+            "expired"
+          ]
+        },
+        "non_delegable": {
+          "type": "boolean"
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        },
+        "created_by": {
+          "$ref": "#/$defs/subject_ref"
+        },
+        "audit_event_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "grant_kind": {
+                "const": "team_baseline_read"
+              }
+            },
+            "required": [
+              "grant_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "effect": {
+                "const": "allow"
+              },
+              "actions": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "discover",
+                    "read",
+                    "query"
+                  ]
+                }
+              },
+              "inheritance_mode": {
+                "const": "active_team_members"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grant_kind": {
+                "const": "deny"
+              }
+            },
+            "required": [
+              "grant_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "effect": {
+                "const": "deny"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "delegation_id",
+        "parent_agent_id",
+        "child_agent_id",
+        "parent_task_id",
+        "agent_template_ref",
+        "delegated_grant_refs",
+        "delegated_budget_ref",
+        "delegation_depth",
+        "max_delegation_depth",
+        "scope_subset_verified",
+        "approval_not_weakened",
+        "status",
+        "cleanup_policy",
+        "validity",
+        "creation_audit_ref"
+      ],
+      "properties": {
+        "delegation_id": {
+          "type": "string",
+          "pattern": "^dlg_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "parent_agent_id": {
+          "$ref": "#/$defs/agent_id"
+        },
+        "child_agent_id": {
+          "$ref": "#/$defs/agent_id"
+        },
+        "parent_task_id": {
+          "$ref": "#/$defs/task_id"
+        },
+        "agent_template_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "delegated_grant_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^grant_[a-z0-9][a-z0-9_-]{2,79}$"
+          }
+        },
+        "delegated_budget_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "delegation_depth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_delegation_depth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "scope_subset_verified": {
+          "const": true
+        },
+        "approval_not_weakened": {
+          "const": true
+        },
+        "status": {
+          "enum": [
+            "requested",
+            "active",
+            "suspended",
+            "retiring",
+            "retired",
+            "rejected"
+          ]
+        },
+        "cleanup_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "trigger",
+            "runtime_action",
+            "grant_action",
+            "identity_action",
+            "audit_record_action"
+          ],
+          "properties": {
+            "trigger": {
+              "const": "parent_task_terminal"
+            },
+            "runtime_action": {
+              "const": "destroy"
+            },
+            "grant_action": {
+              "const": "revoke"
+            },
+            "identity_action": {
+              "const": "retire"
+            },
+            "audit_record_action": {
+              "const": "retain"
+            }
+          }
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        },
+        "creation_audit_ref": {
+          "$ref": "#/$defs/audit_ref"
+        },
+        "retirement_audit_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "retired"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "retirement_audit_ref"
+            ],
+            "properties": {
+              "retirement_audit_ref": {}
+            }
+          }
+        }
+      ]
+    },
+    "approval_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approval_policy_id",
+        "display_name",
+        "status",
+        "requirements",
+        "aggregation",
+        "sequence",
+        "distinct_humans",
+        "parameter_binding",
+        "failure_mode",
+        "validity",
+        "audit_event_ref"
+      ],
+      "properties": {
+        "approval_policy_id": {
+          "type": "string",
+          "pattern": "^apol_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "active",
+            "suspended",
+            "retired"
+          ]
+        },
+        "requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "requirement_id",
+              "responsibility",
+              "acceptable_role_refs",
+              "quorum"
+            ],
+            "properties": {
+              "requirement_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{1,63}$"
+              },
+              "responsibility": {
+                "enum": [
+                  "source_governance",
+                  "consumer_business",
+                  "security",
+                  "data_owner",
+                  "financial",
+                  "permission_owner",
+                  "medical",
+                  "executive",
+                  "other"
+                ]
+              },
+              "acceptable_role_refs": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "$ref": "#/$defs/role_ref"
+                }
+              },
+              "quorum": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "aggregation": {
+          "enum": [
+            "all_requirements",
+            "global_quorum"
+          ]
+        },
+        "global_quorum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sequence": {
+          "enum": [
+            "parallel",
+            "ordered"
+          ]
+        },
+        "distinct_humans": {
+          "enum": [
+            "required",
+            "not_required",
+            "conditional"
+          ]
+        },
+        "parameter_binding": {
+          "enum": [
+            "exact_hash",
+            "scoped_fields"
+          ]
+        },
+        "expires_after_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fallback_role_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/role_ref"
+          }
+        },
+        "failure_mode": {
+          "const": "fail_closed"
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        },
+        "audit_event_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      }
+    },
+    "data_ownership_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "binding_id",
+        "data_node_id",
+        "source_governance_domain_node_id",
+        "consumer_org_node_ids",
+        "source_governance_role_refs",
+        "consumer_accountability_role_refs",
+        "policy_composition",
+        "classification_inheritance",
+        "approval_policy_ref",
+        "distinct_humans_required",
+        "validity",
+        "audit_event_ref"
+      ],
+      "properties": {
+        "binding_id": {
+          "type": "string",
+          "pattern": "^down_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "data_node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "source_governance_domain_node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "consumer_org_node_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/node_id"
+          }
+        },
+        "source_governance_role_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/role_ref"
+          }
+        },
+        "consumer_accountability_role_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/role_ref"
+          }
+        },
+        "policy_composition": {
+          "const": "intersection"
+        },
+        "classification_inheritance": {
+          "const": "from_source"
+        },
+        "approval_policy_ref": {
+          "type": "string",
+          "pattern": "^apol_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "distinct_humans_required": {
+          "const": true
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        },
+        "audit_event_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      }
+    },
+    "owner_transition_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id",
+        "trigger_types",
+        "owner_request_requires_leader_decision",
+        "successor_designated_by_role_refs",
+        "effective_time_rule",
+        "notify_role_refs",
+        "scope_expansion_allowed",
+        "historical_approval_transfer",
+        "no_candidate_action",
+        "audit_required"
+      ],
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "pattern": "^otp_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "trigger_types": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "owner_requested",
+              "higher_leadership_decision"
+            ]
+          }
+        },
+        "owner_request_requires_leader_decision": {
+          "const": true
+        },
+        "successor_designated_by_role_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/role_ref"
+          }
+        },
+        "effective_time_rule": {
+          "const": "decision_effective_at_or_immediate"
+        },
+        "notify_role_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/role_ref"
+          }
+        },
+        "scope_expansion_allowed": {
+          "const": false
+        },
+        "historical_approval_transfer": {
+          "const": false
+        },
+        "no_candidate_action": {
+          "const": "suspend_agent"
+        },
+        "audit_required": {
+          "const": true
+        }
+      }
+    },
+    "memory_disposition_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_id",
+        "status",
+        "routes",
+        "preserve_source_constraints",
+        "audit_required"
+      ],
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "pattern": "^mdp_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "active",
+            "retired"
+          ]
+        },
+        "routes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "destination",
+              "reviewer_role_refs",
+              "evaluation_required"
+            ],
+            "properties": {
+              "destination": {
+                "enum": [
+                  "delete_on_expiry",
+                  "restricted_task_archive",
+                  "department_episodic_memory",
+                  "domain_knowledge",
+                  "company_knowledge",
+                  "procedural_skill"
+                ]
+              },
+              "reviewer_role_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "$ref": "#/$defs/role_ref"
+                }
+              },
+              "evaluation_required": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "preserve_source_constraints": {
+          "const": true
+        },
+        "audit_required": {
+          "const": true
+        }
+      }
+    },
+    "override_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "override_id",
+        "supervision_edge_ref",
+        "supervisor_agent_id",
+        "subordinate_agent_id",
+        "subordinate_result_ref",
+        "override_result_ref",
+        "rationale",
+        "evidence_refs",
+        "original_result_preserved",
+        "permission_expanded",
+        "human_notification_ref",
+        "created_at",
+        "audit_event_ref"
+      ],
+      "properties": {
+        "override_id": {
+          "type": "string",
+          "pattern": "^ovr_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "supervision_edge_ref": {
+          "type": "string",
+          "pattern": "^hedge_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "supervisor_agent_id": {
+          "$ref": "#/$defs/agent_id"
+        },
+        "subordinate_agent_id": {
+          "$ref": "#/$defs/agent_id"
+        },
+        "subordinate_result_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "override_result_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 2000
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "original_result_preserved": {
+          "const": true
+        },
+        "permission_expanded": {
+          "const": false
+        },
+        "high_impact_action": {
+          "type": "boolean"
+        },
+        "human_adjudication_ref": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "human_notification_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "created_at": {
+          "$ref": "#/$defs/date_time"
+        },
+        "audit_event_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "high_impact_action": {
+                "const": true
+              }
+            },
+            "required": [
+              "high_impact_action"
+            ]
+          },
+          "then": {
+            "required": [
+              "human_adjudication_ref"
+            ],
+            "properties": {
+              "human_adjudication_ref": {}
+            }
+          }
+        }
+      ]
+    },
+    "lifecycle_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_type",
+        "subject_refs",
+        "actor",
+        "reason",
+        "effective_at",
+        "recorded_at",
+        "audit_event_ref"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "pattern": "^hev_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "event_type": {
+          "enum": [
+            "node_created",
+            "edge_created",
+            "membership_created",
+            "membership_ended",
+            "grant_activated",
+            "grant_revoked",
+            "agent_instantiated",
+            "runtime_destroyed",
+            "agent_retired",
+            "project_closed",
+            "owner_transferred",
+            "agent_suspended",
+            "override_recorded",
+            "memory_disposition_recorded",
+            "emergency_revocation"
+          ]
+        },
+        "subject_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/subject_ref"
+          }
+        },
+        "actor": {
+          "$ref": "#/$defs/subject_ref"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000
+        },
+        "effective_at": {
+          "$ref": "#/$defs/date_time"
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/date_time"
+        },
+        "audit_event_ref": {
+          "$ref": "#/$defs/audit_ref"
+        }
+      }
+    },
+    "hierarchy_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "task_id",
+        "as_of",
+        "node_version_refs",
+        "membership_refs",
+        "grant_refs",
+        "delegation_refs",
+        "approval_policy_refs",
+        "integrity_ref",
+        "created_at"
+      ],
+      "properties": {
+        "snapshot_id": {
+          "type": "string",
+          "pattern": "^hsnap_[a-z0-9][a-z0-9_-]{2,79}$"
+        },
+        "task_id": {
+          "$ref": "#/$defs/task_id"
+        },
+        "as_of": {
+          "$ref": "#/$defs/date_time"
+        },
+        "node_version_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          }
+        },
+        "membership_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^mbr_[a-z0-9][a-z0-9_-]{2,79}$"
+          }
+        },
+        "grant_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^grant_[a-z0-9][a-z0-9_-]{2,79}$"
+          }
+        },
+        "delegation_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^dlg_[a-z0-9][a-z0-9_-]{2,79}$"
+          }
+        },
+        "approval_policy_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^apol_[a-z0-9][a-z0-9_-]{2,79}$"
+          }
+        },
+        "integrity_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "created_at": {
+          "$ref": "#/$defs/date_time"
+        }
+      }
+    },
+    "action": {
+      "enum": [
+        "discover",
+        "read",
+        "query",
+        "aggregate",
+        "write",
+        "transform",
+        "export",
+        "train",
+        "execute",
+        "external_send",
+        "publish",
+        "delete",
+        "destructive",
+        "financial",
+        "permission_change",
+        "approve",
+        "administer",
+        "medical"
+      ]
+    },
+    "high_impact_action": {
+      "enum": [
+        "external_send",
+        "publish",
+        "delete",
+        "financial",
+        "permission_change",
+        "medical",
+        "irreversible"
+      ]
+    }
+  }
+}
+

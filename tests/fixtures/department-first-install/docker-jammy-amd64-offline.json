@@ -1,0 +1,9 @@
+{
+  "bundle_path": "/bootstrap/docker-jammy-amd64-offline.tar.gz",
+  "production_authorization": false,
+  "release_authorization": false,
+  "schema_version": "orbit.docker-offline-bootstrap-delivery/0.1",
+  "sha256": "sha256:e59c8de29df05b0eef27c1887e06fcabb8894abcc7fd55fbafe7860d5b806eda",
+  "size": 102283417
+}
+

@@ -1,0 +1,50 @@
+{
+  "approved_scope": {
+    "data_classification": "public",
+    "endpoint": "https://models.paper-orbit.invalid/v1/chat/completions",
+    "model_family": "fixture-structured-v1",
+    "permissions": [
+      "model.invoke"
+    ],
+    "provider": "fixture",
+    "resolved_model_ids": [
+      "fixture-structured-v1-2026-07-09"
+    ]
+  },
+  "budget_policy": {
+    "cny_per_usd": "7.50",
+    "max_cost_cny": "1.50",
+    "max_cost_usd": "0.20",
+    "max_input_tokens": 24000,
+    "max_output_tokens": 2048
+  },
+  "data_classification": "public",
+  "endpoint": "https://models.paper-orbit.invalid/v1/chat/completions",
+  "parameters": {
+    "fallback": false,
+    "max_concurrency": 1,
+    "max_model_calls": 4,
+    "max_retries": 1,
+    "permissions": [
+      "model.invoke"
+    ],
+    "temperature": 0,
+    "timeout_seconds": 30
+  },
+  "policy_binding": {
+    "digest": "sha256:9097871b5acb0c0b1d83510cf6ec23b4474bae8ebbd12ac63bd861fadca9887d",
+    "ref": "automation-policy://disease-r2/public-pilot"
+  },
+  "provider": "fixture",
+  "requested_model": "fixture-structured-v1",
+  "resolution_mode": "provider_verified_alias",
+  "route_id": "model_route_orbit_disease_r2_fixture_gpt56sol_public",
+  "route_version": "orbit.model-route-revision/1",
+  "runtime_binding": {
+    "digest": "sha256:33f2fac7498ef1719c1934d362591c60838dbe86386854526610b8d2e06fe09d",
+    "ref": "runtime-source://disease-r2/public-pilot"
+  },
+  "secret_ref": "secret://local/fixture/current",
+  "status": "active"
+}
+

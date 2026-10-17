@@ -1,0 +1,80 @@
+api_version: company-ai-os/v1alpha1
+kind: AgentBinding
+metadata:
+  binding_id: bind_company_task_router_syn
+  version: 0.1.0
+  status: draft
+  evidence_status: synthetic
+  synthetic_only: true
+spec:
+  definition_ref:
+    id: agt_company_task_router_syn
+    version: 0.1.0
+    digest: sha256:4739fa457f3cc0db42fceb494dcfde14dc1ecd658807139935e82f5b0391971c
+  owner:
+    primary_role_ref: role_company_routing_owner_syn
+    backup_role_refs:
+      - role_company_routing_backup_syn
+  hierarchy:
+    agent_node_ref: hnode_company_task_router_syn
+    primary_org_node_ref: hnode_company_management_syn
+    membership_refs: []
+  environment:
+    environment_id: env_company_routing_syn
+    security_zone: management
+    allowed_data_classifications: []
+  runtime:
+    adapter_ref:
+      id: runtime_adapter_deterministic_syn
+      version: 0.1.0
+      digest: sha256:3535353535353535353535353535353535353535353535353535353535353535
+    workload_identity_ref: wid_company_task_router_syn
+    capability_profile_ref:
+      id: runtime_profile_deterministic_route_syn
+      version: 0.1.0
+      digest: sha256:3636363636363636363636363636363636363636363636363636363636363636
+  model_route_refs: []
+  tool_bindings: []
+  data_bindings: []
+  agent_bindings:
+    default: deny
+    rules:
+      - operation: discover
+        target_agent_refs:
+          - agt_registered_system_catalog_syn
+        template_refs: []
+      - operation: handoff
+        target_agent_refs:
+          - agt_orbit_health_system_syn
+          - agt_rednote_system_syn
+        template_refs: []
+  memory_backends:
+    - memory_class: working
+      backend_ref:
+        id: memory_backend_synthetic
+        version: 0.1.0
+        digest: sha256:2525252525252525252525252525252525252525252525252525252525252525
+      namespace_ref: memns_company_route_working_syn
+      security_zone: management
+      access: read_only
+      retention_policy_ref: pol_working_memory_delete_syn
+  sandbox:
+    profile_ref:
+      id: sandbox_route_no_io_syn
+      version: 0.1.0
+      digest: sha256:3737373737373737373737373737373737373737373737373737373737373737
+    filesystem: deny
+    network: deny
+  workspace:
+    mode: none
+    workspace_ref: null
+  resource_limits:
+    budget_policy_ref: pol_budget_company_route_syn
+    max_tool_calls: 0
+    max_concurrency: 1
+  secret_refs: []
+  approval_policy_refs:
+    - pol_approval_company_route_syn
+  audit_policy_ref: pol_audit_agent_syn
+  max_autonomy: L2
+

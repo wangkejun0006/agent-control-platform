@@ -1,0 +1,27 @@
+{
+  "name": "orbit-control-plane-console",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4174",
+    "lint": "eslint . && tsc --noEmit",
+    "test": "vitest run src",
+    "build": "vite build",
+    "test:e2e": "playwright test",
+    "verify": "npm run lint && npm run test && npm run build && npm run test:e2e"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "eslint": "latest",
+    "vitest": "latest"
+  }
+}
+

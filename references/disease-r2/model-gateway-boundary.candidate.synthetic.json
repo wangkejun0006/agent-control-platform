@@ -1,0 +1,27 @@
+{
+  "boundary_version": "orbit.model-gateway-boundary/1",
+  "endpoint_id": "endpoint_orbit_model_gateway_fixture_syn",
+  "version": "0.1.0",
+  "status": "configured-not-approved",
+  "evidence_status": "synthetic",
+  "provider_id": "fixture",
+  "transport": "openai_chat_completions",
+  "request_path": "/v1/chat/completions",
+  "origin": "https://models.paper-orbit.invalid",
+  "origin_source": "https://docs.fixture.ai/",
+  "origin_observed_at": "2026-08-27",
+  "origin_recheck_required_before_execution": true,
+  "credential_delivery": "gateway_managed",
+  "credential_visible_to_agent": false,
+  "agent_network_allowed": false,
+  "gateway_egress_mode": "exact-origin-only",
+  "allowed_returned_model_ids": [
+    "fixture-structured-v1"
+  ],
+  "returned_model_mismatch_action": "deny-and-require-new-review",
+  "runtime_started": false,
+  "external_call_performed": false,
+  "release_authorization": false,
+  "production_authorized": false
+}
+

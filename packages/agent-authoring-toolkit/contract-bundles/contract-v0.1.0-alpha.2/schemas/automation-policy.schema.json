@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "AutomationPolicy 是待人类精确批准的不可变自动化策略候选；只有独立 AutomationPolicyActivationReceipt 才使其可被 Control Plane 使用，它本身不运行 Agent。",
+  "$id": "urn:company-ai-os:schema:automation-policy:0.1",
+  "title": "Company AI OS AutomationPolicy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "AutomationPolicy" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "version", "status", "evidence_status", "synthetic_only", "created_at", "expires_at"],
+      "properties": {
+        "policy_id": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" },
+        "version": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/semantic_version" },
+        "status": { "const": "candidate" },
+        "evidence_status": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/evidence_status" },
+        "synthetic_only": { "type": "boolean" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "subject_constraints",
+        "stage_plan",
+        "execution_envelope",
+        "remediation_envelope",
+        "human_checkpoint_triggers",
+        "authority_boundary"
+      ],
+      "properties": {
+        "purpose": { "const": "agent_release_qualification" },
+        "subject_constraints": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["agent_ids", "release_states", "runtime_families", "data_classifications"],
+          "properties": {
+            "agent_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/id" }
+            },
+            "release_states": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "enum": ["candidate", "evaluation", "active"] }
+            },
+            "runtime_families": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$" }
+            },
+            "data_classifications": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "enum": ["synthetic", "public"] }
+            }
+          }
+        },
+        "stage_plan": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/qualification_stage" }
+        },
+        "execution_envelope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "model_route_refs",
+            "tool_scopes",
+            "input_artifact_allowlist",
+            "endpoint_origin_allowlist",
+            "isolation_profile_digests",
+            "trusted_stage_handlers",
+            "evaluation_suite_refs",
+            "max_concurrency",
+            "max_attempts_per_stage",
+            "max_total_attempts",
+            "max_runtime_seconds",
+            "max_model_requests",
+            "max_input_tokens",
+            "max_output_tokens",
+            "max_cost_usd",
+            "max_cost_cny",
+            "agent_direct_network",
+            "agent_credentials",
+            "nas_access",
+            "real_medical_data"
+          ],
+          "properties": {
+            "model_route_refs": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+            },
+            "tool_scopes": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["tool_release", "operations"],
+                "properties": {
+                  "tool_release": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" },
+                  "operations": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{2,79}$" }
+                  }
+                }
+              }
+            },
+            "input_artifact_allowlist": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+            },
+            "endpoint_origin_allowlist": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "format": "uri", "pattern": "^https://" }
+            },
+            "isolation_profile_digests": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/digest" }
+            },
+            "trusted_stage_handlers": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/component_ref" }
+            },
+            "evaluation_suite_refs": {
+              "type": "array",
+              "minItems": 2,
+              "uniqueItems": true,
+              "items": { "$ref": "urn:company-ai-os:schema:automation-common:0.1#/$defs/artifact_binding" }
+            },
+            "max_concurrency": { "type": "integer", "minimum": 1, "maximum": 16 },
+            "max_attempts_per_stage": { "type": "integer", "minimum": 1, "maximum": 20 },
+            "max_total_attempts": { "type": "integer", "minimum": 1, "maximum": 100 },
+            "max_runtime_seconds": { "type": "integer", "minimum": 1, "maximum": 86400 },
+            "max_model_requests": { "type": "integer", "minimum": 0, "maximum": 1000 },
+            "max_input_tokens": { "type": "integer", "minimum": 0 },
+            "max_output_tokens": { "type": "integer", "minimum": 0 },
+            "max_cost_usd": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,6})?$" },
+            "max_cost_cny": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,6})?$" },
+            "agent_direct_network": { "const": false },
+            "agent_credentials": { "const": false },
+            "nas_access": { "const": false },
+            "real_medical_data": { "const": false }
+          }
+        },
+        "remediation_envelope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allowed_failure_classes", "source_change_policy", "immutable_attempt_history", "independent_verification", "unchanged_boundaries"],
+          "properties": {
+            "allowed_failure_classes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "enum": ["engineering_compatibility", "deterministic_test_failure", "transient_runtime", "quality_candidate_revision"] }
+            },
+            "source_change_policy": { "const": "implementation_only_same_runtime_family" },
+            "immutable_attempt_history": { "const": true },
+            "independent_verification": { "const": true },
+            "unchanged_boundaries": {
+              "type": "array",
+              "minItems": 8,
+              "uniqueItems": true,
+              "items": {
+                "enum": ["purpose", "owner", "agent_id", "capabilities", "tool_operations", "data_classification", "model_route", "endpoint_allowlist", "budget_ceiling", "isolation_profile", "external_side_effects"]
+              },
+              "allOf": [
+                { "contains": { "const": "purpose" } },
+                { "contains": { "const": "capabilities" } },
+                { "contains": { "const": "data_classification" } },
+                { "contains": { "const": "budget_ceiling" } },
+                { "contains": { "const": "isolation_profile" } },
+                { "contains": { "const": "external_side_effects" } }
+              ]
+            }
+          }
+        },
+        "human_checkpoint_triggers": {
+          "type": "array",
+          "minItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "purpose_or_owner_change",
+              "capability_or_tool_scope_expansion",
+              "data_classification_expansion",
+              "provider_model_or_endpoint_change",
+              "budget_ceiling_expansion",
+              "isolation_or_identity_weakening",
+              "real_data_or_nas_access",
+              "risk_waiver_or_evaluation_override",
+              "formal_registration",
+              "preproduction_promotion",
+              "production_promotion",
+              "policy_budget_exhausted"
+            ]
+          }
+        },
+        "authority_boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["may_issue_evaluation_grant", "may_activate_agent", "may_activate_tool", "may_approve_model_route", "may_register_formally", "may_promote_preproduction", "may_promote_production", "release_authorization"],
+          "properties": {
+            "may_issue_evaluation_grant": { "type": "boolean" },
+            "may_activate_agent": { "const": false },
+            "may_activate_tool": { "const": false },
+            "may_approve_model_route": { "const": false },
+            "may_register_formally": { "const": false },
+            "may_promote_preproduction": { "const": false },
+            "may_promote_production": { "const": false },
+            "release_authorization": { "const": false }
+          }
+        }
+      }
+    }
+  }
+}
+

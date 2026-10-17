@@ -1,0 +1,41 @@
+api_version: company-ai-os/v1alpha1
+kind: ModelRoute
+metadata:
+  route_id: model_route_orbit_disease_r2_fixture_gpt56sol_syn
+  version: 0.1.0
+  status: draft
+  evidence_status: synthetic
+  synthetic_only: true
+spec:
+  transport: openai_chat_completions
+  endpoint_ref:
+    id: endpoint_orbit_model_gateway_fixture_syn
+    version: 0.1.0
+    digest: sha256:a30eaf44ee108ca37a453053754ae0883112306c0d146e31bd9a3a7419a3c69c
+  authentication:
+    mode: workload_identity_ref
+    credential_ref: wid_orbit_control_plane_model_gateway_syn
+  model_refs:
+    - id: model_fixture_gpt_5_6_sol_syn
+      version: 0.1.0
+      digest: sha256:ef1e1e011dc2edae3ce0955c77fe0916527171deaae1aa9b554fe11aff6f4b8c
+  capabilities:
+    - text
+    - structured_output
+    - reasoning
+  data_policy:
+    allowed_classifications:
+      - public
+    training_use: forbidden
+    retention_policy_ref: pol_model_retention_disease_r2_metadata_only_syn
+    residency_policy_ref: pol_model_residency_disease_r2_gateway_syn
+    outbound_content_policy_ref: pol_model_outbound_disease_r2_public_only_syn
+  request_limits:
+    max_context_tokens: 12000
+    timeout_seconds: 30
+    max_retries: 1
+    max_concurrency: 1
+  fallback_route_refs: []
+  budget_policy_ref: pol_budget_orbit_disease_r2_model_syn
+  audit_policy_ref: pol_audit_orbit_disease_r2_model_metadata_only_syn
+

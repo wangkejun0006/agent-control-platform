@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "protected_old_files": 55,
+  "old_bytes_unchanged": true,
+  "old_real_report_status": "stopped",
+  "new_model_requests": 0,
+  "new_model_cost_cny": 0,
+  "provider_credentials_not_read": true,
+  "old_budgets_not_read": true,
+  "private_permission_exceptions": [],
+  "zip_pattern_credential_scan": "no matches; no configured key loaded",
+  "zip_sha256": "cd402ce5f9344fefc6e62e7f0fe45a9a05e156f30cde662b54c9242cf0cf89bd",
+  "original_source_modules_unchanged": true,
+  "published": false
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": "orbit.demo-source/1",
+  "files": {
+    "showcase/worker.py": "sha256:7b97747e1da5c83319e41eeb8ae3e5c4399151c1c259a3e47202d40fa5b2f136",
+    "showcase/fixtures/catalog.json": "sha256:684f4251c1376beda0148f17ae7d5d58094b7d6443e3b15b29a73cebbb92f2b7",
+    "showcase/fixtures/expected.json": "sha256:3173d844e0d43ff76643dbe59a84f51ee814810f4ac06d32c2bd77628c668462"
+  },
+  "snapshot_digest": "sha256:d7311efa9c6506a0bc5f0e79c315c3c6bb0dcd07d2b08aaf995cc5419f72cef3"
+}

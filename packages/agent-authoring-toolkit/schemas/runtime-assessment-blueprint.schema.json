@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:orbit-agent-toolkit:schema:runtime-assessment-blueprint:0.1",
+  "title": "Orbit Agent Toolkit Runtime Assessment Blueprint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "orbit-agent-toolkit/v0alpha1" },
+    "kind": { "const": "RuntimeAssessmentBlueprint" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assessment_id", "version", "status", "evidence_status", "synthetic_only", "observed_at"],
+      "properties": {
+        "assessment_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "version": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/semantic_version" },
+        "status": { "const": "draft" },
+        "evidence_status": { "enum": ["synthetic", "architecture_reference", "verified_runtime"] },
+        "synthetic_only": { "const": true },
+        "observed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requirements", "candidates", "recommendation", "evidence_inputs"],
+      "properties": {
+        "requirements": {
+          "$ref": "urn:company-ai-os:schema:runtime-selection-assessment:0.1#/properties/spec/properties/requirements"
+        },
+        "candidates": {
+          "$ref": "urn:company-ai-os:schema:runtime-selection-assessment:0.1#/properties/spec/properties/candidates"
+        },
+        "recommendation": {
+          "$ref": "urn:company-ai-os:schema:runtime-selection-assessment:0.1#/properties/spec/properties/recommendation"
+        },
+        "evidence_inputs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["runtime_family", "relative_path", "report_ref"],
+            "properties": {
+              "runtime_family": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{1,63}$" },
+              "relative_path": { "type": "string", "pattern": "^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$" },
+              "report_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

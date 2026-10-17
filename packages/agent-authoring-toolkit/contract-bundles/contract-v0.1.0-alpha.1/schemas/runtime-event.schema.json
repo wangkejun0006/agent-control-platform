@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "RuntimeEvent 是 Adapter 到 Company Task Ledger 的统一状态事件；Runtime 报告不自动等于公司权威判定。",
+  "$id": "urn:company-ai-os:schema:runtime-event:0.1",
+  "title": "Company AI OS RuntimeEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["api_version", "kind", "metadata", "spec"],
+  "properties": {
+    "api_version": { "const": "company-ai-os/v1alpha1" },
+    "kind": { "const": "RuntimeEvent" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_id", "task_id", "sequence", "deduplication_key", "evidence_status", "synthetic_only", "occurred_at", "observed_at"],
+      "properties": {
+        "event_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "task_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "invocation_id": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/id" },
+        "sequence": { "type": "integer", "minimum": 0 },
+        "deduplication_key": { "type": "string", "minLength": 8, "maxLength": 200 },
+        "evidence_status": { "enum": ["synthetic", "architecture_reference", "verified_runtime"] },
+        "synthetic_only": { "type": "boolean" },
+        "occurred_at": { "type": "string", "format": "date-time" },
+        "observed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_type", "runtime_adapter_ref", "runtime_run_ref", "evidence_semantics", "payload_ref", "payload_schema_ref", "classification", "trace_context_ref", "audit_event_ref"],
+      "properties": {
+        "event_type": { "enum": ["accepted", "started", "progress", "checkpointed", "approval_required", "tool_requested", "tool_completed", "handoff", "cancel_requested", "cancelled", "completed", "failed"] },
+        "runtime_adapter_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+        "runtime_run_ref": { "type": "string", "minLength": 3, "maxLength": 240 },
+        "evidence_semantics": { "enum": ["company_authoritative", "adapter_observed", "runtime_reported"] },
+        "payload_ref": { "type": "string", "minLength": 3, "maxLength": 240 },
+        "payload_schema_ref": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/versioned_ref" },
+        "classification": { "$ref": "urn:company-ai-os:schema:agent-common:0.1#/$defs/classification" },
+        "trace_context_ref": { "type": "string", "minLength": 3, "maxLength": 240 },
+        "audit_event_ref": { "type": "string", "pattern": "^audit_[a-z0-9][a-z0-9_-]{2,79}$" }
+      }
+    }
+  }
+}
+
