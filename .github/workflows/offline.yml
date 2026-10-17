@@ -29,6 +29,8 @@ jobs:
         if: always()
         with:
           name: offline-verification
+          include-hidden-files: true
           path: |
             .runtime/ci/
             packages/orbit-control-plane-console/playwright-report/
+            packages/orbit-control-plane-console/test-results/

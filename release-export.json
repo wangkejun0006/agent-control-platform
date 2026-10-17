@@ -7,7 +7,7 @@
     },
     {
       "path": ".github/workflows/offline.yml",
-      "sha256": "693672f06b4efc9719ce4c36636cf4faf2feef4f16f766daafe102e18430d50c"
+      "sha256": "b99adc6c1aa1c5ffb72aeaf61fed134bfdcf0ec8f76e6447f17842beabe37275"
     },
     {
       "path": ".gitignore",
