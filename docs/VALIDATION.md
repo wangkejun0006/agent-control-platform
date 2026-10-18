@@ -41,3 +41,44 @@ portfolio does not bundle that device installer. These tests are reported as
 skipped even when PowerShell is preinstalled; they remain enabled when both
 dependencies exist. This does not verify Windows/WSL deployment. The initial
 GitHub run 39098883371 failed on this missing asset and remains a failed run.
+
+## P0 页面验收（全新账号、离线返工和最终审核）
+
+前端构建后，确认8432端口空闲，在前端目录执行：
+
+```bash
+npx playwright install chromium
+npx playwright test --config playwright.p0.config.js --output /tmp/orbit-p0-result-001
+```
+
+输出路径须自行选取全新目录。默认使用新的临时工作台目录；也可用
+`ORBIT_P0_ACCEPTANCE_STATE_ROOT`指定一个未使用的/tmp子目录或项目
+`.runtime/workbench/`子目录。不要指定已有案例。本用例通过页面创建管理员、
+评价/批准候选、创建任务、导入虚构资料、依次规划执行和交接，再退回市场初稿，
+检查新版实质修改、最终待办与概览跳转、刷新和实际ZIP下载。没有API预置步骤，
+外部浏览器请求会被阻止；仅验收受支持的离线模板，不认证任意自然语言返工。
+
+`tests/test_offline_rework.py`覆盖原失败表达、未知/混合/否定/条件意见、
+意见回显或伪造处理表；集成回归确认未解决要求不能批准且旧候选保持不变。
+
+
+## P1 可用性页面验收
+
+在前端目录、8432端口空闲时执行：
+
+```bash
+ORBIT_P1_ACCEPTANCE_STATE_ROOT=/tmp/orbit-p1-case-001 \
+npx playwright test --config playwright.p1.config.js --output /tmp/orbit-p1-evidence-001
+```
+
+案例及输出目录必须全新，不要指向已有数据库或历史证据。此用例不使用API预置：
+从本机账号开始，验证首页准备清单、任务中进入资源配置、刷新后返回原任务、
+未交接部门等待、资料就绪后的规划入口、实际工具执行终态、交接后进入接收部门、
+返工原意见与正文新增/删除行、最终待办和真实ZIP下载。支持本机已有Chromium的
+显式可执行路径覆盖，方式同原Playwright配置。测试仅使用离线固定工具和模板，
+不能作为任意业务资料、真实模型或多人企业身份的验收。
+
+状态投影只读取当前持久对象：执行完成与候选批准分开，旧交接不会自动匹配新尝试。
+历史对象及台账不为界面文案而改写。差异比较只比较业务正文，最多前500行；
+超出范围会提示核查完整原文。检查项仅在页面按名称合并，任一同名失败仍显示失败，
+原始独立检查记录保留在候选与交付证据中。

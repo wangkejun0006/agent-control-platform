@@ -985,6 +985,17 @@ class DeliveryService:
                 checks += payload_checks(
                     value, attempt["documents"], attempt["department_id"]
                 )
+                if self.live_campaign is None:
+                    from .offline_rework import offline_rework_checks
+
+                    rework = offline_rework_checks(
+                        attempt.get("review_feedback", ""),
+                        value.get("authored_prose", ""),
+                        value.get("rework_response"),
+                    )
+                    codes = {c["code"] for c in rework}
+                    checks = [c for c in checks if c.get("code") not in codes] + rework
+
                 payload = {**value, "checks": checks}
                 candidate = {
                     "candidate_id": "candidate:" + attempt["attempt_id"],
@@ -1147,7 +1158,10 @@ class DeliveryService:
                         for key in workflow["nodes"][dept]["attempt_ids"]
                         if (a := self.store.get(key))
                     ],
-                    runtime=state.get("run"),
+                    runtime=state.get("run") or (
+                        self.transport.status(attempt["run_id"])
+                        if attempt.get("run_id") else None
+                    ),
                     review=state.get("review"),
                 )
                 if item.get("candidate"):
@@ -1177,6 +1191,46 @@ class DeliveryService:
                 document["version"]
                 == latest[(document["department_id"], document["document_id"])]
             )
+        # Presentation-only projections from current durable objects. Never
+        # rewrite historical attempts, receipts, or run statuses for UI wording.
+        handoffs = self.store.list("handoff", workflow_id)
+        for index, item in enumerate(nodes):
+            if not item["accessible"]:
+                continue
+            incoming = None
+            if index:
+                source = self.attempt(workflow_id, DEPARTMENTS[index - 1])
+                if source and self.node_state(source)["status"] == "approved":
+                    source_candidate = self.store.get("candidate:" + source["attempt_id"])
+                    if source_candidate and all(
+                        c["passed"] for c in self.current_sharing_checks(source_candidate)
+                    ):
+                        incoming = next((
+                            h for h in handoffs
+                            if h["target_department"] == item["department_id"]
+                            and h["source_attempt"] == source["attempt_id"]
+                            and h["candidate_digest"] == source_candidate["candidate_digest"]
+                        ), None)
+            item["upstream_ready"] = index == 0 or incoming is not None
+            item["has_documents"] = any(d["department_id"] == item["department_id"] for d in docs)
+            item["incoming_handoff"] = incoming
+            item["outgoing_handoff"] = next((
+                h for h in handoffs
+                if h["source_attempt"] == item["attempt_id"]
+                and item["status"] == "approved"
+                and item.get("current_sharing_passed") is not False
+            ), None)
+            if status == "delivered":
+                item["next_action"] = "已纳入当前本地交付，可查看产物与证据"
+            elif item["outgoing_handoff"]:
+                item["next_action"] = "已交接至" + DEPT_NAMES[item["outgoing_handoff"]["target_department"]]
+            elif item["status"] == "not_started":
+                item["next_action"] = (
+                    "等待上游批准并显式交接"
+                    if not item["upstream_ready"] else
+                    "资料已就绪，开始部门规划"
+                    if item["has_documents"] else "导入资料并开始规划"
+                )
         return {
             **{k: v for k, v in workflow.items() if k != "nodes"},
             "nodes": nodes,

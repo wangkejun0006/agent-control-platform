@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { setupState, departmentTab, uniqueChecks, proseDiff } from "./workbench-usability.js";
+import { finalReviewRoute, nextTaskRoute, reviewItems } from "./workbench-review.js";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Governance from "./App.jsx";
 import OfflineDemo from "./OfflineDemo.jsx";
 import { request, post, authPost, departments, statuses, operations } from "./workbench-api.js";
@@ -94,9 +96,18 @@ function NewTask({ busy, act }) {
     <div className="wb-actions"><button className="wb-primary" disabled={busy}>创建任务</button><button type="button" onClick={() => setOpen(false)}>取消</button></div></form>;
 }
 
-function Tasks({ workflows, busy, act }) {
+function Preparation({ catalog, isAdmin, busy, returnTo = "tasks" }) {
+  const state = setupState(catalog);
+  return <section className="wb-panel" aria-label="首次使用准备清单"><h3>首次使用准备清单</h3><p>先评价并明确批准三个专业 Agent 和五个固定工具，再提交执行；不会自动激活或调用模型。</p>
+    {state.loading ? <p>正在读取准备状态，尚不能确认执行条件。</p> : <ul className="wb-checklist"><li>专业 Agent：已激活 {state.agents}/{catalog.agents.length}</li><li>固定工具：已激活 {state.tools}/{catalog.tools.length}</li><li>{state.ready ? "执行资源已就绪，仍需逐任务确认计划和审核产物。" : "执行资源未就绪，请先完成评价和批准激活。"}</li></ul>}
+    {isAdmin ? <button disabled={busy || state.loading} onClick={() => go(`assets?returnTo=${encodeURIComponent(returnTo)}`)}>{state.ready ? "检查Agent与工具" : "前往配置Agent与工具"}</button> : <p>资源激活需要管理员；请联系本机管理员处理。你仍可在授权部门查看资料和规划。</p>}
+  </section>;
+}
+
+function Tasks({ workflows, busy, act, catalog, isAdmin }) {
   return <><div className="wb-page-head"><div><h1>任务工作台</h1><p>围绕一次交付，协作完成规划、执行、证据核查与审核。</p></div><NewTask busy={busy} act={act} /></div>
     <div className="wb-stats"><div><strong>{workflows.length}</strong><span>全部任务</span></div><div><strong>{workflows.filter(w => w.status === "delivered").length}</strong><span>已交付</span></div><div><strong>{workflows.filter(w => ["awaiting_review", "awaiting_final_review", "awaiting_approval"].includes(w.status)).length}</strong><span>等待人工决定</span></div><div><strong>{workflows[0]?.model_requests || 0}</strong><span>当前活动模型请求（含失败）</span></div></div>
+    <Preparation catalog={catalog} isAdmin={isAdmin} busy={busy} />
     <SharingBoundary />
     {!workflows.length ? <div className="wb-empty"><h2>从一份可核验的交付开始</h2><p>创建任务后，可显式导入13份虚构需求、接口、权限与验收资料。三个部门依次执行，所有批准均由你操作。</p></div> :
       <div className="wb-task-grid">{workflows.map(w => <button className="wb-task-card" key={w.workflow_id} onClick={() => go(`tasks/${w.workflow_id}/overview/${w.current_department || "product_center"}`)}>
@@ -125,13 +136,13 @@ function Documents({ workflow, department, act, busy, isAdmin }) {
     <section className="wb-panel"><h3>原文与引用定位</h3>{selected ? <><h4>{selected.filename} · v{selected.version}</h4>{selected.warnings.map(w => <p className="wb-warning" key={w}>{w}</p>)}<div className="wb-source-lines">{selected.chunks.map(c => <p key={c.line}><span>{c.line}</span>{c.text}</p>)}</div><details><summary>查看资料引用与摘要</summary><code>{selected.artifact_ref}<br />{selected.content_digest}</code></details></> : <p className="wb-muted">选择一份资料，查看可追溯的原文行号。相同资料ID采用最新版本；同版本内容冲突会阻断验收。</p>}</section></div>;
 }
 
-function Planning({ workflow, node, act, busy, canReview }) {
+function Planning({ workflow, node, act, busy, canReview, ready }) {
   const [answers, setAnswers] = useState({}); const [supplement, setSupplement] = useState(""); const [reason, setReason] = useState("");
   useEffect(() => { setAnswers({}); setSupplement(""); setReason(""); }, [node.attempt_id]);
   const prefix = `/v1/workflows/${workflow.workflow_id}/departments/${node.department_id}`;
   const planning = node.planning;
-  if (!planning || node.status === "stale") return <div className="wb-panel"><h3>规划从目标与资料开始</h3><p>规划将生成澄清问题，回答后形成版本化任务包。{workflow.live_model_enabled ? "当前使用独立授权的真实模型活动，失败也计入额度。" : "当前使用离线规划端口，不调用模型。"}</p><button className="wb-primary" disabled={busy || workflow.campaign_closed} onClick={() => act(() => post(prefix + "/plan"))}>开始部门规划</button></div>;
-  return <div className="wb-panel"><div className="wb-section-head"><h3>部门规划</h3>{badge(node.status)}</div>
+  if (!planning || node.status === "stale") return <div className="wb-panel"><h3>规划从目标与资料开始</h3>{node.upstream_ready === false && <p className="wb-warning">等待上游产物批准并显式交接，当前不能启动本部门规划。</p>}{!node.has_documents && <p className="wb-warning">本部门尚无资料，请先到“资料”导入或上传。</p>}<p>规划将生成澄清问题，回答后形成版本化任务包。{workflow.live_model_enabled ? "当前使用独立授权的真实模型活动，失败也计入额度。" : "当前使用离线规划端口，不调用模型。"}</p><button className="wb-primary" disabled={busy || workflow.campaign_closed || node.upstream_ready === false || !node.has_documents} onClick={() => act(() => post(prefix + "/plan"))}>开始部门规划</button></div>;
+  return <div className="wb-panel">{node.attempt?.review_feedback && <section className="wb-note" aria-label="返工上下文"><h4>本轮返工意见</h4><p>{node.attempt.review_feedback}</p><p>生成修订后，请对照每项意见和新增正文，不把重新执行等同于修改完成。</p></section>}<div className="wb-section-head"><h3>部门规划</h3>{badge(node.status)}</div>
     {planning.question_card && <form onSubmit={event => { event.preventDefault(); const values = {}; for (const q of planning.question_card.questions) values[q.question_id] = answers[q.question_id] || q.options.find(o => o.recommended)?.option_id;
       act(() => post(prefix + "/answers", { answers: values, supplement })); }}>
       <p>请确认需求，不完整的回答不会进入执行。澄清结果会保存在原生规划会话和checkpoint中。</p>
@@ -144,16 +155,16 @@ function Planning({ workflow, node, act, busy, canReview }) {
       {node.status !== "plan_approved" && !node.attempt?.run_id && <><label>计划审核说明（至少8字）<textarea value={reason} onChange={e => setReason(e.target.value)} /></label>
         <button className="wb-primary" disabled={busy || !canReview || reason.trim().length < 8} onClick={() => act(() => post(prefix + "/approve-plan", { reason, package_digest: planning.task_approval_subject.package_digest }))}>确认计划与工具范围</button>{!canReview && <p>需要本部门负责人或管理员确认。</p>}</>}
       <details><summary>核对计划版本与摘要</summary><code>{planning.task_approval_subject?.package_digest}</code></details></>}
-    {node.status === "plan_approved" && <button className="wb-primary" disabled={busy} onClick={() => act(() => post(prefix + "/execute"))}>提交受控执行</button>}
+    {node.status === "plan_approved" && <button className="wb-primary" disabled={busy || !ready} onClick={() => act(() => post(prefix + "/execute"))}>提交受控执行</button>}
     {["needs_input", "awaiting_approval"].includes(node.status) && <button disabled={busy} onClick={() => act(() => post(prefix + "/cancel"))}>停止本次规划</button>}
   </div>;
 }
 
-function Execution({ workflow, node, act, busy, canReview }) {
+function Execution({ workflow, node, act, busy, canReview, ready }) {
   const prefix = `/v1/workflows/${workflow.workflow_id}/departments/${node.department_id}`;
   return <div className="wb-panel"><div className="wb-section-head"><h3>受控执行</h3>{badge(node.status)}</div><p>{node.next_action}</p>
     <div className="wb-note">执行经过原Router、固定Tool组合、签名Grant和SQL队列。专业工具在受限进程内实际运行；离线模式模型请求为0。进程限制不等于OS安全沙箱。</div>
-    {node.status === "plan_approved" && <button className="wb-primary" disabled={busy} onClick={() => act(() => post(prefix + "/execute"))}>提交受控执行</button>}
+    {node.status === "plan_approved" && <button className="wb-primary" disabled={busy || !ready} onClick={() => act(() => post(prefix + "/execute"))}>提交受控执行</button>}
     {node.runtime && <><dl className="wb-definition"><dt>运行</dt><dd>{node.runtime.run_id}</dd><dt>执行状态</dt><dd>{statuses[node.runtime.status] || node.runtime.status}</dd><dt>授权</dt><dd>{node.runtime.grant_id}</dd></dl>
       {node.runtime.failure_reason_code && <p className="wb-warning">{reasons[node.runtime.failure_reason_code] || node.runtime.failure_reason_code}</p>}</>}
     {["queued", "running", "cancel_requested"].includes(node.status) && <div className="wb-actions"><button disabled={busy} onClick={() => act(() => post(prefix + "/cancel"))}>取消执行并终止进程</button>{canReview && <button disabled={busy} onClick={() => act(() => post(prefix + "/revoke"))}>撤销授权并停止</button>}</div>}
@@ -162,68 +173,81 @@ function Execution({ workflow, node, act, busy, canReview }) {
   </div>;
 }
 
+function RevisionComparison({ previous, candidate, revision }) {
+  const diff = proseDiff(previous.candidate.payload.authored_prose || previous.candidate.payload.body,
+    candidate.payload.authored_prose || candidate.payload.body);
+  return <section className="wb-panel wb-diff" aria-label="返工版本差异"><h4>返工版本差异 · v{previous.revision} → v{revision}</h4><p>业务正文新增 {diff.added} 行，删除 {diff.removed} 行；依据清单与完整原文仍可在下方核查。</p>{diff.truncated && <p className="wb-warning">正文较长，当前只比较前500行；请展开完整版本核对其余内容。</p>}<div>{diff.lines.filter(line => line.kind !== "same").map((line, i) => <p className={`wb-diff-${line.kind}`} key={i}><strong>{line.kind === "added" ? "新增" : "删除"}</strong> {line.kind === "added" ? <ins>{line.text || "（空行）"}</ins> : <del>{line.text || "（空行）"}</del>}</p>)}</div>{!diff.added && !diff.removed && <p className="wb-warning">业务正文没有变化；请核对返工意见是否真正落实。</p>}</section>;
+}
+
 function Review({ workflow, node, act, busy, canReview }) {
   const [reason, setReason] = useState(""); const [ack, setAck] = useState(false);
   useEffect(() => { setReason(""); setAck(false); }, [node.attempt_id]);
   const candidate = node.candidate;
+  const reasonRef = useRef(null);
   const prefix = `/v1/workflows/${workflow.workflow_id}/departments/${node.department_id}`;
   const index = Object.keys(departments).indexOf(node.department_id); const target = Object.keys(departments)[index + 1];
   const previous = node.history?.filter(h => h.candidate && h.attempt_id !== node.attempt_id).at(-1);
   const review = (decision) => act(() => post(prefix + "/review", { candidate_digest: candidate.candidate_digest, revision: node.revision,
     decision, reason, ...(decision === "approve" && target ? { handoff_to: target } : {}) }));
-  return <><div className="wb-two-col"><section className="wb-panel"><div className="wb-section-head"><h3>交付候选 · v{node.revision}</h3>{badge(node.status)}</div>
-    {candidate ? <Text text={candidate.payload.body} /> : <p className="wb-muted">执行完成后生成候选。通过检查也不等于已经批准。</p>}
+  return <><div className="wb-two-col"><section className="wb-panel"><div className="wb-section-head"><h3>{candidate ? `交付候选 · v${node.revision}` : node.revision ? `修订 v${node.revision} · 候选尚未生成` : "尚未生成交付候选"}</h3>{badge(node.status)}</div>
+    {candidate ? <><div className="wb-actions"><button onClick={() => reasonRef.current?.focus()}>填写审核意见</button></div><Text text={candidate.payload.authored_prose || candidate.payload.body} /><details><summary>完整产物与宿主来源清单</summary><Text text={candidate.payload.body} /></details></> : <p className="wb-muted">执行完成后生成候选。通过检查也不等于已经批准。</p>}
+    {candidate?.payload.rework_response?.items.length > 0 && <section aria-label="返工要求处理"><h4>返工要求逐项核对</h4><p>离线模板只处理明确支持的要求；未解决项不能批准。</p>{candidate.payload.rework_response.items.map(item => <div className={item.status === "unresolved" ? "wb-warning" : "wb-note"} key={item.id}><strong>{item.status === "unresolved" ? "未解决" : "已生成对应修改，待人工核对"}</strong><p>{item.request}</p>{item.reason && <p>{item.reason}</p>}</div>)}</section>}
+    {previous && candidate && <RevisionComparison previous={previous} candidate={candidate} revision={node.revision} />}
     {previous && <details><summary>对照上一版本 v{previous.revision}</summary><Text text={previous.candidate.payload.body} /></details>}
     {node.history?.length > 1 && <details><summary>全部尝试与历史候选</summary>{node.history.map(h => <div key={h.attempt_id}><h4>v{h.revision} · {statuses[h.state] || h.state}</h4>{h.candidate && <Text text={h.candidate.payload.body} />}</div>)}</details>}
-    </section><aside className="wb-panel"><h3>检查与证据</h3>{candidate ? <><ul className="wb-checklist">{candidate.payload.checks.map((c, i) => <li className={c.passed ? "wb-pass" : "wb-fail"} key={i}>{c.passed ? "✓" : "✕"} {c.name}</li>)}</ul>
+    </section><aside className="wb-panel"><h3>检查与证据</h3>{candidate ? <><ul className="wb-checklist">{uniqueChecks(candidate.payload.checks).map((c, i) => <li className={c.passed ? "wb-pass" : "wb-fail"} key={i}>{c.passed ? "✓" : "✕"} {c.name}</li>)}</ul>
       {node.current_sharing_passed === false && <div className="wb-error" role="alert"><strong>当前共享规则未通过</strong><p>旧检查与原文已保留，不能直接继续批准或交接。请创建修订后重新检查。</p><ul>{node.current_sharing_checks.filter(c => !c.passed).map(c => <li key={c.code}>{c.name}</li>)}</ul></div>}
       <p className="wb-muted">独立检查覆盖引用、结构、权限与固定用例，不能认证全部正文语义。请审阅结论和限制。</p>
       <h4>原文引用</h4>{candidate.payload.citations.map((c, i) => <details className="wb-citation" key={i}><summary>{c.filename} · v{c.version} · 第{c.line}行</summary><p>{c.text}</p><code>{c.digest}</code></details>)}
       {!candidate.payload.citations.length && <p className="wb-warning">没有可核验引用，不能批准。</p>}</> : <p>暂无检查结果。</p>}</aside></div>
     <section className="wb-panel"><h3>人工审核与返工</h3><p>决定由当前本机登录账号提交，绑定产物版本和摘要。不代表企业身份认证或对外发布。</p>
       {node.review && <div className="wb-note">审核意见：{node.review.reason}<br />决定：{node.review.decision === "approve" ? "批准" : "退回修改"} · {node.review.actor}</div>}
-      <label>审核或修订说明（至少8字）<textarea value={reason} maxLength={1000} onChange={e => setReason(e.target.value)} placeholder="指出依据、缺失项或需要修改的内容。" /></label>
+      <label>审核或修订说明（至少8字）<textarea ref={reasonRef} value={reason} maxLength={1000} onChange={e => setReason(e.target.value)} placeholder="指出依据、缺失项或需要修改的内容。" /></label>
       {candidate && ["awaiting_review", "blocked"].includes(node.status) && <div className="wb-actions"><button className="wb-primary" disabled={busy || !canReview || reason.trim().length < 8 || !candidate.checks_passed || node.current_sharing_passed === false} onClick={() => review("approve")}>{target ? `批准并授权交接${departments[target]}` : "批准本部门产物"}</button>
         <button disabled={busy || !canReview || reason.trim().length < 8} onClick={() => review("request_changes")}>退回修改</button></div>}
-      {node.status === "approved" && target && <button disabled={busy || !canReview || node.current_sharing_passed === false} onClick={() => act(() => post(prefix + "/handoff", { target_department: target }))}>核对并补办交接{departments[target]}</button>}
+      {node.status === "approved" && target && !node.outgoing_handoff && <button disabled={busy || !canReview || node.current_sharing_passed === false} onClick={() => act(() => post(prefix + "/handoff", { target_department: target }))}>核对并补办交接{departments[target]}</button>}
+      {node.outgoing_handoff && <section className="wb-note" aria-label="交接已完成"><strong>交接已完成 · v{node.revision} → {departments[node.outgoing_handoff.target_department]}</strong><p>仅授权使用这份已批准产物；接收部门的规划、执行和审核仍需分别完成。</p><button className="wb-primary" onClick={() => go(nextTaskRoute(workflow, node))}>进入{departments[node.outgoing_handoff.target_department]}继续</button><details><summary>核对交接版本与摘要</summary><code>{node.outgoing_handoff.candidate_digest}</code></details></section>}
       {["stale", "changes_requested", "failed", "cancelled", "blocked", "approved", "failed_closed", "stop_requested"].includes(node.status) && <><label className="wb-inline"><input type="checkbox" checked={ack} onChange={e => setAck(e.target.checked)} />我已核查旧尝试；新建修订不会盲目重放不确定步骤。</label><button className="wb-primary" disabled={busy || !canReview || !ack || reason.trim().length < 8} onClick={() => act(async () => { await post(prefix + "/revise", { reason, acknowledge_uncertain: ack }); go(`tasks/${workflow.workflow_id}/planning/${node.department_id}`); })}>创建新修订并重新规划</button></>}
       {!canReview && <p className="wb-warning">当前账号可查看产物，审核和修订需要本部门负责人或管理员。</p>}
     </section></>;
 }
 
-function TaskDetail({ workflow, tab, department, act, busy, user }) {
+function TaskDetail({ workflow, tab, department, act, busy, user, catalog }) {
   const node = workflow.nodes.find(n => n.department_id === department) || workflow.nodes[0];
   const isAdmin = user.role_refs.includes("role_control_plane_admin");
   const canReview = isAdmin || (user.role_refs.includes("role_department_owner") && user.department_refs.includes(node.department_id));
   const [deliveryReason, setDeliveryReason] = useState("");
   const path = (nextTab, nextDept = node.department_id) => `tasks/${workflow.workflow_id}/${nextTab}/${nextDept}`;
   return <><button className="wb-link" onClick={() => go("tasks")}>← 返回任务工作台</button><div className="wb-page-head"><div><span className="wb-kicker">AI FEATURE DELIVERY / OFFLINE</span><h1>{workflow.title}</h1><p>{workflow.goal}</p></div>{badge(workflow.status)}</div>
-    <div className="wb-dept-flow">{workflow.nodes.map((n, i) => <button key={n.department_id} className={n.department_id === node.department_id ? "selected" : ""} onClick={() => go(path(tab, n.department_id))}><small>0{i + 1}</small><strong>{n.name}</strong>{badge(n.status)}<span>{n.next_action}</span></button>)}</div>
+    <div className="wb-dept-flow">{workflow.nodes.map((n, i) => <button key={n.department_id} className={n.department_id === node.department_id ? "selected" : ""} onClick={() => go(path(departmentTab(workflow, n), n.department_id))}><small>0{i + 1}</small><strong>{n.name}</strong>{badge(n.status)}<span>{n.next_action}</span></button>)}</div>
     <nav className="wb-tabs" aria-label="任务详情标签">{tabs.map(([id, name]) => <button className={tab === id ? "selected" : ""} key={id} onClick={() => go(path(id))}>{name}</button>)}</nav>
     {["overview", "documents", "review"].includes(tab) && <SharingBoundary compact />}
     {workflow.nodes.some(n => n.current_sharing_passed === false) && <div className="wb-note">存在未通过当前共享规则的旧产物。原文、批准和交付记录已保留；新的批准、交接或交付必须先创建修订并重新检查。</div>}
+    {node.accessible && !setupState(catalog).ready && <Preparation catalog={catalog} isAdmin={isAdmin} busy={busy} returnTo={path(tab)} />}
     {!node.accessible ? <div className="wb-panel"><h3>此部门内容未向当前账号开放</h3><p>你可查看交付阶段，但不能读取其他部门的资料、规划或候选正文。需要负责人显式交接。</p></div> : <>
       {tab === "overview" && <><div className="wb-two-col"><section className="wb-panel"><h3>下一步</h3><p className="wb-next-action">{workflow.delivery ? "交付已完成，可查看证据或下载" : node.next_action}</p>
-        <div className="wb-actions">{workflow.delivery ? <a className="wb-download" href={`/v1/workflows/${workflow.workflow_id}/download`}>下载交付包 ZIP</a> : <button className="wb-primary" onClick={() => go(path(["not_started", "stale"].includes(node.status) ? "documents" : ["needs_input", "awaiting_approval", "plan_approved"].includes(node.status) ? "planning" : "review"))}>前往处理</button>}<button onClick={() => go(path("execution"))}>查看执行</button></div>
+        <div className="wb-actions">{workflow.delivery ? <a className="wb-download" href={`/v1/workflows/${workflow.workflow_id}/download`}>下载交付包 ZIP</a> : <button className="wb-primary" onClick={() => go(nextTaskRoute(workflow, node))}>前往处理</button>}<button onClick={() => go(path("execution"))}>查看执行</button></div>
         <dl className="wb-definition"><dt>当前部门</dt><dd>{node.name}</dd><dt>版本</dt><dd>{node.revision || "尚未规划"}</dd><dt>模型模式</dt><dd>{workflow.live_model_enabled ? `真实模型活动${workflow.campaign_closed ? "（已关闭）" : "（已授权）"}＋实际工具执行` : "离线规划＋实际工具执行"}</dd><dt>活动用量</dt><dd>¥{((workflow.cost_cny_micros || 0) / 1000000).toFixed(4)} · 真实请求{workflow.model_requests || 0}次（含失败与预留）</dd></dl></section>
         <section className="wb-panel"><h3>交接记录</h3>{workflow.handoffs.length ? workflow.handoffs.map(h => <p key={h.handoff_id}>{departments[h.source_department]} → {departments[h.target_department]}<small>仅共享已批准的产物版本 · {h.recorded_at}</small></p>) : <p className="wb-muted">暂无交接。前一部门的产物获批准且显式共享后，下一部门才能开始。</p>}</section></div>
-        {workflow.status === "awaiting_final_review" && isAdmin && <section className="wb-panel"><h3>最终交付审核</h3><p>三个部门当前版本均已批准。请确认交付包及证据；此操作仅形成可下载的本地文件。</p><label>最终审核说明<textarea value={deliveryReason} onChange={e => setDeliveryReason(e.target.value)} /></label><button className="wb-primary" disabled={busy || deliveryReason.trim().length < 8} onClick={() => act(() => post(`/v1/workflows/${workflow.workflow_id}/deliver`, { reason: deliveryReason }))}>批准本地交付</button></section>}
+        {workflow.status === "awaiting_final_review" && isAdmin && <section className="wb-panel"><h3>最终交付审核</h3><button onClick={() => go(finalReviewRoute(workflow))}>打开最终审核</button><p>三个部门当前版本均已批准。请确认交付包及证据；此操作仅形成可下载的本地文件。</p><label>最终审核说明<textarea value={deliveryReason} onChange={e => setDeliveryReason(e.target.value)} /></label><button className="wb-primary" disabled={busy || deliveryReason.trim().length < 8} onClick={() => act(() => post(`/v1/workflows/${workflow.workflow_id}/deliver`, { reason: deliveryReason }))}>批准本地交付</button></section>}
         {workflow.delivery && <section className="wb-panel"><h3>本地交付包已就绪</h3><p>包含三个部门的文档、检查与引用清单，以及审核记录。没有对外发布。</p><p>可以在“产物与审核”中复核各部门结果和版本历史。</p></section>}</>}
+      {tab === "final-review" && <section className="wb-panel"><h3>最终交付审核</h3>{workflow.status === "awaiting_final_review" && isAdmin ? <><p>三个部门当前版本均已批准。请核对产物、引用、返工处理和审核记录；此操作仅生成本地交付包。</p><label>最终审核说明<textarea value={deliveryReason} onChange={e => setDeliveryReason(e.target.value)} /></label><button className="wb-primary" disabled={busy || deliveryReason.trim().length < 8} onClick={() => act(() => post(`/v1/workflows/${workflow.workflow_id}/deliver`, { reason: deliveryReason }))}>批准本地交付</button></> : workflow.status === "delivered" ? <><p>本地交付已完成。</p><a className="wb-download" href={`/v1/workflows/${workflow.workflow_id}/download`}>下载交付包 ZIP</a></> : <p>{isAdmin ? "当前版本尚未满足最终审核条件，请先完成部门审核和交接。" : "最终交付审核需要本机管理员；部门负责人不能替代最终审核。"}</p>}<button onClick={() => go(path("overview"))}>返回任务概览</button></section>}
       {tab === "documents" && <Documents workflow={workflow} department={node.department_id} act={act} busy={busy} isAdmin={isAdmin} />}
-      {tab === "planning" && <Planning workflow={workflow} node={node} act={act} busy={busy} canReview={canReview} />}
-      {tab === "execution" && <Execution workflow={workflow} node={node} act={act} busy={busy} canReview={canReview} />}
+      {tab === "planning" && <Planning workflow={workflow} node={node} act={act} busy={busy} canReview={canReview} ready={setupState(catalog).ready} />}
+      {tab === "execution" && <Execution workflow={workflow} node={node} act={act} busy={busy} canReview={canReview} ready={setupState(catalog).ready} />}
       {tab === "review" && <Review workflow={workflow} node={node} act={act} busy={busy} canReview={canReview} />}
       {tab === "events" && <section className="wb-panel"><h3>按序事件</h3><div className="wb-events">{workflow.events.map(e => <div key={e.event_id}><span>{e.sequence + 1}</span><section><strong>{eventNames[e.kind] || e.kind}</strong><small>{e.recorded_at}</small><details><summary>核查事件依据</summary><pre>{JSON.stringify(e.payload, null, 2)}</pre></details></section></div>)}</div></section>}
     </>}
   </>;
 }
 
-function Assets({ catalog, act, busy, isAdmin }) {
+function Assets({ catalog, act, busy, isAdmin, returnTo }) {
   if (!catalog) return <p>正在读取登记与生命周期记录…</p>;
   const candidates = (status) => ["agents", "tools"].flatMap(kind => catalog[kind].filter(a => a.status === status).map(a => ({ kind, id: a.id, release_digest: a.release_digest })));
   return <><div className="wb-page-head"><div><h1>Agent 与工具</h1><p>内置候选启动时仅登记，必须分别评估、人工批准激活。激活不是任务执行授权。</p></div>{isAdmin && <div className="wb-actions"><button disabled={busy || !candidates("draft").length} onClick={() => act(() => post("/v1/workbench/assets/batch/evaluate", { items: candidates("draft") }))}>评价全部已登记候选</button><button className="wb-primary" disabled={busy || !candidates("evaluation").length} onClick={() => act(() => post("/v1/workbench/assets/batch/activate", { items: candidates("evaluation") }))}>批准并激活全部已通过候选</button></div>}</div>
+    {returnTo && <section className="wb-panel"><p>配置完成后可回到刚才的任务；原计划和资料保持原状。</p><button className="wb-primary" onClick={() => go(returnTo.startsWith("tasks") ? returnTo : "tasks")}>{returnTo === "tasks" ? "返回任务工作台" : "返回原任务"}</button></section>}
     {["agents", "tools"].map(kind => <section key={kind}><h2>{kind === "agents" ? "部门专业 Agent" : "固定工具契约"}</h2><div className="wb-asset-grid">{catalog[kind].map(a => <article className="wb-panel" key={a.id}><div className="wb-section-head"><h3>{operations[a.name] || a.name}</h3>{badge(a.status)}</div><p>版本 {a.version} · {a.department_id ? departments[a.department_id] : "固定输入输出契约 · 禁止网络外发"}</p>
-      <small className="wb-mono">{a.release_digest}</small><p>{a.evaluation ? "离线契约评价已记录，仍需明确批准激活。" : "已登记，尚未形成独立评价。"}</p>
+      <small className="wb-mono">{a.release_digest}</small><p>{a.status === "active" ? "评价与批准记录已完成；激活不替代任务授权。" : a.evaluation ? "离线契约评价已记录，仍需明确批准激活。" : "已登记，尚未形成独立评价。"}</p>
       {isAdmin && <div className="wb-actions">{a.status === "draft" && <button disabled={busy} onClick={() => act(() => post(`/v1/workbench/assets/${kind}/${a.id}/evaluate`))}>执行离线评价</button>}{a.status === "evaluation" && <button className="wb-primary" disabled={busy} onClick={() => act(() => post(`/v1/workbench/assets/${kind}/${a.id}/activate`))}>批准并激活</button>}{a.status === "active" && <button disabled={busy} onClick={() => act(() => post(`/v1/workbench/assets/${kind}/${a.id}/suspend`))}>暂停</button>}</div>}
       {a.status === "suspended" && <p className="wb-warning">已暂停，关联任务不能继续使用。原状态机要求新发布版本重新登记评价，不提供绕过批准的一键恢复。</p>}
     </article>)}</div></section>)}<section className="wb-panel"><h3>能力边界</h3><p>本地专业执行器已接入。Hermes、Codex仍为未连接候选；没有将登记、评价或本机账号包装成生产资格。</p></section></>;
@@ -238,9 +262,9 @@ function Runtime({ data }) {
     <section className="wb-panel"><h3>模型与预算门禁</h3><p>{data.budget.reason}。旧真实验证报告只读，不会恢复其剩余额度。新模型请求仍需另行授权。</p><p>SQLite单Worker；受限进程不是OS安全沙箱；不宣称已完成分布式并发或生产部署。</p></section></>;
 }
 
-function Reviews({ workflows }) {
-  const items = workflows.flatMap(w => w.nodes.filter(n => n.accessible && ["awaiting_approval", "awaiting_review", "blocked"].includes(n.status)).map(n => ({ workflow: w, node: n })));
-  return <><div className="wb-page-head"><div><h1>审核待办</h1><p>分别确认计划与审核产物；自动检查通过不能代替人工决定。</p></div></div>{items.length ? items.map(({ workflow, node }) => <button className="wb-review-card" key={node.attempt_id} onClick={() => go(`tasks/${workflow.workflow_id}/${node.status === "awaiting_approval" ? "planning" : "review"}/${node.department_id}`)}><div><h3>{workflow.title}</h3><p>{node.name} · v{node.revision} · {node.next_action}</p></div>{badge(node.status)}<span>打开审核 →</span></button>) : <div className="wb-empty"><h2>暂无待办</h2><p>确认需求后会生成待确认计划；执行后会生成需要审阅的候选。</p></div>}</>;
+function Reviews({ workflows, isAdmin }) {
+  const items = reviewItems(workflows, isAdmin);
+  return <><div className="wb-page-head"><div><h1>审核待办</h1><p>分别确认计划、审核产物和最终交付；自动检查通过不能代替人工决定。</p></div></div>{items.length ? items.map(item => <button className="wb-review-card" key={item.key} onClick={() => go(item.route)}><div><h3>{item.workflow.title}</h3><p>{item.description}</p></div>{badge(item.status)}<span>打开审核 →</span></button>) : <div className="wb-empty"><h2>暂无待办</h2><p>计划和候选生成后进入待办；三个部门当前版本均获批准后，管理员可办理最终交付审核。</p></div>}</>;
 }
 
 function Accounts({ act }) {
@@ -253,7 +277,9 @@ export default function Workbench() {
   const [user, setUser] = useState(undefined); const [route, setRoute] = useState(window.location.hash.slice(2) || "tasks");
   const [workflows, setWorkflows] = useState([]); const [detail, setDetail] = useState(null); const [catalog, setCatalog] = useState(null); const [runtime, setRuntime] = useState(null);
   const [busy, setBusy] = useState(false); const [error, setError] = useState("");
-  const [page, workflowId, tab = "overview", department = "product_center"] = route.split("/");
+  const [routePath, routeQuery = ""] = route.split("?");
+  const [page, workflowId, tab = "overview", department = "product_center"] = routePath.split("/");
+  const setupReturn = new window.URLSearchParams(routeQuery).get("returnTo");
   const isAdmin = user?.role_refs.includes("role_control_plane_admin");
   const login = useCallback(async () => { try { const me = await request("/v1/auth/me"); setUser(me.user); } catch { setUser(null); } }, []);
   useEffect(() => { login(); const update = () => setRoute(window.location.hash.slice(2) || "tasks"); window.addEventListener("hashchange", update); return () => window.removeEventListener("hashchange", update); }, [login]);
@@ -261,7 +287,7 @@ export default function Workbench() {
     if (!user) return;
     const data = await request("/v1/workflows"); setWorkflows(data.items);
     if (workflowId && page === "tasks") setDetail(await request(`/v1/workflows/${workflowId}`));
-    if (page === "assets") setCatalog(await request("/v1/workbench/assets"));
+    setCatalog(await request("/v1/workbench/assets"));
     if (page === "runtime" && isAdmin) setRuntime(await request("/v1/workbench/runtime"));
   }, [user, workflowId, page, isAdmin]);
   useEffect(() => { let alive = true; const poll = () => load().catch(e => { if (alive) { if (e.status === 401) setUser(null); else setError(e.message); } }); poll(); const timer = window.setInterval(poll, 1800); return () => { alive = false; window.clearInterval(timer); }; }, [load]);
@@ -270,13 +296,13 @@ export default function Workbench() {
   if (!user) return <Login onLogin={login} />;
   if (page === "governance") return <><div className="wb-legacy-bar"><button onClick={() => go("tasks")}>← 返回任务工作台</button><span>治理管理 · {user.display_name} · 本机登录权限</span></div>{isAdmin ? <Governance /> : <div className="wb-panel">治理操作需要管理员权限；你可在任务详情中查看本部门证据。</div>}</>;
   return <div className="wb-shell"><aside className="wb-sidebar"><a className="wb-brand" href="#/tasks"><b>O</b><span>Orbit<small>DELIVERY WORKBENCH</small></span></a><div className="wb-workspace-tag">本机协作工作区<span>虚构AI功能交付</span></div>
-    <nav aria-label="工作台导航">{nav.map(([id, name, number]) => <button className={page === id ? "selected" : ""} key={id} onClick={() => go(id)}><small>{number}</small>{name}{id === "reviews" && <i>{workflows.flatMap(w => w.nodes).filter(n => n.accessible && ["awaiting_approval", "awaiting_review"].includes(n.status)).length}</i>}</button>)}</nav>
+    <nav aria-label="工作台导航">{nav.map(([id, name, number]) => <button className={page === id ? "selected" : ""} key={id} onClick={() => go(id)}><small>{number}</small>{name}{id === "reviews" && <i>{reviewItems(workflows, isAdmin).length}</i>}</button>)}</nav>
     <div className="wb-sidebar-bottom"><p>本机身份 · 非企业认证<br />受控模型 · 实际工具执行<br />生产发布始终关闭</p><strong>{user.display_name || user.username}</strong><small>{isAdmin ? "本机管理员" : user.role_refs.includes("role_department_owner") ? "部门负责人" : "部门用户"}</small><button onClick={() => act(async () => { await authPost("logout"); setUser(null); })}>退出登录</button></div></aside>
     <main className="wb-main"><header className="wb-topbar"><span>工作区 / {nav.find(([id]) => id === page)?.[1] || "任务详情"}</span><span><i /> {(runtime?.budget || catalog?.budget || detail || workflows[0])?.live_model_enabled ? "独立授权模型活动 · 用量见任务与预算" : "离线模式 · 模型请求0次"}</span></header><div className="wb-content">
       {error && <div className="wb-error" role="alert"><strong>操作未完成</strong><span>{error}</span><button onClick={() => setError("")}>关闭</button></div>}
-      {page === "tasks" && (workflowId ? detail?.workflow_id === workflowId ? <TaskDetail workflow={detail} tab={tab} department={department} act={act} busy={busy} user={user} /> : <p>正在读取任务…</p> : <Tasks workflows={workflows} busy={busy} act={act} />)}
-      {page === "reviews" && <Reviews workflows={workflows} />}
-      {page === "assets" && <Assets catalog={catalog} act={act} busy={busy} isAdmin={isAdmin} />}
+      {page === "tasks" && (workflowId ? detail?.workflow_id === workflowId ? <TaskDetail workflow={detail} tab={tab} department={department} act={act} busy={busy} user={user} catalog={catalog} /> : <p>正在读取任务…</p> : <Tasks workflows={workflows} busy={busy} act={act} catalog={catalog} isAdmin={isAdmin} />)}
+      {page === "reviews" && <Reviews workflows={workflows} isAdmin={isAdmin} />}
+      {page === "assets" && <Assets catalog={catalog} act={act} busy={busy} isAdmin={isAdmin} returnTo={setupReturn} />}
       {page === "runtime" && (isAdmin ? <Runtime data={runtime} /> : <section className="wb-panel">全局队列与预算仅向管理员开放。你可在本部门任务中查看执行状态。</section>)}
       {page === "examples" && <><div className="wb-page-head"><div><h1>示例与验证</h1><p>历史验证证据与日常任务分开。历史真实模型授权已关闭。</p></div></div>{isAdmin && <WorkbenchLiveEvidence />}<OfflineDemo />{isAdmin && <Accounts act={act} />}</>}
     </div></main></div>;

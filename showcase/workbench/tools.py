@@ -12,6 +12,7 @@ from .content_contract import VERSION as CONTENT_VERSION
 from .content_contract import content_checks, enforce_content, source_manifest
 from .documents import retrieve
 from .model_gateway import OfflineProfessionalDecisionPort
+from .offline_rework import offline_rework, offline_rework_checks
 from .sharing_policy import POLICY_TEXT, VERSION, sharing_checks
 
 OPERATIONS = (
@@ -190,12 +191,9 @@ def run_professional(snapshot, *, decision_port=None):
     description += "\n\n## 资料访问与交接边界\n" + POLICY_TEXT
     description += "\n本部门原始资料按部门授权使用；上游交接产物须额外具备批准及显式共享记录。撤权后停止后续使用，历史审核证据保留供核查。"
     feedback = snapshot.get("review_feedback", "")
-    if feedback:
-        description += "\n已根据业务意见重新形成候选，并实际重新检索、校验和验收；待负责人核查修订。"
-        if "三态决策表" in feedback:
-            description += "\n## 三态决策表\n|状态|决定|依据|\n|未共享资料|拒绝|没有共享授权|\n|仅批准未共享产物|拒绝|批准不等于共享|\n|已批准且显式共享产物|在范围内使用|接收部门与绑定版本均匹配|"
-        if "交接验收清单" in feedback:
-            description += "\n## 交接验收清单\n- 核对接收部门。\n- 核对绑定版本及授权范围。\n- 撤权或失效后停止后续使用，保留历史审核证据。"
+    revision_text, rework_response = offline_rework(feedback)
+    if revision_text:
+        description += "\n\n" + revision_text
     live_draft = getattr(decision_port, "draft", None)
     if live_draft:
         require(
@@ -238,11 +236,12 @@ def run_professional(snapshot, *, decision_port=None):
     text += "\n".join(
         f"- {'通过' if c['passed'] else '失败'}：{c['name']}" for c in checks
     )
-    if snapshot.get("review_feedback") and not live_draft:
-        text += (
-            "\n\n## 本轮返工意见\n"
-            + snapshot["review_feedback"]
-            + "\n已重新执行资料检索与检查；请审阅证据和修订内容。"
+    if not live_draft:
+        revision_checks = offline_rework_checks(feedback, description, rework_response)
+        checks += revision_checks
+        text += "\n" + "\n".join(
+            f"- {'通过' if c['passed'] else '失败'}：{c['name']}"
+            for c in revision_checks
         )
     return {
         "artifact_ref": f"artifact://synthetic/{snapshot['task_id']}/candidate",
@@ -251,6 +250,7 @@ def run_professional(snapshot, *, decision_port=None):
         "sharing_policy_version": VERSION,
         "content_contract_version": CONTENT_VERSION,
         "source_manifest": manifest,
+        **({"rework_response": rework_response} if not live_draft else {}),
         "citations": citations,
         "checks": checks,
         "tool_receipts": receipts,

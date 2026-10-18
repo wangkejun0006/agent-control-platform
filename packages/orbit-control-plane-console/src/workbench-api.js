@@ -20,7 +20,7 @@ export function authPost(action, data = {}) {
 
 export const departments = { product_center: "产品部门", technology_center: "技术部门", market_center: "市场部门" };
 export const statuses = { not_started: "待开始", needs_input: "待澄清", awaiting_approval: "待确认计划", plan_approved: "计划已确认",
-  queued: "排队中", running: "执行中", cancel_requested: "正在取消", completed: "等待生成候选", awaiting_review: "待审核",
+  queued: "排队中", running: "执行中", cancel_requested: "正在取消", completed: "执行已完成", awaiting_review: "待审核",
   blocked: "检查未通过", approved: "已批准", changes_requested: "需返工", stale: "上游变更·已失效", failed: "执行失败",
   cancelled: "已取消", delivered: "已交付", awaiting_final_review: "待最终审核", draft: "已登记", evaluation: "待批准激活",
   active: "已激活", suspended: "已暂停", failed_closed: "已阻断", stop_requested: "规划已停止" };

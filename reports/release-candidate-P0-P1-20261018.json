@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-18",
+  "scope": "P0 and P1 offline workbench release candidate",
+  "baseline_commit": "bf8bf41d25615a43586674a8520531eaba2cdc52",
+  "changes": [
+    "Bounded offline review feedback produces substantive changes; unresolved requirements block approval",
+    "Final review queue, count and next-action use one route with existing role gate",
+    "Read-only runtime and handoff state projections, setup checklist and return-to task",
+    "Department navigation, feedback context and bounded authored-prose differences",
+    "Step-by-step README from installation through rework and ZIP delivery"
+  ],
+  "local_validation_before_packaging": {
+    "P0": {
+      "portable_python_run": 449,
+      "passed": 439,
+      "declared_skips": 10
+    },
+    "P1": {
+      "targeted_python_passed": 39,
+      "frontend_unit_passed": 10,
+      "original_browser_passed": 6,
+      "P0_all_UI_page_passed": 1,
+      "P1_all_UI_page_passed": 1
+    }
+  },
+  "remote_validation": "Not asserted by this pre-push record; use GitHub Actions for the exact commit.",
+  "model_calls_added": 0,
+  "private_runtime_included": false,
+  "evidence_boundary": "Static cases and historical reports retain their original status; prior failed runs were not rewritten. Page acceptance uses synthetic local accounts.",
+  "limits": [
+    "Offline templates are not arbitrary-language understanding",
+    "Local identity and one SQLite Worker are not production enterprise deployment",
+    "Line diff is limited to 500 lines with an explicit truncation notice",
+    "The current implementation is an adaptation of inherited control-plane capabilities, as recorded in NOTICE.md"
+  ]
+}

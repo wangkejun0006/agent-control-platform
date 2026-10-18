@@ -25,6 +25,16 @@ jobs:
       - run: npm run lint --prefix packages/orbit-control-plane-console && npm test --prefix packages/orbit-control-plane-console && npm run build --prefix packages/orbit-control-plane-console
       - run: cd packages/orbit-control-plane-console && npx playwright install --with-deps chromium
       - run: npm run test:e2e --prefix packages/orbit-control-plane-console
+      - name: P0 fresh-account offline delivery acceptance
+        working-directory: packages/orbit-control-plane-console
+        env:
+          ORBIT_P0_ACCEPTANCE_STATE_ROOT: /tmp/orbit-ci-p0-${{ github.run_id }}-${{ github.run_attempt }}
+        run: npx playwright test --config playwright.p0.config.js --output ../../.runtime/ci/browser-p0 --reporter line
+      - name: P1 onboarding handoff and rework usability acceptance
+        working-directory: packages/orbit-control-plane-console
+        env:
+          ORBIT_P1_ACCEPTANCE_STATE_ROOT: /tmp/orbit-ci-p1-${{ github.run_id }}-${{ github.run_attempt }}
+        run: npx playwright test --config playwright.p1.config.js --output ../../.runtime/ci/browser-p1 --reporter line
       - uses: actions/upload-artifact@v4
         if: always()
         with:

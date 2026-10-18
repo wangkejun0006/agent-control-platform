@@ -208,6 +208,36 @@ class DeliveryWorkbenchTests(unittest.TestCase):
             )
         )
 
+    def test_read_projections_follow_current_handoff_without_rewriting_history(self):
+        workflow = self.prepare()
+        first = self.detail(workflow)
+        self.assertTrue(first["nodes"][0]["has_documents"])
+        self.assertIn("资料已就绪", first["nodes"][0]["next_action"])
+        self.assertFalse(first["nodes"][1]["upstream_ready"])
+        self.assertIn("等待上游", first["nodes"][1]["next_action"])
+        product = self.execute(workflow, "product_center")
+        self.assertEqual(product["runtime"]["status"], "completed")
+        self.assertEqual(product["status"], "awaiting_review")
+        old_digest = product["candidate"]["candidate_digest"]
+        self.approve(workflow, "product_center", product, "technology_center")
+        view = self.detail(workflow)
+        self.assertEqual(view["nodes"][0]["runtime"]["status"], "completed")
+        self.assertIsNotNone(view["nodes"][0]["outgoing_handoff"])
+        self.assertTrue(view["nodes"][1]["upstream_ready"])
+        self.assertEqual(view["nodes"][1]["incoming_handoff"]["source_attempt"], product["attempt_id"])
+        for _ in range(2):
+            current = self.detail(workflow)
+            self.assertEqual(current["nodes"][0]["candidate"]["candidate_digest"], old_digest)
+        technology = self.execute(workflow, "technology_center")
+        self.approve(workflow, "technology_center", technology, "market_center")
+        market = self.execute(workflow, "market_center")
+        self.approve(workflow, "market_center", market)
+        self.post(f"/v1/workflows/{workflow}/deliver", {"reason": "核对当前三部门版本，仅批准本地虚构交付。"})
+        delivered = self.detail(workflow)
+        self.assertEqual(delivered["status"], "delivered")
+        self.assertTrue(all("已纳入当前本地交付" in n["next_action"] for n in delivered["nodes"]))
+        self.assertTrue(all(n["runtime"]["status"] == "completed" for n in delivered["nodes"]))
+
     def test_no_approval_no_execution_and_idempotent_create(self):
         key = "same-create-key-0001"
         data = {
@@ -252,9 +282,33 @@ class DeliveryWorkbenchTests(unittest.TestCase):
         revised = self.execute(workflow, "product_center", start=False)
         self.assertTrue(revised["candidate"]["checks_passed"])
         self.assertNotEqual(old_digest, revised["candidate"]["candidate_digest"])
-        self.assertIn("补充范围限制", revised["candidate"]["payload"]["body"])
+        self.assertIn("范围限制与证据边界", revised["candidate"]["payload"]["authored_prose"])
+        self.assertIn("负责人逐项验收清单", revised["candidate"]["payload"]["authored_prose"])
         self.approve(workflow, "product_center", revised, "technology_center")
         self.assertEqual(self.node(workflow, "product_center")["status"], "approved")
+
+    def test_unsupported_offline_rework_blocks_approval_and_preserves_original(self):
+        workflow = self.prepare()
+        node = self.execute(workflow, "product_center")
+        old_digest = node["candidate"]["candidate_digest"]
+        self.approve(workflow, "product_center", node, decision="request_changes")
+        self.post(
+            f"/v1/workflows/{workflow}/departments/product_center/revise",
+            {"reason": "补充验收清单，并新增短信通知功能。", "acknowledge_uncertain": True},
+        )
+        revised = self.execute(workflow, "product_center", start=False)
+        self.assertEqual(revised["status"], "blocked")
+        self.assertFalse(revised["candidate"]["checks_passed"])
+        response = revised["candidate"]["payload"]["rework_response"]
+        self.assertTrue(any(i["status"] == "unresolved" for i in response["items"]))
+        self.post(
+            f"/v1/workflows/{workflow}/departments/product_center/review",
+            {"candidate_digest": revised["candidate"]["candidate_digest"], "revision": 2,
+             "decision": "approve", "reason": "不能用规则通过冒充意见已落实。"},
+            expected=409,
+        )
+        self.assertEqual(revised["history"][0]["candidate"]["candidate_digest"], old_digest)
+        self.assertEqual(self.detail(workflow)["model_requests"], 0)
 
     def test_same_version_conflict_is_detected_from_actual_uploaded_documents(self):
         workflow = self.prepare()
