@@ -4,6 +4,15 @@
 
 重点是执行权限、版本和失败处理：模型提出建议，宿主控制能否执行；评估通过后仍需审核；跨部门只共享获批准的明确产物版本。
 
+## 获取项目
+
+```bash
+git clone https://github.com/wangkejun0006/agent-control-platform.git
+cd agent-control-platform
+```
+
+以下两个入口均在此仓库根目录启动。只想查看已完成案例，选择8433；想从零创建任务，选择8432。
+
 ## 先看案例（无需Node、数据库或模型）
 
 环境：Ubuntu/WSL2、uv、Python3.14。项目根目录执行：
@@ -23,14 +32,7 @@ uv run --locked --offline python -m showcase.workbench.snapshot_view --port 8433
 
 环境：Ubuntu/WSL2、Git、uv、Python 3.14、Node 24、npm 11。首次安装依赖需要包仓库网络；工作台默认离线，不需要模型账号或密钥。
 
-先克隆仓库并进入目录；私有阶段需要相应访问权限：
-
-```bash
-git clone https://github.com/wangkejun0006/agent-control-platform.git
-cd agent-control-platform
-```
-
-以下命令在仓库根目录执行：
+完成上方克隆并进入仓库后，执行：
 
 ```bash
 uv sync --locked --extra loopback-d0
@@ -145,6 +147,8 @@ ORBIT_WORKBENCH_STATE_ROOT="$PWD/.runtime/workbench/practice-001" bash scripts/r
 ![工作台页面](reports/sharing-workbench-desktop.png)
 
 ## 验证
+
+[P0/P1发布候选的GitHub Actions验证](https://github.com/wangkejun0006/agent-control-platform/actions/runs/39124779299)对应提交`aa56f08`，覆盖首次使用、跨部门交接、市场返工、最终审核及ZIP下载；后续提交请查看各自的Actions结果。
 
 ```bash
 uv run --locked --offline python scripts/validate_offline.py \

@@ -35,7 +35,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "e95e6118ad3eed958561768a918acaffabbfe2eee36ae034b5d0683513148d7c"
+      "sha256": "f1e2ffbabfeafd871926afd92e6a810a0f49394b4cc4397fb145c0f90ce550ea"
     },
     {
       "path": "alembic/env.py",
