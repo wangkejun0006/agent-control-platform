@@ -1,5 +1,6 @@
 """Public packaging boundaries and optional configuration, without credentials."""
 
+import runpy
 import tempfile
 import unittest
 from pathlib import Path
@@ -36,6 +37,21 @@ class ReleaseCandidateTests(unittest.TestCase):
                 for p in paths
             )
         )
+
+    def test_optional_native_harness_requires_installer_even_with_powershell(self):
+        harness = ROOT / "tests/test_department_wsl_native_transport.py"
+        for helper_present in (False, True):
+            with (
+                self.subTest(helper_present=helper_present),
+                patch("shutil.which", return_value="/synthetic/pwsh"),
+                patch("pathlib.Path.is_file", return_value=helper_present),
+                patch("os.name", "posix"),
+            ):
+                loaded = runpy.run_path(str(harness))
+                case = loaded["DepartmentWslNativeTransportTests"]
+                self.assertEqual(
+                    getattr(case, "__unittest_skip__", False), not helper_present
+                )
 
     def test_configured_file_selection_uses_mock_bytes_not_existing_key(self):
         with tempfile.TemporaryDirectory() as directory:

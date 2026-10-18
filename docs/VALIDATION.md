@@ -32,3 +32,12 @@ uv run --locked --offline python scripts/export_release.py --output /tmp/orbit-c
 `.github/workflows/offline.yml`为将来上传后的离线行为验证定义；本地收尾不会实际运行GitHub Actions。包安装与浏览器下载是联网步骤，不是模型请求。
 
 历史机器报告保持原样。当前收尾结果另存`reports/release-readiness-20261017.json`；该报告生成前不得将本轮写为全部通过。源码安装和共享下载缓存的验证不等于全新物理机器、空缓存或生产部署验收。
+
+## GitHub Runner portability note
+
+The optional PowerShell-to-WSL native transport harness also requires
+`deploy/lan-stage1/department-device/OrbitFirstInstall.ps1`. The portable
+portfolio does not bundle that device installer. These tests are reported as
+skipped even when PowerShell is preinstalled; they remain enabled when both
+dependencies exist. This does not verify Windows/WSL deployment. The initial
+GitHub run 39098883371 failed on this missing asset and remains a failed run.

@@ -231,7 +231,7 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "sha256": "abc958ef45461234892c8f07c562132b65a2e1551a9cb5774c10c604b991a95d"
+      "sha256": "edd1ac8b12210681e1eb60ec5e16c69eb89b8b5acc3412055a59dc8b589abfb2"
     },
     {
       "path": "docs/WORKBENCH_LIVE_VALIDATION.md",
@@ -1999,7 +1999,7 @@
     },
     {
       "path": "tests/test_department_wsl_native_transport.py",
-      "sha256": "8319de70023a2c333d6ba6973ab058e300195d8f475447f852cfc1452ff5cafd"
+      "sha256": "bdcbf54837e9dda76f91668b9772d92625d80f04f28efedbc23daa173a13f8a9"
     },
     {
       "path": "tests/test_disease_agent_e4_docker_runner.py",
@@ -2279,7 +2279,7 @@
     },
     {
       "path": "tests/test_release_candidate.py",
-      "sha256": "837b412df556bf2cfa9329dfbdd6d7439c81ea2b8ce5e18873e836a6243c375c"
+      "sha256": "9499e963c79d0d790032d70a3fdb246e27a7bf59f6992fa71b2362c119d67e8e"
     },
     {
       "path": "tests/test_rework_content_contract.py",

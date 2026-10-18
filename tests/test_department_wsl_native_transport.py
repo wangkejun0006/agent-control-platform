@@ -13,6 +13,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 PWSH = os.environ.get("ORBIT_TEST_PWSH") or shutil.which("pwsh")
+INSTALL_HELPER = ROOT / "deploy/lan-stage1/department-device/OrbitFirstInstall.ps1"
 
 # The executable adapter receives argv/stdin after PowerShell's native transport.
 # Only its OS boundary is synthetic; the production helper is dot-sourced intact.
@@ -42,7 +43,10 @@ sys.exit(int(os.environ.get('ORBIT_NATIVE_EXIT', '0')))
 '''
 
 
-@unittest.skipUnless(PWSH and os.name == "posix", "optional POSIX native-boundary harness")
+@unittest.skipUnless(
+    PWSH and os.name == "posix" and INSTALL_HELPER.is_file(),
+    "optional POSIX native-boundary harness requires PowerShell and the unbundled device installer",
+)
 class DepartmentWslNativeTransportTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="orbit-native-synthetic-")
